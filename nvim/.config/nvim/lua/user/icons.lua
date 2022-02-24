@@ -51,6 +51,7 @@ if vim.fn.has "mac" == 1 then
       OpenFolder = "",
     },
     git = {
+      Logo = "",
       Add = "",
       Mod = "",
       Remove = "",

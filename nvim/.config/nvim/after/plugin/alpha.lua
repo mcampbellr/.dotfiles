@@ -25,6 +25,7 @@ dashboard.section.buttons.val = {
   dashboard.button("r", icons.ui.History .. " Recent files", ":Telescope oldfiles <CR>"),
   dashboard.button("t", icons.ui.List .. " Find text", ":Telescope live_grep <CR>"),
   dashboard.button("d", icons.ui.Dotfiles .. " Dotfiles", ":e ~/.dotfiles <CR>"),
+  dashboard.button("g", icons.git.Logo .. " Git Status", ":Git <CR>"),
   dashboard.button("c", icons.ui.Gear .. " Config", ":e ~/.config/nvim <CR>"),
   dashboard.button("z", icons.ui.Terminal .. " ZshConfig", ":e ~/.zshrc<CR>"),
   dashboard.button("q", icons.diagnostics.Error .. " Quit", ":qa<CR>"),
