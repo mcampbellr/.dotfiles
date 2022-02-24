@@ -35,12 +35,22 @@ keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
--- Move text up and down
-keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
-keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
-
 -- resource the nvim config
 keymap("n", "<Leader>rs", ":so % <CR>", opts)
+
+-- Keep the cursor center
+keymap("n", "n", "nzzzv", opts)
+keymap("n", "N", "Nzzzv", opts)
+keymap("n", "J", "mzJ`z", opts)
+
+-- Delete all the page content
+keymap("n", "D", "ggdG<esc>", opts)
+
+-- Paste and replace all the page content
+keymap("n", "P", "ggVGp<esc>", opts)
+
+-- Select all the page content
+keymap("n", "V", "gg0VG$", opts)
 
 -- Visual --
 -- Stay in indent mode
@@ -48,8 +58,10 @@ keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
 -- Move text up and down
-keymap("v", "<A-j>", ":m .+1<CR>==", opts)
-keymap("v", "<A-k>", ":m .-2<CR>==", opts)
+keymap("v", "J", ":m '>+1<cr>gv=gv", opts)
+keymap("v", "K", ":m '<-2<cr>gv=gv", opts)
+
+-- Paste in visual_mode
 keymap("v", "p", '"_dP', opts)
 
 -- Visual Block --
@@ -66,23 +78,16 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 -- keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 -- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
-keymap("n", "<leader>S", "<cmd>lua require('spectre').open()<CR>", opts)
 -- Custom
 keymap("n", "Q", "<cmd>Bdelete!<CR>", opts)
-keymap("n", "<F1>", ":e ~/Notes/<cr>", opts)
-keymap("n", "<F3>", ":e .<cr>", opts)
 
+keymap("n", "<F3>", ":e .<cr>", opts)
 keymap("n", "<F4>", "<cmd>Telescope resume<cr>", opts)
 keymap("n", "<F5>", "<cmd>Telescope commands<CR>", opts)
-
 keymap("n", "<F7>", "<cmd>TSHighlightCapturesUnderCursor<cr>", opts)
-keymap("n", "<F8>", "<cmd>TSPlaygroundToggle<cr>", opts)
-
+keymap("n", "<F8>", "<cmd>Alpha<cr>", opts)
 keymap("n", "<F11>", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
 keymap("n", "<F12>", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
 
-keymap("v", "//", [[y/\V<C-R>=escape(@",'/\')<CR><CR>]], opts)
-
 keymap("n", "<C-s>", "<cmd>vsplit<cr>", opts)
 keymap("n", "<c-n>", ":e ~/Notes/<cr>", opts)
-
