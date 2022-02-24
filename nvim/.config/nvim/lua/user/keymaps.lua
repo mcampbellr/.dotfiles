@@ -44,13 +44,13 @@ keymap("n", "N", "Nzzzv", opts)
 keymap("n", "J", "mzJ`z", opts)
 
 -- Delete all the page content
-keymap("n", "D", "ggdG<esc>", opts)
+keymap("n", "<leader>D", "ggdG<esc>", opts)
 
 -- Paste and replace all the page content
-keymap("n", "P", "ggVGp<esc>", opts)
+keymap("n", "<leader>P", "ggVGp<esc>", opts)
 
 -- Select all the page content
-keymap("n", "V", "gg0VG$", opts)
+keymap("n", "<leader>V", "gg0VG$", opts)
 
 -- Visual --
 -- Stay in indent mode
