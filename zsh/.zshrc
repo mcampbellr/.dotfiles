@@ -174,6 +174,7 @@ alias ga.="g add . && gst"
 # Custom commands
 alias gsw="$DEV_FILES/git-switcher/git-switcher.sh"
 alias cg=". $DEV_FILES/rotator/rot.sh"
+alias ch="$DEV_FILES/cht/cht.sh"
 alias ss="$DEV_FILES/tmux/session"
 
 # gh auto completion
