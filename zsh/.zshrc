@@ -121,7 +121,9 @@ source $ZSH/oh-my-zsh.sh
 
 # vim & nvim aliases
 alias n='nvim'
-alias nvc="cd ~/.dotfiles/nvim && nvim ."
+alias n.='nvim'
+alias nvc="cd ~/.dotfiles/nvim/.config/nvim/ && nvim ."
+alias dot="cd ~/.dotfiles/ && nvim ."
 alias vc="vimtheme"
 # shortcuts aliases
 alias cl='clear'
