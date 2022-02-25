@@ -12,7 +12,7 @@ export DEV_FILES="/Users/mariocampbell/Dev/lab"
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-
+export LG_CONFIG_FILE="$HOME/.config/lazygit/config.yml"
 #THEME COLOR
 ZSH_THEME="powerlevel10k/powerlevel10k"
 # Set name of the theme to lad --- ifset to "random", it will
@@ -138,7 +138,7 @@ alias ccd=mkcdir
 alias zshrc='nvim ~/.zshrc'
 alias hrc='n ~/.hyper.js'
 alias ohmyzsh="nvim ~/.oh-my-zsh"
-alias tree="tree --gitignore"
+alias tree="tree -L 3 --gitignore"
 # tmux aliases
 alias tm='tmux'
 alias :q='exit'
@@ -162,6 +162,7 @@ alias cra='npx create-react-app'
 alias crna='npx create-next-app@latest'
 alias crnats='npx create-next-app@latest --ts'
 # Custom git aliases
+alias lg='lazygit'
 alias g='git'
 alias gwt="g worktree"
 alias gwta="g worktree add"

@@ -85,9 +85,12 @@ keymap("n", "<F3>", ":e .<cr>", opts)
 keymap("n", "<F4>", "<cmd>Telescope resume<cr>", opts)
 keymap("n", "<F5>", "<cmd>Telescope commands<CR>", opts)
 keymap("n", "<F7>", "<cmd>TSHighlightCapturesUnderCursor<cr>", opts)
-keymap("n", "<F8>", "<cmd>Alpha<cr>", opts)
+keymap("n", "<F9>", "<cmd>Alpha<cr>", opts)
 keymap("n", "<F11>", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
 keymap("n", "<F12>", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
 
 keymap("n", "<C-s>", "<cmd>vsplit<cr>", opts)
 keymap("n", "<c-n>", ":e ~/Notes/<cr>", opts)
+
+
+

@@ -62,7 +62,7 @@ return packer.startup(function(use)
 
   use "kyazdani42/nvim-web-devicons"
   -- Better notifications
-
+  use "rcarriga/nvim-notify"
   -- File navigation
   use "kyazdani42/nvim-tree.lua"
   use "akinsho/bufferline.nvim"
