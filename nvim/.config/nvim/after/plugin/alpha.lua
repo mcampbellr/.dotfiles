@@ -1,22 +1,28 @@
-local status_ok, alpha = pcall(require, "alpha")
-if not status_ok then
-  return
-end
+local dashboard = require "alpha.themes.dashboard"
+math.randomseed(os.time())
 
 local icons = require "user.icons"
 
-local dashboard = require "alpha.themes.dashboard"
+local function pick_color()
+  local colors = { "String", "Identifier", "Keyword", "Number", "Constant" }
+  return colors[math.random(#colors)]
+end
+
+local function footer()
+  local v = vim.version()
+  local datetime = os.date " %d-%m-%Y   %H:%M:%S"
+  return string.format(" %s   v%s.%s.%s  %s", "<mcampbellr>", v.major, v.minor, v.patch, datetime)
+end
 
 dashboard.section.header.val = {
-  [[]],
-  [[ ██████╗ █████╗ ███╗   ███╗██████╗ ██████╗ ███████╗██╗     ██╗     ]],
-  [[██╔════╝██╔══██╗████╗ ████║██╔══██╗██╔══██╗██╔════╝██║     ██║     ]],
-  [[██║     ███████║██╔████╔██║██████╔╝██████╔╝█████╗  ██║     ██║     ]],
-  [[██║     ██╔══██║██║╚██╔╝██║██╔═══╝ ██╔══██╗██╔══╝  ██║     ██║     ]],
-  [[╚██████╗██║  ██║██║ ╚═╝ ██║██║     ██████╔╝███████╗███████╗███████╗]],
-  [[ ╚═════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝     ╚═════╝ ╚══════╝╚══════╝╚══════╝]],
-  [[]],
+  [[ _______             ____   ____.__         ]],
+  [[ \      \   ____  ___\   \ /   /|__| _____  ]],
+  [[ /   |   \_/ __ \/  _ \   Y   / |  |/     \ ]],
+  [[/    |    \  ___(  <_> )     /  |  |  Y Y  \]],
+  [[\____|__  /\___  >____/ \___/   |__|__|_|  /]],
+  [[        \/     \/                        \/ ]],
 }
+dashboard.section.header.opts.hl = pick_color()
 
 dashboard.section.buttons.val = {
   dashboard.button("f", icons.documents.Files .. " Find file", ":Telescope find_files <CR>"),
@@ -37,16 +43,9 @@ dashboard.section.buttons.val = {
   dashboard.button("q", icons.diagnostics.Error .. " Quit", ":qa<CR>"),
 }
 
-local function footer()
-  return "< mcampbell />"
-end
-
 dashboard.section.footer.val = footer()
+dashboard.section.footer.opts.hl = dashboard.section.header.opts.hl
 
-dashboard.section.footer.opts.hl = "Type"
-dashboard.section.header.opts.hl = "Include"
-dashboard.section.buttons.opts.hl = "Keyword"
+dashboard.config.layout[1].val = 1
 
-dashboard.opts.opts.noautocmd = true
-
-alpha.setup(dashboard.opts)
+require("alpha").setup(dashboard.config)
