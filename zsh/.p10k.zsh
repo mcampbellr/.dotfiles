@@ -119,7 +119,7 @@
         email=$LN;
       fi
     done
-    p10k segment -f 208 -i "" -t "$email"
+    p10k segment -f "\u001b[0m" -i "" -t "$email"
   }
 
   # Defines character set used by powerlevel10k. It's best to let `p10k configure` set it for you.
