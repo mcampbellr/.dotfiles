@@ -123,7 +123,7 @@ source $ZSH/oh-my-zsh.sh
 alias n='nvim'
 alias n.='nvim'
 alias nvc="cd ~/.dotfiles/nvim/.config/nvim"
-alias dot="cd ~/.dotfiles/ && nvim ."
+alias dot="cd ~/.dotfiles/ "
 alias vc="vimtheme"
 # shortcuts aliases
 alias cl='clear'
@@ -177,6 +177,8 @@ alias gsw="$DEV_FILES/git-switcher/git-switcher.sh"
 alias cg=". $DEV_FILES/rotator/rot.sh"
 alias ch="$DEV_FILES/cht/cht.sh"
 alias ss="$DEV_FILES/tmux/session"
+
+alias cpwd="pwd | tr -d '\n' | pbcopy && echo 'pwd copied to clipboard'"
 
 # gh auto completion
 autoload -U compinit
