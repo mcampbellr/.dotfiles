@@ -1,10 +1,5 @@
 vim.cmd [[
-try
-  colorscheme onedark
-catch /^Vim\%((\a\+)\)\=:E185/
-  colorscheme default
-  set background=dark
-endtry
+colorscheme NeoSolarized
 
 set background=dark
 " Colors customization
