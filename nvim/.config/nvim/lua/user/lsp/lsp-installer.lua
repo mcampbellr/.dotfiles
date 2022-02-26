@@ -30,6 +30,11 @@ lsp_installer.on_server_ready(function(server)
     return
   end
 
+  if server.name == "bashls" then
+    local bashls_opts = require "user.lsp.settings.bashls"
+    opts = vim.tbl_deep_extend("force", bashls_opts, opts)
+  end
+
   if server.name == "solang" then
     local solang_opts = require "user.lsp.settings.solang"
     opts = vim.tbl_deep_extend("force", solang_opts, opts)

@@ -23,6 +23,10 @@ vim.g.nvim_tree_icons = {
   },
 }
 
+vim.g.nvim_tree_special_files = {
+  "README.md" == 0,
+}
+
 vim.g.nvim_tree_show_icons = {
   git = 1,
   folders = 1,
