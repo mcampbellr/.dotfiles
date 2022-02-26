@@ -140,6 +140,10 @@ return packer.startup(function(use)
     "folke/trouble.nvim",
     cmd = "TroubleToggle",
   }
+  use {
+    "weilbith/nvim-code-action-menu",
+    cmd = "CodeActionMenu",
+  }
 
   -- Telescope
   use "nvim-telescope/telescope.nvim"

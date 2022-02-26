@@ -21,13 +21,13 @@ local kind_icons = icons.kind
 
 -- INFO: order matters
 local source_mapping = {
-  nvim_lsp = "[LSP]",
-  nvim_lua = "[Nvim]",
-  luasnip = "[Snippet]",
-  buffer = "[Buffer]",
-  cmp_tabnine = "[T9]",
-  path = "[Path]",
-  emoji = "[Emoji]",
+  nvim_lsp = "[L]",
+  nvim_lua = "[L]",
+  luasnip = "[S]",
+  buffer = "[B]",
+  cmp_tabnine = "[T]",
+  path = "[P]",
+  emoji = "[E]",
 }
 
 cmp.setup {
@@ -42,7 +42,6 @@ cmp.setup {
     ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
     ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
     ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-    -- ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
     ["<C-e>"] = cmp.mapping {
       i = cmp.mapping.abort(),
       c = cmp.mapping.close(),
