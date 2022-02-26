@@ -102,7 +102,7 @@ keybinding:
     prevMatch: 'N'
     optionMenu: 'x' # show help menu
     optionMenu-alt1: '?' # show help menu
-    select: '<space>'
+    select: 's'
     goInto: '<enter>'
     openRecentRepos: '<c-r>'
     confirm: '<enter>'
