@@ -89,6 +89,7 @@ return packer.startup(function(use)
   use "overcache/NeoSolarized"
   use "folke/tokyonight.nvim"
   use "joshdick/onedark.vim"
+  use "lunarvim/darkplus.nvim"
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp"
@@ -109,10 +110,6 @@ return packer.startup(function(use)
         sort = true,
         run_on_every_keystroke = true,
         snippet_placeholder = "..",
-        ignored_file_types = { -- default is not to ignore
-          -- uncomment to ignore in lua:
-          -- lua = true
-        },
       }
     end,
 
@@ -162,7 +159,6 @@ return packer.startup(function(use)
   -- Git
   use "lewis6991/gitsigns.nvim"
   use "tpope/vim-fugitive"
-
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

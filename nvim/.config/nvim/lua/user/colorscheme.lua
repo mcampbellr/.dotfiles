@@ -1,5 +1,5 @@
 vim.cmd [[
-colorscheme onedark
+colorscheme NeoSolarized
 
 set background=dark
 
@@ -13,8 +13,8 @@ highlight SignColumn guibg=NONE
 
 highlight Comment cterm=italic gui=italic
 
-highlight TabLineSel guibg=NONE 
-highlight TabLine guibg=NONE 
+highlight TabLineSel guibg=NONE
+highlight TabLine guibg=NONE
 highlight TabLineFill guibg=NONE
 highlight TabLineSel guifg=orange
 highlight SignColumn guibg=none

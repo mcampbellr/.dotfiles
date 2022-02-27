@@ -14,12 +14,8 @@ return {
     "xml",
     "xsl",
     "pug",
+    "vue",
     "slim",
     "sass",
-    "stylus",
-    "less",
-    "sss",
-    "hbs",
-    "handlebars",
   },
 }
