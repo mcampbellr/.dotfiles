@@ -34,7 +34,9 @@ vim.cmd [[
     autocmd!
     autocmd BufWritePre * lua vim.lsp.buf.formatting()
   augroup end
+
+  au BufRead,BufNewFile *.prettierrc set filetype=jsonc
+  au BufRead,BufNewFile *.json set filetype=jsonc
+  au BufRead,BufNewFile .env.* set filetype=sh
 ]]
--- autocmd BufLeave * if (!exists('b:caret')) | let b:caret = winsaveview() | endif
--- autocmd BufEnter * if (exists('b:caret')) | call winrestview(b:caret) | endif
 

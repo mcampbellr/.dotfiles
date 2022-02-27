@@ -89,6 +89,7 @@ keymap("n", "<F7>", "<cmd>Telescope oldfiles<cr>", opts)
 keymap("n", "<F9>", "<cmd>Alpha<cr>", opts)
 keymap("n", "<F11>", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
 keymap("n", "<F12>", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+keymap("n", "<Bslash>", ":let @/ = ''<CR>", opts)
 
 keymap("n", "<C-s>", "<cmd>vsplit<cr>", opts)
 keymap("n", "<c-n>", ":e ~/Notes/<cr>", opts)
