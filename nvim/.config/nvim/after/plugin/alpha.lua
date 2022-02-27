@@ -3,11 +3,6 @@ math.randomseed(os.time())
 
 local icons = require "user.icons"
 
-local function pick_color()
-  local colors = { "String", "Identifier", "Keyword", "Number", "Constant" }
-  return colors[math.random(#colors)]
-end
-
 local function footer()
   local v = vim.version()
   local datetime = os.date " %d-%m-%Y   %H:%M:%S"
@@ -23,7 +18,7 @@ dashboard.section.header.val = {
   [[/_/ |_/\___/\____/|___/_/_/ /_/ /_/ ]],
   [[]],
 }
-dashboard.section.header.opts.hl = pick_color()
+dashboard.section.header.opts.hl = 'Identifier' 
 
 dashboard.section.buttons.val = {
   dashboard.button("f", icons.documents.Files .. " Find file", ":Telescope find_files <CR>"),
@@ -40,7 +35,6 @@ dashboard.section.buttons.val = {
   dashboard.button("g", icons.git.Logo .. " Git Status", ":Git <CR>"),
   dashboard.button("c", icons.ui.Gear .. " Config", ":e ~/.config/nvim <CR>"),
   dashboard.button("z", icons.ui.Terminal .. " ZshConfig", ":e ~/.zshrc<CR>"),
-  dashboard.button("m", icons.kind.Class .. " Cheat Sheet", ":TermExec cmd='ch'<CR>"),
   dashboard.button("q", icons.diagnostics.Error .. " Quit", ":qa<CR>"),
 }
 
