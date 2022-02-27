@@ -121,7 +121,7 @@ nvim_tree.setup {
       global = false,
     },
     open_file = {
-      quit_on_open = true,
+      quit_on_open = false,
       window_picker = {
         enable = true,
         chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",

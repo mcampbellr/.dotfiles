@@ -27,6 +27,7 @@ local source_mapping = {
   buffer = "[B]",
   cmp_tabnine = "[T]",
   path = "[P]",
+  npm = "[N]",
   emoji = "[E]",
 }
 
@@ -103,6 +104,7 @@ cmp.setup {
     { name = "buffer" },
     { name = "cmp_tabnine" },
     { name = "path" },
+    { name = 'npm', keyword_length = 4 },
     { name = "emoji" },
   },
   confirm_opts = {

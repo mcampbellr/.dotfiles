@@ -48,7 +48,6 @@ return packer.startup(function(use)
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
 
   -- Custom plugins
-  use "RRethy/vim-illuminate"
   use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
   use "lukas-reineke/indent-blankline.nvim" -- indentention of white lines
   use "Mephistophiles/surround.nvim" -- surround things easily
@@ -59,19 +58,16 @@ return packer.startup(function(use)
   use "numToStr/Comment.nvim"
   use "folke/todo-comments.nvim"
   use "JoosepAlviste/nvim-ts-context-commentstring"
-
+  -- Icons over nvim
   use "kyazdani42/nvim-web-devicons"
   -- Better notifications
   use "rcarriga/nvim-notify"
   -- File navigation
-  use "kyazdani42/nvim-tree.lua"
   use "akinsho/bufferline.nvim"
+  use "goolord/alpha-nvim"
+  use "kyazdani42/nvim-tree.lua"
   use "moll/vim-bbye" -- Close buffer without close nvim
   use "nvim-lualine/lualine.nvim"
-  use "goolord/alpha-nvim"
-
-  -- Terminal
-  use "akinsho/toggleterm.nvim"
 
   use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
   use "norcalli/nvim-colorizer.lua"
@@ -81,9 +77,8 @@ return packer.startup(function(use)
 
   -- language specific plugins
   use "lunarvim/vim-solidity"
-
+  use "thosakwe/vim-flutter"
   use {
-
     "iamcco/markdown-preview.nvim",
     run = "cd app && npm install",
     ft = "markdown",
@@ -99,10 +94,11 @@ return packer.startup(function(use)
   use "hrsh7th/nvim-cmp"
   use "hrsh7th/cmp-buffer" -- buffer completions
   use "hrsh7th/cmp-path" -- path completions
-  use "saadparwaiz1/cmp_luasnip" -- snippet completions
   use "hrsh7th/cmp-nvim-lsp"
   use "hrsh7th/cmp-emoji"
   use "hrsh7th/cmp-nvim-lua"
+  use "David-Kunz/cmp-npm"
+  use "saadparwaiz1/cmp_luasnip" -- snippet completions
   use {
     "tzachar/cmp-tabnine",
     config = function()
@@ -167,11 +163,6 @@ return packer.startup(function(use)
   use "lewis6991/gitsigns.nvim"
   use "tpope/vim-fugitive"
 
-  -- DAP
-  use "mfussenegger/nvim-dap"
-  use "theHamsta/nvim-dap-virtual-text"
-  use "rcarriga/nvim-dap-ui"
-  use "Pocco81/DAPInstall.nvim"
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

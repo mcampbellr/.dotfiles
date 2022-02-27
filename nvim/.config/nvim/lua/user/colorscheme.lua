@@ -2,7 +2,6 @@ vim.cmd [[
 colorscheme onedark
 
 set background=dark
-" Colors customization
 
 highlight Normal guibg=NONE
 highlight LineNr guibg=NONE guifg=#5A6895
