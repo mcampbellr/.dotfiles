@@ -71,7 +71,6 @@ return packer.startup(function(use)
 
   use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
   use "norcalli/nvim-colorizer.lua"
-  use "ThePrimeagen/harpoon"
   use "tpope/vim-repeat"
   use "ahmedkhalf/project.nvim"
 
@@ -85,7 +84,6 @@ return packer.startup(function(use)
   }
 
   -- Colorschemes
-  use "crusoexia/vim-monokai"
   use "overcache/NeoSolarized"
   use "folke/tokyonight.nvim"
   use "joshdick/onedark.vim"
@@ -143,6 +141,7 @@ return packer.startup(function(use)
   use "nvim-telescope/telescope-fzy-native.nvim"
   use "dhruvmanila/telescope-bookmarks.nvim"
   use "ThePrimeagen/git-worktree.nvim"
+  use "ThePrimeagen/harpoon"
 
   -- Treesitter
   use {
@@ -150,7 +149,6 @@ return packer.startup(function(use)
     run = ":TSUpdate",
   }
   use "nvim-treesitter/playground"
-
   use "p00f/nvim-ts-rainbow"
   use "windwp/nvim-ts-autotag"
   use "romgrk/nvim-treesitter-context"
