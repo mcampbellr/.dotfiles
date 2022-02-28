@@ -67,7 +67,7 @@ end
 
 M.on_attach = function(client, bufnr)
   -- notify(client.name)
-  if client.name == "jsonls" or client.name == "tsserver" or client.name == "html" then
+  if client.name == "jsonls" or client.name == "volar" or client.name == "tsserver" or client.name == "html" then
     client.resolved_capabilities.document_formatting = false
   end
 

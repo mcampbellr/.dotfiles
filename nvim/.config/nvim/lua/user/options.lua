@@ -35,6 +35,8 @@ local options = {
   undofile = true, -- enable persistent undo
   updatetime = 100, -- faster completion (4000ms default)
   wrap = false, -- display lines as one long line
+  foldmethod = "indent", -- indentention fold method
+  foldlevelstart = 20, -- expand folds to 20 levels - for open at first opening of a file
 }
 
 vim.opt.shortmess:append "c"

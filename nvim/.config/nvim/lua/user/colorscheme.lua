@@ -10,6 +10,7 @@ highlight ColorColumn guibg=#333540
 
 highlight VertSplit guibg=NONE
 highlight SignColumn guibg=NONE
+highlight Folded guibg=NONE guifg=orange
 
 highlight Comment cterm=italic gui=italic
 

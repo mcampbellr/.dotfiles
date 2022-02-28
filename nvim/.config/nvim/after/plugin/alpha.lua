@@ -18,13 +18,12 @@ dashboard.section.header.val = {
   [[/_/ |_/\___/\____/|___/_/_/ /_/ /_/ ]],
   [[]],
 }
-dashboard.section.header.opts.hl = 'Identifier' 
+dashboard.section.header.opts.hl = "Identifier"
 
 dashboard.section.buttons.val = {
   dashboard.button("f", icons.documents.Files .. " Find file", ":Telescope find_files <CR>"),
-  dashboard.button("n", icons.ui.NewFile .. " New file", ":ene <BAR> startinsert <CR>"),
   dashboard.button("e", icons.ui.Search .. " Explorer", ":e . <CR>"),
-  dashboard.button(
+  dashboard.button (
     "p",
     icons.git.Repo .. " Find project",
     ":lua require('telescope').extensions.projects.projects(require('telescope.themes').get_dropdown({previewer = false}))<CR>"

@@ -2,7 +2,7 @@ vim.cmd [[
   augroup _general_settings
     autocmd!
     autocmd FileType qf,help,man,lspinfo,spectre_panel nnoremap <silent> <buffer> q :close<CR> 
-    autocmd TextYankPost * silent!lua require('vim.highlight').on_yank({higroup = 'Visual', timeout = 200}) 
+    autocmd TextYankPost * silent!lua require('vim.highlight').on_yank({higroup = 'Visual', timeout = 400}) 
     autocmd BufWinEnter * :set formatoptions-=cro
     autocmd FileType qf set nobuflisted
     autocmd CmdWinEnter * quit
@@ -38,5 +38,5 @@ vim.cmd [[
   au BufRead,BufNewFile *.prettierrc set filetype=jsonc
   au BufRead,BufNewFile *.json set filetype=jsonc
   au BufRead,BufNewFile .env.* set filetype=sh
-]]
 
+]]
