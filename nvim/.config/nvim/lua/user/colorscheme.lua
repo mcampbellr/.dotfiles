@@ -1,5 +1,5 @@
 vim.cmd [[
-colorscheme NeoSolarized
+colorscheme onedark
 
 set background=dark
 

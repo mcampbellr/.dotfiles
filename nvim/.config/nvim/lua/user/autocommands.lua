@@ -38,5 +38,6 @@ vim.cmd [[
   au BufRead,BufNewFile *.prettierrc set filetype=jsonc
   au BufRead,BufNewFile *.json set filetype=jsonc
   au BufRead,BufNewFile .env.* set filetype=sh
+  au BufRead,BufNewFile .styl set filetype=sass
 
 ]]

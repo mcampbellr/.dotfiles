@@ -170,6 +170,7 @@ alias gwtr="g worktree remove"
 alias gwtm="g worktree move"
 alias gst="g st"
 alias gconf="g config --global -e"
+alias glog="g log -20 --graph --oneline"
 alias ga.="g add . && gst"
 
 # Custom commands
