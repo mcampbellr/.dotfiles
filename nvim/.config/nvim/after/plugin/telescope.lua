@@ -6,6 +6,7 @@ require("telescope").setup {
     grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
     qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
   },
+  file_ignore_patterns = { "node_modules" },
   pickers = {
     find_files = {
       theme = "dropdown",
@@ -13,7 +14,6 @@ require("telescope").setup {
     },
     live_grep = {
       theme = "dropdown",
-      previewer = false,
     },
     buffers = {
       theme = "dropdown",

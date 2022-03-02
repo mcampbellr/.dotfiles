@@ -21,5 +21,6 @@ null_ls.setup {
     diagnostics.eslint,
     formatting.black.with { extra_args = { "--fast" } },
     formatting.stylua,
+    diagnostics.php,
   },
 }
