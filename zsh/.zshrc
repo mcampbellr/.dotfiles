@@ -8,6 +8,7 @@ fi
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="$PATH:/Users/mariocampbell/Dev/flutter/bin"
 export DOTFILES="/Users/mariocampbell/.dotfiles/"
+export NOTES="/Users/mariocampbell/Notes/"
 export DEV_FILES="/Users/mariocampbell/Dev/lab"
 
 # Path to your oh-my-zsh installation.

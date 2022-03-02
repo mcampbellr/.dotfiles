@@ -7,6 +7,7 @@ k("n", "<C-f>", ":Telescope find_files<CR>", opts)
 k("n", "<C-b>", ":Telescope buffers<CR>", opts)
 k("n", "<C-g>", ":Telescope live_grep<CR>", opts)
 k("n", "<Leader>vrc", ":lua require('user.telescope').search_dotfiles({ hidden = true })<CR>", opts)
+k("n", "<C-n>", ":lua require('user.telescope').search_notes({ hidden = true })<CR>", opts)
 k(
   "n",
   "<Leader>bm",
@@ -26,6 +27,14 @@ M.search_dotfiles = function()
   require("telescope.builtin").find_files {
     prompt_title = "< VimRC >",
     cwd = vim.env.DOTFILES,
+    hidden = true,
+  }
+end
+
+M.search_notes = function()
+  require("telescope.builtin").find_files {
+    prompt_title = "< Notes >",
+    cwd = vim.env.NOTES,
     hidden = true,
   }
 end
