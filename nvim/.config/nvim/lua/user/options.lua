@@ -37,6 +37,7 @@ local options = {
   wrap = false, -- display lines as one long line
   foldmethod = "indent", -- indentention fold method
   foldlevelstart = 20, -- expand folds to 20 levels - for open at first opening of a file
+  spellsuggest = "best",
 }
 
 vim.opt.shortmess:append "c"
