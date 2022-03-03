@@ -160,6 +160,7 @@ return packer.startup(function(use)
 
   -- bookmarks
   use "MattesGroeger/vim-bookmarks"
+  use { "SergioRibera/vim-screenshot", run = "npm install --prefix Renderizer" }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

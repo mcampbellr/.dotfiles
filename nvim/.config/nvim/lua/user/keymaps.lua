@@ -66,6 +66,8 @@ keymap("v", "p", '"_dP', opts)
 
 keymap("v", "<C-s>", "<cmd>sort //[A-z|/<CR>", opts)
 
+keymap("v", "<F4>", "<cmd>'<,'>TakeScreenShot<cr> | <cmd>! open ~/Images/code-screenshot/ <CR>", opts)
+
 -- Visual Block --
 -- Move text up and down
 keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
