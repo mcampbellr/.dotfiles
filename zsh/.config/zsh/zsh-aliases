@@ -7,6 +7,7 @@ alias dot="cd ~/.dotfiles/ "
 alias vc="vimtheme"
 # shortcuts aliases
 alias cl='clear'
+alias ls='exa'
 
 mkcdir () {
   mkdir -p -- "$1" &&
