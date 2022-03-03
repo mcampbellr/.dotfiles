@@ -94,7 +94,7 @@
     nix_shell               # nix shell (https://nixos.org/nixos/nix-pills/developing-with-nix-shell.html)
     # vpn_ip                # virtual private network indicator
     # load                  # CPU load
-    # disk_usage            # disk usage
+    disk_usage            # disk usage
     # ram                   # free RAM
     # swap                  # used swap
     todo                    # todo items (https://github.com/todotxt/todo.txt-cli)
@@ -108,19 +108,7 @@
     # proxy                 # system-wide http/https/ftp proxy
     # battery               # internal battery
     # wifi                  # wifi speed
-    user_git               # example user-defined segment (see prompt_example function below)
   )
-
-  function prompt_user_git () {
-    FILENAME="$HOME/.gitconfig"
-    for LN in $(cat $FILENAME)
-    do
-      if [[ "$LN" == *"@"* ]]; then
-        email=$LN;
-      fi
-    done
-    p10k segment -f "\u001b[0m" -i "" -t "$email"
-  }
 
   # Defines character set used by powerlevel10k. It's best to let `p10k configure` set it for you.
   typeset -g POWERLEVEL9K_MODE=nerdfont-complete
