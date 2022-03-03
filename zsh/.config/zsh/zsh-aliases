@@ -6,6 +6,7 @@ alias nvc="cd ~/.dotfiles/nvim/.config/nvim"
 alias dot="cd ~/.dotfiles/ "
 alias vc="vimtheme"
 # shortcuts aliases
+alias la="ls -a"
 alias cl='clear'
 
 mkcdir () {
