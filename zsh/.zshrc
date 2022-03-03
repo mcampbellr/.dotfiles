@@ -18,6 +18,12 @@ export LG_CONFIG_FILE="$HOME/.config/lazygit/config.yml"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 # Set name of the theme to lad --- ifset to "random", it will
 
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+# beeping is annoying
+unsetopt BEEP
+
 #zsh-syntax-highlighting
 plugins=(
   yarn
@@ -87,6 +93,8 @@ alias ss="$DEV_FILES/tmux/session"
 
 alias cpwd="pwd | tr -d '\n' | pbcopy && echo 'pwd copied to clipboard'"
 
+alias ff="fzf"
+
 # gh auto completion
 autoload -U compinit
 compinit -i
@@ -105,3 +113,5 @@ source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
 # uninstall by removing these lines
 [[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
 export TERM=xterm-256color-italic
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
