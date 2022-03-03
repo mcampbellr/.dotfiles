@@ -1,0 +1,62 @@
+#!/bin/sh
+# vim & nvim aliases
+alias n='nvim'
+alias n.='nvim'
+alias nvc="cd ~/.dotfiles/nvim/.config/nvim"
+alias dot="cd ~/.dotfiles/ "
+alias vc="vimtheme"
+# shortcuts aliases
+alias cl='clear'
+
+mkcdir () {
+  mkdir -p -- "$1" &&
+    cd -P -- "$1"
+}
+
+alias ccd=mkcdir
+# configs aliases
+alias zshrc='nvim ~/.zshrc'
+alias hrc='n ~/.hyper.js'
+alias ohmyzsh="nvim ~/.oh-my-zsh"
+alias tree="tree -L 3 --gitignore"
+# tmux aliases
+alias tm='tmux'
+alias :q='exit'
+# browser aliases
+alias gg='google'
+alias sof='stackoverflow'
+alias yt='youtube'
+alias doc='docker'
+# npm version aliases
+alias patch="yarn version --patch"
+alias minor="yarn version --minor"
+alias major="yarn version --major"
+# programing language aliases
+# python
+alias py='python3'
+alias pip='pip3' 
+# typescript
+alias tsn="ts-node"
+# react
+alias cra='npx create-react-app'
+alias crna='npx create-next-app@latest'
+alias crnats='npx create-next-app@latest --ts'
+# Custom git aliases
+alias lg='lazygit'
+alias g='git'
+alias gwt="g worktree"
+alias gwta="g worktree add"
+alias gwtr="g worktree remove"
+alias gwtm="g worktree move"
+alias gst="g st"
+alias gconf="g config --global -e"
+alias glog="g log -20 --graph --oneline"
+alias ga.="g add . && gst"
+
+# Custom commands
+alias gsw="$DEV_FILES/git-switcher/git-switcher.sh"
+alias cg=". $DEV_FILES/rotator/rot.sh"
+alias ch="$DEV_FILES/cht/cht.sh"
+alias ss="$DEV_FILES/tmux/session"
+
+alias cpwd="pwd | tr -d '\n' | pbcopy && echo 'pwd copied to clipboard'"
