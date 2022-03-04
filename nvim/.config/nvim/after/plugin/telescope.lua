@@ -1,7 +1,6 @@
 require("telescope").setup {
   defaults = {
     file_sorter = require("telescope.sorters").get_fzy_sorter,
-    prompt_prefix = "  ",
     file_previewer = require("telescope.previewers").vim_buffer_cat.new,
     grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
     qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
@@ -10,6 +9,7 @@ require("telescope").setup {
   pickers = {
     find_files = {
       theme = "dropdown",
+      hidden = true,
       previewer = false,
     },
     live_grep = {
@@ -25,10 +25,6 @@ require("telescope").setup {
     },
   },
   extensions = {
-    fzy_native = {
-      override_generic_sorter = false,
-      override_file_sorter = true,
-    },
     bookmarks = {
       -- Available: 'brave', 'buku', 'chrome', 'chrome_beta', 'edge', 'safari', 'firefox'
       selected_browser = "chrome",
@@ -42,10 +38,14 @@ require("telescope").setup {
       -- Provide a custom profile name for Firefox
       firefox_profile_name = nil,
     },
+    fzy_native = {
+      override_generic_sorter = false,
+      override_file_sorter = true,
+    },
   },
 }
 
 require("telescope").load_extension "git_worktree"
 require("telescope").load_extension "bookmarks"
-require("telescope").load_extension "fzy_native"
 require("telescope").load_extension "harpoon"
+require("telescope").load_extension "fzy_native"

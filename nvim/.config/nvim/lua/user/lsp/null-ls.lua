@@ -18,7 +18,7 @@ null_ls.setup {
       extra_filetypes = { "toml", "solidity" },
       extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote", "--config-precedence", "prefer-file" },
     },
-    diagnostics.eslint,
+    -- diagnostics.eslint,
     formatting.black.with { extra_args = { "--fast" } },
     formatting.stylua,
     diagnostics.php,

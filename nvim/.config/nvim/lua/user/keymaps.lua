@@ -77,6 +77,7 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 
 -- Custom
 keymap("n", "Q", "<cmd>Bdelete!<CR>", opts)
+keymap("n", "<F1>", "<cmd>LspToggleAutoFormat<CR>", { noremap = true })
 keymap("n", "<F3>", "<cmd>e .<cr>", opts)
 keymap("n", "<F4>", "<cmd>Telescope resume<cr>", opts)
 keymap("n", "<F5>", "<cmd>Telescope commands<CR>", opts)

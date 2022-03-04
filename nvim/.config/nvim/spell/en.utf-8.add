@@ -75,3 +75,5 @@ Backend
 Monorepo
 npm
 zsh
+uuid
+enum

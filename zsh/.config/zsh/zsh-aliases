@@ -8,18 +8,23 @@ alias vc="vimtheme"
 # shortcuts aliases
 alias cl='clear'
 alias ls='exa'
+alias la='ls -laFh'
+alias ll='ls -l'
 
 mkcdir () {
   mkdir -p -- "$1" &&
     cd -P -- "$1"
 }
 
+alias notes="ss ~/Notes/"
+
 alias ccd=mkcdir
 # configs aliases
-alias zshrc='nvim ~/.zshrc'
-alias hrc='n ~/.hyper.js'
+alias zshrc="nvim $DOTFILES/zsh/"
+alias hrc="n $DOTFILES/.hyper.js"
 alias ohmyzsh="nvim ~/.oh-my-zsh"
 alias tree="tree -L 3 --gitignore"
+
 # tmux aliases
 alias tm='tmux'
 alias :q='exit'
@@ -59,5 +64,7 @@ alias gsw="$DEV_FILES/git-switcher/git-switcher.sh"
 alias cg=". $DEV_FILES/rotator/rot.sh"
 alias ch="$DEV_FILES/cht/cht.sh"
 alias ss="$DEV_FILES/tmux/session"
+
+alias dco="docker compose"
 
 alias cpwd="pwd | tr -d '\n' | pbcopy && echo 'pwd copied to clipboard'"

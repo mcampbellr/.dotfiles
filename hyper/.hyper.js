@@ -10,17 +10,17 @@ module.exports = {
     // default font size in pixels for all tabs
     fontSize: 14,
     // font family with optional fallbacks
-    fontFamily: 'VictorMono Nerd Font Mono',
+    fontFamily: 'FiraCode Nerd Font Mono',
     // default font weight: 'normal' or 'bold'
-    fontWeight: 'semibold',
+    fontWeight: 'normal',
     // font weight for bold characters: 'normal' or 'bold'
     fontWeightBold: 'bold',
     // line height as a relative unit
-    lineHeight: 0.9,
+    lineHeight: 1,
     // letter spacing as a relative unit
-    letterSpacing: 1,
+    letterSpacing: 0,
     // terminal cursor background color and opacity (hex, rgb, hsl, hsv, hwb or cmyk)
-    cursorColor: 'magenta',
+    cursorColor: 'lightCoral',
     // terminal text color under BLOCK cursor
     cursorAccentColor: '#000',
     // `'BEAM'` for |, `'UNDERLINE'` for _, `'BLOCK'` for █
@@ -31,11 +31,11 @@ module.exports = {
     foregroundColor: '#fff',
     // terminal background color
     // opacity is only supported on macOS
-    backgroundColor: 'rgba(0,0,0,0.9)',
+    backgroundColor: 'rgba(0,0,0,0.7)',
     // terminal selection color
-    selectionColor: 'rgba(248,28,229,0.3)',
+    selectionColor: 'red',
     // border color (window, tabs)
-    borderColor: '#333',
+    borderColor: 'none',
     // custom CSS to embed in the main window
     css: '',
     // custom CSS to embed in the terminal window
@@ -133,7 +133,9 @@ module.exports = {
   //   `hyperpower`
   //   `@company/project`
   //   `project#1.0.1`
-  plugins: ['hyper-dracula'],
+  plugins: [
+    'hyper-transparent'
+  ],
   // in development, you can create a directory under
   // `~/.hyper_plugins/local/` and include it here
   // to load it and avoid it being `npm install`ed
