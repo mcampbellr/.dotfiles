@@ -32,6 +32,7 @@ zsh_add_file "zsh-exports"
 zsh_add_file "zsh-vim-mode"
 zsh_add_file "zsh-aliases"
 zsh_add_file "zsh-prompt"
+zsh_add_file "zsh-websearch"
 
 # Plugins
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
@@ -63,4 +64,3 @@ fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
-

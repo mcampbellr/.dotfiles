@@ -23,7 +23,7 @@ dashboard.section.header.opts.hl = "Identifier"
 dashboard.section.buttons.val = {
   dashboard.button("f", icons.documents.Files .. " Find file", ":Telescope find_files <CR>"),
   dashboard.button("e", icons.ui.Search .. " Explorer", ":e . <CR>"),
-  dashboard.button (
+  dashboard.button(
     "p",
     icons.git.Repo .. " Find project",
     ":lua require('telescope').extensions.projects.projects(require('telescope.themes').get_dropdown({previewer = false}))<CR>"
@@ -31,6 +31,7 @@ dashboard.section.buttons.val = {
   dashboard.button("r", icons.ui.History .. " Recent files", ":Telescope oldfiles <CR>"),
   dashboard.button("t", icons.ui.List .. " Find text", ":Telescope live_grep <CR>"),
   dashboard.button("d", icons.ui.Dotfiles .. " Dotfiles", ":e ~/.dotfiles <CR>"),
+  dashboard.button("n", icons.kind.File .. " Notes", ":e ~/Notes <CR>"),
   dashboard.button("g", icons.git.Logo .. " Git Status", ":Git <CR>"),
   dashboard.button("c", icons.ui.Gear .. " Config", ":e ~/.config/nvim <CR>"),
   dashboard.button("z", icons.ui.Terminal .. " ZshConfig", ":e ~/.zshrc<CR>"),

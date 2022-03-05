@@ -5,15 +5,19 @@ require("telescope").setup {
     grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
     qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
   },
-  file_ignore_patterns = { "node_modules" },
+  file_ignore_patterns = { "node_modules", ".git" },
   pickers = {
     find_files = {
       theme = "dropdown",
       hidden = true,
       previewer = false,
     },
-    live_grep = {
+    grep_string = {
       theme = "dropdown",
+      hidden = true,
+    },
+    live_grep = {
+      hidden = false,
     },
     buffers = {
       theme = "dropdown",

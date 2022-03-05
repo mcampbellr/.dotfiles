@@ -14,8 +14,9 @@ return {
     "xml",
     "xsl",
     "pug",
-    "vue",
     "slim",
     "sass",
+    "styl",
+    "vue",
   },
 }

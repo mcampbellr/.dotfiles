@@ -88,6 +88,7 @@ return packer.startup(function(use)
   use "folke/tokyonight.nvim"
   use "joshdick/onedark.vim"
   use "lunarvim/darkplus.nvim"
+  use "gruvbox-community/gruvbox"
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp"

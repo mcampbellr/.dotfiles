@@ -21,14 +21,13 @@ local kind_icons = icons.kind
 
 -- INFO: order matters
 local source_mapping = {
-  nvim_lsp = "[L]",
-  nvim_lua = "[L]",
-  luasnip = "[S]",
-  buffer = "[B]",
-  cmp_tabnine = "[T]",
-  path = "[P]",
-  npm = "[N]",
-  emoji = "[E]",
+  nvim_lsp = "[LSP]",
+  nvim_lua = "[Lua]",
+  luasnip = "[Snippet]",
+  buffer = "[Buffer]",
+  cmp_tabnine = "[T9]",
+  path = "[Path]",
+  npm = "[Npm]",
 }
 
 cmp.setup {
@@ -47,8 +46,6 @@ cmp.setup {
       i = cmp.mapping.abort(),
       c = cmp.mapping.close(),
     },
-    -- Accept currently selected item. If none selected, `select` first item.
-    -- Set `select` to `false` to only confirm explicitly selected items.
     ["<CR>"] = cmp.mapping.confirm { select = true },
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
@@ -101,10 +98,10 @@ cmp.setup {
     { name = "nvim_lsp" },
     { name = "nvim_lua" },
     { name = "luasnip" },
-    { name = "buffer" },
     { name = "cmp_tabnine" },
+    { name = "buffer", keyword_length = 5 },
     { name = "path" },
-    { name = 'npm', keyword_length = 4 },
+    { name = "npm", keyword_length = 4 },
     { name = "emoji" },
   },
   confirm_opts = {

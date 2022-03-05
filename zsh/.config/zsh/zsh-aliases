@@ -10,6 +10,7 @@ alias cl='clear'
 alias ls='exa'
 alias la='ls -laFh'
 alias ll='ls -l'
+alias tree="ls -T -L 3 --git-ignore"
 
 mkcdir () {
   mkdir -p -- "$1" &&
@@ -20,10 +21,10 @@ alias notes="ss ~/Notes/"
 
 alias ccd=mkcdir
 # configs aliases
-alias zshrc="nvim $DOTFILES/zsh/"
+alias zshrc="ss $DOTFILES/zsh/"
 alias hrc="n $DOTFILES/.hyper.js"
 alias ohmyzsh="nvim ~/.oh-my-zsh"
-alias tree="tree -L 3 --gitignore"
+alias src="source ~/.zshrc | echo '< zsh config reloaded >'"
 
 # tmux aliases
 alias tm='tmux'
@@ -53,9 +54,10 @@ alias gwt="g worktree"
 alias gwta="g worktree add"
 alias gwtr="g worktree remove"
 alias gwtm="g worktree move"
+alias gwtp="g worktree prune"
 alias gst="g st"
 alias gconf="g config --global -e"
-alias glog="g log -20 --graph --oneline"
+alias glg="g log -20 --graph --oneline"
 alias ga.="g add . && gst"
 
 # Custom commands
@@ -66,5 +68,7 @@ alias ss="$DEV_FILES/tmux/session"
 
 alias doc='docker'
 alias dco="docker compose"
+
+alias t="todo.sh"
 
 alias cpwd="pwd | tr -d '\n' | pbcopy && echo 'pwd copied to clipboard'"

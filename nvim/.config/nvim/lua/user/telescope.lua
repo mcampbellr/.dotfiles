@@ -4,8 +4,18 @@ local k = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
 k("n", "<C-f>", ":Telescope find_files<CR>", opts)
+k("n", "<C-t>", ":TodoTelescope<CR>", opts)
+k("n", "<leader>dd", ":Telescope diagnostics<CR>", opts)
+k("n", "<leader>gd", ":Telescope git_status<CR>", opts)
 k("n", "<C-b>", ":Telescope buffers<CR>", opts)
-k("n", "<C-g>", ":Telescope live_grep<CR>", opts)
+k("n", "z=", ":Telescope spell_suggest<CR>", opts)
+k("n", "<C-s>", ":Telescope oldfiles<CR>", opts)
+k(
+  "n",
+  "<C-g>",
+  ":lua require'telescope.builtin'.grep_string{ only_sort_text = true, search = vim.fn.input('Grep For > ') }<CR>",
+  opts
+)
 k("n", "<Leader>vrc", ":lua require('user.telescope').search_dotfiles({ hidden = true })<CR>", opts)
 k("n", "<C-n>", ":lua require('user.telescope').search_notes({ hidden = true })<CR>", opts)
 k(

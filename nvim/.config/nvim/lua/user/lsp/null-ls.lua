@@ -8,14 +8,12 @@ local formatting = null_ls.builtins.formatting
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
 local diagnostics = null_ls.builtins.diagnostics
 
--- https://github.com/prettier-solidity/prettier-plugin-solidity
--- npm install --save-dev prettier prettier-plugin-solidity
-
 null_ls.setup {
   debug = true,
   sources = {
     formatting.prettier.with {
       extra_filetypes = { "toml", "solidity" },
+      disabled_filetypes = { "json", "jsonc" },
       extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote", "--config-precedence", "prefer-file" },
     },
     -- diagnostics.eslint,
