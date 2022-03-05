@@ -32,7 +32,6 @@ alias :q='exit'
 alias gg='google'
 alias sof='stackoverflow'
 alias yt='youtube'
-alias doc='docker'
 # npm version aliases
 alias patch="yarn version --patch"
 alias minor="yarn version --minor"
@@ -65,6 +64,7 @@ alias cg=". $DEV_FILES/rotator/rot.sh"
 alias ch="$DEV_FILES/cht/cht.sh"
 alias ss="$DEV_FILES/tmux/session"
 
+alias doc='docker'
 alias dco="docker compose"
 
 alias cpwd="pwd | tr -d '\n' | pbcopy && echo 'pwd copied to clipboard'"
