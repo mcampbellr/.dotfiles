@@ -45,6 +45,9 @@ keymap("n", "N", "Nzzzv", opts)
 keymap("n", "J", "mzJ`z", opts)
 
 -- Delete all the page content
+keymap("n", "<leader>Y", "ggVGy<c-o><esc>", opts)
+
+-- Delete all the page content
 keymap("n", "<leader>D", "ggdG<esc>", opts)
 
 -- Paste and replace all the page content
