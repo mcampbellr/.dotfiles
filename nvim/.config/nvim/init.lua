@@ -5,6 +5,7 @@ require "user.colorscheme"
 require "user.telescope"
 require "user.cmp"
 require "user.lsp"
+require "user.spectre"
 
 require "user.autocommands"
 require "user.ts-context"

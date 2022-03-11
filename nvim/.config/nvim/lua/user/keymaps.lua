@@ -7,6 +7,7 @@ local keymap = vim.api.nvim_set_keymap
 
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
+keymap("n", "Q", "<Nop>", opts)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -76,11 +77,11 @@ keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 
 -- Custom
-keymap("n", "Q", "<cmd>Bdelete!<CR>", opts)
 keymap("n", "<F1>", "<cmd>LspToggleAutoFormat<CR>", { noremap = true })
 keymap("n", "<F3>", "<cmd>e .<cr>", opts)
-keymap("n", "<F4>", "<cmd>Telescope resume<cr>", opts)
-keymap("n", "<F5>", "<cmd>Telescope commands<CR>", opts)
+keymap("n", "<F4>", "<cmd>Bdelete!<CR>", opts)
+keymap("n", "<F5>", "<cmd>Telescope resume<cr>", opts)
+keymap("n", "<F6>", "<cmd>Telescope commands<CR>", opts)
 
 keymap("n", "<F7>", ":lua require('harpoon.ui').nav_file(1)<CR>", opts)
 keymap("n", "<F8>", ":lua require('harpoon.ui').nav_file(2)<CR>", opts)

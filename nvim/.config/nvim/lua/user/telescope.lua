@@ -5,6 +5,7 @@ local opts = { noremap = true, silent = true }
 
 k("n", "<C-f>", ":Telescope find_files<CR>", opts)
 k("n", "<C-t>", ":TodoTelescope<CR>", opts)
+k("n", "<leader>ff", ":Telescope current_buffer_fuzzy_find<CR>", opts)
 k("n", "<leader>dd", ":Telescope diagnostics<CR>", opts)
 k("n", "<leader>gd", ":Telescope git_status<CR>", opts)
 k("n", "<C-b>", ":Telescope buffers<CR>", opts)

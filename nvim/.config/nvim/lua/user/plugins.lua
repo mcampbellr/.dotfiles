@@ -60,6 +60,8 @@ return packer.startup(function(use)
   use "JoosepAlviste/nvim-ts-context-commentstring"
   -- Icons over nvim
   use "kyazdani42/nvim-web-devicons"
+  -- search and replace
+  use "nvim-pack/nvim-spectre"
   -- Better notifications
   use "rcarriga/nvim-notify"
   -- File navigation
@@ -95,7 +97,6 @@ return packer.startup(function(use)
   use "hrsh7th/cmp-buffer" -- buffer completions
   use "hrsh7th/cmp-path" -- path completions
   use "hrsh7th/cmp-nvim-lsp"
-  use "hrsh7th/cmp-emoji"
   use "hrsh7th/cmp-nvim-lua"
   use "David-Kunz/cmp-npm"
   use "saadparwaiz1/cmp_luasnip" -- snippet completions

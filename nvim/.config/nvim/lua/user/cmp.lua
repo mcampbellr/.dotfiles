@@ -102,7 +102,6 @@ cmp.setup {
     { name = "buffer", keyword_length = 5 },
     { name = "path" },
     { name = "npm", keyword_length = 4 },
-    { name = "emoji" },
   },
   confirm_opts = {
     behavior = cmp.ConfirmBehavior.Replace,

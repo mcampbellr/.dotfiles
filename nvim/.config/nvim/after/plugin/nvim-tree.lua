@@ -13,8 +13,8 @@ vim.g.nvim_tree_icons = {
     ignored = "◌",
   },
   folder = {
-    arrow_open = "▿",
-    arrow_closed = "▹",
+    arrow_open = "▼",
+    arrow_closed = "▶︎",
     default = "",
     open = "",
     empty = "",
@@ -25,13 +25,6 @@ vim.g.nvim_tree_icons = {
 
 vim.g.nvim_tree_special_files = {
   "README.md" == 0,
-}
-
-vim.g.nvim_tree_show_icons = {
-  git = 1,
-  folders = 1,
-  files = 1,
-  folders_arrows = 0,
 }
 
 vim.g.nvim_tree_create_in_closed_folder = 1
@@ -93,7 +86,7 @@ nvim_tree.setup {
     timeout = 500,
   },
   view = {
-    width = 30,
+    width = 50,
     height = 30,
     hide_root_folder = false,
     side = "left",
