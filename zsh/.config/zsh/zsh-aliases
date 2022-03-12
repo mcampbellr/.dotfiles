@@ -22,7 +22,7 @@ alias notes="ss ~/Notes/"
 alias ccd=mkcdir
 # configs aliases
 alias zshrc="ss $DOTFILES/zsh/"
-alias hrc="n $DOTFILES/.hyper.js"
+alias hrc="n $DOTFILES/hyper/.hyper.js"
 alias ohmyzsh="nvim ~/.oh-my-zsh"
 alias src="source ~/.zshrc | echo '< zsh config reloaded >'"
 

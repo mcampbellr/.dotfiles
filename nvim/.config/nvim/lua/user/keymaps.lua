@@ -68,9 +68,7 @@ keymap("v", "K", "<cmd>m '<-2<cr>gv=gv", opts)
 -- Paste in visual_mode
 keymap("v", "p", '"_dP', opts)
 
-keymap("v", "<C-s>", "<cmd>sort //[A-z|/<CR>", opts)
-
-keymap("v", "<F4>", ":'<,'>TakeScreenShot<cr> | <cmd>! open ~/Images/code-screenshot/ <CR>", opts)
+keymap("v", "<c-s>", ":'<,'>TakeScreenShot<cr> | <cmd>! open ~/Images/code-screenshot/ <CR>", opts)
 
 -- Visual Block --
 -- Move text up and down

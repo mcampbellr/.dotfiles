@@ -31,7 +31,7 @@ module.exports = {
     foregroundColor: '#fff',
     // terminal background color
     // opacity is only supported on macOS
-    backgroundColor: 'rgba(0,0,0,0.7)',
+    backgroundColor: '#282C34',
     // terminal selection color
     selectionColor: 'red',
     // border color (window, tabs)
@@ -133,9 +133,7 @@ module.exports = {
   //   `hyperpower`
   //   `@company/project`
   //   `project#1.0.1`
-  plugins: [
-    'hyper-transparent'
-  ],
+  plugins: ["hyper-one-dark"],
   // in development, you can create a directory under
   // `~/.hyper_plugins/local/` and include it here
   // to load it and avoid it being `npm install`ed
