@@ -37,7 +37,7 @@ keymap("n", "<S-l>", "<cmd>bnext<CR>", opts)
 keymap("n", "<S-h>", "<cmd>bprevious<CR>", opts)
 
 -- resource the nvim config
-keymap("n", "<Leader>rs", ":so % <CR>", opts)
+keymap("n", "<Leader>rs", ":so % <CR>", { noremap = true })
 
 -- Keep the cursor center
 keymap("n", "n", "nzzzv", opts)
@@ -45,7 +45,7 @@ keymap("n", "N", "Nzzzv", opts)
 keymap("n", "J", "mzJ`z", opts)
 
 -- Delete all the page content
-keymap("n", "<leader>Y", "ggVGy<c-o><esc>", opts)
+keymap("n", "<leader>Y", "ggVGy<esc>", opts)
 
 -- Delete all the page content
 keymap("n", "<leader>D", "ggdG<esc>", opts)

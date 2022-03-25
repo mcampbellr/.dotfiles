@@ -81,13 +81,11 @@ return packer.startup(function(use)
     ft = "markdown",
   }
 
-  -- Colorschemes
-  use "overcache/NeoSolarized"
-  use "folke/tokyonight.nvim"
+  -- themes
+  use "mhartington/oceanic-next"
   use "joshdick/onedark.vim"
-  use "lunarvim/darkplus.nvim"
-  use "gruvbox-community/gruvbox"
-  use "tomasr/molokai"
+  use "sainnhe/sonokai"
+  use "marko-cerovac/material.nvim"
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp"
@@ -118,21 +116,17 @@ return packer.startup(function(use)
   use "L3MON4D3/LuaSnip" --snippet engine
   use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
 
+  --cursor line
+  use "RRethy/vim-illuminate"
+
   -- LSP
   use "neovim/nvim-lspconfig" -- enable LSP
   use "williamboman/nvim-lsp-installer" -- simple to use language server installer
   use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
+  use "tami5/lspsaga.nvim" -- nightly
   use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
   use "ray-x/lsp_signature.nvim" -- Helper when typing functions and other things
   use "b0o/SchemaStore.nvim"
-  use {
-    "folke/trouble.nvim",
-    cmd = "TroubleToggle",
-  }
-  use {
-    "weilbith/nvim-code-action-menu",
-    cmd = "CodeActionMenu",
-  }
 
   -- Telescope
   use "nvim-telescope/telescope.nvim"
@@ -142,19 +136,17 @@ return packer.startup(function(use)
   use "ThePrimeagen/harpoon"
 
   -- Treesitter
-  use {
-    "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate",
-  }
+  use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
   use "nvim-treesitter/playground"
   use "windwp/nvim-ts-autotag"
   use "romgrk/nvim-treesitter-context"
   use "mizlan/iswap.nvim"
+  -- Debugger
+  use "mfussenegger/nvim-dap"
+
   -- Git
   use "lewis6991/gitsigns.nvim"
   use "tpope/vim-fugitive"
-
-  -- Tagbar
   use { "SergioRibera/vim-screenshot", run = "npm install --prefix Renderizer" }
 
   -- Automatically set up your configuration after cloning packer.nvim
