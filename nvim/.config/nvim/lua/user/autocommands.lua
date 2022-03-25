@@ -6,6 +6,7 @@ vim.cmd [[
     autocmd BufWinEnter * :set formatoptions-=cro
     autocmd FileType qf set nobuflisted
     autocmd CmdWinEnter * quit
+    autocmd BufEnter * :set colorcolumn=80
   augroup end
 
   augroup _git

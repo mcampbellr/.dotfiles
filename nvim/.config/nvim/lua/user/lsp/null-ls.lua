@@ -16,7 +16,6 @@ null_ls.setup {
       disabled_filetypes = { "json", "jsonc" },
       extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote", "--config-precedence", "prefer-file" },
     },
-    -- diagnostics.eslint,
     formatting.black.with { extra_args = { "--fast" } },
     formatting.stylua,
     diagnostics.php,

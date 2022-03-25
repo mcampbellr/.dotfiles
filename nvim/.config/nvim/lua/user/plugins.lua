@@ -49,7 +49,6 @@ return packer.startup(function(use)
 
   -- Custom plugins
   use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
-  use "lukas-reineke/indent-blankline.nvim" -- indentention of white lines
   use "Mephistophiles/surround.nvim" -- surround things easily
   use "tversteeg/registers.nvim" -- show registors using " in normal mode
   use "kevinhwang91/nvim-bqf" -- pretti preview in quicklist
@@ -62,10 +61,7 @@ return packer.startup(function(use)
   use "kyazdani42/nvim-web-devicons"
   -- search and replace
   use "nvim-pack/nvim-spectre"
-  -- Better notifications
-  use "rcarriga/nvim-notify"
   -- File navigation
-  use "akinsho/bufferline.nvim"
   use "goolord/alpha-nvim"
   use "kyazdani42/nvim-tree.lua"
   use "moll/vim-bbye" -- Close buffer without close nvim
@@ -91,6 +87,7 @@ return packer.startup(function(use)
   use "joshdick/onedark.vim"
   use "lunarvim/darkplus.nvim"
   use "gruvbox-community/gruvbox"
+  use "tomasr/molokai"
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp"
@@ -126,7 +123,6 @@ return packer.startup(function(use)
   use "williamboman/nvim-lsp-installer" -- simple to use language server installer
   use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
   use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
-  use "filipdutescu/renamer.nvim"
   use "ray-x/lsp_signature.nvim" -- Helper when typing functions and other things
   use "b0o/SchemaStore.nvim"
   use {
@@ -151,17 +147,14 @@ return packer.startup(function(use)
     run = ":TSUpdate",
   }
   use "nvim-treesitter/playground"
-  use "p00f/nvim-ts-rainbow"
   use "windwp/nvim-ts-autotag"
   use "romgrk/nvim-treesitter-context"
   use "mizlan/iswap.nvim"
-
   -- Git
   use "lewis6991/gitsigns.nvim"
   use "tpope/vim-fugitive"
 
-  -- bookmarks
-  use "MattesGroeger/vim-bookmarks"
+  -- Tagbar
   use { "SergioRibera/vim-screenshot", run = "npm install --prefix Renderizer" }
 
   -- Automatically set up your configuration after cloning packer.nvim

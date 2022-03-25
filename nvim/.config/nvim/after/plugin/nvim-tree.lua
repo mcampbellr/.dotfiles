@@ -106,7 +106,6 @@ nvim_tree.setup {
         { key = "u", cb = tree_cb "dir_up" },
         { key = "h", cb = tree_cb "close_node" },
         { key = "s", cb = tree_cb "vsplit" },
-        { key = "R", cb = tree_cb "full_rename" },
       },
     },
     number = true,

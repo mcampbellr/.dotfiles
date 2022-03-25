@@ -56,6 +56,12 @@ keymap("n", "<leader>P", "ggVGp<esc>", opts)
 -- Select all the page content
 keymap("n", "<leader>V", "gg0VG$", opts)
 
+-- Delete the seach highlighting
+keymap("n", "<Bslash>", "<cmd>let @/ = ''<CR>", opts)
+
+keymap("n", "<Leader>+", ":vertical resize +10<CR>", opts)
+keymap("n", "<Leader>-", ":vertical resize -5<CR>", opts)
+
 -- Visual --
 -- Stay in indent mode
 keymap("v", "<", "<gv", opts)
@@ -74,11 +80,10 @@ keymap("v", "<c-s>", ":'<,'>TakeScreenShot<cr> | <cmd>! open ~/Images/code-scree
 -- Move text up and down
 keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
-keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
-keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 
--- Custom
+-- F keys
 keymap("n", "<F1>", "<cmd>LspToggleAutoFormat<CR>", { noremap = true })
+keymap("n", "<F2>", "<cmd>Alpha<CR>", opts)
 keymap("n", "<F3>", "<cmd>e .<cr>", opts)
 keymap("n", "<F4>", "<cmd>Bdelete!<CR>", opts)
 keymap("n", "<F5>", "<cmd>Telescope resume<cr>", opts)
@@ -88,7 +93,5 @@ keymap("n", "<F7>", ":lua require('harpoon.ui').nav_file(1)<CR>", opts)
 keymap("n", "<F8>", ":lua require('harpoon.ui').nav_file(2)<CR>", opts)
 keymap("n", "<F9>", ":lua require('harpoon.ui').nav_file(3)<CR>", opts)
 keymap("n", "<F10>", ":lua require('harpoon.ui').nav_file(4)<CR>", opts)
-
-keymap("n", "<F11>", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-keymap("n", "<F12>", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-keymap("n", "<Bslash>", "<cmd>let @/ = ''<CR>", opts)
+keymap("n", "<F11>", ":lua require('harpoon.ui').nav_file(5)<CR>", opts)
+keymap("n", "<F12>", ":lua require('harpoon.ui').nav_file(6)<CR>", opts)

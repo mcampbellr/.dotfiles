@@ -13,3 +13,5 @@ vim.g.registers_normal_mode = 1 --1 by default, open the window in normal mode
 vim.g.registers_visual_mode = 1 --1 by default, open the window in visual mode
 vim.g.registers_insert_mode = 1 --1 by default, open the window in insert mode
 -- vim.g.registers_show = "*+\"" --'*+\"-/_=#%.0123456789abcdefghijklmnopqrstuvwxyz' by default, which registers to show and in what order
+
+vim.cmd [[command! WipeReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor]]
