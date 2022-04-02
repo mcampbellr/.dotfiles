@@ -3,6 +3,9 @@ if not status_ok then
   return
 end
 
+local opts = { noremap = true, silent = true }
+local keymap = vim.api.nvim_set_keymap
+
 gitsigns.setup {
   signs = {
     add = { hl = "GitSignsAdd", text = "+", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
@@ -46,3 +49,5 @@ gitsigns.setup {
     enable = false,
   },
 }
+
+keymap("n", "<leader>gb", ":Gitsigns blame_line<CR>", opts)

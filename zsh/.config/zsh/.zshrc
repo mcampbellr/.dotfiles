@@ -2,8 +2,6 @@
 # source "$HOME/.config/zsh/.zshrc"
 #!/bin/sh
 export ZDOTDIR=$HOME/.config/zsh
-HISTFILE=~/.zsh_history
-setopt appendhistory
 
 # some useful options (man zshoptions)
 setopt autocd extendedglob nomatch menucomplete
@@ -64,3 +62,18 @@ fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
+
+HISTFILE=~/.zsh_history
+export HISTSIZE=10000
+
+setopt appendhistory
+setopt HIST_SAVE_NO_DUPS # Don't write duplicate entries in the history file.
+setopt SHARE_HISTORY # Share history between all sessions.
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_FIND_NO_DUPS
+
+export SAVEHIST=$HISTSIZE
+

@@ -2,7 +2,7 @@ vim.cmd [[
   augroup _general_settings
     autocmd!
     autocmd FileType qf,help,man,lspinfo,spectre_panel nnoremap <silent> <buffer> q :close<CR> 
-    autocmd TextYankPost * silent!lua require('vim.highlight').on_yank({higroup = 'Visual', timeout = 400}) 
+    autocmd TextYankPost * silent!lua require('vim.highlight').on_yank({timeout = 500}) 
     autocmd BufWinEnter * :set formatoptions-=cro
     autocmd FileType qf set nobuflisted
     autocmd CmdWinEnter * quit
@@ -30,6 +30,11 @@ vim.cmd [[
     autocmd!
     autocmd User AlphaReady set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2
   augroup end
+
+  augroup acursorLine
+    autocmd!
+    autocmd FileType,BufEnter NvimTree* setlocal cursorline
+  augroup END
 
   au BufRead,BufNewFile *.prettierrc set filetype=jsonc
   au BufRead,BufNewFile *.json set filetype=jsonc

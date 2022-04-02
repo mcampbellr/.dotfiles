@@ -128,7 +128,6 @@ return packer.startup(function(use)
   use "dhruvmanila/telescope-bookmarks.nvim"
   use "ThePrimeagen/git-worktree.nvim"
   use "ThePrimeagen/harpoon"
-  use "nvim-telescope/telescope-dap.nvim"
 
   -- Treesitter
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
@@ -138,10 +137,10 @@ return packer.startup(function(use)
   use "mizlan/iswap.nvim"
 
   use "lukas-reineke/indent-blankline.nvim"
-
-  -- Debugger
+  -- dap
   use "mfussenegger/nvim-dap"
-  use "theHamsta/nvim-dap-virtual-text"
+  use "leoluz/nvim-dap-go"
+  use "rcarriga/nvim-dap-ui"
 
   -- Git
   use "lewis6991/gitsigns.nvim"
