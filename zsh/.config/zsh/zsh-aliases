@@ -48,6 +48,7 @@ alias crnats='npx create-next-app@latest --ts'
 # Custom git aliases
 alias lg='lazygit'
 alias g='git'
+alias gp="g push"
 alias gwt="g worktree"
 alias gwta="g worktree add"
 alias gwtr="g worktree remove"
@@ -60,7 +61,6 @@ alias gst="g st"
 alias gconf="g config --global -e"
 alias glg="g log -20 --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'"
 alias glog="g log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'"
-alias upstream="git branch origin/$(git branch | sed -n -e 's/^\* \(.*\)/\1/p') $(git branch | sed -n -e 's/^\* \(.*\)/\1/p')"
 
 # Custom commands
 alias gsw="$DEV_FILES/git-switcher/git-switcher.sh"

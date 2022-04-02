@@ -50,8 +50,6 @@ return packer.startup(function(use)
   -- Custom plugins
   use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
   use "Mephistophiles/surround.nvim" -- surround things easily
-  use "tversteeg/registers.nvim" -- show registors using " in normal mode
-  use "kevinhwang91/nvim-bqf" -- pretti preview in quicklist
 
   -- better comments
   use "numToStr/Comment.nvim"
@@ -62,15 +60,12 @@ return packer.startup(function(use)
   -- search and replace
   use "nvim-pack/nvim-spectre"
   -- File navigation
-  use "goolord/alpha-nvim"
   use "kyazdani42/nvim-tree.lua"
   use "moll/vim-bbye" -- Close buffer without close nvim
   use "nvim-lualine/lualine.nvim"
 
   use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
-  use "norcalli/nvim-colorizer.lua"
   use "tpope/vim-repeat"
-  use "ahmedkhalf/project.nvim"
 
   -- language specific plugins
   use "lunarvim/vim-solidity"
@@ -93,7 +88,6 @@ return packer.startup(function(use)
   use "hrsh7th/cmp-path" -- path completions
   use "hrsh7th/cmp-nvim-lsp"
   use "hrsh7th/cmp-nvim-lua"
-  use "David-Kunz/cmp-npm"
   use "saadparwaiz1/cmp_luasnip" -- snippet completions
   use {
     "tzachar/cmp-tabnine",
@@ -101,7 +95,7 @@ return packer.startup(function(use)
       local tabnine = require "cmp_tabnine.config"
       tabnine:setup {
         max_lines = 1000,
-        max_num_results = 20,
+        max_num_results = 10,
         sort = true,
         run_on_every_keystroke = true,
         snippet_placeholder = "..",
@@ -134,6 +128,7 @@ return packer.startup(function(use)
   use "dhruvmanila/telescope-bookmarks.nvim"
   use "ThePrimeagen/git-worktree.nvim"
   use "ThePrimeagen/harpoon"
+  use "nvim-telescope/telescope-dap.nvim"
 
   -- Treesitter
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
@@ -141,12 +136,15 @@ return packer.startup(function(use)
   use "windwp/nvim-ts-autotag"
   use "romgrk/nvim-treesitter-context"
   use "mizlan/iswap.nvim"
+
+  use "lukas-reineke/indent-blankline.nvim"
+
   -- Debugger
   use "mfussenegger/nvim-dap"
+  use "theHamsta/nvim-dap-virtual-text"
 
   -- Git
   use "lewis6991/gitsigns.nvim"
-  use "tpope/vim-fugitive"
   use { "SergioRibera/vim-screenshot", run = "npm install --prefix Renderizer" }
 
   -- Automatically set up your configuration after cloning packer.nvim

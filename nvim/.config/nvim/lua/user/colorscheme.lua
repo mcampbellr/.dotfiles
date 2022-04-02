@@ -1,5 +1,5 @@
 vim.cmd [[
-colorscheme sonokai
+colorscheme onedark
 
 hi Normal guibg=NONE
 hi NormalNC guibg=NONE

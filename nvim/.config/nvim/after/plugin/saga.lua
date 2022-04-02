@@ -5,6 +5,7 @@ local icons = require "user.icons"
 lspsaga.setup { -- defaults ...
   debug = false,
   use_saga_diagnostic_sign = true,
+  use_diagnostic_virtual_text = false,
   -- diagnostic sign
   error_sign = icons.diagnostics.Error,
   warn_sign = icons.diagnostics.Warning,
@@ -17,7 +18,7 @@ lspsaga.setup { -- defaults ...
     enable = false,
     sign = false,
     sign_priority = 40,
-    virtual_text = true,
+    virtual_text = false,
   },
   finder_definition_icon = "  ",
   finder_reference_icon = "  ",
