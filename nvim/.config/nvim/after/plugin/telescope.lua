@@ -12,12 +12,9 @@ require("telescope").setup {
       hidden = true,
       previewer = false,
     },
-    grep_string = {
+    live_grep = {
       theme = "dropdown",
       hidden = true,
-    },
-    live_grep = {
-      hidden = false,
     },
     buffers = {
       theme = "dropdown",

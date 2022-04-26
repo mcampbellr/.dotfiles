@@ -77,10 +77,8 @@ return packer.startup(function(use)
   }
 
   -- themes
-  use "mhartington/oceanic-next"
   use "joshdick/onedark.vim"
-  use "sainnhe/sonokai"
-  use "marko-cerovac/material.nvim"
+  use "morhetz/gruvbox"
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp"
@@ -105,7 +103,6 @@ return packer.startup(function(use)
     run = "./install.sh",
     requires = "hrsh7th/nvim-cmp",
   }
-
   -- snippets
   use "L3MON4D3/LuaSnip" --snippet engine
   use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
@@ -138,12 +135,13 @@ return packer.startup(function(use)
 
   use "lukas-reineke/indent-blankline.nvim"
   -- dap
-  use "mfussenegger/nvim-dap"
-  use "leoluz/nvim-dap-go"
-  use "rcarriga/nvim-dap-ui"
+  -- use "mfussenegger/nvim-dap"
+  -- use "leoluz/nvim-dap-go"
+  -- use "rcarriga/nvim-dap-ui"
 
   -- Git
   use "lewis6991/gitsigns.nvim"
+  use "tpope/vim-fugitive"
   use { "SergioRibera/vim-screenshot", run = "npm install --prefix Renderizer" }
 
   -- Automatically set up your configuration after cloning packer.nvim

@@ -45,6 +45,7 @@ local function lsp_keymaps(bufnr)
   -- lsp saga dependent
   keymap(bufnr, "n", "gh", "<cmd>lua require'lspsaga.provider'.lsp_finder()<CR>", opts)
   keymap(bufnr, "n", "gp", "<cmd>lua require'lspsaga.provider'.preview_definition()<CR>", opts)
+  keymap(bufnr, "n", "gt", "<cmd>lua require'lspsaga.provider'.type_definition()<CR>", opts)
   keymap(bufnr, "n", "<leader>a", "<cmd>Lspsaga code_action<cr>", opts)
   keymap(bufnr, "n", "<leader>rn", "<cmd>lua require('lspsaga.rename').rename()<CR>", opts)
   keymap(bufnr, "n", "K", "<cmd>Lspsaga hover_doc<cr>", opts)

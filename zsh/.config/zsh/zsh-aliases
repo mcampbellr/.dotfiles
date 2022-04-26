@@ -4,6 +4,9 @@ alias n='nvim'
 alias n.='nvim'
 alias pm='npm'
 
+alias debug="npm run start:debug"
+alias serve="npm run serve"
+
 alias nvc="cd $DOTFILES/nvim/.config/nvim && n ."
 alias dot="cd $DOTFILES"
 alias vc="vimtheme"
@@ -55,6 +58,7 @@ alias gpull="g pull"
 alias gstash="g stash"
 alias grebase="g rebase"
 alias gcommit="g commit"
+alias wt= "g worktree"
 alias gwt="g worktree"
 alias gwta="g worktree add"
 alias gwtr="g worktree remove"
@@ -65,8 +69,11 @@ alias gcp="g cherry-pick"
 alias gri="g rebase -i"
 alias gst="g st"
 alias gconf="g config --global -e"
-alias glg="g log -20 --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'"
-alias glog="g log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'"
+
+LOG_FORMAT="format:'%C(bold red)%h%C(reset) - %C(white)(%C(bold green)%ar%C(reset)%C(white)) %s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'"
+
+alias glg="g log -15 --graph --abbrev-commit --decorate --format=$LOG_FORMAT"
+alias glog="g log --graph --abbrev-commit --decorate --format=$LOG_FORMAT"
 
 # yarn commands
 

@@ -9,3 +9,12 @@ zsh/.config/zsh/.zcompcache
 
 git/.gitaccounts.json
 git/.gitconfig
+bin/.local/share/nvim/site/pack/packer
+bin/.local/share/nvim/undodir
+bin/.local/share/nvim/shada
+bin/.local/share/nvim/.netrwhist
+bin/.local/share/nvim/rplugin.vim
+bin/.local/share/nvim/harpoon.json
+bin/.local/share/nvim/lsp_servers
+bin/.local/share/nvim/telescope_history
+bin/.local/share/rotator/.rotator.json

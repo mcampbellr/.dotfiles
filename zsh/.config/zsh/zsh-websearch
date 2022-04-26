@@ -1,5 +1,4 @@
 # web_search from terminal
-
 function web_search() {
   emulate -L zsh
 

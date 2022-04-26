@@ -10,6 +10,7 @@ local diagnostics = null_ls.builtins.diagnostics
 
 null_ls.setup {
   debug = true,
+  disabled_filetypes = { "lua" },
   sources = {
     formatting.prettier.with {
       extra_filetypes = { "toml", "solidity" },
@@ -17,7 +18,6 @@ null_ls.setup {
       extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote", "--config-precedence", "prefer-file" },
     },
     formatting.black.with { extra_args = { "--fast" } },
-    formatting.stylua,
     diagnostics.php,
   },
 }

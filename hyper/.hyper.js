@@ -10,7 +10,7 @@ module.exports = {
     // default font size in pixels for all tabs
     fontSize: 14,
     // font family with optional fallbacks
-    fontFamily: 'FiraCode Nerd Font Mono',
+    fontFamily: 'VictorMono Nerd Font Mono',
     // default font weight: 'normal' or 'bold'
     fontWeight: 'normal',
     // font weight for bold characters: 'normal' or 'bold'

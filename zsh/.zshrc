@@ -11,15 +11,14 @@ zle_highlight=('paste:none')
 
 # completions
 autoload -Uz compinit
-# zstyle ':completion:*' menu select
-zstyle ':completion::complete:lsof:*' menu yes select
+zstyle ':completion:*' menu select
+# zstyle ':completion::complete:lsof:*' menu yes select
 zmodload zsh/complist
 # compinit
 _comp_options+=(globdots)		# Include hidden files.
 
 # Colors
 autoload -Uz colors && colors
-
 source "$ZDOTDIR/zsh-functions"
 
 # beeping is annoying
@@ -61,11 +60,8 @@ fi
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
-
 HISTFILE=~/.zsh_history
 export HISTSIZE=10000
-
 setopt appendhistory
 setopt HIST_SAVE_NO_DUPS # Don't write duplicate entries in the history file.
 setopt SHARE_HISTORY # Share history between all sessions.
@@ -74,6 +70,6 @@ setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
 setopt HIST_FIND_NO_DUPS
-
 export SAVEHIST=$HISTSIZE
 
+source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
