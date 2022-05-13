@@ -79,6 +79,7 @@ return packer.startup(function(use)
   -- themes
   use "joshdick/onedark.vim"
   use "morhetz/gruvbox"
+  use "tomasr/molokai"
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp"

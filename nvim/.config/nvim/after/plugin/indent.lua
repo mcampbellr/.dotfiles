@@ -3,10 +3,10 @@ if not status_ok then
   return
 end
 
-vim.opt.termguicolors = true
+vim.opt.list = true
+vim.opt.listchars:append("eol:↴")
 
-vim.cmd [[highlight IndentBlanklineIndent1 guibg=#1f1f1f gui=nocombine]]
-vim.cmd [[highlight IndentBlanklineIndent2 guibg=#1a1a1a gui=nocombine]]
+vim.opt.termguicolors = true
 
 vim.g.indent_blankline_buftype_exclude = { "terminal", "nofile" }
 vim.g.indent_blankline_filetype_exclude = {
@@ -51,13 +51,6 @@ vim.g.indent_blankline_context_patterns = {
 
 indent_blankline.setup {
   char = "",
-  char_highlight_list = {
-    "IndentBlanklineIndent1",
-    "IndentBlanklineIndent2",
-  },
-  space_char_highlight_list = {
-    "IndentBlanklineIndent1",
-    "IndentBlanklineIndent2",
-  },
-  show_trailing_blankline_indent = false,
+  show_trailing_blankline_indent = true,
+  show_end_of_line = true,
 }
