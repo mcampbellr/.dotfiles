@@ -6,9 +6,11 @@ alias pm='npm'
 
 alias debug="npm run start:debug"
 alias serve="npm run serve"
+alias run="npm run"
 
 alias nvc="cd $DOTFILES/nvim/.config/nvim && n ."
 alias dot="cd $DOTFILES"
+alias dev="cd $DEV_FILES"
 alias vc="vimtheme"
 # shortcuts aliases
 alias cl='clear'
@@ -56,8 +58,10 @@ alias g='git'
 alias gpush="g push"
 alias gpull="g pull"
 alias gstash="g stash"
+alias gdiff="g diff"
 alias grebase="g rebase"
 alias gcommit="g commit"
+alias glast="g show HEAD --quiet"
 alias wt= "g worktree"
 alias gwt="g worktree"
 alias gwta="g worktree add"
