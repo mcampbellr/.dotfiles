@@ -8,6 +8,8 @@ alias debug="npm run start:debug"
 alias serve="npm run serve"
 alias run="npm run"
 
+alias dn="deno run"
+
 alias nvc="cd $DOTFILES/nvim/.config/nvim && n ."
 alias dot="cd $DOTFILES"
 alias dev="cd $DEV_FILES"
