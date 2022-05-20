@@ -1,6 +1,7 @@
 local opts = { noremap = true, silent = true }
 
 -- local term_opts = { silent = true }
+local noremap = { noremap = true }
 
 -- Shorten function name
 local keymap = vim.api.nvim_set_keymap
@@ -31,6 +32,10 @@ keymap("n", "<C-Up>", "<cmd>resize -2<CR>", opts)
 keymap("n", "<C-Down>", "<cmd>resize +2<CR>", opts)
 keymap("n", "<C-Left>", "<cmd>vertical resize -2<CR>", opts)
 keymap("n", "<C-Right>", "<cmd>vertical resize +2<CR>", opts)
+-- Replace
+-- search for visually hightlighted text
+keymap("v", "<C-f>", 'y<ESC>/<c-r>"<CR><ESC>', opts)
+keymap('n', "<C-r>", ':%s///g<left><left>', noremap)
 
 -- Naviagate buffers
 keymap("n", "<S-l>", "<cmd>bnext<CR>", opts)
