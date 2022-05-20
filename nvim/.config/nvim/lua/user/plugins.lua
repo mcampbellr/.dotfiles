@@ -136,7 +136,7 @@ return packer.startup(function(use)
 
   use "lukas-reineke/indent-blankline.nvim"
   -- dap
-  -- use "mfussenegger/nvim-dap"
+  use "mfussenegger/nvim-dap"
   -- use "leoluz/nvim-dap-go"
   -- use "rcarriga/nvim-dap-ui"
 
