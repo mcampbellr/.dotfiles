@@ -80,6 +80,7 @@ return packer.startup(function(use)
   use "joshdick/onedark.vim"
   use "morhetz/gruvbox"
   use "tomasr/molokai"
+  use "sainnhe/gruvbox-material"
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp"

@@ -52,4 +52,4 @@ gitsigns.setup {
 
 keymap("n", "<leader>gl", ":Gitsigns blame_line<CR>", opts)
 keymap("n", "g[", ":Gitsigns next_hunk<CR>", opts)
-keymap("n", "g]", ":Gitsigns next_hunk<CR>", opts)
+keymap("n", "g]", ":Gitsigns prev_hunk<CR>", opts)
