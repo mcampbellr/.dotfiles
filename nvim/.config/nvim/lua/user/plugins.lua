@@ -50,6 +50,7 @@ return packer.startup(function(use)
   -- Custom plugins
   use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
   use "Mephistophiles/surround.nvim" -- surround things easily
+  use "chentoast/marks.nvim"
 
   -- better comments
   use "numToStr/Comment.nvim"
@@ -59,6 +60,7 @@ return packer.startup(function(use)
   use "kyazdani42/nvim-web-devicons"
   -- search and replace
   use "nvim-pack/nvim-spectre"
+  use "tversteeg/registers.nvim"
   -- File navigation
   use "kyazdani42/nvim-tree.lua"
   use "moll/vim-bbye" -- Close buffer without close nvim
@@ -133,13 +135,12 @@ return packer.startup(function(use)
   use "nvim-treesitter/playground"
   use "windwp/nvim-ts-autotag"
   use "romgrk/nvim-treesitter-context"
-  use "mizlan/iswap.nvim"
 
+  -- Inent
   use "lukas-reineke/indent-blankline.nvim"
-  -- dap
+
+  -- Debbuger
   use "mfussenegger/nvim-dap"
-  -- use "leoluz/nvim-dap-go"
-  -- use "rcarriga/nvim-dap-ui"
 
   -- Git
   use "lewis6991/gitsigns.nvim"

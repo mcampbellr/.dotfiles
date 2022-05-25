@@ -86,7 +86,7 @@ cmp.setup {
   sources = {
     { name = "nvim_lsp" },
     { name = "nvim_lua" },
-    { name = "luasnip" },
+    { name = "luasnip", keyword_length = 3 },
     { name = "cmp_tabnine" },
     { name = "buffer", keyword_length = 5 },
     { name = "path" },

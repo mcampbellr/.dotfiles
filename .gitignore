@@ -18,3 +18,4 @@ bin/.local/share/nvim/harpoon.json
 bin/.local/share/nvim/lsp_servers
 bin/.local/share/nvim/telescope_history
 bin/.local/share/rotator/.rotator.json
+bin/.local/share/nvim/tree-sitter-r

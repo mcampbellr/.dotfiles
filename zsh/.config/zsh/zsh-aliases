@@ -72,6 +72,7 @@ alias gwtl="g worktree list"
 alias gwtm="g worktree move"
 alias gwtp="g worktree prune --verbose"
 alias gcp="g cherry-pick"
+alias clone="g clone"
 alias gri="g rebase -i"
 alias gst="g st"
 alias gconf="g config --global -e"
@@ -95,6 +96,6 @@ alias ss="$DEV_FILES/tmux/session"
 alias doc='docker'
 alias dco="docker compose"
 
-alias t="todo.sh"
+alias olocal="open http://localhost"
 
 alias cpwd="pwd | tr -d '\n' | pbcopy && echo 'pwd copied to clipboard'"

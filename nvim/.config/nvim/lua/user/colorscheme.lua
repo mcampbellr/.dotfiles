@@ -26,7 +26,10 @@ hi TabLine guibg=NONE
 hi TabLineFill guibg=NONE
 hi TabLineSel guifg=orange
 
+hi Visual  guifg=#000000 guibg=#bc7795 gui=none
+
 hi TelescopeBorder guifg=#5eacd
+
 
 let g:neosolarized_underline = 1
 let g:neosolarized_italic = 1

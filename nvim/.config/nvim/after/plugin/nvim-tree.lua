@@ -1,41 +1,3 @@
--- following options are the default
--- each of these are documented in `:help nvim-tree.OPTION_NAME`
-vim.g.nvim_tree_icons = {
-  default = "",
-  symlink = "",
-  git = {
-    unstaged = "•",
-    staged = "S",
-    unmerged = "",
-    renamed = "➜",
-    deleted = "",
-    untracked = "U",
-    ignored = "◌",
-  },
-  folder = {
-    arrow_open = "▿",
-    arrow_closed = "▹",
-    default = "",
-    open = "",
-    empty = "",
-    empty_open = "",
-    symlink = "",
-  },
-}
-
-vim.g.nvim_tree_special_files = {
-  "README.md" == 0,
-}
-
-vim.g.nvim_tree_show_icons = {
-  git = 1,
-  folders = 1,
-  files = 1,
-  folders_arrows = 0,
-}
-
-vim.g.nvim_tree_create_in_closed_folder = 1
-
 local status_ok, nvim_tree = pcall(require, "nvim-tree")
 if not status_ok then
   return
@@ -57,6 +19,7 @@ nvim_tree.setup {
     "dashboard",
     "alpha",
   },
+  create_in_closed_folder = true,
   open_on_tab = false,
   hijack_cursor = false,
   update_cwd = true,
@@ -109,6 +72,42 @@ nvim_tree.setup {
     cmd = "trash",
     require_confirm = true,
   },
+  renderer = {
+    highlight_opened_files = "name",
+    special_files = {
+      "README.md" == false,
+    },
+    icons = {
+      show = {
+        git = true,
+        folder = true,
+        file = true,
+        folder_arrow = false,
+      },
+      glyphs = {
+        default = "",
+        symlink = "",
+        git = {
+          unstaged = "•",
+          staged = "S",
+          unmerged = "",
+          renamed = "➜",
+          deleted = "",
+          untracked = "U",
+          ignored = "◌",
+        },
+        folder = {
+          arrow_open = "▿",
+          arrow_closed = "▹",
+          default = "",
+          open = "",
+          empty = "",
+          empty_open = "",
+          symlink = "",
+        },
+      }
+    }
+  },
   actions = {
     change_dir = {
       enable = true,
@@ -117,15 +116,7 @@ nvim_tree.setup {
     open_file = {
       quit_on_open = true,
       window_picker = {
-        enable = true,
-        chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
-        exclude = {
-          filetype = {
-            "notify",
-            "packer",
-            "qf",
-          },
-        },
+        enable = false,
       },
     },
   },

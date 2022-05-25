@@ -13,6 +13,7 @@ k("n", "<C-b>", ":Telescope buffers<CR>", opts)
 k("n", "z=", ":Telescope spell_suggest<CR>", opts)
 k("n", "<C-s>", ":Telescope oldfiles<CR>", opts)
 k("n", "<C-g>", ":Telescope live_grep<CR>", opts)
+k("n", "<leader>mm", ":Telescope marks<CR>", opts)
 k("n", "<Leader>vrc", ":lua require('user.telescope').search_dotfiles({ hidden = true })<CR>", opts)
 k("n", "<C-n>", ":lua require('user.telescope').search_notes({ hidden = true })<CR>", opts)
 k(
