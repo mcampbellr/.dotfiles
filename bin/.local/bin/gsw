@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+selected=`cat ~/.accounts | fzf`
+
+if [[ -z $selected ]]; then
+  exit 0
+fi
+IFS='/'
+
+read -a strarr <<< "$selected"
+git config --local user.email "${strarr[0]}"
+git config --local user.name "${strarr[1]}"

@@ -1,19 +1,19 @@
 #!/bin/sh
 # vim & nvim aliases
 alias n='nvim'
-alias n.='nvim'
 alias pm='npm'
 
 alias debug="npm run start:debug"
 alias serve="npm run serve"
 alias run="npm run"
 
-alias dn="deno run"
+alias dn="deno"
 
 alias nvc="cd $DOTFILES/nvim/.config/nvim && n ."
 alias dot="cd $DOTFILES"
 alias dev="cd $DEV_FILES"
 alias vc="vimtheme"
+
 # shortcuts aliases
 alias cl='clear'
 alias ls='exa'
@@ -26,6 +26,19 @@ mkcdir () {
     cd -P -- "$1"
 }
 
+openFile () {
+  local test=$(fzf)
+
+  if [ "$test" != "" ]; then
+    n $test
+  else
+    echo "Cancelled"
+  fi
+}
+
+alias of=openFile
+alias n.='of'
+
 alias notes="cd ~/Notes/"
 
 alias ccd=mkcdir
@@ -37,7 +50,7 @@ alias src="source ~/.zshrc && echo '< zsh config reloaded >'"
 alias tm='tmux'
 alias :q='exit'
 # browser aliases
-alias gg='google'
+alias gg='brave'
 alias sof='stackoverflow'
 alias yt='youtube'
 # npm version aliases
@@ -48,19 +61,22 @@ alias major="yarn version --major"
 # python
 alias py='python3'
 alias pip='pip3' 
+
 # typescript
 alias tsn="ts-node"
+
 # react
 alias cra='npx create-react-app'
 alias crna='npx create-next-app@latest'
 alias crnats='npx create-next-app@latest --ts'
+
 # Custom git aliases
 alias lg='lazygit'
 alias g='git'
 alias gpush="g push"
 alias gpull="g pull"
-alias gstash="g stash -u"
-alias gdiff="g diff"
+alias gsh="g stash -u"
+alias gdff="g diff"
 alias grebase="g rebase"
 alias gcommit="g commit"
 alias glast="g show HEAD --quiet"
@@ -72,6 +88,7 @@ alias gwtl="g worktree list"
 alias gwtm="g worktree move"
 alias gwtp="g worktree prune --verbose"
 alias gcp="g cherry-pick"
+alias gbv="g branch -vv"
 alias clone="g clone"
 alias gri="g rebase -i"
 alias gst="g st"
@@ -88,10 +105,7 @@ alias y="yarn"
 alias yd="yarn run dev"
 
 # Custom commands
-alias gsw="$DEV_FILES/git-switcher/git-switcher.sh"
 alias cg=". $DEV_FILES/rotator/rot.sh"
-alias ch="$DEV_FILES/cht/cht.sh"
-alias ss="$DEV_FILES/tmux/session"
 
 alias doc='docker'
 alias dco="docker compose"
@@ -99,3 +113,5 @@ alias dco="docker compose"
 alias olocal="open http://localhost"
 
 alias cpwd="pwd | tr -d '\n' | pbcopy && echo 'pwd copied to clipboard'"
+alias gosleep="pmset sleepnow"
+

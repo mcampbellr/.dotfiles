@@ -67,19 +67,18 @@
     context                   # user@host
     time                      # current time
     # =========================[ Line #2 ]=========================
+    ip                    # ip address and bandwidth usage for a specified network interface
+    public_ip             # public IP address
     user_git               # example user-defined segment (see prompt_example function below)
     newline                   # \n
   )
 
   function prompt_user_git () {
-    FILENAME="$HOME/.gitconfig"
-    for LN in $(cat $FILENAME)
-    do
-      if [[ "$LN" == *"@"* ]]; then
-        email=$LN;
-      fi
-    done
-    p10k segment -f "\u001b[0m" -i "" -t "$email"
+    gitLocal=""
+    if git rev-parse --git-dir > /dev/null 2>&1; then
+      gitLocal=$(git config --local user.email)
+    fi
+    p10k segment -f "\u001b[0m" -i "" -t "$gitLocal"
   }
 
   function prompt_user_rotator () {

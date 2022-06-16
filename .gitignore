@@ -8,7 +8,6 @@ zsh/.config/zsh/.zsh_history
 zsh/.config/zsh/.zcompcache
 
 git/.gitaccounts.json
-git/.gitconfig
 bin/.local/share/nvim/site/pack/packer
 bin/.local/share/nvim/undodir
 bin/.local/share/nvim/shada

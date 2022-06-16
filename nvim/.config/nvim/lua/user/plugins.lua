@@ -80,8 +80,6 @@ return packer.startup(function(use)
 
   -- themes
   use "joshdick/onedark.vim"
-  use "morhetz/gruvbox"
-  use "tomasr/molokai"
   use "sainnhe/gruvbox-material"
 
   -- cmp plugins

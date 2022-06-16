@@ -1,0 +1,40 @@
+[user]
+	name = Mario Campbell R
+	email = mariocampbellr@gmail.com
+[init]
+	defaultBranch = main
+[credential]
+	helper = cache
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[alias]
+	co = checkout
+	cp = cherry-pick
+	st = status --short
+	sw = switch
+	cm = commit
+	rb = rebase
+  sv = save
+[commit]
+	template = ~/.gitmessage
+[push]
+	default = current
+[pull]
+	default = current
+[core]
+	editor = nvim
+	pager = cat
+	autocrlf = input
+  ignorecase = false
+	excludesfile = /Users/mariocampbell/.gitignore_global
+[log]
+  date = relative
+[checkout]
+  defaultRemote = origin
+[worktree]
+  guessRemote = true
+[help]
+	autocorrect = 1

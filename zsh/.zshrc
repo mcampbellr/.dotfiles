@@ -3,6 +3,11 @@
 #!/bin/sh
 export ZDOTDIR=$HOME/.config/zsh
 
+sshlist="$(ssh-add -l)"
+if [[ $sshlist =~ 'The agent has no identities.' ]]; then
+  ssh-add --apple-use-keychain --apple-load-keychain
+fi
+
 # some useful options (man zshoptions)
 setopt autocd extendedglob nomatch menucomplete
 setopt interactive_comments

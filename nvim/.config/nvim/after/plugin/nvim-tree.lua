@@ -9,6 +9,7 @@ if not config_status_ok then
 end
 
 local tree_cb = nvim_tree_config.nvim_tree_callback
+local icons = require "user.icons"
 
 nvim_tree.setup {
   disable_netrw = true,
@@ -63,6 +64,7 @@ nvim_tree.setup {
         { key = "u", cb = tree_cb "dir_up" },
         { key = "h", cb = tree_cb "close_node" },
         { key = "s", cb = tree_cb "vsplit" },
+        { key = "f", cb = '' },
       },
     },
     number = true,
@@ -86,24 +88,22 @@ nvim_tree.setup {
       },
       glyphs = {
         default = "",
-        symlink = "",
+        symlink = icons.ui.Symlink,
         git = {
-          unstaged = "•",
-          staged = "S",
-          unmerged = "",
-          renamed = "➜",
-          deleted = "",
-          untracked = "U",
-          ignored = "◌",
+          unstaged = icons.git.Mod,
+          staged = icons.git.Diff,
+          unmerged = icons.git.Unmerged,
+          renamed = icons.git.Rename,
+          deleted = icons.git.Remove,
+          untracked = icons.git.Untracked,
+          ignored = icons.git.Ignore,
         },
         folder = {
-          arrow_open = "▿",
-          arrow_closed = "▹",
-          default = "",
-          open = "",
-          empty = "",
-          empty_open = "",
-          symlink = "",
+          default = icons.documents.SolidFolder,
+          open = icons.documents.SolidFolderOpen,
+          empty = icons.documents.FolderEmpty,
+          empty_open = icons.documents.OpenFolderEmpty,
+          symlink = icons.documents.Symlink,
         },
       }
     }

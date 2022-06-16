@@ -1,3 +1,6 @@
+vim.cmd "syntax enable"
+vim.cmd "syntax on"
+
 local options = {
   backup = false, -- creates a backup file
   clipboard = "unnamed", -- allows neovim to access the system clipboard
@@ -44,11 +47,9 @@ local options = {
 
 vim.opt.shortmess:append "c"
 
-for k, v in pairs(options) do
-  vim.opt[k] = v
+for key, value in pairs(options) do
+  vim.opt[key] = value
 end
 
 vim.cmd "set whichwrap+=<,>,[,],h,l"
-vim.cmd "syntax enable"
-vim.cmd "syntax on"
 vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work
