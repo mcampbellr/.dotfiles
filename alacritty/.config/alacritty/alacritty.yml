@@ -1,0 +1,23 @@
+live_config_reload: true
+window:
+  padding:
+    x: 5
+    y: 5
+  opacity: 0.95
+  title: mcambpellr
+  dynamic_title: true
+scrolling:
+  history: 10000
+font:
+  normal:
+    family: FiraCode Nerd Font
+    style: Light
+  bold:
+    family: FiraCode Nerd Font
+    style: Bold
+  italic:
+    family: FiraCode Nerd Font
+    style: Italic
+  size: 14.0
+  use_thin_strokes: true
+  builtin_box_drawing: true

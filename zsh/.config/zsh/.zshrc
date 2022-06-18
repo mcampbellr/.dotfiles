@@ -54,6 +54,15 @@ export BROWSER="chrome"
 TERM="xterm-256color"
 export TERM
 
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
+[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 HISTFILE=~/.zsh_history
@@ -68,6 +77,4 @@ setopt HIST_IGNORE_SPACE
 setopt HIST_FIND_NO_DUPS
 export SAVEHIST=$HISTSIZE
 
-
-test -e "${ZDOTDIR}/.iterm2_shell_integration.zsh" && source "${ZDOTDIR}/.iterm2_shell_integration.zsh"
-
+source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
