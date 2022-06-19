@@ -27,13 +27,7 @@ mkcdir () {
 }
 
 openFile () {
-  local test=$(fzf)
-
-  if [ "$test" != "" ]; then
-    n $test
-  else
-    echo "Cancelled"
-  fi
+  n $(fzf)
 }
 
 alias of=openFile
@@ -114,4 +108,11 @@ alias olocal="open http://localhost"
 
 alias cpwd="pwd | tr -d '\n' | pbcopy && echo 'pwd copied to clipboard'"
 alias gosleep="pmset sleepnow"
+
+
+# Tevora 
+openJiraIssue () {
+  open "https://tevora.atlassian.net/browse/$1"
+}
+alias jira=openJiraIssue
 
