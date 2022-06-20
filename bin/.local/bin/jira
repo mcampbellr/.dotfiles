@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+selected=`jq -nr '"TOP\nPE"' | fzf --height=10% --reverse`
+if [[ -z $selected ]]; then
+    exit 0
+fi
+read -p "Enter Issue: " query
+
+open https://tevora.atlassian.net/browse/$selected-$query
+clear

@@ -118,7 +118,6 @@ return packer.startup(function(use)
   use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
   use "tami5/lspsaga.nvim" -- nightly
   use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
-  use "ray-x/lsp_signature.nvim" -- Helper when typing functions and other things
   use "b0o/SchemaStore.nvim"
 
   -- Telescope
@@ -138,11 +137,12 @@ return packer.startup(function(use)
   use "lukas-reineke/indent-blankline.nvim"
 
   -- Debbuger
-  use "mfussenegger/nvim-dap"
+  use("mfussenegger/nvim-dap")
+  use("rcarriga/nvim-dap-ui")
+  use("theHamsta/nvim-dap-virtual-text")
 
   -- Git
   use "lewis6991/gitsigns.nvim"
-  use "tpope/vim-fugitive"
   use { "SergioRibera/vim-screenshot", run = "npm install --prefix Renderizer" }
 
   -- Automatically set up your configuration after cloning packer.nvim

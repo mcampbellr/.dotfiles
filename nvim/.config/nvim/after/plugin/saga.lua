@@ -1,6 +1,6 @@
 local lspsaga = require "lspsaga"
 
-local icons = require "user.icons"
+local icons = require "mcampbellr.icons"
 
 lspsaga.setup { -- defaults ...
   debug = false,

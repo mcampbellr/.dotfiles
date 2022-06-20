@@ -78,8 +78,8 @@ local config = {
     workspace_dir,
   },
 
-  on_attach = require("user.lsp.handlers").on_attach,
-  capabilities = require("user.lsp.handlers").capabilities,
+  on_attach = require("mcampbellr.lsp.handlers").on_attach,
+  capabilities = require("mcampbellr.lsp.handlers").capabilities,
 
   -- 💀
   -- This is the default if not provided, you can remove it. Or adjust as needed.

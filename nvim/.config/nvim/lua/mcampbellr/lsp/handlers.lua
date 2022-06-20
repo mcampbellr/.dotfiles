@@ -1,7 +1,7 @@
 local M = {}
 
 M.setup = function()
-  local icons = require "user.icons"
+  local icons = require "mcampbellr.icons"
   local signs = {
     { name = "DiagnosticSignError", text = icons.diagnostics.Error },
     { name = "DiagnosticSignWarn", text = icons.diagnostics.Warning },
@@ -51,7 +51,7 @@ local function lsp_keymaps(bufnr)
   keymap(bufnr, "n", "K", "<cmd>Lspsaga hover_doc<cr>", opts)
   keymap(bufnr, "n", "gj", "<cmd>Lspsaga diagnostic_jump_next<cr>", opts)
   keymap(bufnr, "n", "gk", "<cmd>Lspsaga diagnostic_jump_prev<cr>", opts)
-  keymap(bufnr, "n", "<C-k>", "<cmd>Lspsaga signature_help<CR>", opts)
+  keymap(bufnr, "i", "<C-k>", "<cmd>Lspsaga signature_help<CR>", opts)
   keymap(bufnr, "n", "gl", "<cmd>Lspsaga show_line_diagnostics<cr>", opts)
 
   vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
@@ -112,6 +112,6 @@ function M.remove_augroup(name)
   end
 end
 
-vim.cmd [[ command! LspToggleAutoFormat execute 'lua require("user.lsp.handlers").toggle_format_on_save()' ]]
+vim.cmd [[ command! LspToggleAutoFormat execute 'lua require("mcampbellr.lsp.handlers").toggle_format_on_save()' ]]
 
 return M

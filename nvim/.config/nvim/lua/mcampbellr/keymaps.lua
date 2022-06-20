@@ -34,8 +34,6 @@ keymap("n", "<C-Left>", "<cmd>vertical resize -2<CR>", opts)
 keymap("n", "<C-Right>", "<cmd>vertical resize +2<CR>", opts)
 
 -- Replace
--- search for visually hightlighted text
-keymap("v", "<C-f>", 'y<ESC>/<c-r>"<CR><ESC>', opts)
 keymap('n', "<leader>rp", ':%s///g<left><left>', noremap)
 
 -- Naviagate buffers
@@ -62,13 +60,16 @@ keymap("n", "<leader>P", "ggVGp<esc>", opts)
 -- Select all the page content
 keymap("n", "<leader>V", "gg0VG$", opts)
 
--- Delete the seach highlighting
+-- Delete the search highlighting
 keymap("n", "<Bslash>", "<cmd>let @/ = ''<CR>", opts)
 
 keymap("n", "<Leader>+", ":vertical resize +10<CR>", opts)
 keymap("n", "<Leader>-", ":vertical resize -5<CR>", opts)
 
 -- Visual --
+-- search for visually hightlighted text
+keymap("v", "<C-f>", 'y<ESC>/<c-r>"<CR><ESC>', opts)
+
 -- Stay in indent mode
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
@@ -88,7 +89,6 @@ keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 
 -- F keys
-
 keymap("n", "<F1>", ":lua require('harpoon.ui').nav_file(1)<CR>", opts)
 keymap("n", "<F2>", ":lua require('harpoon.ui').nav_file(2)<CR>", opts)
 keymap("n", "<F3>", ":lua require('harpoon.ui').nav_file(3)<CR>", opts)

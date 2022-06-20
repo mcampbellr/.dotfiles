@@ -18,3 +18,5 @@ bin/.local/share/nvim/lsp_servers
 bin/.local/share/nvim/telescope_history
 bin/.local/share/rotator/.rotator.json
 bin/.local/share/nvim/tree-sitter-r
+
+bin/.local/share/nvim/tree-sitter-phpdoc

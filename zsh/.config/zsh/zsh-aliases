@@ -32,8 +32,8 @@ openFile () {
 
 alias of=openFile
 alias n.='of'
-
-alias notes="cd ~/Notes/"
+alias copy-branch='g branch --show-current | pbcopy'
+alias notes="ss ~/Notes/"
 
 alias ccd=mkcdir
 # configs aliases
@@ -105,14 +105,8 @@ alias doc='docker'
 alias dco="docker compose"
 
 alias olocal="open http://localhost"
+alias ht=htop
 
 alias cpwd="pwd | tr -d '\n' | pbcopy && echo 'pwd copied to clipboard'"
 alias gosleep="pmset sleepnow"
-
-
-# Tevora 
-openJiraIssue () {
-  open "https://tevora.atlassian.net/browse/$1"
-}
-alias jira=openJiraIssue
 
