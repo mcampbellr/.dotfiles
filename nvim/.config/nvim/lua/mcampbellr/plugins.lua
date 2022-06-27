@@ -63,7 +63,6 @@ return packer.startup(function(use)
   use "tversteeg/registers.nvim"
   -- File navigation
   use "kyazdani42/nvim-tree.lua"
-  use "moll/vim-bbye" -- Close buffer without close nvim
   use "nvim-lualine/lualine.nvim"
 
   use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
@@ -81,6 +80,7 @@ return packer.startup(function(use)
   -- themes
   use "joshdick/onedark.vim"
   use "sainnhe/gruvbox-material"
+  use "folke/tokyonight.nvim"
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp"

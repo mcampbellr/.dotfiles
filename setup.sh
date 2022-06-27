@@ -29,6 +29,7 @@ brew install deno
 brew install glow
 brew install heroku
 brew install fd
+brew install qmk/qmk/qmk
 
 brew install --cask iterm2
 brew install --cask loom
