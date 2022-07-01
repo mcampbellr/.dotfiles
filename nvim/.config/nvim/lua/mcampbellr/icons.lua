@@ -85,6 +85,7 @@ return {
     ChevronDown = "",
     Table = "",
     Calendar = "",
+    Clock = "",
   },
   diagnostics = {
     Error = "",

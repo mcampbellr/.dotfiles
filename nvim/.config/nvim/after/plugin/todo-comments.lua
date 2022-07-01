@@ -11,6 +11,7 @@ local info_yellow = "#FFCC66"
 local hint_blue = "#4FC1FF"
 local perf_purple = "#7C3AED"
 local note_pink = "#F78AE0"
+local temp_aqua = "#bff3d2"
 
 todo_comments.setup {
   signs = true, -- show icons in the signs column
@@ -22,6 +23,7 @@ todo_comments.setup {
     WARN = { icon = icons.diagnostics.Warning, color = warning_orange, alt = { "WARNING" } },
     PERF = { icon = icons.ui.Dashboard, color = perf_purple, alt = { "PERFORMANCE", "OPTIMIZE" } },
     NOTE = { icon = icons.ui.Note, color = note_pink, alt = { "QUESTION", "TICKET" } },
+    TEMP = { icon = icons.ui.Clock, color = temp_aqua, alt = { "TEMPORAL" } },
     INFO = { icon = icons.diagnostics.Information, color = hint_blue },
   },
   highlight = {

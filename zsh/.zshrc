@@ -3,6 +3,11 @@
 #!/bin/sh
 export ZDOTDIR=$HOME/.config/zsh
 
+if [ -z "$TMUX" ]
+then
+    tmux attach || tmux new -s TMUX
+fi
+
 sshlist="$(ssh-add -l)"
 if [[ $sshlist =~ 'The agent has no identities.' ]]; then
   ssh-add --apple-use-keychain --apple-load-keychain
@@ -64,6 +69,7 @@ fi
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 
 HISTFILE=~/.zsh_history
 export HISTSIZE=10000

@@ -38,6 +38,7 @@ brew install --cask slack
 brew install --cask microsoft-teams
 brew install --cask insomnia
 brew install --cask spotify
+brew install --cask rectangle
 brew install --cask visual-studio-code
 brew install --cask docker
 brew install --cask brave-browser

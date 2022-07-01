@@ -46,6 +46,8 @@ local options = {
 }
 
 vim.opt.shortmess:append "c"
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 for key, value in pairs(options) do
   vim.opt[key] = value

@@ -1,8 +1,7 @@
 local lspsaga = require "lspsaga"
-
 local icons = require "mcampbellr.icons"
 
-lspsaga.setup { -- defaults ...
+lspsaga.setup {
   debug = false,
   use_saga_diagnostic_sign = true,
   use_diagnostic_virtual_text = false,
@@ -11,7 +10,7 @@ lspsaga.setup { -- defaults ...
   warn_sign = icons.diagnostics.Warning,
   hint_sign = icons.diagnostics.Hint,
   infor_sign = icons.diagnostics.Information,
-  diagnostic_header_icon = icons.ui.Bug,
+  diagnostic_header_icon = icons.ui.Lightbulb,
   -- code action title icon
   code_action_icon = " ",
   code_action_prompt = {

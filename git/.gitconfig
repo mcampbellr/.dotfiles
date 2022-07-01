@@ -18,6 +18,7 @@
 	cm = commit
 	rb = rebase
   sv = save
+  rs = reset
 [commit]
 	template = ~/.gitmessage
 [push]
@@ -30,11 +31,11 @@
 	autocrlf = input
   ignorecase = false
 	excludesfile = /Users/mariocampbell/.gitignore_global
-[log]
-  date = relative
 [checkout]
   defaultRemote = origin
 [worktree]
   guessRemote = true
 [help]
 	autocorrect = 1
+[remote "origin"]
+	fetch = +refs/heads/*:refs/remotes/origin/*

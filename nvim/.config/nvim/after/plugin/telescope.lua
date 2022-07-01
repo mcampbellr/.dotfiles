@@ -26,13 +26,6 @@ require("telescope").setup {
     },
   },
   extensions = {
-    bookmarks = {
-      selected_browser = "brave",
-      url_open_command = "open",
-      url_open_plugin = nil,
-      full_path = true,
-      firefox_profile_name = nil,
-    },
     fzy_native = {
       override_generic_sorter = false,
       override_file_sorter = true,
@@ -41,5 +34,4 @@ require("telescope").setup {
 }
 
 require("telescope").load_extension "git_worktree"
-require("telescope").load_extension "bookmarks"
 require("telescope").load_extension "fzy_native"

@@ -1,5 +1,10 @@
-local opts = { noremap = true, silent = true }
-local keymap = vim.api.nvim_set_keymap
+local Remap = require('mcampbellr.keymap')
+local nnoremap = Remap.nnoremap
 
-keymap("n", "<leader>gwt", ":lua require('telescope').extensions.git_worktree.git_worktrees()<CR>", opts)
-keymap("n", "<leader>gwn", ":lua require('telescope').extensions.git_worktree.create_git_worktree()<CR>", opts)
+nnoremap("<leader>gwt", function()
+  require('telescope').extensions.git_worktree.git_worktrees()
+end);
+
+nnoremap("<leader>gwn", function()
+  require('telescope').extensions.git_worktree.create_git_worktree()
+end);

@@ -1,10 +1,13 @@
+vim.g.gruvbox_material_background = 'hard'
+vim.g.gruvbox_material_better_performance = 1
+vim.g.tokyonight_style = 'night'
+vim.g.tokyonight_transparent = 1
+vim.g.tokyonight_transparent_sidebar = 1
+
+-- vim.cmd [[colorscheme onedark]]
+vim.cmd [[colorscheme gruvbox-material]]
+
 vim.cmd [[
-" colorscheme gruvbox-material
-colorscheme onedark
-
-let g:gruvbox_material_background = 'hard'
-let g:gruvbox_material_better_performance = 1
-
 hi Normal guibg=NONE
 hi NormalNC guibg=NONE
 
@@ -26,17 +29,9 @@ hi TabLineSel guibg=NONE
 hi TabLine guibg=NONE
 hi TabLineFill guibg=NONE
 hi TabLineSel guifg=orange
-
 hi Visual  guifg=#000000 guibg=#bc7795 gui=none
 
 hi TelescopeBorder guifg=#5eacd
-
-
-let g:neosolarized_underline = 1
-let g:neosolarized_italic = 1
-
-let g:monokai_term_italic = 1
-let g:monokai_gui_italic = 1
 
 let &t_ZH="\e[3m"
 let &t_ZR="\e[23m"

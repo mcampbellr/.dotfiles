@@ -1,4 +1,4 @@
-local opts = { noremap = true, silent = true }
-local keymap = vim.api.nvim_set_keymap
+local Remap = require('mcampbellr.keymap')
+local nnoremap = Remap.nnoremap
 
-keymap("n", "<leader>pm", "<cmd>MarkdownPreview<CR>", opts)
+nnoremap("<leader>pm", "<cmd>MarkdownPreview<CR>")
