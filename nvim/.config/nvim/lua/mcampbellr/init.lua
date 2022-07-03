@@ -1,0 +1,8 @@
+require "mcampbellr.sets"
+require "mcampbellr.plugins"
+require "mcampbellr.colorscheme"
+require "mcampbellr.cmp"
+require "mcampbellr.commands"
+require "mcampbellr.lsp"
+require "mcampbellr.debugger"
+require "mcampbellr.autocommands"

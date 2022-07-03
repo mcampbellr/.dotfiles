@@ -16,7 +16,6 @@ local check_backspace = function()
 end
 
 local icons = require "mcampbellr.icons"
-
 local kind_icons = icons.kind
 
 -- INFO: order matters
@@ -86,11 +85,10 @@ cmp.setup {
   sources = {
     { name = "nvim_lsp" },
     { name = "nvim_lua" },
-    { name = "luasnip", keyword_length = 3 },
+    { name = "luasnip" },
     { name = "cmp_tabnine" },
     { name = "buffer", keyword_length = 5 },
     { name = "path" },
-    { name = "npm", keyword_length = 4 },
   },
   confirm_opts = {
     behavior = cmp.ConfirmBehavior.Replace,

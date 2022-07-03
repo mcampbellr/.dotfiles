@@ -1,11 +1,2 @@
-require "mcampbellr.sets"
-require "mcampbellr.plugins"
-require "mcampbellr.colorscheme"
-require "mcampbellr.cmp"
-require "mcampbellr.commands"
-require "mcampbellr.lsp"
-require "mcampbellr.spectre"
-require "mcampbellr.debugger"
+require('mcampbellr')
 
-require "mcampbellr.autocommands"
-require "mcampbellr.ts-context"
