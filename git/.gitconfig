@@ -37,5 +37,3 @@
   guessRemote = true
 [help]
 	autocorrect = 1
-[remote "origin"]
-	fetch = +refs/heads/*:refs/remotes/origin/*

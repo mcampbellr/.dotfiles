@@ -1,6 +1,10 @@
 local Remap = require('mcampbellr.keymap')
 local nnoremap = Remap.nnoremap
 local vnoremap = Remap.vnoremap
+local nmap = Remap.nmap
+
+vnoremap("J", ":m '>+1<CR>gv=gv")
+vnoremap("K", ":m '<-2<CR>gv=gv")
 
 --Remap space as leader key
 nnoremap("Q", "<Nop>")
@@ -28,7 +32,7 @@ nnoremap("<S-l>", "<cmd>bnext<CR>")
 nnoremap("<S-h>", "<cmd>bprevious<CR>")
 
 -- resource the nvim config
-nnoremap("<Leader>rs", ":so % <CR>")
+nmap("<Leader>rs", ":so ~/.config/nvim/init.lua<CR>")
 
 -- Keep the cursor center
 nnoremap("n", "nzzzv")
@@ -67,14 +71,6 @@ nnoremap("<F9>", "<cmd>Registers<cr>")
 -- Visual --
 -- search for visually hightlighted text
 vnoremap("<C-f>", 'y<ESC>/<c-r>"<CR><ESC>')
-
--- Stay in indent mode
-vnoremap("<", "<gv")
-vnoremap(">", ">gv")
-
--- Move text up and down
-vnoremap("J", "<cmd>m '>+1<cr>gv=gv")
-vnoremap("K", "<cmd>m '<-2<cr>gv=gv")
 
 -- Paste in visual_mode
 vnoremap("p", '"_dP')

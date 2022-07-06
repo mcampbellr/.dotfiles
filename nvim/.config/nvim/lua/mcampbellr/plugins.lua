@@ -50,7 +50,7 @@ return packer.startup(function(use)
   -- Custom plugins
   use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
   use "Mephistophiles/surround.nvim" -- surround things easily
-  use "chentoast/marks.nvim"
+  -- use "chentoast/marks.nvim"
 
   -- better comments
   use "numToStr/Comment.nvim"

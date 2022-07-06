@@ -5,18 +5,18 @@ alias pm='npm'
 
 alias debug="npm run start:debug"
 alias serve="npm run serve"
+alias dev="npm run dev"
 alias run="npm run"
 
 alias dn="deno"
 
 alias nvc="cd $DOTFILES/nvim/.config/nvim && n ."
 alias dot="cd $DOTFILES"
-alias dev="cd $DEV_FILES"
 alias vc="vimtheme"
 
 # shortcuts aliases
 alias cl='clear'
-alias ls='exa'
+alias ls='exa --no-user --icons'
 alias la='ls -laFh'
 alias ll='ls -l'
 alias tree="ls -T -L 3 --git-ignore"
@@ -33,7 +33,9 @@ openFile () {
 alias of=openFile
 alias n.='of'
 alias copy-branch='g branch --show-current | pbcopy'
-alias notes="ss ~/Notes/"
+alias branch='g branch --show-current'
+alias notes="n ~/Notes/"
+alias notess="ss ~/Notes/"
 
 alias ccd=mkcdir
 # configs aliases
