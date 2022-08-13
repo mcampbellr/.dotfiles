@@ -67,7 +67,8 @@
     context                   # user@host
     time                      # current time
     # =========================[ Line #2 ]=========================
-    ip                    # ip address and bandwidth usage for a specified network interface
+    nvm
+    node_version
     public_ip             # public IP address
     user_git               # example user-defined segment (see prompt_example function below)
     newline                   # \n

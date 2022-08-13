@@ -110,6 +110,8 @@ alias ht=htop
 
 alias crg=cargo
 
+alias top="ss ~/Workspace/tevora/top-frontend && ss ~/Workspace/tevora/portal-backend"
+
 alias cpwd="pwd | tr -d '\n' | pbcopy && echo 'pwd copied to clipboard'"
 alias gosleep="pmset sleepnow"
 

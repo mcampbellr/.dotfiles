@@ -17,19 +17,19 @@ nnoremap("<left>", "<C-w>h")
 nnoremap("<right>", "<C-w>l")
 
 -- Resize with arrows
-nnoremap("<C-Up>", "<cmd>resize -2<CR>")
-nnoremap("<C-Down>", "<cmd>resize +2<CR>")
-nnoremap("<C-Left>", "<cmd>vertical resize -2<CR>")
-nnoremap("<C-Right>", "<cmd>vertical resize +2<CR>")
+nnoremap("<C-Up>", ":resize -2<CR>")
+nnoremap("<C-Down>", ":resize +2<CR>")
+nnoremap("<C-Left>", ":vertical resize -2<CR>")
+nnoremap("<C-Right>", ":vertical resize +2<CR>")
 
 -- Replace
 nnoremap("<leader>rp", ':%s///g<left><left>')
 -- Undotree
-nnoremap("<leader>u", ":UndotreeShow<CR>")
+nnoremap("<leader>u", ":UndotreeToggle<CR>")
 
 -- Naviagate buffers
-nnoremap("<S-l>", "<cmd>bnext<CR>")
-nnoremap("<S-h>", "<cmd>bprevious<CR>")
+nnoremap("<S-l>", ":bnext<CR>")
+nnoremap("<S-h>", ":bprevious<CR>")
 
 -- resource the nvim config
 nmap("<Leader>rs", ":so ~/.config/nvim/init.lua<CR>")
@@ -52,7 +52,7 @@ nnoremap("<leader>P", "ggVGp<esc>")
 nnoremap("<leader>V", "gg0VG$")
 
 -- Delete the search highlighting
-nnoremap("<Bslash>", "<cmd>let @/ = ''<CR>")
+nnoremap("<Bslash>", ":let @/ = ''<CR>")
 
 nnoremap("<Leader>+", ":vertical resize +10<CR>")
 nnoremap("<Leader>-", ":vertical resize -5<CR>")
@@ -64,9 +64,10 @@ nnoremap("<F3>", ":lua require('harpoon.ui').nav_file(3)<CR>")
 nnoremap("<F4>", ":lua require('harpoon.ui').nav_file(4)<CR>")
 nnoremap("<F5>", ":lua require('harpoon.ui').nav_file(5)<CR>")
 nnoremap("<F6>", ":lua require('harpoon.ui').nav_file(6)<CR>")
-nnoremap("<F7>", "<cmd>LspToggleAutoFormat<CR>")
-nnoremap("<F8>", "<cmd>Telescope resume<cr>")
-nnoremap("<F9>", "<cmd>Registers<cr>")
+nnoremap("<F7>", ":LspToggleAutoFormat<CR>")
+nnoremap("<F8>", ":Telescope resume<cr>")
+nnoremap("<F9>", ":Registers<cr>")
+
 
 -- Visual --
 -- search for visually hightlighted text
@@ -75,4 +76,4 @@ vnoremap("<C-f>", 'y<ESC>/<c-r>"<CR><ESC>')
 -- Paste in visual_mode
 vnoremap("p", '"_dP')
 
-vnoremap("<c-s>", ":'<,'>TakeScreenShot<cr> | <cmd>! open ~/Images/code-screenshot/ <CR>")
+vnoremap("<c-s>", ":'<,'>TakeScreenShot<cr> | :! open ~/Images/code-screenshot/ <CR>")

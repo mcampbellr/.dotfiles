@@ -133,17 +133,23 @@ return packer.startup(function(use)
   use "windwp/nvim-ts-autotag"
   use "romgrk/nvim-treesitter-context"
 
-  -- Inent
-  use "lukas-reineke/indent-blankline.nvim"
 
   -- Debbuger
   use("mfussenegger/nvim-dap")
   use("rcarriga/nvim-dap-ui")
   use("theHamsta/nvim-dap-virtual-text")
 
+  -- Undotree
+  use("mbbill/undotree")
+
   -- Git
   use "lewis6991/gitsigns.nvim"
+  use "tpope/vim-fugitive"
+  use "junkblocker/git-time-lapse"
+
+  -- utils
   use { "SergioRibera/vim-screenshot", run = "npm install --prefix Renderizer" }
+  use "lukas-reineke/indent-blankline.nvim"
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
