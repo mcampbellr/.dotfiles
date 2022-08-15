@@ -1,3 +1,6 @@
+local status, _ = pcall(require, 'harpoon')
+if not status then return end
+
 local Remap = require('mcampbellr.keymap')
 local nnoremap = Remap.nnoremap
 

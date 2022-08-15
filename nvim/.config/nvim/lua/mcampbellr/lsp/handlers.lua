@@ -42,12 +42,11 @@ local function lsp_keymaps(bufnr)
   keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
   keymap(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
   keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-  -- lsp saga dependent
   keymap(bufnr, "n", "gh", "<cmd>lua require'lspsaga.provider'.lsp_finder()<CR>", opts)
   keymap(bufnr, "n", "gp", "<cmd>lua require'lspsaga.provider'.preview_definition()<CR>", opts)
   keymap(bufnr, "n", "gt", "<cmd>lua require'lspsaga.provider'.type_definition()<CR>", opts)
   keymap(bufnr, "n", "<leader>a", "<cmd>Lspsaga code_action<cr>", opts)
-  keymap(bufnr, "n", "<leader>rn", "<cmd>lua require('lspsaga.rename').rename()<CR>", opts)
+  keymap(bufnr, "n", "<leader>rn", "<cmd>Lspsaga rename<CR>", opts)
   keymap(bufnr, "n", "K", "<cmd>Lspsaga hover_doc<cr>", opts)
   keymap(bufnr, "n", "gj", "<cmd>Lspsaga diagnostic_jump_next<cr>", opts)
   keymap(bufnr, "n", "gk", "<cmd>Lspsaga diagnostic_jump_prev<cr>", opts)
@@ -65,7 +64,13 @@ M.on_attach = function(client, bufnr)
     augroup end
   ]]
 
-  if client.name == "volar" or client.name == "tsserver" or client.name == "html" then
+  if
+    client.name == "volar"
+    or client.name == "tsserver"
+    or client.name == "html"
+    or client.name == "jsonls"
+    or client.name == "sumneko_lua"
+  then
     client.resolved_capabilities.document_formatting = false
     client.resolved_capabilities.document_range_formatting = false
   end

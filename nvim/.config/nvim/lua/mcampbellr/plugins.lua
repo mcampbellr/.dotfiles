@@ -50,7 +50,6 @@ return packer.startup(function(use)
   -- Custom plugins
   use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
   use "Mephistophiles/surround.nvim" -- surround things easily
-  -- use "chentoast/marks.nvim"
 
   -- better comments
   use "numToStr/Comment.nvim"
@@ -78,9 +77,8 @@ return packer.startup(function(use)
   }
 
   -- themes
-  use "joshdick/onedark.vim"
   use "sainnhe/gruvbox-material"
-  use "folke/tokyonight.nvim"
+  use "ericbn/vim-solarized"
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp"
@@ -95,7 +93,7 @@ return packer.startup(function(use)
       local tabnine = require "cmp_tabnine.config"
       tabnine:setup {
         max_lines = 1000,
-        max_num_results = 10,
+        max_num_results = 5,
         sort = true,
         run_on_every_keystroke = true,
         snippet_placeholder = "..",
@@ -133,14 +131,16 @@ return packer.startup(function(use)
   use "windwp/nvim-ts-autotag"
   use "romgrk/nvim-treesitter-context"
 
+  -- Color
+  use "ap/vim-css-color"
 
   -- Debbuger
-  use("mfussenegger/nvim-dap")
-  use("rcarriga/nvim-dap-ui")
-  use("theHamsta/nvim-dap-virtual-text")
+  use "mfussenegger/nvim-dap"
+  use "rcarriga/nvim-dap-ui"
+  use "theHamsta/nvim-dap-virtual-text"
 
   -- Undotree
-  use("mbbill/undotree")
+  use "mbbill/undotree"
 
   -- Git
   use "lewis6991/gitsigns.nvim"

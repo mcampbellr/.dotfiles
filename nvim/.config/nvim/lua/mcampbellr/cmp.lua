@@ -87,7 +87,7 @@ cmp.setup {
     { name = "nvim_lua" },
     { name = "luasnip" },
     { name = "cmp_tabnine" },
-    { name = "buffer", keyword_length = 5 },
+    { name = "buffer" },
     { name = "path" },
   },
   confirm_opts = {

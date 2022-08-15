@@ -1,7 +1,12 @@
-require('lualine').setup {
+local status, lualine = pcall(require, 'lualine')
+if not status then return end
+
+local colorscheme = require "mcampbellr.colors"
+
+lualine.setup {
   options = {
     icons_enabled = true,
-    theme = 'gruvbox-material',
+    theme = colorscheme.Lualine,
     component_separators = { left = '', right = '' },
     section_separators = { left = '', right = '' },
     disabled_filetypes = {},
