@@ -11,9 +11,7 @@ null_ls.setup {
   disabled_filetypes = { "lua" },
   sources = {
     formatting.prettierd,
-    formatting.black.with { extra_args = { "--fast" } },
     formatting.stylua,
-    diagnostics.php,
     diagnostics.eslint_d,
   },
 }
