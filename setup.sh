@@ -2,6 +2,9 @@
 
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/mcampbellr/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 brew install git
 brew install stow
 
@@ -11,8 +14,13 @@ stow */
 echo ${(%):-%F{green}}Dotfiles Stowed${(%):-%f}
 echo "================================"
 echo
+
+curl https://sh.rustup.rs -sSf | sh
+
 brew install neovim
 brew install romkatv/powerlevel10k/powerlevel10k
+
+brew install fsouza/prettierd/prettierd
 
 brew install tmux
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
@@ -29,7 +37,7 @@ brew install deno
 brew install glow
 brew install heroku
 brew install fd
-brew install qmk/qmk/qmk
+# brew install qmk/qmk/qmk
 
 brew install --cask iterm2
 brew install --cask loom
