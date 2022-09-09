@@ -5,7 +5,7 @@ export ZDOTDIR=$HOME/.config/zsh
 
 if [ -z "$TMUX" ]
 then
-    tmux attach || tmux new -s TMUX
+    tmux attach || tmux new -s main
 fi
 
 sshlist="$(ssh-add -l)"
