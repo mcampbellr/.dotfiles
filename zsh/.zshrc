@@ -19,8 +19,6 @@ setopt interactive_comments
 stty stop undef		# Disable ctrl-s to freeze terminal.
 zle_highlight=('paste:none')
 
-# completions
-autoload -Uz compinit
 zstyle ':completion:*' menu select
 # zstyle ':completion::complete:lsof:*' menu yes select
 zmodload zsh/complist
@@ -47,9 +45,11 @@ zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 zsh_add_plugin "hlissner/zsh-autopair"
 zsh_add_plugin "changyuheng/zsh-interactive-cd"
 
-compinit
-
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=008'
+
+# completions
+autoload -Uz compinit
+compinit
 
 # Environment variables set everywhere
 export EDITOR="nvim"
