@@ -70,7 +70,6 @@ fi
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-
 HISTFILE=~/.zsh_history
 export HISTSIZE=10000
 setopt appendhistory
