@@ -1,14 +1,14 @@
-vim.g.gruvbox_material_background = 'hard'
+vim.g.gruvbox_material_background = "hard"
 vim.g.gruvbox_material_better_performance = 1
-vim.g.gruvbox_material_foreground = 'mix'
+vim.g.gruvbox_material_foreground = "mix"
 vim.g.gruvbox_material_enable_italic = 0
 
 vim.g.hybrid_transparent_background = 1
 vim.g.enable_italic_font = 1
 vim.g.enable_bold_font = 1
 
---[[ vim.cmd 'colorscheme gruvbox-material' ]]
-vim.cmd 'colorscheme solarized'
+vim.cmd "colorscheme gruvbox-material"
+--[[ vim.cmd "colorscheme solarized" ]]
 
 vim.cmd [[
   hi Normal guibg=NONE

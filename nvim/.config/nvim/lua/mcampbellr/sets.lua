@@ -3,7 +3,7 @@ vim.cmd "syntax on"
 
 local options = {
   backup = false, -- creates a backup file
-  clipboard = "unnamed", -- allows neovim to access the system clipboard
+  clipboard = "", -- allows neovim to access the system clipboard
   cmdheight = 1, -- more space in the neovim command line for displaying messages
   colorcolumn = "80", -- set the width of the color column
   compatible = false,
