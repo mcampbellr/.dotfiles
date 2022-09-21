@@ -64,7 +64,7 @@ nvim_tree.setup {
         { key = "u", cb = tree_cb "dir_up" },
         { key = "h", cb = tree_cb "close_node" },
         { key = "s", cb = tree_cb "vsplit" },
-        { key = "f", cb = '' },
+        { key = "f", cb = "" },
       },
     },
     number = true,
@@ -82,8 +82,8 @@ nvim_tree.setup {
     icons = {
       show = {
         git = true,
-        folder = true,
-        file = true,
+        folder = false,
+        file = false,
         folder_arrow = false,
       },
       glyphs = {
@@ -105,8 +105,8 @@ nvim_tree.setup {
           empty_open = icons.documents.OpenFolderEmpty,
           symlink = icons.documents.Symlink,
         },
-      }
-    }
+      },
+    },
   },
   actions = {
     change_dir = {

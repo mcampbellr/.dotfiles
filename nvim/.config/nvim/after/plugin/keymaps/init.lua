@@ -1,5 +1,6 @@
 local Remap = require "mcampbellr.keymap"
 local nnoremap = Remap.nnoremap
+local xnoremap = Remap.xnoremap
 local vnoremap = Remap.vnoremap
 local nmap = Remap.nmap
 
@@ -24,6 +25,7 @@ nnoremap("<C-Right>", ":vertical resize +2<CR>")
 
 -- Replace
 nnoremap("<leader>rp", ":%s///g<left><left>")
+
 -- Undotree
 nnoremap("<leader>u", ":UndotreeToggle<CR>")
 
@@ -38,6 +40,12 @@ nmap("<Leader>rs", ":so ~/.config/nvim/init.lua<CR>")
 nnoremap("n", "nzzzv")
 nnoremap("N", "Nzzzv")
 nnoremap("J", "mzJ`z")
+
+-- next greatest remap ever
+nnoremap("<leader>y", '"+y')
+vnoremap("<leader>y", '"+y')
+
+nnoremap("<leader>p", '"+p')
 
 -- Delete all the page content
 nnoremap("<leader>Y", "ggVGy<esc>")

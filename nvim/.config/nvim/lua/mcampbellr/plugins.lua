@@ -58,7 +58,7 @@ return packer.startup(function(use)
   use "folke/todo-comments.nvim"
   use "JoosepAlviste/nvim-ts-context-commentstring"
   -- Icons over nvim
-  use "kyazdani42/nvim-web-devicons"
+  --[[ use "kyazdani42/nvim-web-devicons" ]]
   -- search and replace
   use "nvim-pack/nvim-spectre"
   use "tversteeg/registers.nvim"
