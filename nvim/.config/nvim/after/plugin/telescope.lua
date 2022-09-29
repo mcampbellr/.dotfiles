@@ -1,4 +1,9 @@
-require("telescope").setup {
+local status, telescope = pcall(require, "telescope")
+if not status then
+  return
+end
+
+telescope.setup {
   defaults = {
     file_sorter = require("telescope.sorters").get_fzy_sorter,
     file_previewer = require("telescope.previewers").vim_buffer_cat.new,
@@ -8,22 +13,13 @@ require("telescope").setup {
   file_ignore_patterns = { "node_modules", ".git" },
   pickers = {
     find_files = {
-      theme = "dropdown",
       hidden = true,
-      previewer = false,
     },
     live_grep = {
-      theme = "dropdown",
       hidden = true,
     },
-    buffers = {
-      theme = "dropdown",
-      previewer = false,
-    },
-    oldfiles = {
-      theme = "dropdown",
-      previewer = false,
-    },
+    buffers = {},
+    oldfiles = {},
   },
   extensions = {
     fzy_native = {
@@ -33,5 +29,5 @@ require("telescope").setup {
   },
 }
 
-require("telescope").load_extension "git_worktree"
-require("telescope").load_extension "fzy_native"
+telescope.load_extension "git_worktree"
+telescope.load_extension "fzy_native"

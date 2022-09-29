@@ -30,7 +30,7 @@
 	pager = cat
 	autocrlf = input
   ignorecase = false
-	excludesfile = /Users/mariocampbell/.gitignore_global
+	excludesFile = ~/.gitignore
 [checkout]
   defaultRemote = origin
 [worktree]
