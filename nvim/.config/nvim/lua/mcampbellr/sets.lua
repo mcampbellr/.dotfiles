@@ -5,6 +5,7 @@ local options = {
   backup = false, -- creates a backup file
   clipboard = "", -- allows neovim to access the system clipboard
   cmdheight = 1, -- more space in the neovim command line for displaying messages
+  guicursor = "", -- use system cursor config
   colorcolumn = "80", -- set the width of the color column
   compatible = false,
   completeopt = { "menu", "menuone", "noselect" }, -- mostly just for cmp

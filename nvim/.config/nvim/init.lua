@@ -1,2 +1,1 @@
-require('mcampbellr')
-
+require "mcampbellr"

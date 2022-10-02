@@ -8,7 +8,7 @@ autocmd("TextYankPost", {
   callback = function()
     vim.highlight.on_yank {
       higroup = "IncSearch",
-      timeout = 50,
+      timeout = 40,
     }
   end,
 })

@@ -52,6 +52,7 @@ return packer.startup(function(use)
   -- Custom plugins
   use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
   use "Mephistophiles/surround.nvim" -- surround things easily
+  use "xiyaowong/virtcolumn.nvim"
 
   -- better comments
   use "numToStr/Comment.nvim"
@@ -108,9 +109,6 @@ return packer.startup(function(use)
   -- snippets
   use "L3MON4D3/LuaSnip" --snippet engine
   use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
-
-  --cursor line
-  use "RRethy/vim-illuminate"
 
   -- LSP
   use "neovim/nvim-lspconfig" -- enable LSP
