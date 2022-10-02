@@ -4,7 +4,7 @@ local icons = require "mcampbellr.icons"
 lspsaga.setup {
   debug = false,
   use_saga_diagnostic_sign = true,
-  use_diagnostic_virtual_text = false,
+  use_diagnostic_virtual_text = true,
   -- diagnostic sign
   error_sign = icons.diagnostics.Error,
   warn_sign = icons.diagnostics.Warning,
