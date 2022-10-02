@@ -1,8 +1,10 @@
 local Remap = require "mcampbellr.keymap"
 local nnoremap = Remap.nnoremap
-local xnoremap = Remap.xnoremap
 local vnoremap = Remap.vnoremap
 local nmap = Remap.nmap
+
+nnoremap("<C-d>", "<C-d>zz")
+nnoremap("<C-u>", "<C-u>zz")
 
 vnoremap("J", ":m '>+1<CR>gv=gv")
 vnoremap("K", ":m '<-2<CR>gv=gv")

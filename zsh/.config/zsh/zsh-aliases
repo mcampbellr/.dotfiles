@@ -8,6 +8,7 @@ alias serve="npm run serve"
 alias dev="npm run dev"
 alias run="npm run"
 
+
 alias dn="deno"
 
 alias nvc="cd $DOTFILES/nvim/.config/nvim && n ."
@@ -50,6 +51,7 @@ alias gg='brave'
 alias sof='stackoverflow'
 alias yt='youtube'
 # npm version aliases
+alias npmci="nvm use & npm ci"
 alias patch="yarn version --patch"
 alias minor="yarn version --minor"
 alias major="yarn version --major"
