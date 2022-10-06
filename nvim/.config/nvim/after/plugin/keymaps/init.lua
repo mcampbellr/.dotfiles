@@ -29,7 +29,7 @@ nnoremap("<C-Right>", ":vertical resize +2<CR>")
 nnoremap("<leader>rp", ":%s///g<left><left>")
 
 -- Undotree
-nnoremap("<leader>u", ":UndotreeToggle<CR>")
+nnoremap("<leader>u", ":UndotreeToggle | UndotreeFocus<CR>")
 
 -- Naviagate buffers
 nnoremap("<S-l>", ":bnext<CR>")

@@ -46,13 +46,11 @@ return packer.startup(function(use)
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
   use "lewis6991/impatient.nvim" -- Lua speed loader
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
-  use "goolord/alpha-nvim"
   use "akinsho/bufferline.nvim"
 
   -- Custom plugins
   use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
   use "Mephistophiles/surround.nvim" -- surround things easily
-  use "xiyaowong/virtcolumn.nvim"
 
   -- better comments
   use "numToStr/Comment.nvim"
@@ -81,7 +79,10 @@ return packer.startup(function(use)
 
   -- themes
   use "sainnhe/gruvbox-material"
-  use "ericbn/vim-solarized"
+  use "joshdick/onedark.vim"
+  use "dunstontc/vim-vscode-theme"
+  use "sainnhe/sonokai"
+  use "sainnhe/everforest"
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp"

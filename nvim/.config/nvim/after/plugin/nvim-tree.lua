@@ -14,7 +14,7 @@ local icons = require "mcampbellr.icons"
 nvim_tree.setup {
   disable_netrw = true,
   hijack_netrw = true,
-  open_on_setup = false,
+  open_on_setup = true,
   ignore_ft_on_setup = {
     "startify",
     "dashboard",
@@ -52,7 +52,7 @@ nvim_tree.setup {
     timeout = 500,
   },
   view = {
-    width = 50,
+    width = 40,
     hide_root_folder = true,
     side = "left",
     mappings = {
@@ -74,16 +74,17 @@ nvim_tree.setup {
     require_confirm = true,
   },
   renderer = {
-    highlight_opened_files = "name",
+    highlight_opened_files = "all",
     special_files = {
       "README.md" == false,
+      "init.lua" == true,
     },
     icons = {
       show = {
         git = true,
         folder = false,
         file = false,
-        folder_arrow = false,
+        folder_arrow = true,
       },
       glyphs = {
         default = "",
