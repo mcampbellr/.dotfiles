@@ -2,6 +2,7 @@
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="$PATH:/Users/mcampbellr/Dev/flutter/bin"
 export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:$HOME/Dev/flutter/bin"
 
 export GOBIN="$HOME/.local/bin"
 
