@@ -45,6 +45,13 @@ vim.cmd [[
     autocmd User AlphaReady set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2
   augroup end
 
+  augroup _tabsize
+    autocmd!
+    autocmd FileType go,lua,dart setlocal shiftwidth=4
+    autocmd FileType go,lua,dart  setlocal tabstop=4
+    autocmd FileType go,lua,dart setlocal softtabstop=4
+  augroup end
+
   augroup acursorLine
     autocmd!
     autocmd FileType,BufEnter NvimTree* setlocal cursorline

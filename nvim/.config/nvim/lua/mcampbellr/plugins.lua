@@ -56,8 +56,7 @@ return packer.startup(function(use)
     use "numToStr/Comment.nvim"
     use "folke/todo-comments.nvim"
     use "JoosepAlviste/nvim-ts-context-commentstring"
-    -- Icons over nvim
-    --[[ use "kyazdani42/nvim-web-devicons" ]]
+
     -- search and replace
     use "nvim-pack/nvim-spectre"
     use "tversteeg/registers.nvim"
@@ -71,10 +70,15 @@ return packer.startup(function(use)
     -- language specific plugins
     use "lunarvim/vim-solidity"
     use "thosakwe/vim-flutter"
+
+    -- Icons over nvim
     use {
         "iamcco/markdown-preview.nvim",
         run = "cd app && npm install",
-        ft = "markdown",
+        setup = function()
+            vim.g.mkdp_filetypes = { "markdown" }
+        end,
+        ft = { "markdown" },
     }
 
     -- themes
@@ -152,8 +156,6 @@ return packer.startup(function(use)
     use { "SergioRibera/vim-screenshot", run = "npm install --prefix Renderizer" }
     use "lukas-reineke/indent-blankline.nvim"
 
-    -- Automatically set up your configuration after cloning packer.nvim
-    -- Put this at the end after all plugins
     if PACKER_BOOTSTRAP then
         require("packer").sync()
     end

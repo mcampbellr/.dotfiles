@@ -11,10 +11,10 @@ vim.g.sonokai_style = "shusia"
 vim.g.sonokai_better_performance = 1
 vim.g.everforest_background = "hard"
 
---[[ vim.cmd "colorscheme gruvbox-material" ]]
+vim.cmd "colorscheme gruvbox-material"
 --[[ vim.cmd "colorscheme solarized" ]]
 --[[ vim.cmd "colorscheme dark_plus" ]]
-vim.cmd "colorscheme sonokai"
+--[[ vim.cmd "colorscheme sonokai" ]]
 --[[ vim.cmd "colorscheme onedark" ]]
 --[[ vim.cmd "colorscheme everforest" ]]
 
