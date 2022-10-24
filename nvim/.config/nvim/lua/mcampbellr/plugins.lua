@@ -59,7 +59,6 @@ return packer.startup(function(use)
 
     -- search and replace
     use "nvim-pack/nvim-spectre"
-    use "tversteeg/registers.nvim"
     -- File navigation
     use "kyazdani42/nvim-tree.lua"
     use "nvim-lualine/lualine.nvim"

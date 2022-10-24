@@ -24,3 +24,4 @@ zsh/AWSCLIV2.pkg
 nvim/.config/nvim/.luarc.json
 
 bin/.local/bin/CompileDaemon
+bin/.local/state/nvim
