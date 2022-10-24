@@ -36,6 +36,10 @@ cmp.setup {
         end,
     },
     mapping = {
+        ["<CR>"] = cmp.mapping.confirm {
+            select = true,
+            behavior = cmp.ConfirmBehavior.Replace,
+        },
         ["<Up>"] = cmp.mapping.select_prev_item(),
         ["<Down>"] = cmp.mapping.select_next_item(),
         ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
@@ -44,10 +48,6 @@ cmp.setup {
         ["<C-e>"] = cmp.mapping {
             i = cmp.mapping.abort(),
             c = cmp.mapping.close(),
-        },
-        ["<CR>"] = cmp.mapping.confirm {
-            behavior = cmp.ConfirmBehavior.Replace,
-            select = true,
         },
         ["<c-n>"] = cmp.mapping(function(fallback)
             if luasnip.expandable() then

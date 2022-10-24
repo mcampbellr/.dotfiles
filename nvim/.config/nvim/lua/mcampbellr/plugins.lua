@@ -59,7 +59,7 @@ return packer.startup(function(use)
 
     -- search and replace
     use "nvim-pack/nvim-spectre"
-    use "tversteeg/registers.nvim"
+
     -- File navigation
     use "kyazdani42/nvim-tree.lua"
     use "nvim-lualine/lualine.nvim"
@@ -117,8 +117,9 @@ return packer.startup(function(use)
 
     -- LSP
     use "neovim/nvim-lspconfig" -- enable LSP
-    use "williamboman/nvim-lsp-installer" -- simple to use language server installer
-    use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
+    use "williamboman/mason.nvim"
+    use "williamboman/mason-lspconfig.nvim"
+
     use "tami5/lspsaga.nvim" -- nightly
     use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
     use "b0o/SchemaStore.nvim"
@@ -137,7 +138,8 @@ return packer.startup(function(use)
     use "romgrk/nvim-treesitter-context"
 
     -- Color
-    use "ap/vim-css-color"
+    --[[ use "ap/vim-css-color" ]]
+    use "norcalli/nvim-colorizer.lua"
 
     -- Debbuger
     use "mfussenegger/nvim-dap"

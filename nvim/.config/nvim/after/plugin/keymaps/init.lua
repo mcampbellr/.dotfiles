@@ -1,5 +1,6 @@
 local Remap = require "mcampbellr.keymap"
 local nnoremap = Remap.nnoremap
+local inoremap = Remap.inoremap
 local vnoremap = Remap.vnoremap
 local nmap = Remap.nmap
 

@@ -8,7 +8,7 @@ autocmd("TextYankPost", {
     callback = function()
         vim.highlight.on_yank {
             higroup = "IncSearch",
-            timeout = 40,
+            timeout = 50,
         }
     end,
 })
@@ -58,6 +58,7 @@ vim.cmd [[
   augroup END
 
   au BufRead,BufNewFile *.prettierrc set filetype=jsonc
+  au BufRead,BufNewFile .repoconfig set filetype=jsonc
   au BufRead,BufNewFile *.json set filetype=jsonc
   au BufRead,BufNewFile .env.* set filetype=sh
   au BufRead,BufNewFile *.styl set filetype=sass

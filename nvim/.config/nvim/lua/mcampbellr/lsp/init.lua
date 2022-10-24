@@ -3,6 +3,6 @@ if not status_ok then
     return
 end
 
-require "mcampbellr.lsp.lsp-installer"
-require("mcampbellr.lsp.handlers").setup()
+require "mcampbellr.lsp.mason"
+require("mcampbellr.lsp.handlers")
 require "mcampbellr.lsp.null-ls"
