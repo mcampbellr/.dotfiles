@@ -130,6 +130,16 @@ nvim_lsp.sumneko_lua.setup {
     },
 }
 
+nvim_lsp.jsonls.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    settings = {
+        json = {
+            schemas = require("schemastore").json.schemas(),
+        },
+    },
+}
+
 nvim_lsp.tailwindcss.setup {
     on_attach = on_attach,
     capabilities = capabilities,
