@@ -11,8 +11,8 @@ vim.g.sonokai_style = "shusia"
 vim.g.sonokai_better_performance = 1
 vim.g.everforest_background = "hard"
 
---[[ vim.cmd "colorscheme gruvbox-material" ]]
-vim.cmd "colorscheme sonokai"
+vim.cmd "colorscheme gruvbox-material"
+--[[ vim.cmd "colorscheme sonokai" ]]
 --[[ vim.cmd "colorscheme onedark" ]]
 
 vim.cmd [[
@@ -31,13 +31,14 @@ vim.cmd [[
   hi SignColumn guibg=NONE
   hi Folded guibg=NONE guifg=orange
 
+  hi HarpoonWindow guibg=NONE guifg=#c4b293
+  hi HarpoonBorder guibg=NONE guifg=#333540
+
   hi TabLineSel guibg=NONE
   hi TabLine guibg=NONE
   hi TabLineFill guibg=NONE
   hi TabLineSel guifg=orange
   hi Visual  guifg=#000000 guibg=#bc7795 gui=none
-
-  hi TelescopeBorder guifg=#5eacd
 
   let &t_ZH="\e[3m"
   let &t_ZR="\e[23m"

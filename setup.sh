@@ -28,8 +28,8 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 brew install exa
 brew install jq
 brew install lazygit
-brew install fzf
 
+brew install fzf
 $(brew --prefix)/opt/fzf/install
 
 brew install ripgrep
@@ -46,10 +46,8 @@ brew install --cask loom
 brew install --cask dbeaver-community
 brew install --cask slack
 brew install --cask microsoft-teams
-brew install --cask insomnia
 brew install --cask spotify
 brew install --cask rectangle
-brew install --cask visual-studio-code
 brew install --cask docker
 brew install --cask brave-browser
 brew install --cask discord
