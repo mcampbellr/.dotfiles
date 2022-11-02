@@ -51,6 +51,8 @@ return packer.startup(function(use)
     -- Custom plugins
     use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
     use "Mephistophiles/surround.nvim" -- surround things easily
+    use "mattn/emmet-vim"
+    use "dcampos/cmp-emmet-vim"
 
     -- better comments
     use "numToStr/Comment.nvim"
@@ -59,6 +61,7 @@ return packer.startup(function(use)
 
     -- search and replace
     use "nvim-pack/nvim-spectre"
+
     -- File navigation
     use "kyazdani42/nvim-tree.lua"
     use "nvim-lualine/lualine.nvim"
@@ -83,9 +86,7 @@ return packer.startup(function(use)
     -- themes
     use "sainnhe/gruvbox-material"
     use "joshdick/onedark.vim"
-    use "dunstontc/vim-vscode-theme"
     use "sainnhe/sonokai"
-    use "sainnhe/everforest"
 
     -- cmp plugins
     use "hrsh7th/nvim-cmp"
@@ -116,8 +117,9 @@ return packer.startup(function(use)
 
     -- LSP
     use "neovim/nvim-lspconfig" -- enable LSP
-    use "williamboman/nvim-lsp-installer" -- simple to use language server installer
-    use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
+    use "williamboman/mason.nvim"
+    use "williamboman/mason-lspconfig.nvim"
+
     use "tami5/lspsaga.nvim" -- nightly
     use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
     use "b0o/SchemaStore.nvim"
@@ -136,7 +138,8 @@ return packer.startup(function(use)
     use "romgrk/nvim-treesitter-context"
 
     -- Color
-    use "ap/vim-css-color"
+    --[[ use "ap/vim-css-color" ]]
+    use "norcalli/nvim-colorizer.lua"
 
     -- Debbuger
     use "mfussenegger/nvim-dap"

@@ -25,3 +25,7 @@ nvim/.config/nvim/.luarc.json
 
 bin/.local/bin/CompileDaemon
 bin/.local/state/nvim
+bin/.local/share/nvim/mason/bin
+bin/.local/share/nvim/mason/packages/eslint_d
+bin/.local/share/nvim/mason/packages
+zsh/.config/zsh/.zsh_sessions

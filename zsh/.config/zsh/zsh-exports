@@ -4,6 +4,7 @@ export PATH="$PATH:/Users/mcampbellr/Dev/flutter/bin"
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/Dev/flutter/bin"
 export PATH="$PATH:$HOME/.rvm/bin"
+# export PATH="$PATH:$HOME/.nvm/versions/node/v16.17.0/bin"
 
 export GOBIN="$HOME/.local/bin"
 

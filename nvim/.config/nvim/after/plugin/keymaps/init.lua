@@ -50,13 +50,13 @@ vnoremap("<leader>y", '"+y')
 nnoremap("<leader>p", '"+p')
 
 -- Delete all the page content
-nnoremap("<leader>Y", "ggVGy<esc>")
+nnoremap("<leader>Y", 'ggVG"*y<esc>')
 
 -- Delete all the page content
 nnoremap("<leader>D", "ggdG<esc>")
 
 -- Paste and replace all the page content
-nnoremap("<leader>P", "ggVGp<esc>")
+nnoremap("<leader>P", 'ggVG"*p<esc>')
 
 -- Select all the page content
 nnoremap("<leader>V", "gg0VG$")

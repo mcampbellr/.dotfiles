@@ -1,4 +1,3 @@
-"use strict";
 // Future versions of Hyper may add additional config options,
 // which will not automatically be merged into this file.
 // See https://hyper.is#cfg for all currently supported options.
@@ -18,7 +17,7 @@ module.exports = {
     // line height as a relative unit
     lineHeight: 1.15,
     // letter spacing as a relative unit
-    letterSpacing: 0.5,
+    letterSpacing: 0.55,
     // terminal cursor background color and opacity (hex, rgb, hsl, hsv, hwb or cmyk)
     cursorColor: "magenta",
     // terminal text color under BLOCK cursor

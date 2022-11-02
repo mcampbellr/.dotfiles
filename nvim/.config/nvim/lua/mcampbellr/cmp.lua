@@ -25,6 +25,7 @@ local source_mapping = {
     luasnip = "[Snippet]",
     buffer = "[Buffer]",
     cmp_tabnine = "[T9]",
+    emmet_vim = "[Emmet]",
     path = "[Path]",
     npm = "[Npm]",
 }
@@ -36,7 +37,10 @@ cmp.setup {
         end,
     },
     mapping = {
-        ["<C-y>"] = cmp.mapping.confirm { select = true },
+        ["<CR>"] = cmp.mapping.confirm {
+            select = true,
+            behavior = cmp.ConfirmBehavior.Replace,
+        },
         ["<Up>"] = cmp.mapping.select_prev_item(),
         ["<Down>"] = cmp.mapping.select_next_item(),
         ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
@@ -45,10 +49,6 @@ cmp.setup {
         ["<C-e>"] = cmp.mapping {
             i = cmp.mapping.abort(),
             c = cmp.mapping.close(),
-        },
-        ["<CR>"] = cmp.mapping.confirm {
-            behavior = cmp.ConfirmBehavior.Replace,
-            select = true,
         },
         ["<c-n>"] = cmp.mapping(function(fallback)
             if luasnip.expandable() then
@@ -88,6 +88,7 @@ cmp.setup {
         { name = "nvim_lua" },
         { name = "luasnip" },
         { name = "cmp_tabnine" },
+        { name = "emmet_vim" },
         { name = "buffer" },
         { name = "path" },
     },
