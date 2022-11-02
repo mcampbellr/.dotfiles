@@ -13,6 +13,6 @@ null_ls.setup {
         formatting.prettierd,
         formatting.stylua,
         formatting.rustfmt,
-        diagnostics.eslint_d,
+        diagnostics.eslint,
     },
 }

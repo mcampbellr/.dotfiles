@@ -11,9 +11,9 @@ vim.g.sonokai_style = "shusia"
 vim.g.sonokai_better_performance = 1
 vim.g.everforest_background = "hard"
 
-local colorscheme = "sonokai"
+--[[ local colorscheme = "sonokai" ]]
 --[[ local colorscheme = "gruvbox-material" ]]
---[[ local colorscheme = "onedark" ]]
+local colorscheme = "onedark"
 
 local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
 if not status_ok then
@@ -37,8 +37,8 @@ vim.cmd [[
   hi SignColumn guibg=NONE
   hi Folded guibg=NONE guifg=orange
 
-  hi HarpoonWindow guibg=NONE guifg=#c4b293
-  hi HarpoonBorder guibg=NONE guifg=#333540
+  hi HarpoonWindow guibg=NONE guifg=White
+  hi HarpoonBorder guibg=NONE guifg=DarkGray
 
   hi TabLineSel guibg=NONE
   hi TabLine guibg=NONE
