@@ -54,6 +54,7 @@ local options = {
 }
 
 vim.opt.shortmess:append "c"
+vim.opt.iskeyword:append "-"
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
