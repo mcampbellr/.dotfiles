@@ -1,6 +1,7 @@
 #!/bin/sh
 # vim & nvim aliases
 alias n='nvim'
+alias vim='nvim'
 alias pm='npm'
 
 alias debug="npm run start:debug"
@@ -8,15 +9,13 @@ alias serve="npm run serve"
 alias dev="npm run dev"
 alias run="npm run"
 
-
 alias dn="deno"
 
 alias nvc="cd $DOTFILES/nvim/.config/nvim && n ."
 alias dot="cd $DOTFILES"
-alias vc="vimtheme"
 
 # shortcuts aliases
-alias cl='clear'
+alias cl="clear"
 alias ls='exa --no-user --icons'
 alias la='ls -laFh'
 alias ll='ls -l'
@@ -28,13 +27,14 @@ mkcdir () {
 }
 
 openFile () {
-  n $(fzf)
+  vim $(fzf)
 }
 
-alias of=openFile
-alias n.='of'
+alias vim.='openFile'
+
 alias copy-branch='g branch --show-current | pbcopy'
 alias branch='g branch --show-current'
+
 alias notes="n ~/Notes/"
 alias notess="ss ~/Notes/"
 
@@ -45,28 +45,25 @@ alias src="source ~/.zshrc && echo '< zsh config reloaded >'"
 
 # tmux aliases
 alias tm='tmux'
-alias :q='exit'
+alias tmk="tm kill-server"
+
 # browser aliases
 alias gg='brave'
 alias sof='stackoverflow'
 alias yt='youtube'
+
 # npm version aliases
 alias npmci="nvm use & npm ci"
 alias patch="yarn version --patch"
 alias minor="yarn version --minor"
 alias major="yarn version --major"
+
 # programing language aliases
 # python
 alias py='python3'
 alias pip='pip3' 
-
 # typescript
 alias tsn="ts-node"
-
-# react
-alias cra='npx create-react-app'
-alias crna='npx create-next-app@latest'
-alias crnats='npx create-next-app@latest --ts'
 
 # Custom git aliases
 alias lg='lazygit'
@@ -85,7 +82,7 @@ alias gwtm="g worktree move"
 alias gwtp="g worktree prune --verbose"
 alias gcp="g cherry-pick"
 alias gbv="g branch -vv"
-alias clone="g clone"
+alias gclone="g clone"
 alias gri="g rebase -i"
 alias gst="g st"
 alias gconf="g config --global -e"

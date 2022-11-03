@@ -51,8 +51,6 @@ return packer.startup(function(use)
     -- Custom plugins
     use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
     use "Mephistophiles/surround.nvim" -- surround things easily
-    use "mattn/emmet-vim"
-    use "dcampos/cmp-emmet-vim"
 
     -- better comments
     use "numToStr/Comment.nvim"
@@ -128,7 +126,6 @@ return packer.startup(function(use)
     use "nvim-telescope/telescope.nvim"
     use "nvim-telescope/telescope-fzy-native.nvim"
     use "dhruvmanila/telescope-bookmarks.nvim"
-    use "ThePrimeagen/git-worktree.nvim"
     use "ThePrimeagen/harpoon"
 
     -- Treesitter

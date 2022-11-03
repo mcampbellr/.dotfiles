@@ -6,6 +6,13 @@ export PATH="$PATH:$HOME/Dev/flutter/bin"
 export PATH="$PATH:$HOME/.rvm/bin"
 # export PATH="$PATH:$HOME/.nvm/versions/node/v16.17.0/bin"
 
+
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
+export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+
 export GOBIN="$HOME/.local/bin"
 
 export DOTFILES="/Users/mcampbellr/.dotfiles/"

@@ -25,7 +25,6 @@ local source_mapping = {
     luasnip = "[Snippet]",
     buffer = "[Buffer]",
     cmp_tabnine = "[T9]",
-    emmet_vim = "[Emmet]",
     path = "[Path]",
     npm = "[Npm]",
 }
@@ -88,7 +87,6 @@ cmp.setup {
         { name = "nvim_lua" },
         { name = "luasnip" },
         { name = "cmp_tabnine" },
-        { name = "emmet_vim" },
         { name = "buffer" },
         { name = "path" },
     },
