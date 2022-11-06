@@ -1,7 +1,6 @@
 local Remap = require "mcampbellr.keymap"
 local nnoremap = Remap.nnoremap
 
-nnoremap(";b", ":Gitsigns blame_line<CR>")
 nnoremap("g[", ":Gitsigns next_hunk<CR>")
 nnoremap("g]", ":Gitsigns prev_hunk<CR>")
 -- File history

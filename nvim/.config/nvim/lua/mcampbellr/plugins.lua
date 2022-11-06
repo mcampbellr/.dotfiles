@@ -83,8 +83,6 @@ return packer.startup(function(use)
 
     -- themes
     use "sainnhe/gruvbox-material"
-    use "joshdick/onedark.vim"
-    use "sainnhe/sonokai"
 
     -- cmp plugins
     use "hrsh7th/nvim-cmp"

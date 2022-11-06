@@ -16,6 +16,7 @@ alias dot="cd $DOTFILES"
 
 # shortcuts aliases
 alias cl="clear"
+alias c='cd'
 alias ls='exa --no-user --icons'
 alias la='ls -laFh'
 alias ll='ls -l'

@@ -11,9 +11,7 @@ vim.g.sonokai_style = "shusia"
 vim.g.sonokai_better_performance = 1
 vim.g.everforest_background = "hard"
 
-local colorscheme = "sonokai"
---[[ local colorscheme = "gruvbox-material" ]]
---[[ local colorscheme = "onedark" ]]
+local colorscheme = "gruvbox-material"
 
 local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
 if not status_ok then
