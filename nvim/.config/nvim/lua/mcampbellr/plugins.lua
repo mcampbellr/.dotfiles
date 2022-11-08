@@ -83,6 +83,7 @@ return packer.startup(function(use)
 
     -- themes
     use "sainnhe/gruvbox-material"
+    use "mhartington/oceanic-next"
 
     -- cmp plugins
     use "hrsh7th/nvim-cmp"
