@@ -13,7 +13,7 @@ nnoremap("<C-s>", ":Telescope oldfiles<CR>")
 nnoremap("<C-g>", ":Telescope live_grep<CR>")
 nnoremap("<leader>mm", ":Telescope marks<CR>")
 nnoremap("z=", ":Telescope spell_suggest<CR>")
-nnoremap("<leader>b", ":Telescope diagnostics<CR>")
+nnoremap("<leader>d", ":Telescope diagnostics<CR>")
 
 nnoremap("<Leader>vrc", function()
     require("mcampbellr.telescope").search_dotfiles()

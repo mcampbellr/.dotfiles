@@ -15,7 +15,7 @@ local options = {
     number = true, -- set numbered lines
     numberwidth = 3, -- set number column width to 2 {default 4}
     relativenumber = true, -- set relative numbered lines
-    cmdheight = 0, -- more space in the neovim command line for displaying messages
+    cmdheight = 1, -- more space in the neovim command line for displaying messages
     -- Clipboard Settings
     clipboard = "", -- allows neovim to access the system clipboard
     -- Windows Settings

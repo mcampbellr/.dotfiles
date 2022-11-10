@@ -82,8 +82,8 @@ return packer.startup(function(use)
     }
 
     -- themes
-    use "sainnhe/gruvbox-material"
-    use "mhartington/oceanic-next"
+    use "tjdevries/colorbuddy.nvim"
+    use "mcampbellr/neosolarized.nvim"
 
     -- cmp plugins
     use "hrsh7th/nvim-cmp"
@@ -151,7 +151,6 @@ return packer.startup(function(use)
     use "junkblocker/git-time-lapse"
 
     -- utils
-    use { "SergioRibera/vim-screenshot", run = "npm install --prefix Renderizer" }
     use "lukas-reineke/indent-blankline.nvim"
 
     if PACKER_BOOTSTRAP then
