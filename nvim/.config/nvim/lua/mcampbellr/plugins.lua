@@ -67,10 +67,6 @@ return packer.startup(function(use)
     use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
     use "tpope/vim-repeat"
 
-    -- language specific plugins
-    use "lunarvim/vim-solidity"
-    use "thosakwe/vim-flutter"
-
     -- Icons over nvim
     use {
         "iamcco/markdown-preview.nvim",

@@ -49,8 +49,7 @@ local options = {
     foldmethod = "indent", -- indentention fold method
     foldlevelstart = 20, -- expand folds to 20 levels - for open at first opening of a file
     spellsuggest = "best",
-    list = true,
-    listchars = "eol:↵,tab:  ,trail:•,extends:>,precedes:<",
+    list = false,
 }
 
 vim.opt.shortmess:append "c"

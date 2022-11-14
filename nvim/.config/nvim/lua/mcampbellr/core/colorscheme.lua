@@ -43,7 +43,6 @@ vim.cmd [[
   hi TabLine guibg=NONE
   hi TabLineFill guibg=NONE
   hi TabLineSel guifg=orange
-  hi Visual  guifg=#000000 guibg=Orange gui=none
 
   let &t_ZH="\e[3m"
   let &t_ZR="\e[23m"

@@ -7,6 +7,14 @@ Green='\033[0;32m'        # Green
 
 
 function processConfigFile {
+  echo "Reading config file"
+  ####### FILES
+  copy_files
+  ###### SCRIPTS
+  run_scripts
+}
+
+copy_files () {
   if [[ ! -e $config ]]; then
     if [[ -e ../$config ]]; then
       config="../$config"
@@ -16,13 +24,10 @@ function processConfigFile {
     fi
   fi
 
-  echo "Reading config file"
   json=`cat $config`
 
-  ####### FILES
   json_files=`echo $json | jq -r .files`
   file_keys=(`echo $json_files | jq -r keys[]`)
-
   for ((i = 0; i < ${#file_keys[@]}; i++)); do
     row=${file_keys[$i]}
 
@@ -38,8 +43,19 @@ function processConfigFile {
       cp $file $path && echo -e "${Green}success:${Color_Off} $file"
     fi 
   done
+}
 
-  ###### SCRIPTS
+run_scripts () {
+  if [[ ! -e $config ]]; then
+    if [[ -e ../$config ]]; then
+      config="../$config"
+    else 
+      echo -e "${Red}-- Config file does not exist --${Color_Off}"
+      exit 0
+    fi
+  fi
+
+  json=`cat $config`
   json_scripts=`echo $json | jq .scripts`
   scripts_keys=(`echo $json_scripts | jq -r keys[]`)
   for ((i = 0; i < ${#scripts_keys[@]}; i++)); do
@@ -50,7 +66,7 @@ function processConfigFile {
   done
 }
 
-function createConfigFile {
+createConfigFile () {
   if [[ -e $config ]]; then
     echo "Config file already exist"
   else 
@@ -80,6 +96,14 @@ else
     case $1 in
       init)
         createConfigFile
+        break
+        ;;
+      -f)
+        copy_files
+        break
+        ;;
+      -s)
+        run_scripts
         break
         ;;
       -?* | --?*)
