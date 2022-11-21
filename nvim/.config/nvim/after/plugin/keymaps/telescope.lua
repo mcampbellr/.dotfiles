@@ -12,6 +12,7 @@ nnoremap("<C-b>", ":Telescope buffers<CR>")
 nnoremap("<C-s>", ":Telescope oldfiles<CR>")
 nnoremap("<C-g>", ":Telescope live_grep<CR>")
 nnoremap("<leader>mm", ":Telescope marks<CR>")
+nnoremap("<leader>/", ":Telescope current_buffer_fuzzy_find<CR>")
 nnoremap("z=", ":Telescope spell_suggest<CR>")
 nnoremap("<leader>d", ":Telescope diagnostics<CR>")
 

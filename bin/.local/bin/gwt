@@ -37,11 +37,11 @@ copy_files () {
 
     if [[ ! -e $file || ! -s $file ]]; then
       echo "file '$file' not exist"
+      exit 1
     elif [[ ! -d $path ]]; then
-      echo "$path destination not exist"
-    else 
-      cp $file $path && echo -e "${Green}success:${Color_Off} $file"
+      mkdir $path
     fi 
+    cp $file $path && echo -e "${Green}success:${Color_Off} $file"
   done
 }
 

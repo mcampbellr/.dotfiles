@@ -17,7 +17,7 @@ local options = {
     relativenumber = true, -- set relative numbered lines
     cmdheight = 1, -- more space in the neovim command line for displaying messages
     -- Clipboard Settings
-    clipboard = "", -- allows neovim to access the system clipboard
+    clipboard = "unnamed", -- allows neovim to access the system clipboard
     -- Windows Settings
     splitbelow = true, -- force all horizontal splits to go below current window
     splitright = true, -- force all vertical splits to go to the right of current window

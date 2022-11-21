@@ -36,9 +36,6 @@ vim.cmd [[
   hi SignColumn guibg=NONE
   hi Folded guibg=NONE guifg=orange
 
-  " hi HarpoonWindow guibg=NONE guifg=White
-  " hi HarpoonBorder guibg=NONE guifg=DarkGray
-
   hi TabLineSel guibg=NONE
   hi TabLine guibg=NONE
   hi TabLineFill guibg=NONE

@@ -27,6 +27,7 @@ vim.cmd [[
     autocmd!
     autocmd FileType gitcommit setlocal wrap
     autocmd FileType gitcommit setlocal spell
+    autocmd FileType git.nvim setlocal cursorline
   augroup end
 
   augroup _markdown

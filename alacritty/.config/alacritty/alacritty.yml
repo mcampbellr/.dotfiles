@@ -7,39 +7,43 @@ window:
     x: 5
     y: 0
 scrolling:
-  history: 10000
+  history: 100000
 font:
   normal:
-    family: VictorMono Nerd Font Mono
+    family: FiraCode Nerd Font
     style: Light
   bold:
-    family: VictorMono Nerd Font Mono
-    style: Bold
+    family: FiraCode Nerd Font
+    style: Light
   italic:
-    family: VictorMono Nerd Font Mono
-    style: Italic
-  size: 15.0
-  use_thin_strokes: true
+    family: FiraCode Nerd Font
+    style: italic
+  size: 14.0
   builtin_box_drawing: true
+draw_bold_text_with_bright_colors: true
 colors:
   primary:
-    background: '0x282828'
-    foreground: '0xdfbf8e'
+    foreground: '#eff0eb'
+  cursor:
+    cursor: '#ff6ac1'
+  selection:
+    text:       '#282a36'
+    background: '#feffff'
   normal:
-    black:   '0x665c54'
-    red:     '0xea6962'
-    green:   '0xa9b665'
-    yellow:  '0xe78a4e'
-    blue:    '0x7daea3'
-    magenta: '0xd3869b'
-    cyan:    '0x89b482'
-    white:   '0xdfbf8e'
+    black:   '#282a36'
+    red:     '#ff5c57'
+    green:   '#5af78e'
+    yellow:  '#f3f99d'
+    blue:    '#57c7ff'
+    magenta: '#ff6ac1'
+    cyan:    '#9aedfe'
+    white:   '#f1f1f0'
   bright:
-    black:   '0x928374'
-    red:     '0xea6962'
-    green:   '0xa9b665'
-    yellow:  '0xe3a84e'
-    blue:    '0x7daea3'
-    magenta: '0xd3869b'
-    cyan:    '0x89b482'
-    white:   '0xdfbf8e'
+    black:   '#686868'
+    red:     '#ff5c57'
+    green:   '#5af78e'
+    yellow:  '#f3f99d'
+    blue:    '#57c7ff'
+    magenta: '#ff6ac1'
+    cyan:    '#9aedfe'
+    white:   '#eff0eb'
