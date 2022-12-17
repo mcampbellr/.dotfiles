@@ -4,6 +4,7 @@
 
 echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/mcampbellr/.zprofile
 eval "$(/opt/homebrew/bin/brew shellenv)"
+defaults write com.apple.screencapture location ~/screenshots
 
 brew install git
 brew install stow
