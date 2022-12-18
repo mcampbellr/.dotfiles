@@ -6,7 +6,6 @@ export PATH="$PATH:/Users/$USER/Dev/flutter/bin"
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/Dev/flutter/bin"
 export PATH="$PATH:$HOME/.rvm/bin"
-# export PATH="$PATH:$HOME/.nvm/versions/node/v16.17.0/bin"
 
 
 export ANDROID_HOME=$HOME/Library/Android/sdk
@@ -25,10 +24,5 @@ export LG_CONFIG_FILE="$HOME/.config/lazygit/config.yml"
 export FZF_DEFAULT_COMMAND='fd --type f'
 export CHROME_EXECUTABLE="/Applications/Brave Browser.app/Contents/MacOS/Brave Browser"
 
-export AWS_ACCESS_KEY_ID='AKIAVHCW2T3HQE7DBV7E'
-export AWS_SECRET_ACCESS_KEY='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'
-export AWS_DEFAULT_REGION='us-west-2'
-
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" 
