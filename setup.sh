@@ -2,6 +2,8 @@
 
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
+
 echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/mcampbellr/.zprofile
 eval "$(/opt/homebrew/bin/brew shellenv)"
 defaults write com.apple.screencapture location ~/screenshots
@@ -49,6 +51,7 @@ brew install --cask slack
 brew install --cask microsoft-teams
 brew install --cask spotify
 brew install --cask rectangle
+brew install --cask postman
 brew install --cask docker
 brew install --cask brave-browser
 brew install --cask discord

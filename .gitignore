@@ -30,3 +30,4 @@ bin/.local/share/nvim/mason/packages/eslint_d
 bin/.local/share/nvim/mason/packages
 zsh/.config/zsh/.zsh_sessions
 nvim/.config/nvim/~/.local/share/nvim/undodir
+~/.local/share/nvim/undodir
