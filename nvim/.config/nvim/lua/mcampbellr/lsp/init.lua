@@ -4,5 +4,5 @@ if not status_ok then
 end
 
 require "mcampbellr.lsp.mason"
-require("mcampbellr.lsp.handlers")
+require "mcampbellr.lsp.handlers"
 require "mcampbellr.lsp.null-ls"
