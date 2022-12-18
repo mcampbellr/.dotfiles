@@ -11,5 +11,14 @@ end
 
 mason.setup()
 mason_lsp.setup {
-    ensure_installed = { "sumneko_lua", "rust_analyzer", "gopls", "tsserver", "volar", "pyright", "jsonls" },
+    ensure_installed = {
+        "sumneko_lua",
+        "rust_analyzer",
+        "gopls",
+        "tsserver",
+        "volar",
+        "pyright",
+        "jsonls",
+        "html",
+    },
 }
