@@ -3,7 +3,7 @@
 if [[ $# -eq 1 ]]; then
   selected=$1
 else
-  selected=$(find ~/Playground ~/Dev ~/Learn ~/Developer -mindepth 0 -maxdepth 3 -type d | fzf --height=30 --reverse)
+  selected=$(find ~/Playground ~/Learn ~/Developer -mindepth 0 -maxdepth 3 -type d | fzf --height=30 --reverse)
 fi
 
 if [[ -z $selected ]]; then

@@ -24,6 +24,11 @@ vim.cmd [[
   hi Normal guibg=NONE
   hi NormalNC guibg=NONE
 
+  hi IlluminatedWordText guibg=#333540
+  hi IlluminatedWordRead guibg=#333540
+  hi IlluminatedWordWrite guibg=#333540
+
+
   hi Normal guibg=NONE ctermbg=NONE
   hi LineNr guibg=NONE guifg=#5A6895
   hi SignColumn guibg=NONE ctermbg=NONE

@@ -51,6 +51,7 @@ return packer.startup(function(use)
     -- Custom plugins
     use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
     use "Mephistophiles/surround.nvim" -- surround things easily
+    use "RRethy/vim-illuminate"
 
     -- better comments
     use "numToStr/Comment.nvim"

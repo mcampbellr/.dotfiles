@@ -70,9 +70,16 @@
     nvm
     node_version
     public_ip             # public IP address
+    user_ip               # example user-defined segment (see prompt_example function below)
     user_git               # example user-defined segment (see prompt_example function below)
+    user_rotator               # example user-defined segment (see prompt_example function below)
     newline                   # \n
   )
+
+  function prompt_user_ip () {
+    localip=$(ipconfig getifaddr en0)
+    p10k segment -f "\u001b[0m" -i "IP - " -t "$localip"
+  }
 
   function prompt_user_git () {
     gitLocal=""
