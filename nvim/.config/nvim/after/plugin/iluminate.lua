@@ -12,6 +12,7 @@ illuminate.configure {
         "dirvish",
         "fugitive",
         "NvimTree",
+        "harpoon",
     },
     min_count_to_highlight = 2,
 }

@@ -2,23 +2,27 @@ vim.g.hybrid_transparent_background = 1
 vim.g.enable_italic_font = 1
 vim.g.enable_bold_font = 1
 
-local colorscheme = "neosolarized"
+local colorscheme = "gruvbox-material"
+--[[ local colorscheme = "neosolarized" ]]
 
 local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
+
 if not status_ok then
     vim.notify("colorscheme " .. colorscheme .. " not found")
     return
 end
 
-local neo_ok, neosolarized = pcall(require, "neosolarized")
-if not neo_ok then
-    vim.notify "something went wrong with neosolarized"
-    return
-end
+if string.match(colorscheme, "neosolarized") then
+    local neo_ok, neosolarized = pcall(require, "neosolarized")
+    if not neo_ok then
+        vim.notify "something went wrong with neosolarized"
+        return
+    end
 
-neosolarized.setup {
-    comment_italics = true,
-}
+    neosolarized.setup {
+        comment_italics = true,
+    }
+end
 
 vim.cmd [[
   hi Normal guibg=NONE
