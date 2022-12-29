@@ -2,8 +2,7 @@ vim.g.hybrid_transparent_background = 1
 vim.g.enable_italic_font = 1
 vim.g.enable_bold_font = 1
 
-local colorscheme = "gruvbox-material"
---[[ local colorscheme = "neosolarized" ]]
+local colorscheme = "gruvbox"
 
 local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
 

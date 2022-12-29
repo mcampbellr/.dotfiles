@@ -6,7 +6,7 @@ end
 
 -- default configuration
 illuminate.configure {
-    delay = 10,
+    delay = 300,
     -- filetypes_denylist: filetypes to not illuminate, this overrides filetypes_allowlist
     filetypes_denylist = {
         "dirvish",

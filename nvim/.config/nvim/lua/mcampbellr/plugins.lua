@@ -82,6 +82,7 @@ return packer.startup(function(use)
     use "tjdevries/colorbuddy.nvim"
     use "mcampbellr/neosolarized.nvim"
     use "sainnhe/gruvbox-material"
+    use "morhetz/gruvbox"
 
     -- cmp plugins
     use "hrsh7th/nvim-cmp"
