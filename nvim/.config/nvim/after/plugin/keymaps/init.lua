@@ -25,6 +25,7 @@ nnoremap("<C-Right>", ":vertical resize +2<CR>")
 
 -- Replace
 nmap("<leader>rp", ":%s///g<left><left>")
+nmap("<leader>s", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
 
 -- Undotree
 nnoremap("<leader>u", ":UndotreeToggle | UndotreeFocus<CR>")

@@ -57,9 +57,6 @@ return packer.startup(function(use)
     use "folke/todo-comments.nvim"
     use "JoosepAlviste/nvim-ts-context-commentstring"
 
-    -- search and replace
-    use "nvim-pack/nvim-spectre"
-
     -- File navigation
     use "kyazdani42/nvim-tree.lua"
     use "nvim-lualine/lualine.nvim"
