@@ -62,6 +62,13 @@ nnoremap("<Bslash>", ":let @/ = ''<CR>")
 nnoremap("<Leader>+", ":vertical resize +10<CR>")
 nnoremap("<Leader>-", ":vertical resize -5<CR>")
 
+nmap("<leader>f", function()
+    vim.lsp.buf.format()
+    print "Formated!"
+end)
+
+nnoremap("<C-o>", "<cmd>silent !tmux neww ss<CR>")
+
 -- F keys
 nnoremap("<F1>", function()
     require("harpoon.ui").nav_file(1)
