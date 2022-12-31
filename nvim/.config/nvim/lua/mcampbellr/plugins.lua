@@ -40,7 +40,6 @@ packer.init {
 
 -- Install your plugins here
 return packer.startup(function(use)
-    -- My plugins here
     -- required plugins
     use "wbthomason/packer.nvim" -- Have packer manage itself
     use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
@@ -85,61 +84,49 @@ return packer.startup(function(use)
     use "morhetz/gruvbox"
 
     -- cmp plugins
-    use "hrsh7th/nvim-cmp"
-    use "hrsh7th/cmp-buffer" -- buffer completions
-    use "hrsh7th/cmp-path" -- path completions
-    use "hrsh7th/cmp-nvim-lsp"
-    use "hrsh7th/cmp-nvim-lua"
-    use "saadparwaiz1/cmp_luasnip" -- snippet completions
     use {
-        "tzachar/cmp-tabnine",
-        config = function()
-            local tabnine = require "cmp_tabnine.config"
-            tabnine:setup {
-                max_lines = 1000,
-                max_num_results = 5,
-                sort = true,
-                run_on_every_keystroke = true,
-                snippet_placeholder = "..",
-            }
-        end,
-
-        run = "./install.sh",
-        requires = "hrsh7th/nvim-cmp",
+        "neovim/nvim-lspconfig",
+        requires = {
+            { "williamboman/mason.nvim" },
+            { "williamboman/mason-lspconfig.nvim" },
+            { "tami5/lspsaga.nvim" }, -- nightly
+            { "jose-elias-alvarez/null-ls.nvim" }, -- for formatters and linters
+            { "b0o/SchemaStore.nvim" },
+        },
     }
-    -- snippets
-    use "L3MON4D3/LuaSnip" --snippet engine
-    use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
 
-    -- LSP
-    use "neovim/nvim-lspconfig" -- enable LSP
-    use "williamboman/mason.nvim"
-    use "williamboman/mason-lspconfig.nvim"
-
-    use "tami5/lspsaga.nvim" -- nightly
-    use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
-    use "b0o/SchemaStore.nvim"
+    use {
+        "hrsh7th/nvim-cmp",
+        requires = {
+            { "hrsh7th/cmp-buffer" }, -- buffer completions
+            { "hrsh7th/cmp-path" }, -- path completions
+            { "hrsh7th/cmp-nvim-lsp" },
+            { "hrsh7th/cmp-nvim-lua" },
+            { "saadparwaiz1/cmp_luasnip" }, -- snippet completions
+            { "L3MON4D3/LuaSnip" }, --snippet engine
+            { "rafamadriz/friendly-snippets" }, -- a bunch of snippets to use
+            {
+                "tzachar/cmp-tabnine",
+                run = "./install.sh",
+                requires = "hrsh7th/nvim-cmp",
+            },
+        },
+    }
 
     -- Telescope
-    use "nvim-telescope/telescope.nvim"
-    use "nvim-telescope/telescope-fzy-native.nvim"
-    use "dhruvmanila/telescope-bookmarks.nvim"
+    use {
+        "nvim-telescope/telescope.nvim",
+        requires = {
+            { "nvim-telescope/telescope-fzy-native.nvim" },
+        },
+    }
+
     use "ThePrimeagen/harpoon"
 
     -- Treesitter
     use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
-    use "nvim-treesitter/playground"
     use "windwp/nvim-ts-autotag"
     use "romgrk/nvim-treesitter-context"
-
-    -- Color
-    --[[ use "ap/vim-css-color" ]]
-    use "norcalli/nvim-colorizer.lua"
-
-    -- Debbuger
-    use "mfussenegger/nvim-dap"
-    use "rcarriga/nvim-dap-ui"
-    use "theHamsta/nvim-dap-virtual-text"
 
     -- Undotree
     use "mbbill/undotree"
@@ -147,10 +134,6 @@ return packer.startup(function(use)
     -- Git
     use "lewis6991/gitsigns.nvim"
     use "dinhhuy258/git.nvim"
-    use "junkblocker/git-time-lapse"
-
-    -- utils
-    use "lukas-reineke/indent-blankline.nvim"
 
     if PACKER_BOOTSTRAP then
         require("packer").sync()

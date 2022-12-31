@@ -1,9 +1,17 @@
--- local opts = { noremap = true, silent = true }
--- local keymap = vim.api.nvim_set_keymap
+local dap_status, dap = pcall(require, "dap")
+if not dap_status then
+    return
+end
 
-local dap = require "dap"
-local dapui = require "dapui"
-local daptext = require "nvim-dap-virtual-text"
+local dapui_status, dapui = pcall(require, "dapui")
+if not dapui_status then
+    return
+end
+
+local daptext_status, daptext = pcall(require, "nvim-dap-virtual-text")
+if not daptext_status then
+    return
+end
 
 daptext.setup()
 dapui.setup {
