@@ -15,7 +15,6 @@ alias dot="cd $DOTFILES"
 
 # shortcuts aliases
 alias cl="clear"
-alias c='cd'
 alias ls='exa --no-user --icons'
 alias la='ls -laFh'
 alias ll='ls -l'
@@ -108,7 +107,7 @@ alias dco="docker compose"
 alias olocal="open http://localhost"
 alias ht=htop
 
-alias crg=cargo
+alias c='cargo'
 
 alias top="ss ~/Workspace/tevora/top-frontend && ss ~/Workspace/tevora/portal-backend"
 alias wsp="cd ~/Workspace/"
