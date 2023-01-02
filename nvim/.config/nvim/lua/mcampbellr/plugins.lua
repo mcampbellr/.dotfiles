@@ -77,8 +77,7 @@ return packer.startup(function(use)
     -- themes
     use "tjdevries/colorbuddy.nvim"
     use "mcampbellr/neosolarized.nvim"
-    use "sainnhe/gruvbox-material"
-    use "morhetz/gruvbox"
+    use "navarasu/onedark.nvim"
 
     -- cmp plugins
     use {

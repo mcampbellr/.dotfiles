@@ -11,17 +11,15 @@ if not status_ok then
     return
 end
 
-if string.match(colorscheme, "neosolarized") then
-    local neo_ok, neosolarized = pcall(require, "neosolarized")
-    if not neo_ok then
-        vim.notify "something went wrong with neosolarized"
-        return
-    end
-
-    neosolarized.setup {
-        comment_italics = true,
-    }
+local neo_ok, neosolarized = pcall(require, "neosolarized")
+if not neo_ok then
+    vim.notify "something went wrong with neosolarized"
+    return
 end
+
+neosolarized.setup {
+    comment_italics = true,
+}
 
 vim.cmd [[
   hi Normal guibg=NONE
@@ -30,7 +28,6 @@ vim.cmd [[
   hi IlluminatedWordText guibg=#333540
   hi IlluminatedWordRead guibg=#333540
   hi IlluminatedWordWrite guibg=#333540
-
 
   hi Normal guibg=NONE ctermbg=NONE
   hi LineNr guibg=NONE guifg=#5A6895

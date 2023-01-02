@@ -1,0 +1,18 @@
+
+function detect_current_env() {
+  dir=`pwd`
+  # Search for the .env file
+  while [ "$dir" != "/" ]; do
+    if [ -f "$dir/.env_config" ]; then
+      env=$(cat "$dir/.env_config")
+      cg -s $env
+      break
+    fi
+    # Move up to the parent directory
+    dir=$(dirname "$dir")
+  done
+}
+
+if whence -v add-zsh-hook > /dev/null; then
+  add-zsh-hook chpwd detect_current_env 
+fi

@@ -1,3 +1,4 @@
 .repoconfig
 node_modules
 .git
+.env_config
