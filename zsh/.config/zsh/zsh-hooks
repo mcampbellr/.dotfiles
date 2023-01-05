@@ -1,5 +1,4 @@
-
-function detect_current_env() {
+function zsh_detect_current_env() {
   dir=`pwd`
   # Search for the .env file
   while [ "$dir" != "/" ]; do
@@ -13,6 +12,8 @@ function detect_current_env() {
   done
 }
 
-if whence -v add-zsh-hook > /dev/null; then
-  add-zsh-hook chpwd detect_current_env 
-fi
+
+precmd () {
+  zsh_detect_current_env 
+}
+

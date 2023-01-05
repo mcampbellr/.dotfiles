@@ -67,8 +67,6 @@ nmap("<leader>f", function()
     print "Formated!"
 end)
 
-nnoremap("<C-o>", "<cmd>silent !tmux neww ss<CR>")
-
 -- F keys
 nnoremap("<F1>", function()
     require("harpoon.ui").nav_file(1)
