@@ -53,5 +53,6 @@ brew install --cask spotify
 brew install --cask rectangle
 brew install --cask postman
 brew install --cask docker
+brew install --cask shottr
 brew install --cask brave-browser
 brew install --cask discord

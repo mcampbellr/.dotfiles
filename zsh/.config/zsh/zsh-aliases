@@ -1,5 +1,5 @@
 #!/bin/sh
-# vim & nvim aliases
+# Vim & Nvim Aliases
 alias n='nvim'
 alias pm='npm'
 
@@ -14,7 +14,7 @@ alias dn="deno"
 alias nvc="cd $DOTFILES/nvim/.config/nvim && n ."
 alias dot="cd $DOTFILES"
 
-# shortcuts aliases
+# Shortcuts Aliases
 alias cl="clear"
 alias ls='exa --no-user --icons'
 alias la='ls -laFh'
