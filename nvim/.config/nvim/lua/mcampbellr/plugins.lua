@@ -116,6 +116,8 @@ return packer.startup(function(use)
             { "nvim-telescope/telescope-fzy-native.nvim" },
         },
     }
+    -- Quick list
+    use { "kevinhwang91/nvim-bqf", ft = "qf" }
 
     use "ThePrimeagen/harpoon"
 

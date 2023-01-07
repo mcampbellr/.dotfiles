@@ -13,6 +13,7 @@ illuminate.configure {
         "fugitive",
         "NvimTree",
         "harpoon",
+        "qf",
     },
     min_count_to_highlight = 2,
 }

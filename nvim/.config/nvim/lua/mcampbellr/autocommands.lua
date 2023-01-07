@@ -21,13 +21,14 @@ vim.cmd [[
     autocmd FileType qf set nobuflisted
     autocmd CmdWinEnter * quit
     autocmd BufEnter * :set colorcolumn=80
+
+    autocmd FileType git.nvim,qf setlocal cursorline
   augroup end
 
   augroup _git
     autocmd!
     autocmd FileType gitcommit setlocal wrap
     autocmd FileType gitcommit setlocal spell
-    autocmd FileType git.nvim setlocal cursorline
   augroup end
 
   augroup _markdown
