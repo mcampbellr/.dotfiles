@@ -61,19 +61,6 @@ return packer.startup(function(use)
     use "kyazdani42/nvim-tree.lua"
     use "nvim-lualine/lualine.nvim"
 
-    use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
-    use "tpope/vim-repeat"
-
-    -- Icons over nvim
-    use {
-        "iamcco/markdown-preview.nvim",
-        run = "cd app && npm install",
-        setup = function()
-            vim.g.mkdp_filetypes = { "markdown" }
-        end,
-        ft = { "markdown" },
-    }
-
     -- themes
     use "tjdevries/colorbuddy.nvim"
     use "mcampbellr/neosolarized.nvim"
@@ -116,6 +103,7 @@ return packer.startup(function(use)
             { "nvim-telescope/telescope-fzy-native.nvim" },
         },
     }
+
     -- Quick list
     use { "kevinhwang91/nvim-bqf", ft = "qf" }
 
