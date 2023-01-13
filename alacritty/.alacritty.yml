@@ -12,16 +12,16 @@ window:
     y: 5
 font:
   normal:
-    family: "FiraCode Nerd Font"
+    family: "FiraCode Nerd Font Mono"
     style: Regular
     ligatures: true
   bold:
-    family: "FiraCode Nerd Font"
+    family: "FiraCode Nerd Font Mono"
     style: Bold
   italic:
-    family: "FiraCode Nerd Font"
+    family: "FiraCode Nerd Font Mono"
     style: Italic
-  size: 14.0
+  size: 16.0
 bell:
   animation: EaseOutQuint
   duration: 10

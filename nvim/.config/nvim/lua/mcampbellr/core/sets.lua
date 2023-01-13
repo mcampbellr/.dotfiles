@@ -47,7 +47,8 @@ local options = {
     updatetime = 100, -- faster completion (4000ms default)
     wrap = false, -- display lines as one long line
     foldmethod = "indent", -- indentention fold method
-    foldlevelstart = 20, -- expand folds to 20 levels - for open at first opening of a file
+    foldlevelstart = 99, -- expand folds to 20 levels - for open at first opening of a file
+    foldenable = false,
     spellsuggest = "best",
     list = false,
 }
