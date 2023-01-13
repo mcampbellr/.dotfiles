@@ -51,10 +51,10 @@ cmp.setup {
             select = true,
             behavior = cmp.ConfirmBehavior.Replace,
         },
-        ["<Right>"] = cmp.mapping.confirm {
-            select = true,
-            behavior = cmp.ConfirmBehavior.Replace,
-        },
+        --[[ ["<Right>"] = cmp.mapping.confirm { ]]
+        --[[     select = true, ]]
+        --[[     behavior = cmp.ConfirmBehavior.Replace, ]]
+        --[[ }, ]]
         ["<Up>"] = cmp.mapping.select_prev_item(),
         ["<Down>"] = cmp.mapping.select_next_item(),
         ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
@@ -134,6 +134,6 @@ cmp.setup {
         },
     },
     experimental = {
-        ghost_text = true,
+        ghost_text = false,
     },
 }

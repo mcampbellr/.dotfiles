@@ -21,7 +21,7 @@ font:
   italic:
     family: "FiraCode Nerd Font Mono"
     style: Italic
-  size: 16.0
+  size: 14.0
 bell:
   animation: EaseOutQuint
   duration: 10
