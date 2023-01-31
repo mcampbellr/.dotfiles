@@ -62,9 +62,10 @@ return packer.startup(function(use)
     use "nvim-lualine/lualine.nvim"
 
     -- themes
-    use "tjdevries/colorbuddy.nvim"
-    use "mcampbellr/neosolarized.nvim"
-    use "navarasu/onedark.nvim"
+    --[[ use "tjdevries/colorbuddy.nvim" ]]
+    --[[ use "mcampbellr/neosolarized.nvim" ]]
+    use "folke/tokyonight.nvim"
+    --[[ use "navarasu/onedark.nvim" ]]
 
     -- cmp plugins
     use {
