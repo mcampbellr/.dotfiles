@@ -28,6 +28,8 @@ brew install fsouza/prettierd/prettierd
 brew install tmux
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
+git clone https://github.com/rupa/z ~/z
+
 brew install exa
 brew install jq
 brew install lazygit

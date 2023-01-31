@@ -1,0 +1,14 @@
+#!/bin/bash
+
+origin=$(git config --get remote.origin.url)
+
+if [[ -n "$origin" ]];  then
+  url_base=${origin#*@}
+  url_base=${url_base%:*}
+
+  new_url="https://$url_base/${origin#*:}"
+
+  new_url=${new_url%.git*}
+
+  open $new_url
+fi

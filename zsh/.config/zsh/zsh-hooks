@@ -12,8 +12,19 @@ function zsh_detect_current_env() {
   done
 }
 
+function use_nvm_version() {
+  if [ -s ".nvmrc" ]; then
+    echo "Using nvm"
+    nvm use
+  fi
+}
+
 
 precmd () {
   zsh_detect_current_env 
+}
+
+chpwd () {
+  use_nvm_version
 }
 

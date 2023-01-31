@@ -19,5 +19,8 @@ export CHROME_EXECUTABLE="/Applications/Brave Browser.app/Contents/MacOS/Brave B
 export FZF_COMPLETION_TRIGGER='--'
 
 
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" 
+
+[ -s "$HOME/z/z.sh" ] && \. "$HOME/z/z.sh" 

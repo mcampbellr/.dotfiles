@@ -108,7 +108,7 @@ alias dco="docker compose"
 alias olocal="open http://localhost"
 alias ht=htop
 
-alias c='cargo'
+alias crg='cargo'
 
 alias top="ss ~/Workspace/tevora/top-frontend && ss ~/Workspace/tevora/portal-backend"
 alias wsp="cd ~/Workspace/"
