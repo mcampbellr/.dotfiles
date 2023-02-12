@@ -1,4 +1,5 @@
 #!/bin/sh
+
 # Vim & Nvim Aliases
 alias n='nvim'
 alias pm='npm'

@@ -5,4 +5,4 @@ nnoremap("g[", ":Gitsigns next_hunk<CR>")
 nnoremap("g]", ":Gitsigns prev_hunk<CR>")
 
 -- File history
-nnoremap("<leader>fh", ":GitTimeLapse <CR>")
+--[[ nnoremap("<leader>fh", ":GitTimeLapse <CR>") ]]

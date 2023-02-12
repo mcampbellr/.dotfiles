@@ -58,8 +58,8 @@ compinit
 
 # Environment variables set everywhere
 export EDITOR="nvim"
-export TERMINAL="iTerm2"
-export BROWSER="chrome"
+export TERMINAL="alacritty"
+export BROWSER="brave"
 # tmux error fix
 TERM="xterm-256color"
 export TERM

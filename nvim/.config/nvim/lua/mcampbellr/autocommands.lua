@@ -7,7 +7,7 @@ autocmd("TextYankPost", {
     pattern = "*",
     callback = function()
         vim.highlight.on_yank {
-            higroup = "ErrorMsg",
+            higroup = "Visual",
             timeout = 50,
         }
     end,

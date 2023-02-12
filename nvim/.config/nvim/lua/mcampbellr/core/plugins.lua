@@ -62,8 +62,12 @@ return packer.startup(function(use)
     use "nvim-lualine/lualine.nvim"
 
     -- themes
+    --[[ use "tjdevries/colorbuddy.nvim" ]]
+    --[[ use "mcampbellr/neosolarized.nvim" ]]
+
     use "sainnhe/gruvbox-material"
     use "folke/tokyonight.nvim"
+    --[[ use "navarasu/onedark.nvim" ]]
 
     -- cmp plugins
     use {
@@ -71,9 +75,9 @@ return packer.startup(function(use)
         requires = {
             { "williamboman/mason.nvim" },
             { "williamboman/mason-lspconfig.nvim" },
+            { "tami5/lspsaga.nvim" }, -- nightly
             { "jose-elias-alvarez/null-ls.nvim" }, -- for formatters and linters
             { "b0o/SchemaStore.nvim" },
-            { "glepnir/lspsaga.nvim" },
         },
     }
 
@@ -119,6 +123,16 @@ return packer.startup(function(use)
     -- Git
     use "lewis6991/gitsigns.nvim"
     use "dinhhuy258/git.nvim"
+
+    -- startup
+
+    use {
+        "goolord/alpha-nvim",
+        requires = { "nvim-tree/nvim-web-devicons" },
+        config = function()
+            require("alpha").setup(require("alpha.themes.startify").config)
+        end,
+    }
 
     if PACKER_BOOTSTRAP then
         require("packer").sync()
