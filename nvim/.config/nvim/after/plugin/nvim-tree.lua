@@ -105,7 +105,7 @@ nvim_tree.setup {
         },
         icons = {
             show = {
-                git = false,
+                git = true,
                 folder = false,
                 file = false,
                 folder_arrow = false,

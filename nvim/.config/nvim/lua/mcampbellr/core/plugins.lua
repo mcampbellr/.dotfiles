@@ -75,7 +75,7 @@ return packer.startup(function(use)
         requires = {
             { "williamboman/mason.nvim" },
             { "williamboman/mason-lspconfig.nvim" },
-            { "tami5/lspsaga.nvim" }, -- nightly
+            { "tami5/lspsaga.nvim" },
             { "jose-elias-alvarez/null-ls.nvim" }, -- for formatters and linters
             { "b0o/SchemaStore.nvim" },
         },

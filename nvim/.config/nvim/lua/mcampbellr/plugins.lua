@@ -73,6 +73,7 @@ return packer.startup(function(use)
             { "williamboman/mason-lspconfig.nvim" },
             { "jose-elias-alvarez/null-ls.nvim" }, -- for formatters and linters
             { "b0o/SchemaStore.nvim" },
+            { "nvim-tree/nvim-web-devicons" },
             { "glepnir/lspsaga.nvim" },
         },
     }

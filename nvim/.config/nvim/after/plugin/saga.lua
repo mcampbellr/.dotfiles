@@ -17,7 +17,7 @@ lspsaga.setup {
     infor_sign = icons.diagnostics.Information,
     diagnostic_header_icon = icons.ui.Lightbulb,
     -- code action title icon
-    code_action_icon = " ",
+    code_action_icon = " ",
     code_action_prompt = {
         enable = false,
         sign = false,

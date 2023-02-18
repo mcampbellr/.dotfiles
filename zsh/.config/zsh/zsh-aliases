@@ -20,7 +20,7 @@ alias cl="clear"
 alias ls='exa --no-user --icons'
 alias la='ls -laFh'
 alias ll='ls -l'
-alias tree="ls -T -L 3 --git-ignore"
+alias tree="ls -T -L 5 --git-ignore"
 alias getip="ipconfig getifaddr en0"
 
 mkcdir () {
@@ -77,7 +77,7 @@ alias gdff="g diff"
 alias grb="g rebase"
 alias gcommit="g commit"
 alias glast="g show HEAD --quiet"
-alias gwta="g worktree add"
+alias gwta="g cb"
 alias gwtr="g worktree remove"
 alias gwtl="g worktree list"
 alias gwtm="g worktree move"
@@ -87,7 +87,9 @@ alias gbv="g branch -vv"
 alias gclone="g clone"
 alias gri="g rebase -i"
 alias gst="g st"
+alias gemails="git log --format='%ae - (%an)' | sort | uniq"
 alias gconf="g config --global -e"
+alias gt="jump_to_worktree"
 
 LOG_FORMAT="format:'%C(bold red)%h%C(reset) - %C(white)(%C(bold green)%ar%C(reset)%C(white)) %s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'"
 

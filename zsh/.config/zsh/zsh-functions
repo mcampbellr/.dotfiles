@@ -30,3 +30,12 @@ function zsh_add_completion() {
 	if [ "$2" = true ] && compinit "${completion_file:1}"
 }
 
+function jump_to_worktree {
+  if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    local worktree_path=$(git worktree list | fzf --height 40% --reverse | awk '{print $1}')
+    cd "$worktree_path"
+  else
+    echo "Not inside a worktree repo."
+  fi
+}
+
