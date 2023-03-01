@@ -61,9 +61,13 @@ return packer.startup(function(use)
     use "kyazdani42/nvim-tree.lua"
     use "nvim-lualine/lualine.nvim"
 
+    -- Colors in text
+    use "norcalli/nvim-colorizer.lua"
+
     -- themes
     use "sainnhe/gruvbox-material"
     use "folke/tokyonight.nvim"
+    use "tanvirtin/monokai.nvim"
 
     -- cmp plugins
     use {

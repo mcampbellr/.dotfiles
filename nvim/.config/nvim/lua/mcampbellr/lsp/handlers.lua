@@ -45,8 +45,8 @@ end
 local on_attach = function(client, bufnr)
     vim.cmd [[
         augroup format_on_save
-        autocmd! 
-        autocmd BufWritePre * lua vim.lsp.buf.format() 
+        autocmd!
+        autocmd BufWritePre * lua vim.lsp.buf.format()
         augroup end
     ]]
 

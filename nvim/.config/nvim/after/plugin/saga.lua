@@ -16,12 +16,21 @@ lspsaga.setup {
     hint_sign = icons.diagnostics.Hint,
     infor_sign = icons.diagnostics.Information,
     diagnostic_header_icon = icons.ui.Lightbulb,
-    -- code action title icon
     code_action_icon = " ",
-    code_action_prompt = {
+    code_action = {
+        num_shortcut = true,
+        show_server_name = false,
+        extend_gitsigns = true,
+        keys = {
+            quit = "q",
+            exec = "<CR>",
+        },
+    },
+    lightbulb = {
         enable = false,
+        enable_in_insert = false,
         sign = false,
-        sign_priority = 40,
+        sign_priority = 0,
         virtual_text = false,
     },
     finder_definition_icon = "  ",
@@ -34,10 +43,6 @@ lspsaga.setup {
         quit = "q",
         scroll_down = "<C-f>",
         scroll_up = "<C-b>",
-    },
-    code_action_keys = {
-        quit = "q",
-        exec = "<CR>",
     },
     rename_action_keys = {
         quit = "<C-c>",

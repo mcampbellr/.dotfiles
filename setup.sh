@@ -45,8 +45,8 @@ brew install deno
 brew install glow
 brew install heroku
 brew install fd
-
-brew install --cask iterm2
+# Cask Apps
+brew install --cask raycast
 brew install --cask loom
 brew install --cask dbeaver-community
 brew install --cask slack
