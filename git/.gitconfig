@@ -16,6 +16,7 @@
 	st = status --short
 	or = open-repo
 	sw = switch
+	wt = worktree
 	cm = commit
 	rb = rebase
   sv = save

@@ -18,13 +18,11 @@ end
 local icons = require "mcampbellr.icons"
 local kind_icons = icons.kind
 
-vim.api.nvim_set_hl(0, "CmpItemKindTabnine", { fg = "#CA42F0" })
 vim.g.cmp_active = true
 
 local source_mapping = {
     nvim_lsp = "[LSP]",
     nvim_lua = "[Lua]",
-    cmp_tabnine = "[T9]",
     luasnip = "[SNIP]",
     buffer = "[BUFF]",
     path = "[PATH]",
@@ -78,11 +76,6 @@ cmp.setup {
         format = function(entry, vim_item)
             vim_item.kind = kind_icons[vim_item.kind]
 
-            if entry.source.name == "cmp_tabnine" then
-                vim_item.kind = icons.misc.Robot
-                vim_item.kind_hl_group = "CmpItemKindTabnine"
-            end
-
             vim_item.menu = (source_mapping)[entry.source.name]
             return vim_item
         end,
@@ -92,7 +85,6 @@ cmp.setup {
         { name = "nvim_lua" },
         { name = "luasnip" },
         { name = "buffer" },
-        { name = "cmp_tabnine" },
         { name = "path" },
     },
     confirm_opts = {

@@ -60,7 +60,9 @@ return packer.startup(function(use)
     -- File navigation
     use "kyazdani42/nvim-tree.lua"
     use "nvim-lualine/lualine.nvim"
-
+    -- Search and replace
+    use "windwp/nvim-spectre"
+    use "github/copilot.vim"
     -- Colors in text
     use "norcalli/nvim-colorizer.lua"
 
@@ -68,6 +70,7 @@ return packer.startup(function(use)
     use "sainnhe/gruvbox-material"
     use "folke/tokyonight.nvim"
     use "tanvirtin/monokai.nvim"
+    use "xiyaowong/nvim-transparent"
 
     -- cmp plugins
     use {
@@ -92,11 +95,6 @@ return packer.startup(function(use)
             { "saadparwaiz1/cmp_luasnip" }, -- snippet completions
             { "L3MON4D3/LuaSnip" }, --snippet engine
             { "rafamadriz/friendly-snippets" }, -- a bunch of snippets to use
-            {
-                "tzachar/cmp-tabnine",
-                run = "./install.sh",
-                requires = "hrsh7th/nvim-cmp",
-            },
         },
     }
 
@@ -124,6 +122,8 @@ return packer.startup(function(use)
     -- Git
     use "lewis6991/gitsigns.nvim"
     use "dinhhuy258/git.nvim"
+    -- DAP
+    use "mfussenegger/nvim-dap"
 
     if PACKER_BOOTSTRAP then
         require("packer").sync()

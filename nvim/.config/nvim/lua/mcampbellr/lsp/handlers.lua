@@ -26,13 +26,14 @@ local function lsp_keymaps(bufnr)
     keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
     keymap(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
     keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-    keymap(bufnr, "n", "gh", "<cmd>lua require'lspsaga.provider'.lsp_finder()<CR>", opts)
-    keymap(bufnr, "n", "gp", "<cmd>lua require'lspsaga.provider'.preview_definition()<CR>", opts)
-    keymap(bufnr, "n", "gt", "<cmd>lua require'lspsaga.provider'.type_definition()<CR>", opts)
 
     keymap(bufnr, "n", "<leader>a", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
     keymap(bufnr, "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
 
+    keymap(bufnr, "n", "gh", "<cmd>Lspsaga lsp_finder<CR>", opts)
+    keymap(bufnr, "n", "gt", "<cmd>Lspsaga goto_type_definition<CR>", opts)
+    keymap(bufnr, "n", "gpt", "<cmd>Lspsaga peek_type_definition<CR>", opts)
+    keymap(bufnr, "n", "gpd", "<cmd>Lspsaga peek_definition<CR>", opts)
     keymap(bufnr, "n", "K", "<cmd>Lspsaga hover_doc<cr>", opts)
     keymap(bufnr, "n", "gj", "<cmd>Lspsaga diagnostic_jump_next<cr>", opts)
     keymap(bufnr, "n", "gk", "<cmd>Lspsaga diagnostic_jump_prev<cr>", opts)
@@ -127,7 +128,6 @@ nvim_lsp.lua_ls.setup {
                 -- Get the language server to recognize the `vim` global
                 globals = { "vim" },
             },
-
             workspace = {
                 -- Make the server aware of Neovim runtime files
                 library = vim.api.nvim_get_runtime_file("", true),

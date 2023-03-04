@@ -1,12 +1,13 @@
-local status_ok, tabnine = pcall(require, "cmp_tabnine.config")
+local status_ok, tabnine = pcall(require, "tabnine")
 if not status_ok then
     return
 end
 
-tabnine:setup {
-    max_lines = 1000,
-    max_num_results = 5,
-    sort = true,
-    run_on_every_keystroke = true,
-    snippet_placeholder = "..",
+tabnine.setup {
+    disable_auto_comment = true,
+    accept_keymap = "<RIGHT>",
+    dismiss_keymap = "<C-]>",
+    debounce_ms = 400,
+    suggestion_color = { gui = "#808080", cterm = 244 },
+    exclude_filetypes = { "TelescopePrompt" },
 }
