@@ -7,13 +7,15 @@ alias pm='npm'
 alias debug="npm run start:debug"
 alias serve="npm run serve"
 alias dev="npm run dev"
-alias run="npm run"
 alias tmrc="sh -c '\${EDITOR:-nvim} ~/.tmux.conf && tmux source ~/.tmux.conf && tmux display \"Config reloaded\"'"
 
 alias dn="deno"
 
+alias run=run_package_script
+
 alias nvc="cd $DOTFILES/nvim/.config/nvim && n ."
 alias dot="cd $DOTFILES"
+alias crl="curl"
 
 # Shortcuts Aliases
 alias cl="clear"

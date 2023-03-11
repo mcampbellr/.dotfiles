@@ -94,6 +94,7 @@ end)
 
 nnoremap("<F7>", ":Telescope resume<cr>")
 nnoremap("<F8>", ":Telescope registers<cr>")
+nnoremap("<F9>", ":Copilot disable<cr>:echo 'Copilot disabled'<cr>")
 
 -- Visual --
 -- search for visually hightlighted text

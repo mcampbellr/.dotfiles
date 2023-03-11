@@ -1,6 +1,8 @@
 vim.g.hybrid_transparent_background = 1
 vim.g.enable_italic_font = 1
 vim.g.enable_bold_font = 1
+vim.g.gruvbox_material_enable_italic = 1
+vim.g.gruvbox_material_cursor = "orange"
 
 vim.cmd [[colorscheme gruvbox-material]]
 
@@ -13,7 +15,7 @@ vim.cmd [[
   hi IlluminatedWordWrite guibg=#333540
 
   hi Normal guibg=NONE ctermbg=NONE
-  hi Visual guibg=#CDAF62 guifg=black
+  hi Visual guibg=#CB66A4 guifg=black
   hi LineNr guibg=NONE guifg=#5A6895
   hi SignColumn guibg=NONE ctermbg=NONE
   hi EndOfBuffer guibg=NONE ctermbg=NONE

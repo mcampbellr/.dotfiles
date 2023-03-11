@@ -39,3 +39,24 @@ function jump_to_worktree {
   fi
 }
 
+
+function run_package_script {
+  if [ -f package.json ]; then
+    if ! jq -e '.scripts' package.json >/dev/null; then
+      echo "No scripts found in package.json"
+      return
+    fi
+
+    local script=$(jq -r '.scripts | keys[]' package.json | fzf --height 40% --reverse)
+    if [ -n "$script" ]; then
+      if [ -f yarn.lock ]; then
+        yarn run "$script"
+      else
+        npm run "$script"
+      fi
+    fi
+  else
+    echo "No package.json found."
+  fi
+}
+

@@ -31,6 +31,7 @@ local function lsp_keymaps(bufnr)
     keymap(bufnr, "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
 
     keymap(bufnr, "n", "gh", "<cmd>Lspsaga lsp_finder<CR>", opts)
+    keymap(bufnr, "n", "<leader>o", "<cmd>Lspsaga outline<CR>", opts)
     keymap(bufnr, "n", "gt", "<cmd>Lspsaga goto_type_definition<CR>", opts)
     keymap(bufnr, "n", "gpt", "<cmd>Lspsaga peek_type_definition<CR>", opts)
     keymap(bufnr, "n", "gpd", "<cmd>Lspsaga peek_definition<CR>", opts)

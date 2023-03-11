@@ -6,23 +6,16 @@ end
 local icons = require "mcampbellr.icons"
 
 local function open_nvim_tree(data)
-    -- buffer is a directory
     local directory = vim.fn.isdirectory(data.file) == 1
 
     if not directory then
         return
     end
 
-    -- create a new, empty buffer
     vim.cmd.enew()
-
-    -- wipe the directory buffer
     vim.cmd.bw(data.buf)
-
-    -- change to the directory
     vim.cmd.cd(data.file)
 
-    -- open the tree
     require("nvim-tree.api").tree.open()
 end
 
@@ -36,10 +29,10 @@ nvim_tree.setup {
     diagnostics = {
         enable = true,
         icons = {
-            hint = "",
-            info = "",
-            warning = "",
-            error = "",
+            hint = icons.diagnostics.Hint,
+            info = icons.diagnostics.Information,
+            warning = icons.diagnostics.Warning,
+            error = icons.diagnostics.Error,
         },
     },
     update_focused_file = {
@@ -129,9 +122,9 @@ nvim_tree.setup {
         icons = {
             show = {
                 git = true,
-                folder = false,
-                file = false,
-                folder_arrow = false,
+                folder = true,
+                file = true,
+                folder_arrow = true,
             },
             glyphs = {
                 default = "",

@@ -31,3 +31,4 @@ bin/.local/share/nvim/mason/packages
 zsh/.config/zsh/.zsh_sessions
 nvim/.config/nvim/~/.local/share/nvim/undodir
 ~/.local/share/nvim/undodir
+bin/.local/share/nvim/transparent_cache

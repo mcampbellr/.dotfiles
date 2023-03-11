@@ -40,62 +40,61 @@ packer.init {
 
 -- Install your plugins here
 return packer.startup(function(use)
-    -- required plugins
+    -- Required Plugins
     use "wbthomason/packer.nvim" -- Have packer manage itself
     use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
     use "lewis6991/impatient.nvim" -- Lua speed loader
     use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
     use "akinsho/bufferline.nvim"
 
-    -- Custom plugins
+    -- Custom Plugins
     use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
     use "Mephistophiles/surround.nvim" -- surround things easily
     use "RRethy/vim-illuminate"
 
-    -- better comments
+    -- Better Comments
     use "numToStr/Comment.nvim"
     use "folke/todo-comments.nvim"
     use "JoosepAlviste/nvim-ts-context-commentstring"
 
-    -- File navigation
+    -- File Navigation
     use "kyazdani42/nvim-tree.lua"
     use "nvim-lualine/lualine.nvim"
+    -- Search and Replace
+    use "windwp/nvim-spectre"
+    use "github/copilot.vim"
+    -- Colors in Text
+    use "norcalli/nvim-colorizer.lua"
 
-    -- themes
-    --[[ use "tjdevries/colorbuddy.nvim" ]]
-    --[[ use "mcampbellr/neosolarized.nvim" ]]
-
+    -- Themes
     use "sainnhe/gruvbox-material"
     use "folke/tokyonight.nvim"
-    --[[ use "navarasu/onedark.nvim" ]]
+    use "tanvirtin/monokai.nvim"
+    use "xiyaowong/nvim-transparent"
 
-    -- cmp plugins
+    -- Cmp Plugins
     use {
         "neovim/nvim-lspconfig",
         requires = {
             { "williamboman/mason.nvim" },
             { "williamboman/mason-lspconfig.nvim" },
-            { "tami5/lspsaga.nvim" },
             { "jose-elias-alvarez/null-ls.nvim" }, -- for formatters and linters
             { "b0o/SchemaStore.nvim" },
+            { "nvim-tree/nvim-web-devicons" },
+            { "glepnir/lspsaga.nvim" },
         },
     }
 
     use {
         "hrsh7th/nvim-cmp",
         requires = {
-            { "hrsh7th/cmp-buffer" }, -- buffer completions
-            { "hrsh7th/cmp-path" }, -- path completions
+            { "hrsh7th/cmp-buffer" },
+            { "hrsh7th/cmp-path" },
             { "hrsh7th/cmp-nvim-lsp" },
             { "hrsh7th/cmp-nvim-lua" },
-            { "saadparwaiz1/cmp_luasnip" }, -- snippet completions
-            { "L3MON4D3/LuaSnip" }, --snippet engine
-            { "rafamadriz/friendly-snippets" }, -- a bunch of snippets to use
-            {
-                "tzachar/cmp-tabnine",
-                run = "./install.sh",
-                requires = "hrsh7th/nvim-cmp",
-            },
+            { "saadparwaiz1/cmp_luasnip" },
+            { "L3MON4D3/LuaSnip" },
+            { "rafamadriz/friendly-snippets" },
         },
     }
 
@@ -123,16 +122,8 @@ return packer.startup(function(use)
     -- Git
     use "lewis6991/gitsigns.nvim"
     use "dinhhuy258/git.nvim"
-
-    -- startup
-
-    use {
-        "goolord/alpha-nvim",
-        requires = { "nvim-tree/nvim-web-devicons" },
-        config = function()
-            require("alpha").setup(require("alpha.themes.startify").config)
-        end,
-    }
+    -- DAP
+    use "mfussenegger/nvim-dap"
 
     if PACKER_BOOTSTRAP then
         require("packer").sync()

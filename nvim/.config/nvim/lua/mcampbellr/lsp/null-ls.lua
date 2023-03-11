@@ -10,6 +10,7 @@ null_ls.setup {
     debug = true,
     disabled_filetypes = { "lua" },
     sources = {
+        formatting.eslint_d,
         formatting.prettierd,
         formatting.stylua,
         diagnostics.eslint_d,

@@ -29,9 +29,9 @@ quickfix.setup {
     },
     -- make `drop` and `tab drop` to become preferred
     func_map = {
-        open = "",
-        openc = "<CR>",
-        drop = "<CR>",
+        open = "<CR>",
+        openc = "<C-o>",
+        drop = "",
         split = "<C-s>",
         tabdrop = "<C-t>",
         -- set to empty string to disable
