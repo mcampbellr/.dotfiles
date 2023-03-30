@@ -64,7 +64,8 @@ nnoremap("<Leader>-", ":vertical resize -5<CR>")
 
 nmap("<leader>f", function()
     vim.lsp.buf.format()
-    print "Formated!"
+
+    vim.notify("Formated!", "info")
 end)
 
 -- F keys

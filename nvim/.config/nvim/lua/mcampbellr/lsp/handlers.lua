@@ -60,6 +60,7 @@ local on_attach = function(client, bufnr)
         or client.name == "html"
         or client.name == "jsonls"
         or client.name == "sumneko_lua"
+        or client.name == "sumneko_lua"
     then
         client.server_capabilities.documentFormattingProvider = false
         client.server_capabilities.documentRangeFormattingProvider = false

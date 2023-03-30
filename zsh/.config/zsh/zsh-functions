@@ -39,7 +39,6 @@ function jump_to_worktree {
   fi
 }
 
-
 function run_package_script {
   if [ -f package.json ]; then
     if ! jq -e '.scripts' package.json >/dev/null; then
@@ -47,7 +46,8 @@ function run_package_script {
       return
     fi
 
-    local script=$(jq -r '.scripts | keys[]' package.json | fzf --height 40% --reverse)
+    local script=$(jq -r '.scripts | keys[]' package.json | fzf --height 40% --reverse --query="$1")
+
     if [ -n "$script" ]; then
       if [ -f yarn.lock ]; then
         yarn run "$script"
@@ -59,4 +59,5 @@ function run_package_script {
     echo "No package.json found."
   fi
 }
+
 

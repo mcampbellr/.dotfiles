@@ -62,6 +62,8 @@ alias patch="yarn version --patch"
 alias minor="yarn version --minor"
 alias major="yarn version --major"
 
+alias at='alacritty-themes'
+
 # programing language aliases
 # python
 alias py='python3'
@@ -114,7 +116,7 @@ alias dco="docker compose"
 alias olocal="open http://localhost"
 alias ht=htop
 
-alias crg='cargo'
+alias c='cargo'
 
 alias top="ss ~/Workspace/tevora/top-frontend && ss ~/Workspace/tevora/portal-backend"
 alias wsp="cd ~/Workspace/"

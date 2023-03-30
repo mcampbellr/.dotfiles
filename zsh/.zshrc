@@ -14,7 +14,6 @@ if [[ $sshlist =~ 'The agent has no identities.' ]]; then
   ssh-add --apple-use-keychain ~/.ssh/tevora
   ssh-add --apple-use-keychain ~/.ssh/personal-github
   ssh-add --apple-use-keychain ~/.ssh/github
-  ssh-add --apple-use-keychain ~/.ssh/thirdtime
 fi
 
 # some useful options (man zshoptions)
