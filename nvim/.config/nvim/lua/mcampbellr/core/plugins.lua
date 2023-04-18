@@ -51,7 +51,6 @@ return packer.startup(function(use)
     use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
     use "Mephistophiles/surround.nvim" -- surround things easily
     use "RRethy/vim-illuminate"
-    use "rcarriga/nvim-notify"
 
     -- Better Comments
     use "numToStr/Comment.nvim"
