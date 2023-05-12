@@ -25,6 +25,8 @@ alias ll='ls -l'
 alias tree="ls -T -L 3 --git-ignore"
 alias ip="ifconfig | grep 'inet ' | grep -v 127.0.0.1 | awk '{print \$2}'"
 
+alias br=openOrSearch
+
 mkcdir () {
   mkdir -p -- "$1" &&
     cd -P -- "$1"
@@ -52,7 +54,6 @@ alias tm='tmux'
 alias tmk="tm kill-server"
 
 # browser aliases
-alias gg='brave'
 alias sof='stackoverflow'
 alias yt='youtube'
 

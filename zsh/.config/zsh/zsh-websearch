@@ -62,3 +62,13 @@ if [[ ${#ZSH_WEB_SEARCH_ENGINES} -gt 0 ]]; then
   done
   unset engines key
 fi
+
+
+function openOrSearch () {
+  if [ -z "$1" ]
+  then
+    open -a 'Brave Browser'
+  else
+    open -a 'Brave Browser' "https://www.google.com/search?q=$1"
+  fi
+}

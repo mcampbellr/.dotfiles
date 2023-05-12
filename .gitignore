@@ -33,3 +33,4 @@ nvim/.config/nvim/~/.local/share/nvim/undodir
 ~/.local/share/nvim/undodir
 bin/.local/share/nvim/transparent_cache
 bin/.local/share/nvim/mason/registries/github/mason-org/mason-registry
+bin/.local/share/nvim/mason/share/mason-schemas/lsp

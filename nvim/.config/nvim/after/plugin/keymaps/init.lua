@@ -68,34 +68,10 @@ nmap("<leader>f", function()
     vim.notify("Formated!", "info")
 end)
 
--- F keys
-nnoremap("<F1>", function()
-    require("harpoon.ui").nav_file(1)
-end)
-
-nnoremap("<F2>", function()
-    require("harpoon.ui").nav_file(2)
-end)
-
-nnoremap("<F3>", function()
-    require("harpoon.ui").nav_file(3)
-end)
-
-nnoremap("<F4>", function()
-    require("harpoon.ui").nav_file(4)
-end)
-
-nnoremap("<F5>", function()
-    require("harpoon.ui").nav_file(5)
-end)
-
-nnoremap("<F6>", function()
-    require("harpoon.ui").nav_file(6)
-end)
-
-nnoremap("<F7>", ":Telescope resume<cr>")
-nnoremap("<F8>", ":Telescope registers<cr>")
-nnoremap("<F9>", ":Copilot disable<cr>:echo 'Copilot disabled'<cr>")
+-- Harpoon
+for i = 1, 19 do
+    nnoremap("<F" .. i .. ">", ":lua require('harpoon.ui').nav_file(" .. i .. ")<CR>")
+end
 
 -- Visual --
 -- search for visually hightlighted text

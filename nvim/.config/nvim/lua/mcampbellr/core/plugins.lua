@@ -70,6 +70,7 @@ return packer.startup(function(use)
     use "sainnhe/gruvbox-material"
     use "navarasu/onedark.nvim"
     use "xiyaowong/nvim-transparent"
+    use "Yazeed1s/minimal.nvim"
 
     -- Cmp Plugins
     use {

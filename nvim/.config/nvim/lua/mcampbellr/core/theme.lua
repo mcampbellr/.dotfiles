@@ -4,8 +4,8 @@ vim.g.enable_bold_font = 1
 vim.g.gruvbox_material_enable_italic = 1
 vim.g.gruvbox_material_cursor = "orange"
 
---[[ vim.cmd [[colorscheme gruvbox-material]]
-require("onedark").load()
+--vim.cmd [[colorscheme gruvbox-material]]
+vim.cmd [[colorscheme minimal-base16]]
 
 vim.cmd [[
   hi Normal guibg=NONE
