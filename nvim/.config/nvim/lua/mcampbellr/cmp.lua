@@ -8,15 +8,12 @@ if not snip_status_ok then
     return
 end
 
-require("luasnip/loaders/from_vscode").lazy_load()
-
 local check_backspace = function()
     local line, col = vim.api.nvim_win_get_cursor()
     return col ~= 0 and string.match(vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col), "%s") == nil
 end
 
-local icons = require "mcampbellr.icons"
-local kind_icons = icons.kind
+require("luasnip/loaders/from_vscode").lazy_load()
 
 vim.g.cmp_active = true
 
@@ -27,6 +24,9 @@ local source_mapping = {
     buffer = "[BUFF]",
     path = "[PATH]",
 }
+
+local icons = require "mcampbellr.icons"
+local kind_icons = icons.kind
 
 cmp.setup {
     enabled = function()
@@ -42,7 +42,23 @@ cmp.setup {
             luasnip.lsp_expand(args.body) -- For `luasnip` users.
         end,
     },
-    mapping = {
+    window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
+    },
+    formatting = {
+        fields = { "kind", "abbr", "menu" },
+        format = function(entry, vim_item)
+            vim_item.kind = kind_icons[vim_item.kind]
+
+            vim_item.menu = (source_mapping)[entry.source.name]
+            return vim_item
+        end,
+    },
+    experimental = {
+        ghost_text = false,
+    },
+    mapping = cmp.mapping.preset.insert {
         ["<CR>"] = cmp.mapping.confirm {
             select = true,
             behavior = cmp.ConfirmBehavior.Replace,
@@ -71,34 +87,42 @@ cmp.setup {
             "s",
         }),
     },
-    formatting = {
-        fields = { "kind", "abbr", "menu" },
-        format = function(entry, vim_item)
-            vim_item.kind = kind_icons[vim_item.kind]
-
-            vim_item.menu = (source_mapping)[entry.source.name]
-            return vim_item
-        end,
-    },
-    sources = {
-        { name = "nvim_lsp" },
-        { name = "nvim_lua" },
-        { name = "luasnip" },
-        { name = "buffer" },
-        { name = "path" },
-    },
     confirm_opts = {
         behavior = cmp.ConfirmBehavior.Replace,
         select = false,
     },
-    window = {
-        documentation = true,
-        completion = {
-            border = "rounded",
-            winhighlight = "NormalFloat:Pmenu,NormalFloat:Pmenu,CursorLine:PmenuSel,Search:Visual",
-        },
-    },
-    experimental = {
-        ghost_text = false,
-    },
+    sources = cmp.config.sources({
+        { name = "nvim_lsp" },
+        { name = "nvim_lua" },
+        { name = "luasnip" },
+        { name = "path" },
+    }, {
+        { name = "buffer" },
+    }),
 }
+
+-- Set configuration for specific filetype.
+--[[ cmp.setup.filetype("gitcommit", { ]]
+--[[     sources = cmp.config.sources({ ]]
+--[[         { name = "cmp_git" }, -- You can specify the `cmp_git` source if you were installed it. ]]
+--[[     }, { ]]
+--[[         { name = "buffer" }, ]]
+--[[     }), ]]
+--[[ }) ]]
+-- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline({ "/", "?" }, {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
+        { name = "buffer" },
+    },
+})
+
+-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline(":", {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
+        { name = "path" },
+    }, {
+        { name = "cmdline" },
+    }),
+})

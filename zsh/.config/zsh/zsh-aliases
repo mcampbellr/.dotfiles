@@ -6,7 +6,6 @@ alias pm='npm'
 
 alias debug="npm run start:debug"
 alias serve="npm run serve"
-alias dev="npm run dev"
 alias tmrc="sh -c '\${EDITOR:-nvim} ~/.tmux.conf && tmux source ~/.tmux.conf && tmux display \"Config reloaded\"'"
 
 alias dn="deno"
@@ -110,6 +109,8 @@ alias ys="yarn run serve"
 
 # Custom commands
 alias cg=". $DEV_FILES/lab/rotator/rot.sh"
+
+alias dev="ss ~/Developer/"
 
 alias doc='docker'
 alias dco="docker compose"

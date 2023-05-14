@@ -69,6 +69,6 @@ function openOrSearch () {
   then
     open -a 'Brave Browser'
   else
-    open -a 'Brave Browser' "https://www.google.com/search?q=$1"
+    open -a 'Brave Browser' "https://www.google.com/search?q=${(j:+:)@[2,-1]}"
   fi
 }

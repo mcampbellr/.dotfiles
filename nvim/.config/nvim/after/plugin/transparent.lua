@@ -1,6 +1,7 @@
 local status_ok, transparent = pcall(require, "transparent")
 
 if not status_ok then
+    print "failed to load transparent"
     return
 end
 
@@ -18,5 +19,4 @@ transparent.setup {
         "SignColumn",
         "EndOfBuffer",
     },
-    disable = { "dashboard" },
 }

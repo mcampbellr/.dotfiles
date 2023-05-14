@@ -71,6 +71,7 @@ return packer.startup(function(use)
     use "navarasu/onedark.nvim"
     use "xiyaowong/nvim-transparent"
     use "Yazeed1s/minimal.nvim"
+    use "phha/zenburn.nvim"
 
     -- Cmp Plugins
     use {
