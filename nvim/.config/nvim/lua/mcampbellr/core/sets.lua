@@ -51,6 +51,7 @@ local options = {
     foldenable = false,
     spellsuggest = "best",
     list = false,
+    guicursor = "",
 }
 
 vim.opt.shortmess:append "c"
