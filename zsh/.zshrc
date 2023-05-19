@@ -86,4 +86,6 @@ setopt HIST_IGNORE_SPACE
 setopt HIST_FIND_NO_DUPS
 export SAVEHIST=$HISTSIZE
 
+eval $(thefuck --alias)
+
 source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme

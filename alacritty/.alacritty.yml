@@ -207,30 +207,33 @@ key_bindings:
 colors:
   # Default colors
   primary:
-    background: '#282c34'
-    foreground: '#abb2bf'
+    background: '#1d1f21'
+    foreground: '#c5c8c6'
+
+  # Colors the cursor will use if `custom_cursor_colors` is true
+  cursor:
+    text: '#1d1f21'
+    cursor: '#ffffff'
 
   # Normal colors
   normal:
-    # NOTE: Use '#131613' for the `black` color if you'd like to see
-    # black text on the background.
-    black: '#282c34'
-    red: '#e06c75'
-    green: '#98c379'
-    yellow: '#d19a66'
-    blue: '#61afef'
-    magenta: '#c678dd'
-    cyan: '#56b6c2'
-    white: '#abb2bf'
+    black: '#1d1f21'
+    red: '#cc6666'
+    green: '#b5bd68'
+    yellow: '#e6c547'
+    blue: '#81a2be'
+    magenta: '#b294bb'
+    cyan: '#70c0ba'
+    white: '#373b41'
 
   # Bright colors
   bright:
-    black: '#5c6370'
-    red: '#e06c75'
-    green: '#98c379'
-    yellow: '#d19a66'
-    blue: '#61afef'
-    magenta: '#c678dd'
-    cyan: '#56b6c2'
-    white: '#ffffff'
-theme: One-Dark
+    black: '#666666'
+    red: '#ff3334'
+    green: '#9ec400'
+    yellow: '#f0c674'
+    blue: '#81a2be'
+    magenta: '#b77ee0'
+    cyan: '#54ced6'
+    white: '#282a2e'
+theme: Tomorrow-Night
