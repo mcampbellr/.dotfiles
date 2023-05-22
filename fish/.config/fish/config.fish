@@ -1,6 +1,5 @@
-#!/bin/sh
+set -x LANG en_us.UTF-8 
 
-# Vim & Nvim Aliases
 alias n='nvim'
 alias pm='npm'
 alias t=zox
@@ -16,7 +15,6 @@ alias run=run_package_script
 alias nvc="cd $DOTFILES/nvim/.config/nvim && n ."
 alias dot="cd $DOTFILES"
 alias crl="curl"
-alias gf="fd"
 
 # Shortcuts Aliases
 alias cl="clear"
@@ -29,22 +27,10 @@ alias fk="fuck"
 
 alias br=openOrSearch
 
-mkcdir () {
-  mkdir -p -- "$1" &&
-    cd -P -- "$1"
-}
-
-openFile () {
-  vim $(fzf)
-}
-
-fd() {
-  # the next line is generating a emty window how can i get the content
-  preview="git diff $@ --color=always -- {-1}"
-  git diff $@ --name-only | fzf -m --preview $preview
-}
-
-alias vim.='openFile'
+# mkcdir () {
+#   mkdir -p -- "$1" &&
+#     cd -P -- "$1"
+# }
 
 alias copy-branch='g branch --show-current | pbcopy'
 alias branch='g branch --show-current'
@@ -54,8 +40,9 @@ alias notess="ss ~/Notes/"
 
 alias ccd=mkcdir
 # configs aliases
-alias zshrc="nvim $DOTFILES/zsh/"
-alias src="source ~/.zshrc && echo '< zsh config reloaded >'"
+alias zshrc="cd $DOTFILES/zsh/"
+alias src="source ~/.config/fish/config.fish && echo '< zsh config reloaded >'"
+
 
 # tmux aliases
 alias tm='tmux'
@@ -104,7 +91,7 @@ alias gemails="git log --format='%ae - (%an)' | sort | uniq"
 alias gconf="g config --global -e"
 alias gt="jump_to_worktree"
 
-LOG_FORMAT="format:'%C(bold red)%h%C(reset) - %C(white)(%C(bold green)%ar%C(reset)%C(white)) %s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'"
+set LOG_FORMAT="format:'%C(bold red)%h%C(reset) - %C(white)(%C(bold green)%ar%C(reset)%C(white)) %s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'"
 
 alias glg="g log -15 --graph --abbrev-commit --decorate --format=$LOG_FORMAT"
 alias glog="g log --graph --abbrev-commit --decorate --format=$LOG_FORMAT"
@@ -134,4 +121,5 @@ alias wsp="cd ~/Workspace/"
 
 alias cpwd="pwd | tr -d '\n' | pbcopy && echo 'pwd copied to clipboard'"
 alias gosleep="pmset sleepnow"
+
 

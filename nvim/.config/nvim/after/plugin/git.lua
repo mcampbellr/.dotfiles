@@ -6,7 +6,7 @@ end
 git.setup {
     default_mappings = false,
     keymaps = {
-        blame = "<leader>gb",
+        blame = "<leader>gB",
         quit_blame = "q",
     },
 }

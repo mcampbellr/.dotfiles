@@ -24,6 +24,12 @@ zle-line-init() {
     echo -ne "\e[2 q"
 }
 
+# This edit in vim with ctrl-e
+autoload edit-command-line; zle -N edit-command-line
+bindkey '^e' edit-command-line
+
 zle -N zle-line-init
 echo -ne '\e[2 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[2 q' ;} # Use beam shape cursor for each new prompt.
+
+

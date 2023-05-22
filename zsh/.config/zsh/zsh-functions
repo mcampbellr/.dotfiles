@@ -60,4 +60,3 @@ function run_package_script {
   fi
 }
 
-

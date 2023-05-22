@@ -24,4 +24,3 @@ export RUST_BACKTRACE=0
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" 
 
-[ -s "$HOME/z/z.sh" ] && \. "$HOME/z/z.sh" 
