@@ -27,16 +27,12 @@ brew install fsouza/prettierd/prettierd
 
 brew install tmux
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-
 git clone https://github.com/rupa/z ~/z
-
 brew install exa
 brew install jq
 brew install lazygit
-
 brew install fzf
 $(brew --prefix)/opt/fzf/install
-
 brew install ripgrep
 brew install grep
 brew install postgresql

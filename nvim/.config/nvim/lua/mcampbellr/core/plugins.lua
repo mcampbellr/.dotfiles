@@ -41,14 +41,14 @@ packer.init {
 -- Install your plugins here
 return packer.startup(function(use)
     -- Required Plugins
-    use "wbthomason/packer.nvim"   -- Have packer manage itself
-    use "nvim-lua/popup.nvim"      -- An implementation of the Popup API from vim in Neovim
+    use "wbthomason/packer.nvim" -- Have packer manage itself
+    use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
     use "lewis6991/impatient.nvim" -- Lua speed loader
-    use "nvim-lua/plenary.nvim"    -- Useful lua functions used ny lots of plugins
+    use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
     use "akinsho/bufferline.nvim"
 
     -- Custom Plugins
-    use "windwp/nvim-autopairs"        -- Autopairs, integrates with both cmp and treesitter
+    use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
     use "Mephistophiles/surround.nvim" -- surround things easily
     use "RRethy/vim-illuminate"
 
@@ -99,6 +99,8 @@ return packer.startup(function(use)
             { "rafamadriz/friendly-snippets" },
         },
     }
+    -- Tmux Integrations
+    use "christoomey/vim-tmux-navigator"
 
     -- Telescope
     use {

@@ -18,6 +18,7 @@ alias dot="cd $DOTFILES"
 alias crl="curl"
 alias gf="fd"
 
+
 # Shortcuts Aliases
 alias cl="clear"
 alias ls='exa --no-user --icons'
@@ -27,6 +28,8 @@ alias tree="ls -T -L 3 --git-ignore"
 alias ip="ifconfig | grep 'inet ' | grep -v 127.0.0.1 | awk '{print \$2}'"
 alias fk="fuck"
 
+
+alias cal="open -a Calendar"
 alias br=openOrSearch
 
 mkcdir () {
@@ -36,12 +39,6 @@ mkcdir () {
 
 openFile () {
   vim $(fzf)
-}
-
-fd() {
-  # the next line is generating a emty window how can i get the content
-  preview="git diff $@ --color=always -- {-1}"
-  git diff $@ --name-only | fzf -m --preview $preview
 }
 
 alias vim.='openFile'
@@ -95,6 +92,7 @@ alias gwtr="g worktree remove"
 alias gwtl="g worktree list"
 alias gwtm="g worktree move"
 alias gwtp="g worktree prune --verbose"
+alias gdf="g df"
 alias gcp="g cherry-pick"
 alias gbv="g branch -vv"
 alias gclone="g clone"

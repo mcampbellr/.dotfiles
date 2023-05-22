@@ -27,22 +27,19 @@ alias fk="fuck"
 
 alias br=openOrSearch
 
-# mkcdir () {
-#   mkdir -p -- "$1" &&
-#     cd -P -- "$1"
-# }
-
 alias copy-branch='g branch --show-current | pbcopy'
 alias branch='g branch --show-current'
 
 alias notes="n ~/Notes/"
 alias notess="ss ~/Notes/"
 
-alias ccd=mkcdir
-# configs aliases
+ccd () {
+  mkdir -p -- "$1" &&
+    cd -P -- "$1"
+}
+
 alias zshrc="cd $DOTFILES/zsh/"
 alias src="source ~/.config/fish/config.fish && echo '< zsh config reloaded >'"
-
 
 # tmux aliases
 alias tm='tmux'

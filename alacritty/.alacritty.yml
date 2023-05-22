@@ -1,25 +1,18 @@
 live_config_reload: true
 env:
-  TERM: xterm-256color
+  TERM: alacritty
 window:
-  dimensions:
-    columns: 100
-    lines: 26
-  decorations: buttonless
+  opacity: 0.95
   startup_mode: Windowed
-  padding:
-    x: 5
-    y: 5
 font:
   normal:
-    family: "FiraCode Nerd Font Mono"
-    style: Regular
-    ligatures: true
+    family: "CaskaydiaCove Nerd Font"
+    style: Light
   bold:
-    family: "FiraCode Nerd Font Mono"
+    family: "CaskaydiaCove Nerd Font"
     style: Bold
   italic:
-    family: "FiraCode Nerd Font Mono"
+    family: "CaskaydiaCove Nerd Font"
     style: Italic
   size: 14.0
 bell:
@@ -207,30 +200,30 @@ key_bindings:
 colors:
   # Default colors
   primary:
-    # hard contrast: background = '#1d2021'
-    background: '#282828'
-    # soft contrast: background = '#32302f'
-    foreground: '#ebdbb2'
+    background: '#282c34'
+    foreground: '#abb2bf'
 
   # Normal colors
   normal:
-    black: '#282828'
-    red: '#cc241d'
-    green: '#98971a'
-    yellow: '#d79921'
-    blue: '#458588'
-    magenta: '#b16286'
-    cyan: '#689d6a'
-    white: '#a89984'
+    # NOTE: Use '#131613' for the `black` color if you'd like to see
+    # black text on the background.
+    black: '#282c34'
+    red: '#e06c75'
+    green: '#98c379'
+    yellow: '#d19a66'
+    blue: '#61afef'
+    magenta: '#c678dd'
+    cyan: '#56b6c2'
+    white: '#abb2bf'
 
   # Bright colors
   bright:
-    black: '#928374'
-    red: '#fb4934'
-    green: '#b8bb26'
-    yellow: '#fabd2f'
-    blue: '#83a598'
-    magenta: '#d3869b'
-    cyan: '#8ec07c'
-    white: '#ebdbb2'
-theme: Gruvbox-Dark
+    black: '#5c6370'
+    red: '#e06c75'
+    green: '#98c379'
+    yellow: '#d19a66'
+    blue: '#61afef'
+    magenta: '#c678dd'
+    cyan: '#56b6c2'
+    white: '#ffffff'
+theme: One-Dark

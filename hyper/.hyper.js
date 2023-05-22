@@ -1,6 +1,3 @@
-// Future versions of Hyper may add additional config options,
-// which will not automatically be merged into this file.
-// See https://hyper.is#cfg for all currently supported options.
 module.exports = {
   config: {
     // choose either `'stable'` for receiving highly polished,
@@ -9,28 +6,30 @@ module.exports = {
     // default font size in pixels for all tabs
     fontSize: 14,
     // font family with optional fallbacks
-    fontFamily: "VictorMono Nerd Font Mono",
+    fontFamily: "CaskaydiaCove Nerd Font",
     // default font weight: 'normal' or 'bold'
-    fontWeight: "normal",
+    fontWeight: 300,
     // font weight for bold characters: 'normal' or 'bold'
-    fontWeightBold: "bold",
+    fontWeightBold: 700,
     // line height as a relative unit
-    lineHeight: 1.15,
+    lineHeight: 1,
     // letter spacing as a relative unit
-    letterSpacing: 0.55,
+    letterSpacing:0, 
     // terminal cursor background color and opacity (hex, rgb, hsl, hsv, hwb or cmyk)
-    cursorColor: "magenta",
+    cursorColor: "#F81CE5",
+    // terminal opacity
+    opacity: .95,
     // terminal text color under BLOCK cursor
     cursorAccentColor: "#000",
     // `'BEAM'` for |, `'UNDERLINE'` for _, `'BLOCK'` for █
-    cursorShape: "BLOCK",
+    cursorShape: "UNDERLINE",
     // set to `true` (without backticks and without quotes) for blinking cursor
-    cursorBlink: true,
+    cursorBlink: false,
     // color of the text
     foregroundColor: "#fff",
     // terminal background color
     // opacity is only supported on macOS
-    backgroundColor: "#282C34",
+    backgroundColor: "",
     // terminal selection color
     selectionColor: "red",
     // border color (window, tabs)
@@ -40,36 +39,36 @@ module.exports = {
     // custom CSS to embed in the terminal window
     termCSS: "",
     // set custom startup directory (must be an absolute path)
-    workingDirectory: "",
+    workingDirectory: "~/Developer",
     // if you're using a Linux setup which show native menus, set to false
     // default: `true` on Linux, `true` on Windows, ignored on macOS
-    showHamburgerMenu: "",
+    showHamburgerMenu: false,
     // set to `false` (without backticks and without quotes) if you want to hide the minimize, maximize and close buttons
     // additionally, set to `'left'` if you want them on the left, like in Ubuntu
     // default: `true` (without backticks and without quotes) on Windows and Linux, ignored on macOS
-    showWindowControls: "",
+    showWindowControls: false,
     // custom padding (CSS format, i.e.: `top right bottom left`)
-    padding: "5px",
+    padding: "0px",
     // the full list. if you're going to provide the full color palette,
     // including the 6 x 6 color cubes and the grayscale map, just provide
     // an array here instead of a color map object
     colors: {
-      black: "#000000",
-      red: "#C51E14",
-      green: "#1DC121",
-      yellow: "#C7C329",
-      blue: "#0A2FC4",
-      magenta: "#C839C5",
-      cyan: "#20C5C6",
-      white: "#C7C7C7",
-      lightBlack: "#686868",
-      lightRed: "#FD6F6B",
-      lightGreen: "#67F86F",
-      lightYellow: "#FFFA72",
-      lightBlue: "#6A76FB",
-      lightMagenta: "#FD7CFC",
-      lightCyan: "#68FDFE",
-      lightWhite: "#FFFFFF",
+      black: "#282828",
+      red: "#cc241d",
+      green: "#98971a",
+      yellow: "#d79921",
+      blue: "#458588",
+      magenta: "#b16286",
+      cyan: "#689d6a",
+      white: "#a89984",
+      lightBlack: "#928374",
+      lightRed: "#fb4934",
+      lightGreen: "#b8bb26",
+      lightYellow: "#fabd2f",
+      lightBlue: "#83a598",
+      lightMagenta: "#d3869b",
+      lightCyan: "#8ec07c",
+      lightWhite: "#ebdbb2",
       limeGreen: "#32CD32",
       lightCoral: "#F08080",
     },
@@ -91,7 +90,7 @@ module.exports = {
     //
     // Cygwin
     // - Example: `C:\\cygwin64\\bin\\bash.exe`
-    shell: "",
+    shell:"/bin/zsh",
     // for setting shell arguments (i.e. for using interactive shellArgs: `['-i']`)
     // by default `['--login']` will be used
     shellArgs: ["--login"],
@@ -126,7 +125,7 @@ module.exports = {
     disableAutoUpdates: false,
     // for advanced config flags please refer to https://hyper.is/#cfg
   },
-  plugins: ["hyper-one-dark"],
+  plugins: ["hyper-one-dark", "hyper-opacity"],
   // in development, you can create a directory under
   // `~/.hyper_plugins/local/` and include it here
   // to load it and avoid it being `npm install`ed

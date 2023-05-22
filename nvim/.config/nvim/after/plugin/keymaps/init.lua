@@ -12,10 +12,10 @@ nnoremap("Q", "<Nop>")
 
 -- Normal --
 -- Better window navigation
-nnoremap("<up>", "<C-w>k")
-nnoremap("<down>", "<C-w>j")
-nnoremap("<left>", "<C-w>h")
-nnoremap("<right>", "<C-w>l")
+nnoremap("<up>", "<Nop>")
+nnoremap("<down>", "<Nop>")
+nnoremap("<left>", "<Nop>")
+nnoremap("<right>", "<Nop>")
 
 -- Resize with arrows
 nnoremap("<C-Up>", ":resize -2<CR>")
