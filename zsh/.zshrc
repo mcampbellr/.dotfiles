@@ -15,7 +15,6 @@ export SAVEHIST=$HISTSIZE
 export EDITOR="nvim"
 export TERMINAL="iterm2"
 export BROWSER="brave"
-export ZDOTDIR=$HOME/.config/zsh
 export TERM="xterm-256color"
 export HISTFILE=~/.zsh_history
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=008'
