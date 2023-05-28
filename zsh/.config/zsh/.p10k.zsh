@@ -64,9 +64,6 @@
     anaconda                # conda environment (https://conda.io/)
     pyenv                   # python environment (https://github.com/pyenv/pyenv)
     goenv                   # go environment (https://github.com/syndbg/goenv)
-    nodenv                  # node.js version from nodenv (https://github.com/nodenv/nodenv)
-    nvm                     # node.js version from nvm (https://github.com/nvm-sh/nvm)
-    nodeenv                 # node.js environment (https://github.com/ekalinin/nodeenv)
     # node_version          # node.js version
     # go_version            # go version (https://golang.org)
     # rust_version          # rustc version (https://www.rust-lang.org)
@@ -81,43 +78,26 @@
     luaenv                  # lua version from luaenv (https://github.com/cehoffman/luaenv)
     jenv                    # java version from jenv (https://github.com/jenv/jenv)
     plenv                   # perl version from plenv (https://github.com/tokuhirom/plenv)
-    phpenv                  # php version from phpenv (https://github.com/phpenv/phpenv)
-    scalaenv                # scala version from scalaenv (https://github.com/scalaenv/scalaenv)
-    haskell_stack           # haskell version from stack (https://haskellstack.org/)
-    kubecontext             # current kubernetes context (https://kubernetes.io/)
-    terraform               # terraform workspace (https://www.terraform.io)
+    # kubecontext             # current kubernetes context (https://kubernetes.io/)
+    # terraform               # terraform workspace (https://www.terraform.io)
     # terraform_version     # terraform version (https://www.terraform.io)
-    aws                     # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
-    aws_eb_env              # aws elastic beanstalk environment (https://aws.amazon.com/elasticbeanstalk/)
-    azure                   # azure account name (https://docs.microsoft.com/en-us/cli/azure)
-    gcloud                  # google cloud cli account and project (https://cloud.google.com/)
-    google_app_cred         # google application credentials (https://cloud.google.com/docs/authentication/production)
-    toolbox                 # toolbox name (https://github.com/containers/toolbox)
-    context                 # user@hostname
-    nordvpn                 # nordvpn connection status, linux only (https://nordvpn.com/)
-    ranger                  # ranger shell (https://github.com/ranger/ranger)
-    nnn                     # nnn shell (https://github.com/jarun/nnn)
-    xplr                    # xplr shell (https://github.com/sayanarijit/xplr)
-    vim_shell               # vim shell indicator (:sh)
-    midnight_commander      # midnight commander shell (https://midnight-commander.org/)
-    nix_shell               # nix shell (https://nixos.org/nixos/nix-pills/developing-with-nix-shell.html)
+    # aws                     # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
+    # aws_eb_env              # aws elastic beanstalk environment (https://aws.amazon.com/elasticbeanstalk/)
+    # azure                   # azure account name (https://docs.microsoft.com/en-us/cli/azure)
+    # gcloud                  # google cloud cli account and project (https://cloud.google.com/)
+    # google_app_cred         # google application credentials (https://cloud.google.com/docs/authentication/production)
+    # toolbox                 # toolbox name (https://github.com/containers/toolbox)
+    # ranger                  # ranger shell (https://github.com/ranger/ranger)
     # vpn_ip                # virtual private network indicator
     # load                  # CPU load
     # disk_usage            # disk usage
     # ram                   # free RAM
     # swap                  # used swap
-    todo                    # todo items (https://github.com/todotxt/todo.txt-cli)
-    timewarrior             # timewarrior tracking status (https://timewarrior.net/)
-    taskwarrior             # taskwarrior task count (https://taskwarrior.org/)
     time                    # current time
     # =========================[ Line #2 ]=========================
-    nvm
-    node_version
-    public_ip             # public IP address
-    user_ip               # example user-defined segment (see prompt_example function below)
+    # public_ip             # public IP address
     user_git               # example user-defined segment (see prompt_example function below)
-    user_rotator               # example user-defined segment (see prompt_example function below)
-    newline
+    user_nvm
     # ip                    # ip address and bandwidth usage for a specified network interface
     # public_ip             # public IP address
     # proxy                 # system-wide http/https/ftp proxy
@@ -126,29 +106,28 @@
     # example               # example user-defined segment (see prompt_example function below)
   )
 
-  function prompt_user_ip () {
-    localip=$(ipconfig getifaddr en0)
-    p10k segment -f "\u001b[0m" -i "IP - " -t "$localip"
-  }
   # Defines character set used by powerlevel10k. It's best to let `p10k configure` set it for you.
   typeset -g POWERLEVEL9K_MODE=nerdfont-complete
   # When set to `moderate`, some icons will have an extra space after them. This is meant to avoid
   # icon overlap when using non-monospace fonts. When set to `none`, spaces are not added.
   typeset -g POWERLEVEL9K_ICON_PADDING=none
 
-  function prompt_user_git () {
-    gitLocal=""
-    if git rev-parse --git-dir > /dev/null 2>&1; then
-      gitLocal=$(git config --local user.email)
+  function prompt_user_nvm () {
+    nvmLocal=""
+    # read nvm in pwd
+    if [ -f .nvmrc ]; then
+      nvmLocal=$(node -v)
+      p10k segment -f "3" -i "" -t "$nvmLocal"
     fi
-    p10k segment -f "\u001b[0m" -i "" -t "$gitLocal"
   }
 
-  function prompt_user_rotator () {
-    FILENAME="$HOME/.local/share/rotator/.rotator.json"
-    env=`cat "$FILENAME" | jq -r .currentEnv`
-    p10k segment -f "\u001b[0m" -i "" -t "$env"
+  function prompt_user_git () {
+    if git rev-parse --git-dir > /dev/null 2>&1; then
+      gitLocal=$(git config --local user.email)
+      p10k segment -f "9" -i "" -t "$gitLocal"
+    fi
   }
+
   # Basic style options that define the overall look of your prompt. You probably don't want to
   # change them.
   typeset -g POWERLEVEL9K_BACKGROUND=                            # transparent background

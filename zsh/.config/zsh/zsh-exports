@@ -1,5 +1,29 @@
 #!/bin/sh
 eval $(/opt/homebrew/bin/brew shellenv)
+eval $(thefuck --alias)
+eval "$(zoxide init zsh)"
+
+# Sets and unsets 
+unsetopt BEEP
+setopt appendhistory
+setopt HIST_SAVE_NO_DUPS # Don't write duplicate entries in the history file.
+setopt SHARE_HISTORY # Share history between all sessions.
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_FIND_NO_DUPS
+
+
+# Environment variables set everywhere
+export HISTSIZE=10000
+export SAVEHIST=$HISTSIZE
+export EDITOR="nvim"
+export TERMINAL="iterm2"
+export BROWSER="brave"
+export TERM="xterm-256color"
+export HISTFILE=~/.zsh_history
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=008'
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="$PATH:$HOME/.local/bin"
