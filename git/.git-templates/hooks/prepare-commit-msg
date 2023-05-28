@@ -1,0 +1,39 @@
+#!/bin/sh
+COMMIT_MSG_FILE=$1
+COMMIT_SOURCE=$2
+SHA1=$3
+
+# Only add custom message when there is no commit source
+# ($COMMIT_SOURCE is empty). Otherwise, keep the default message
+# proposed by Git. Possible commit sources: message, template,
+# merge, squash, or commit. 
+
+if [[ -z "$COMMIT_SOURCE" ]]; then
+  original=$(cat "$COMMIT_MSG_FILE")
+
+  # Search for ~/.gitmessage and replace {ticket} with the last word after / of the current branch name
+  branch=$(git rev-parse --abbrev-ref HEAD)
+  ticket=$(echo "$branch" | awk -F'/' '{print $NF}')
+
+  if [ ! -f "$HOME/.gitmessage" ]; then
+    commit_message="# Please add a commit message:\n{ticket}"
+  else 
+    commit_message=$(cat $HOME/.gitmessage)
+  fi
+
+
+  # Get the commit_message in its original format and replace {ticket} with the ticket number
+  # If the ticket has a format like "ABC-123" use this as ticket
+  # Otherwise, replace the {ticket} whole line with "# Refs:"
+  if [[ $ticket =~ ^[A-Z]{3}-[0-9]+$ ]]; then
+    ticket="Refs: $ticket"
+  else
+    ticket="# Refs:"
+  fi
+
+  hint=$(echo "$commit_message" | sed "s/{ticket}/$ticket/g")
+
+  echo "$hint" > "$COMMIT_MSG_FILE"
+  echo "$original" >> "$COMMIT_MSG_FILE"
+fi
+
