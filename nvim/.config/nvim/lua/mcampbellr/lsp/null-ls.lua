@@ -9,10 +9,11 @@ local diagnostics = null_ls.builtins.diagnostics
 null_ls.setup {
     debug = true,
     disabled_filetypes = { "lua" },
+    on_attach = function(client, bufnr)
+        print(client.name .. " attached")
+    end,
     sources = {
         formatting.prettierd,
         formatting.stylua,
-        diagnostics.eslint_d,
-        formatting.eslint_d,
     },
 }
