@@ -18,6 +18,7 @@ alias dot="cd $DOTFILES"
 alias crl="curl"
 alias gf="fd"
 
+alias cd='z'
 
 # Shortcuts Aliases
 alias cl="clear"

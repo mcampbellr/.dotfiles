@@ -13,25 +13,23 @@ if [[ -z "$COMMIT_SOURCE" ]]; then
 
   # Search for ~/.gitmessage and replace {ticket} with the last word after / of the current branch name
   branch=$(git rev-parse --abbrev-ref HEAD)
-  ticket=$(echo "$branch" | awk -F'/' '{print $NF}')
+  ticketId=$(echo "$branch" | awk -F'/' '{print $NF}')
+  refsLine="# Refs:"
 
   if [ ! -f "$HOME/.gitmessage" ]; then
-    commit_message="# Please add a commit message:\n{ticket}"
+    commit_message="# Please add a commit message:\n{refs}"
   else 
     commit_message=$(cat $HOME/.gitmessage)
   fi
 
-
   # Get the commit_message in its original format and replace {ticket} with the ticket number
   # If the ticket has a format like "ABC-123" use this as ticket
   # Otherwise, replace the {ticket} whole line with "# Refs:"
-  if [[ $ticket =~ ^[A-Z]{3}-[0-9]+$ ]]; then
-    ticket="Refs: $ticket"
-  else
-    ticket="# Refs:"
+  if [[ $ticketId =~ ^[A-Z]{3}-[0-9]+$ ]]; then
+    refsLine="Refs: $ticketId"
   fi
 
-  hint=$(echo "$commit_message" | sed "s/{ticket}/$ticket/g")
+  hint=$(echo "$commit_message" | sed "s/{refs}/$refsLine/g")
 
   echo "$hint" > "$COMMIT_MSG_FILE"
   echo "$original" >> "$COMMIT_MSG_FILE"
