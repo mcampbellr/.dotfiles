@@ -25,6 +25,8 @@ brew install romkatv/powerlevel10k/powerlevel10k
 
 brew install fsouza/prettierd/prettierd
 
+npm install -g tldr
+
 brew install tmux
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 git clone https://github.com/rupa/z ~/z

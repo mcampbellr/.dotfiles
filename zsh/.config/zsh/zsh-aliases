@@ -100,7 +100,7 @@ alias gri="g rebase -i"
 alias gst="g st"
 alias gemails="git log --format='%ae - (%an)' | sort | uniq"
 alias gconf="g config --global -e"
-alias gt="jump_to_worktree"
+alias gt=jump_to_worktree
 
 LOG_FORMAT="format:'%C(bold red)%h%C(reset) - %C(white)(%C(bold green)%ar%C(reset)%C(white)) %s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'"
 
@@ -133,3 +133,4 @@ alias wsp="cd ~/Workspace/"
 alias cpwd="pwd | tr -d '\n' | pbcopy && echo 'pwd copied to clipboard'"
 alias gosleep="pmset sleepnow"
 
+alias docu=tldr
