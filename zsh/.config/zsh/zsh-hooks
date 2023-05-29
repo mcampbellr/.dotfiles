@@ -1,27 +1,8 @@
-function zsh_detect_current_env() {
-  dir=`pwd`
-  # Search for the .env file
-  while [ "$dir" != "/" ]; do
-    if [ -f "$dir/.env_config" ]; then
-      env=$(cat "$dir/.env_config")
-      cg -s $env
-      break
-    fi
-    # Move up to the parent directory
-    dir=$(dirname "$dir")
-  done
-}
-
 function use_nvm_version() {
   if [ -s ".nvmrc" ]; then
     echo "Using nvm"
     nvm use
   fi
-}
-
-
-precmd () {
-  zsh_detect_current_env 
 }
 
 chpwd () {

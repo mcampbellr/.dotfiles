@@ -28,7 +28,7 @@
 	default = current
 [core]
 	editor = nvim
-	pager = bat -p
+	pager = cat
 	autocrlf = input
   ignorecase = false
 	excludesFile = ~/.gitglobalexclude

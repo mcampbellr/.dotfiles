@@ -102,6 +102,8 @@ alias gst="g st"
 alias gemails="git log --format='%ae - (%an)' | sort | uniq"
 alias gconf="g config --global -e"
 alias gt=jump_to_worktree
+alias gclm="git log -1 | sed '1,4d' | pbcopy && echo 'Commit message copied to clipboard' "
+alias gcl="git log -1 | pbcopy && echo 'Commit message copied to clipboard' "
 
 LOG_FORMAT="format:'%C(bold red)%h%C(reset) - %C(white)(%C(bold green)%ar%C(reset)%C(white)) %s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'"
 
@@ -114,9 +116,6 @@ alias y="yarn"
 alias yd="yarn run dev"
 alias yb="yarn build"
 alias ys="yarn run serve"
-
-# Custom commands
-alias cg=". $DEV_FILES/lab/rotator/rot.sh"
 
 alias dev="ss ~/Developer/"
 

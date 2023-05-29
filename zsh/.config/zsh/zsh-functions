@@ -55,8 +55,10 @@ function run_package_script {
         npm run "$script"
       fi
     fi
+  elif [[ -f Cargo.toml ]]; then
+    cargo run
   else
-    echo "No package.json found."
+    echo "No package.json or Cargo.toml found"
   fi
 }
 

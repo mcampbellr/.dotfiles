@@ -5,26 +5,52 @@ end
 
 local icons = require "mcampbellr.icons"
 
-local error_red = "#F44747"
-local warning_orange = "#ff8800"
-local info_yellow = "#FFCC66"
-local hint_blue = "#4FC1FF"
-local perf_purple = "#7C3AED"
-local note_pink = "#F78AE0"
-local temp_aqua = "#BFF3D2"
+local error_color = "#F44747"
+local warn_color = "#ff8800"
+local info_color = "#FFCC66"
+local hint_color = "#4FC1FF"
+local perf_color = "#7C3AED"
+local note_color = "#4FC1FF"
+local temp_color = "#BFF3D2"
+local question_color = "#FFC44C"
 
 todo_comments.setup {
     signs = true, -- show icons in the signs column
     sign_priority = 8, -- sign priority
     keywords = {
-        FIX = { icon = icons.ui.Bug, color = error_red, alt = { "FIXME", "BUG", "ISSUE" } },
-        TODO = { icon = icons.ui.Check, color = info_yellow },
-        HACK = { icon = icons.ui.Fire, color = warning_orange },
-        WARN = { icon = icons.diagnostics.Warning, color = warning_orange, alt = { "WARNING" } },
-        PERF = { icon = icons.ui.Dashboard, color = perf_purple, alt = { "PERFORMANCE", "OPTIMIZE" } },
-        NOTE = { icon = icons.ui.Note, color = note_pink, alt = { "QUESTION", "TICKET" } },
-        TEMP = { icon = icons.ui.Clock, color = temp_aqua, alt = { "TEMPORAL" } },
-        INFO = { icon = icons.diagnostics.Information, color = hint_blue },
+        FIX = {
+            icon = icons.ui.Bug,
+            color = error_color,
+            alt = { "FIXME", "BUG", "ISSUE" },
+        },
+        TODO = { icon = icons.ui.Check, color = info_color },
+        HACK = { icon = icons.ui.Fire, color = warn_color },
+        WARN = {
+            icon = icons.diagnostics.Warning,
+            color = warn_color,
+            alt = { "WARNING" },
+        },
+        PERF = {
+            icon = icons.ui.Dashboard,
+            color = perf_color,
+            alt = { "PERFORMANCE", "OPTIMIZE" },
+        },
+        NOTE = {
+            icon = icons.ui.Note,
+            color = note_color,
+            alt = { "TICKET" },
+        },
+        QUESTION = {
+            icon = icons.ui.Question,
+            color = question_color,
+            alt = { "HELP" },
+        },
+        TEMP = {
+            icon = icons.ui.Clock,
+            color = temp_color,
+            alt = { "TEMPORAL" },
+        },
+        INFO = { icon = icons.diagnostics.Information, color = hint_color },
     },
     highlight = {
         before = "", -- "fg" or "bg" or empty
