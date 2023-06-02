@@ -32,7 +32,11 @@ function zsh_add_completion() {
 
 function jump_to_worktree {
   if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
-    local worktree_path=$(git worktree list | sed '/bare/d' | fzf --height 40% --reverse | awk '{print $1}')
+    current=$(pwd | xargs basename)
+    list_of_worktrees=$(git worktree list | sed -E '/bare|\.repo/d' | sed "/$current/d")
+
+    local worktree_path=$(echo $list_of_worktrees | fzf --height 40% --reverse | awk '{print $1}')
+
     cd "$worktree_path"
   else
     echo "Not inside a worktree repo."
@@ -62,3 +66,12 @@ function run_package_script {
   fi
 }
 
+function last-commit {
+  if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    hash=$(g log -1 --oneline | awk '{print $1}')
+    echo $hash | pbcopy && echo "Commit $hash copied to clipboard"
+  else
+    echo "Not a git repository wtf"
+    return 1
+  fi
+}

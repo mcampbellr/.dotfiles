@@ -38,6 +38,10 @@ do
       ADD_ORIGIN=true
       shift
       ;;
+    -n|--none)
+      BRANCH_TYPE="none"
+      shift
+      ;;
     *)
       echo "Unknown flag: $key"
       exit 1
@@ -48,19 +52,17 @@ done
 # Read the .repoconfig file
 if [ -f "$JSON_FILE" ]; then
   PROJECT_PREFIX=$(jq -r '.projectPrefix' "$JSON_FILE")
-else
-  echo "Error: $JSON_FILE does not exist"
-  exit 1
 fi
 
 if [ -z "$BRANCH" ]; then
-  echo "Error: branch value not found in config file: $config_file"
+  echo "Error: branch value not found in config file: $JSON_FILE"
   exit 1
 fi
 
 # Prompt the user to select the type of branch they want to create using fzf
 if [ -z "$BRANCH_TYPE" ]; then
-  BRANCH_TYPE=`cat ~/.branches | fzf --reverse --height 40% --prompt  "Select branch type: "`
+  # read ~/.branches and append MAIN
+  BRANCH_TYPE=$(cat < ~/.branches | fzf --reverse --height 40% --prompt  "Select branch type: ")
 fi
 
 # Check if a branch type was selected
@@ -72,6 +74,12 @@ fi
 # Create the branch name based on the projectPrefix, ticketNumber, and branch type
 if [ "$BRANCH_TYPE" = "release" ]; then
   BRANCH_NAME="${BRANCH_TYPE}/${BRANCH}"
+elif [ "$BRANCH_TYPE" = "none" ]; then
+  if [ "$PROJECT_PREFIX" = null ]; then
+    BRANCH_NAME="${BRANCH}"
+  else 
+    BRANCH_NAME="${PROJECT_PREFIX}-${BRANCH}"
+  fi
 else
   BRANCH_NAME="${BRANCH_TYPE}/${PROJECT_PREFIX}-${BRANCH}"
 fi
@@ -81,12 +89,12 @@ if [ "$ADD_ORIGIN" = true ]; then
   git fetch -ap && git worktree add -B "$BRANCH_NAME" "../${BRANCH}" "origin/$BRANCH_NAME"
 
   if [ "$MOVE" = true ]; then
-    cd ../$BRANCH
+    cd ../"$BRANCH" || exit
   fi
 else
   git worktree add -B "$BRANCH_NAME" "../${BRANCH}" 
   if [ "$MOVE" = true ]; then
-    cd ../$BRANCH
+    cd ../"$BRANCH" || exit
   fi
 fi
 

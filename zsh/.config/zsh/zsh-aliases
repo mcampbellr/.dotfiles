@@ -4,6 +4,7 @@
 alias n='nvim'
 alias pm='npm'
 alias t=zox
+alias cat='bat -p'
 
 alias debug="npm run start:debug"
 alias serve="npm run serve"
@@ -53,23 +54,14 @@ alias notess="ss ~/Notes/"
 alias ccd=mkcdir
 # configs aliases
 alias zshrc="nvim $DOTFILES/zsh/"
-alias src="source ~/.zshrc && echo '< zsh config reloaded >'"
+alias src="source $ZDOTDIR/.zshrc && echo '< zsh config reloaded >'"
 
 # tmux aliases
 alias tm='tmux'
 alias tmk="tm kill-server"
 
-# browser aliases
-alias sof='stackoverflow'
-alias yt='youtube'
-
-# npm version aliases
-alias npmci="nvm use & npm ci"
-alias patch="yarn version --patch"
-alias minor="yarn version --minor"
-alias major="yarn version --major"
-
 alias at='alacritty-themes'
+alias zshal="nvim ~/.config/zsh/zsh-aliases"
 
 # programing language aliases
 # python
@@ -86,7 +78,7 @@ alias gpull="g pull"
 alias gsh="g stash -u"
 alias gdff="g diff"
 alias grb="g rebase"
-alias gcommit="g commit"
+alias gco="g commit"
 alias glast="g show HEAD --quiet"
 alias gwta="g cb"
 alias gwtr="g worktree remove"
@@ -101,9 +93,10 @@ alias gri="g rebase -i"
 alias gst="g st"
 alias gemails="git log --format='%ae - (%an)' | sort | uniq"
 alias gconf="g config --global -e"
+alias gconfl="g config --local -e"
 alias gt=jump_to_worktree
 alias gclm="git log -1 | sed '1,4d' | pbcopy && echo 'Commit message copied to clipboard' "
-alias gcl="git log -1 | pbcopy && echo 'Commit message copied to clipboard' "
+alias glc=last-commit
 
 LOG_FORMAT="format:'%C(bold red)%h%C(reset) - %C(white)(%C(bold green)%ar%C(reset)%C(white)) %s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'"
 
@@ -123,14 +116,14 @@ alias doc='docker'
 alias dco="docker compose"
 
 alias olocal="open http://localhost"
-alias ht=htop
 
 alias c='cargo'
 
-alias top="ss ~/Workspace/tevora/top-frontend && ss ~/Workspace/tevora/portal-backend"
-alias wsp="cd ~/Workspace/"
+alias top="htop"
 
 alias cpwd="pwd | tr -d '\n' | pbcopy && echo 'pwd copied to clipboard'"
-alias gosleep="pmset sleepnow"
+alias sleep="pmset sleepnow"
+
+alias gswr="git config --local --add remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'"
 
 alias docu=tldr

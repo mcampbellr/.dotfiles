@@ -1,0 +1,12 @@
+{
+  "files": {
+    "env": {
+      "src": ".env",
+      "dest": "."
+    }
+  },
+  "scripts": {
+    "packages": "echo 'test'",
+    "packages2": "git status"
+  }
+}

@@ -25,6 +25,8 @@ export TERM="xterm-256color"
 export HISTFILE=~/.zsh_history
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=008'
 
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/.rvm/bin"
@@ -43,8 +45,8 @@ export CHROME_EXECUTABLE="/Applications/Brave Browser.app/Contents/MacOS/Brave B
 export FZF_COMPLETION_TRIGGER='--'
 export RUST_BACKTRACE=0
 
-
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" 
+
+. "$HOME/.cargo/env"
 

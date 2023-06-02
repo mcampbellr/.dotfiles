@@ -126,8 +126,12 @@ return packer.startup(function(use)
     -- Git
     use "lewis6991/gitsigns.nvim"
     use "dinhhuy258/git.nvim"
+
     -- DAP
     use "mfussenegger/nvim-dap"
+    use "rcarriga/nvim-dap-ui"
+    use "Weissle/persistent-breakpoints.nvim"
+    use "David-Kunz/jester"
 
     if PACKER_BOOTSTRAP then
         require("packer").sync()

@@ -10,5 +10,5 @@ if [[ -n "$origin" ]];  then
 
   new_url=${new_url%.git*}
 
-  open $new_url
+  open "$new_url"
 fi
