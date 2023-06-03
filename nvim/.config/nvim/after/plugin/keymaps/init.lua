@@ -35,7 +35,7 @@ nnoremap("<S-l>", ":bnext<CR>")
 nnoremap("<S-h>", ":bprevious<CR>")
 
 -- Resource the nvim config
-nmap("<Leader>rs", ":so ~/.config/nvim/init.lua<CR>")
+nnoremap("<leader>rs", ":luafile %<CR>")
 
 -- Keep the cursor center
 nnoremap("n", "nzzzv")
@@ -70,7 +70,10 @@ end)
 
 -- Harpoon
 for i = 1, 19 do
-    nnoremap("<F" .. i .. ">", ":lua require('harpoon.ui').nav_file(" .. i .. ")<CR>")
+    nnoremap(
+        "<F" .. i .. ">",
+        ":lua require('harpoon.ui').nav_file(" .. i .. ")<CR>"
+    )
 end
 
 -- Visual --
@@ -84,4 +87,7 @@ vnoremap("K", ":m '<-2<CR>gv=gv")
 -- Paste in visual_mode
 vnoremap("p", '"_dP')
 
-vnoremap("<c-s>", ":'<,'>TakeScreenShot<cr> | :! open ~/Images/code-screenshot/ <CR>")
+vnoremap(
+    "<c-s>",
+    ":'<,'>TakeScreenShot<cr> | :! open ~/Images/code-screenshot/ <CR>"
+)

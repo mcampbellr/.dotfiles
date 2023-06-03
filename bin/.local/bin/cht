@@ -1,6 +1,6 @@
 #!/bin/bash
 
-selected=$(cat ~/.languages ~/.commands | fzf)
+selected=$(cat ~/.local/share/cht/.languages ~/.local/share/cht/.commands | fzf)
 
 if [[ -z $selected ]]; then
     exit 0

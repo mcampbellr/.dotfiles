@@ -1,59 +1,11 @@
-local status_ok, onedark = pcall(require, "onedark")
-if not status_ok then
-    return
-end
-
 vim.g.hybrid_transparent_background = 1
 vim.g.enable_italic_font = 1
 vim.g.enable_bold_font = 1
 vim.g.gruvbox_material_enable_italic = 1
 vim.g.gruvbox_material_cursor = "orange"
 
--- Lua
-onedark.setup {
-    -- Main options --
-    style = "darker", -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
-    transparent = true, -- Show/hide background
-    term_colors = true, -- Change terminal color as per the selected theme style
-    ending_tildes = true, -- Show the end-of-buffer tildes. By default they are hidden
-    cmp_itemkind_reverse = false, -- reverse item kind highlights in cmp menu
-    -- toggle theme style ---
-    toggle_style_key = "<leader>ts", -- keybind to toggle theme style. Leave it nil to disable it, or set it to a string, for example "<leader>ts"
-    toggle_style_list = {
-        "dark",
-        "darker",
-        "cool",
-        "deep",
-        "warm",
-        "warmer",
-        "light",
-    }, -- List of styles to toggle between
-
-    -- Change code style ---
-    -- Options are italic, bold, underline, none
-    -- You can configure multiple style with comma separated, For e.g., keywords = 'italic,bold'
-    code_style = {
-        comments = "italic",
-        keywords = "none",
-        functions = "none",
-        strings = "none",
-        variables = "none",
-    },
-
-    -- Lualine options --
-    lualine = {
-        transparent = true, -- lualine center bar transparency
-    },
-
-    -- Plugins Config --
-    diagnostics = {
-        darker = true, -- darker colors for diagnostic
-        undercurl = true, -- use undercurl instead of underline for diagnostics
-        background = true, -- use background color for virtual text
-    },
-}
-
-onedark.load()
+vim.cmd [[colorscheme gruvbox-material]]
+-- vim.cmd [[colorscheme onedark]]
 
 vim.cmd [[
   hi Normal guibg=NONE
@@ -64,7 +16,7 @@ vim.cmd [[
   hi IlluminatedWordWrite guibg=#333540
 
   hi Normal guibg=NONE ctermbg=NONE
-  hi Visual guibg=#BF68D9 guifg=black
+  hi Visual guibg=#CB66A4 guifg=black
   hi LineNr guibg=NONE guifg=#5A6895
   hi SignColumn guibg=NONE ctermbg=NONE
   hi EndOfBuffer guibg=NONE ctermbg=NONE
@@ -75,6 +27,36 @@ vim.cmd [[
   hi VertSplit guibg=NONE
   hi SignColumn guibg=NONE
   hi Folded guibg=NONE guifg=orange
+
+  hi TodoBgTEST guibg=NONE
+  hi TodoSignOUESTION guibg=NONE
+  hi TodoF9QUESTION guibg=NONE
+  hi TodoBaQUESTION guibg=NONE
+  hi TodoSignWARN guibg=NONE
+  hi TodoSignTODO guibg=NONE
+  hi TodoSignTEST guibg=NONE
+  hi TodoSignTEMP guibg=NONE
+  hi TodoSianPERF guibg=NONE
+  hi TodoSignNOTE guibg=NONE
+  hi TodoSignINFO guibg=NONE
+  hi TodoSignHACK guibg=NONE
+  hi TodoSianFIX guibg=NONE
+  hi TodoFgWARN guibg=NONE
+  hi TodoFgTODO guibg=NONE
+  hi TodoFgTEST guibg=NONE
+  hi TodoF9TEMP guibg=NONE
+  hi TodoFgPERF guibg=NONE
+  hi TodoFgNOTE guibg=NONE
+  hi TodoFgINFO guibg=NONE
+  hi TodoFgHACK guibg=NONE
+  hi TodoBgTODO guibg=NONE
+  hi TodoBgTEMPI guibg=NONE
+  hi TodoBaPERF guibg=NONE
+  hi BgNOTE guibg=NONE
+  hi BgINFO guibg=NONE
+  hi TodoFaFIX guibg=NONE
+  hi TodoBgFIX guibg=NONE
+  hi Todo guibg=NONE
 
   hi TabLineSel guibg=NONE
   hi TabLine guibg=NONE

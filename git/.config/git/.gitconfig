@@ -3,7 +3,7 @@
 	email = mariocampbellr@gmail.com
 [init]
 	defaultBranch = main
-	templatedir = /Users/mcampbellr/.git-templates
+	templatedir = ~/.config/git/.git-templates
 [credential]
 	helper = cache
 [filter "lfs"]
@@ -23,7 +23,7 @@
   sv = save
   rs = reset
 [commit]
-	template = ~/.gitmessage
+	template = ~/.config/git/.gitmessage
 [push]
 	default = current
 [pull]
@@ -33,7 +33,7 @@
 	pager = cat
 	autocrlf = input
   ignorecase = false
-	excludesFile = ~/.gitglobalexclude
+	excludesFile = ~/.config/git/.gitglobalexclude
 [checkout]
   defaultRemote = origin
 [worktree]

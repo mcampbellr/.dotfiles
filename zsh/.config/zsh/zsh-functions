@@ -75,3 +75,12 @@ function last-commit {
     return 1
   fi
 }
+
+function openOrSearch () {
+  if [ -z "$1" ]
+  then
+    open -a 'Brave Browser'
+  else
+    open -a 'Brave Browser' "https://www.google.com/search?q=${(j:+:)@[1,-1]}"
+  fi
+}

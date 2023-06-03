@@ -24,8 +24,7 @@ alias cd='z'
 # Shortcuts Aliases
 alias cl="clear"
 alias ls='exa --no-user --icons'
-alias la='ls -laFh'
-alias ll='ls -l'
+alias la='ls -Fh -a1 -l --no-user --no-time --git'
 alias tree="ls -T -L 3 --git-ignore"
 alias ip="ifconfig | grep 'inet ' | grep -v 127.0.0.1 | awk '{print \$2}'"
 alias fk="fuck"
@@ -127,3 +126,4 @@ alias sleep="pmset sleepnow"
 alias gswr="git config --local --add remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'"
 
 alias docu=tldr
+
