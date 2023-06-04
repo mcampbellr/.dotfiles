@@ -5,6 +5,6 @@ require "mcampbellr.core.plugins"
 
 require "mcampbellr.cmp"
 require "mcampbellr.lsp"
-require "mcampbellr.debugger"
+require "mcampbellr.dap"
 require "mcampbellr.autocommands"
 require "mcampbellr.telescope"

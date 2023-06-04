@@ -3,11 +3,6 @@ autoload -Uz colors && colors
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-if [ -z "$TMUX" ]
-then
-  /opt/homebrew/bin/tmux attach -t Developer || /opt/homebrew/bin/tmux new -s Developer -c ~/Developer
-fi
-
 # check the ssh and add to keychain if they are not there
 sshlist="$(ssh-add -l)"
 if [[ $sshlist =~ 'The agent has no identities.' ]]; then
@@ -49,4 +44,10 @@ zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 zsh_add_plugin "hlissner/zsh-autopair"
 zsh_add_plugin "changyuheng/zsh-interactive-cd"
+
+# open a new tmux session or attach to an existing one called Developer
+
+if [[ -z "$TMUX" ]] && [[ "$TERM" != "screen" ]] && [[ "$TERM" != "screen-256color" ]]; then
+  t Developer
+fi
 

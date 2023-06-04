@@ -22,8 +22,7 @@ vim.cmd [[
     autocmd BufWritePost plugins.lua source <afile> | PackerSync
   augroup end
 ]]
--- NOTE: test
--- Use a protected call so we don't error out on first use
+
 local status_ok, packer = pcall(require, "packer")
 if not status_ok then
     return
@@ -112,7 +111,6 @@ return packer.startup(function(use)
 
     -- Quick list
     use { "kevinhwang91/nvim-bqf", ft = "qf" }
-
     use "ThePrimeagen/harpoon"
 
     -- Treesitter

@@ -123,7 +123,9 @@ alias top="htop"
 alias cpwd="pwd | tr -d '\n' | pbcopy && echo 'pwd copied to clipboard'"
 alias sleep="pmset sleepnow"
 
-alias gswr="git config --local --add remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'"
+alias set-up-remotes="git config --local --add remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'"
 
 alias docu=tldr
 
+# add new empty slot in dock
+alias adddock="defaults write com.apple.dock persistent-apps -array-add '{"tile-type"="spacer-tile";}' && killall Dock"

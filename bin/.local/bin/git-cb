@@ -62,7 +62,7 @@ fi
 # Prompt the user to select the type of branch they want to create using fzf
 if [ -z "$BRANCH_TYPE" ]; then
   # read ~/.branches and append MAIN
-  BRANCH_TYPE=$(cat < ~/.branches | fzf --reverse --height 40% --prompt  "Select branch type: ")
+  BRANCH_TYPE=$(cat < ~/.config/git/.branches | fzf --reverse --height 40% --prompt  "Select branch type: ")
 fi
 
 # Check if a branch type was selected
@@ -75,7 +75,8 @@ fi
 if [ "$BRANCH_TYPE" = "release" ]; then
   BRANCH_NAME="${BRANCH_TYPE}/${BRANCH}"
 elif [ "$BRANCH_TYPE" = "none" ]; then
-  if [ "$PROJECT_PREFIX" = null ]; then
+  echo "$PROJECT_PREFIX"
+  if [ "$PROJECT_PREFIX" = null ] || [ "$PROJECT_PREFIX" = "" ]; then
     BRANCH_NAME="${BRANCH}"
   else 
     BRANCH_NAME="${PROJECT_PREFIX}-${BRANCH}"
@@ -92,9 +93,8 @@ if [ "$ADD_ORIGIN" = true ]; then
     cd ../"$BRANCH" || exit
   fi
 else
-  git worktree add -B "$BRANCH_NAME" "../${BRANCH}" 
-  if [ "$MOVE" = true ]; then
-    cd ../"$BRANCH" || exit
-  fi
+  echo "Creating branch: $BRANCH_NAME"
+  # cerate the branch and then move to that worktree
+  git worktree add -B "$BRANCH_NAME" "../${BRANCH}" && cd ../"$BRANCH" || exit
 fi
 

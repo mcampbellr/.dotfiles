@@ -25,6 +25,18 @@ dap.configurations.typescript = {
     },
 }
 
+dap.configurations.typescriptreact = {
+    {
+        type = "node",
+        name = "node attach",
+        request = "attach",
+        program = "${file}",
+        cwd = vim.fn.getcwd(),
+        sourceMaps = true,
+        protocol = "inspector",
+    },
+}
+
 local mason_path = vim.fn.glob(vim.fn.stdpath "data" .. "/mason/")
 
 dap.adapters.node = {
@@ -79,7 +91,30 @@ vim.fn.sign_define("DapBreakpoint", {
 
 dapui.setup()
 
+--- read the dir to see if contains the .nvim folder if not the use the .vscode folder
+local function find_launch_json()
+    local cwd = vim.fn.getcwd()
+    local path = cwd .. "/.nvim/launch.json"
+
+    local f = io.open(path, "r")
+
+    if f ~= nil then
+        io.close(f)
+        return path
+    end
+
+    path = cwd .. "/.vscode/launch.json"
+
+    f = io.open(path, "r")
+    if f ~= nil then
+        io.close(f)
+        return path
+    end
+
+    return nil
+end
+
 require("dap.ext.vscode").load_launchjs(
-    nil,
+    find_launch_json(),
     { node = { "typescript", "typescriptreact" } }
 )
