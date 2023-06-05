@@ -96,18 +96,18 @@ local function find_launch_json()
     local cwd = vim.fn.getcwd()
     local path = cwd .. "/.nvim/launch.json"
 
-    local f = io.open(path, "r")
+    local file = io.open(path, "r")
 
-    if f ~= nil then
-        io.close(f)
+    if file ~= nil then
+        io.close(file)
         return path
     end
 
     path = cwd .. "/.vscode/launch.json"
 
-    f = io.open(path, "r")
-    if f ~= nil then
-        io.close(f)
+    file = io.open(path, "r")
+    if file ~= nil then
+        io.close(file)
         return path
     end
 
