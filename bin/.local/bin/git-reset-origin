@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# ask user to confirm reset
+read -p "Are you sure you want to reset to origin? (y/n) " -n 1 -r 
+
+# if user confirms, reset to origin
+# get current branch name
+current_branch=$(git branch | grep \* | cut -d ' ' -f2)
+echo ""
+
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+  git fetch origin "$current_branch" &&   git reset --hard origin/"$current_branch"
+else 
+  echo "Reset aborted"
+fi
+

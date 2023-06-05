@@ -29,7 +29,6 @@ fi
 
 _comp_options+=(globdots)		# Include hidden files.
 
-
 source "$ZDOTDIR/zsh-functions"
 
 # Normal files to source
@@ -44,8 +43,6 @@ zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 zsh_add_plugin "hlissner/zsh-autopair"
 zsh_add_plugin "changyuheng/zsh-interactive-cd"
-
-# open a new tmux session or attach to an existing one called Developer
 
 if [[ -z "$TMUX" ]] && [[ "$TERM" != "screen" ]] && [[ "$TERM" != "screen-256color" ]]; then
   t Developer

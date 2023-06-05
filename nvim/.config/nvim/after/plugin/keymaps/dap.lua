@@ -4,7 +4,7 @@ nnoremap("<leader>dc", "<cmd>DapContinue<CR>")
 nnoremap("<leader>do", "<cmd>DapStepOver<CR>")
 nnoremap("<leader>dt", "<cmd>PBToggleBreakpoint<CR>")
 
-nnoremap("<leader>dL", "<cmd>PBClearAllBreakPoints<CR>")
+nnoremap("<leader>dL", "<cmd>PBClearAllBreakpoints<CR>")
 nnoremap("<leader>dl", "<cmd>lua require('dap').list_breakpoints(true)<cr>")
 
 nnoremap("<leader>du", "<cmd>lua require('dapui').toggle()<CR>")

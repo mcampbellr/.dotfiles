@@ -40,38 +40,34 @@ packer.init {
 -- Install your plugins here
 return packer.startup(function(use)
     -- Required Plugins
-    use "wbthomason/packer.nvim" -- Have packer manage itself
-    use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
-    use "lewis6991/impatient.nvim" -- Lua speed loader
-    use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
-    use "akinsho/bufferline.nvim"
+    use { "wbthomason/packer.nvim" } -- Have packer manage itself
+    use { "nvim-lua/popup.nvim" } -- An implementation of the Popup API from vim in Neovim
+    use { "lewis6991/impatient.nvim" } -- Lua speed loader
+    use { "nvim-lua/plenary.nvim" } -- Useful lua functions used ny lots of plugins
+    use { "akinsho/bufferline.nvim" }
 
     -- Custom Plugins
-    use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
-    use "Mephistophiles/surround.nvim" -- surround things easily
-    use "RRethy/vim-illuminate"
+    use { "windwp/nvim-autopairs" } -- Autopairs, integrates with both cmp and treesitter
+    use { "Mephistophiles/surround.nvim" } -- surround things easily
 
     -- Better Comments
-    use "numToStr/Comment.nvim"
-    use "folke/todo-comments.nvim"
-    use "JoosepAlviste/nvim-ts-context-commentstring"
+    use { "numToStr/Comment.nvim" }
+    use { "folke/todo-comments.nvim" }
+    use { "JoosepAlviste/nvim-ts-context-commentstring" }
 
     -- File Navigation
-    use "kyazdani42/nvim-tree.lua"
-    use "nvim-lualine/lualine.nvim"
-    -- Search and Replace
-    use "windwp/nvim-spectre"
-    use "github/copilot.vim"
+    use { "kyazdani42/nvim-tree.lua" }
+    use { "nvim-lualine/lualine.nvim" }
+    -- Search and Replacke
+    use { "windwp/nvim-spectre" }
+    use { "github/copilot.vim" }
 
     -- Colors in Text
-    use "norcalli/nvim-colorizer.lua"
+    use { "norcalli/nvim-colorizer.lua" }
 
     -- Themes
-    use "sainnhe/gruvbox-material"
-    use "navarasu/onedark.nvim"
-    use "xiyaowong/nvim-transparent"
-    use "Yazeed1s/minimal.nvim"
-    use "phha/zenburn.nvim"
+    use { "sainnhe/gruvbox-material" }
+    use { "xiyaowong/nvim-transparent" }
 
     -- Cmp Plugins
     use {
@@ -99,7 +95,7 @@ return packer.startup(function(use)
         },
     }
     -- Tmux Integrations
-    use "christoomey/vim-tmux-navigator"
+    use { "christoomey/vim-tmux-navigator" }
 
     -- Telescope
     use {
@@ -111,25 +107,25 @@ return packer.startup(function(use)
 
     -- Quick list
     use { "kevinhwang91/nvim-bqf", ft = "qf" }
-    use "ThePrimeagen/harpoon"
+    use { "ThePrimeagen/harpoon" }
 
     -- Treesitter
     use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
-    use "windwp/nvim-ts-autotag"
-    use "romgrk/nvim-treesitter-context"
+    use { "windwp/nvim-ts-autotag" }
+    use { "romgrk/nvim-treesitter-context" }
 
     -- Undotree
-    use "mbbill/undotree"
+    use { "mbbill/undotree" }
 
     -- Git
-    use "lewis6991/gitsigns.nvim"
-    use "dinhhuy258/git.nvim"
+    use { "dinhhuy258/git.nvim" }
+    use { "lewis6991/gitsigns.nvim" }
 
     -- DAP
-    use "mfussenegger/nvim-dap"
-    use "rcarriga/nvim-dap-ui"
-    use "Weissle/persistent-breakpoints.nvim"
-    use "David-Kunz/jester"
+    use { "David-Kunz/jester" }
+    use { "Weissle/persistent-breakpoints.nvim" }
+    use { "mfussenegger/nvim-dap" }
+    use { "rcarriga/nvim-dap-ui" }
 
     if PACKER_BOOTSTRAP then
         require("packer").sync()

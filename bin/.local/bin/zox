@@ -94,7 +94,9 @@ if [ $# -eq 0 ]; then             # no argument provided
 else # argument provided
 	zoxide query "$1" &>/dev/null
 	ZOXIDE_RESULT_EXIT_CODE=$?
-	if [ $ZOXIDE_RESULT_EXIT_CODE -eq 0 ]; then # zoxide result found
+  if [ "$1" = "." ]; then
+    RESULT=$(pwd)
+	elif [ $ZOXIDE_RESULT_EXIT_CODE -eq 0 ]; then # zoxide result found
 		RESULT=$(zoxide query "$1")
 	else # no zoxide result found
 		ls "$1" &>/dev/null

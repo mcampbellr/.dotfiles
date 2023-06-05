@@ -6,75 +6,76 @@ Color_Off='\033[0m'       # Text Reset
 Red='\033[0;31m'          # Red
 Green='\033[0;32m'        # Green
 
-copy_files () {
-  if [[ ! -e $config ]]; then
-    if [[ -e ../$config ]]; then
-      config="../$config"
-    else 
-      echo -e "${Red}-- Config file does not exist --${Color_Off}"
-      exit 1
-    fi
+copy_files_from_config () {
+  files=$(jq -r '.files | keys[]' < ../$config)
+
+  if [[ ${#files} -eq 0 ]]; then
+    echo -e "${Red}No files found in config file${Color_Off}"
+  else 
+    for file in $files; do
+      src=$(jq -r ".files.$file.src" < ../$config)
+
+      src=$(echo "$src" | sed 's/^\.\///')
+      src="../$src"
+
+      if [[ ! -e $src ]]; then
+        echo -e "${Red}File $src does not exist${Color_Off}"
+        continue
+      fi
+
+      dest=$(jq -r ".files.$file.dest" < ../$config)
+
+      mkdir -p "$(dirname "$dest")" && cp "$src" "$dest"
+      echo -e "${Green}File $src copied to $dest${Color_Off}"
+    done
   fi
-
-  json=$(cat $config)
-  json_files=$(echo "$json" | jq -r .files)
-  file_keys=$(echo "$json_files" | jq -r keys[])
-
-  for ((i = 0; i < ${#file_keys[@]}; i++)); do
-    local row=${file_keys[$i]}
-
-    file=$(echo "$json_files" | jq -r '.'"$row"' | .src')
-    dest=$(echo "$json_files" | jq -r '.'"$row"' | .dest')
-    path=${dest%/}/
-
-    if [[ ! -e $file || ! -s $file ]]; then
-      echo "file $file not exist"
-      exit 1
-    elif [[ ! -d $path ]]; then
-      mkdir "$path"
-    fi 
-    cp "$file" "$path" && echo -e "${Green}success:${Color_Off} $file"
-  done
 }
 
-run_scripts () {
-  if [[ ! -e $config ]]; then
-    if [[ -e ../$config ]]; then
-      config="../$config"
-    else 
-      echo -e "${Red}-- Config file does not exist --${Color_Off}"
-      exit 0
-    fi
+run_scripts_from_config () {
+  scripts=$(jq -r '.scripts | keys[]' < ../$config)
+
+  if [[ ${#scripts} -eq 0 ]]; then
+    echo -e "${Red}No scripts found in config file${Color_Off}"
+  else 
+    for script in $scripts; do
+      command=$(jq -r ".scripts.$script" < ../$config)
+      echo -e "${Green}Running $command${Color_Off}"
+
+      eval "$command"
+    done
   fi
-
-  json=$(cat $config)
-  json_scripts=$(echo "$json" | jq .scripts)
-  scripts_keys=$(echo "$json_scripts" | jq -r keys[])
-  for ((i = 0; i < ${#scripts_keys[@]}; i++)); do
-    row=${scripts_keys[$i]}
-    cmd=$(echo "$json_scripts" | jq -r '.'"$row")
-
-    $cmd && echo -e "${Green}success running:${Color_Off} $cmd" || echo "error executing script ${cmd}"
-  done
 }
 
 createConfigFile () {
   if [[ -e $config ]]; then
-    echo -e "${Red}-- Config file already exist --${Color_Off}"
-    exit 1
+    reply='n'
+    echo -e "${Red}Config file already exists${Color_Off}"
+
+    read -p "Do you want to overwrite it? [y/n] " -n 1 -r
+    echo  
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+      reply='y'
+    fi
+
+    if [[ $reply == 'n' ]]; then
+      echo -e "${Red}Aborting${Color_Off}"
+      exit 1
+    fi
+
+    echo -e "${Green}Creating config file${Color_Off}"
   else 
-    echo "creating new .repoconfig file"
-    cat "$HOME"/.config/gwt/.repoconfig.example > $config
-    echo -e "${Green}-- Config file created --${Color_Off}"
+    echo -e "${Green}Creating config file${Color_Off}" 
   fi
+
+  cat "$HOME"/.config/gwt/.repoconfig.example > $config
 }
 
 if [[ $# -eq 0 ]]; then 
   echo "Reading config file"
   ####### FILES
-  copy_files
+  copy_files_from_config
   ###### SCRIPTS
-  run_scripts
+  run_scripts_from_config
 else
   while :; do
     case $1 in
@@ -83,11 +84,11 @@ else
         break
         ;;
       -f)
-        copy_files
+        copy_files_from_config
         break
         ;;
       -s)
-        run_scripts
+        run_scripts_from_config
         break
         ;;
       *)

@@ -8,7 +8,7 @@ autocmd("TextYankPost", {
     callback = function()
         vim.highlight.on_yank {
             higroup = "Visual",
-            timeout = 50,
+            timeout = 40,
         }
     end,
 })
@@ -21,7 +21,6 @@ vim.cmd [[
     autocmd FileType qf set nobuflisted
     autocmd CmdWinEnter * quit
     autocmd BufEnter * :set colorcolumn=80
-
     autocmd FileType git.nvim,qf setlocal cursorline
   augroup end
 
@@ -59,10 +58,7 @@ vim.cmd [[
     autocmd FileType,BufEnter NvimTree* setlocal cursorline
   augroup END
 
-  au BufRead,BufNewFile *.prettierrc set filetype=jsonc
-  au BufRead,BufNewFile .repoconfig set filetype=jsonc
-  au BufRead,BufNewFile *.json set filetype=jsonc
-  au BufRead,BufNewFile .env.* set filetype=sh
+  au BufRead,BufNewFile *.prettierrc,.repoconfig,*.json set filetype=jsonc
   au BufRead,BufNewFile *.styl set filetype=sass
   au BufRead,BufNewFile *.txt setlocal spell
 ]]

@@ -3,20 +3,9 @@ if not status then
     return
 end
 
+local M = {}
+
 local protocol = require "vim.lsp.protocol"
-
-local augroup_format = vim.api.nvim_create_augroup("Format", { clear = true })
-
-local enable_format_on_save = function(_, bufnr)
-    vim.api.nvim_clear_autocmds { group = augroup_format, buffer = bufnr }
-    vim.api.nvim_create_autocmd("BufWritePre", {
-        group = augroup_format,
-        buffer = bufnr,
-        callback = function()
-            vim.lsp.buf.format { bufnr = bufnr }
-        end,
-    })
-end
 
 local function lsp_keymaps(bufnr)
     local opts = { noremap = true, silent = true }
@@ -51,13 +40,6 @@ end
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
-    vim.cmd [[
-        augroup format_on_save
-        autocmd!
-        autocmd BufWritePre * lua vim.lsp.buf.format()
-        augroup end
-    ]]
-
     if
         client.name == "volar"
         or client.name == "tsserver"
@@ -151,26 +133,12 @@ nvim_lsp.rust_analyzer.setup {
     capabilities = capabilities,
 }
 
-nvim_lsp.yamlls.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    settings = {
-        validate = {
-            enable = true,
-        },
-        schemas = require("schemastore").yaml.schemas(),
-    },
-}
-
 nvim_lsp.jsonls.setup {
     on_attach = on_attach,
     capabilities = capabilities,
     settings = {
         json = {
             schemas = require("schemastore").json.schemas(),
-            validate = {
-                enable = true,
-            },
         },
     },
 }
@@ -245,3 +213,36 @@ local config = {
 }
 
 vim.diagnostic.config(config)
+
+function M.enable_format_on_save()
+    vim.cmd [[
+    augroup format_on_save
+      autocmd!
+      autocmd BufWritePre * lua vim.lsp.buf.format({ async = false })
+    augroup end
+  ]]
+    vim.notify "Enabled format on save"
+end
+
+function M.disable_format_on_save()
+    M.remove_augroup "format_on_save"
+    vim.notify "Disabled format on save"
+end
+
+function M.toggle_format_on_save()
+    if vim.fn.exists "#format_on_save#BufWritePre" == 0 then
+        M.enable_format_on_save()
+    else
+        M.disable_format_on_save()
+    end
+end
+
+function M.remove_augroup(name)
+    if vim.fn.exists("#" .. name) == 1 then
+        vim.cmd("au! " .. name)
+    end
+end
+
+vim.cmd [[ command! LspToggleAutoFormat execute 'lua require("mcampbellr.lsp.handlers").toggle_format_on_save()' ]]
+
+return M
