@@ -70,6 +70,7 @@ createConfigFile () {
   cat "$HOME"/.config/gwt/.repoconfig.example > $config
 }
 
+
 if [[ $# -eq 0 ]]; then 
   echo "Reading config file"
   ####### FILES

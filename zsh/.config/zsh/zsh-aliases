@@ -31,7 +31,7 @@ alias fk="fuck"
 
 
 alias cal="open -a Calendar"
-alias br=openOrSearch
+alias br=open-or-search
 
 mkcdir () {
   mkdir -p -- "$1" &&

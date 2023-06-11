@@ -52,6 +52,7 @@ local on_attach = function(client, bufnr)
     end
 
     lsp_keymaps(bufnr)
+    M.enable_format_on_save()
 end
 
 protocol.CompletionItemKind = {
@@ -112,7 +113,6 @@ nvim_lsp.lua_ls.setup {
     capabilities = capabilities,
     on_attach = function(client, bufnr)
         on_attach(client, bufnr)
-        enable_format_on_save(client, bufnr)
     end,
     settings = {
         Lua = {
@@ -216,24 +216,24 @@ vim.diagnostic.config(config)
 
 function M.enable_format_on_save()
     vim.cmd [[
-    augroup format_on_save
-      autocmd!
-      autocmd BufWritePre * lua vim.lsp.buf.format({ async = false })
-    augroup end
-  ]]
-    vim.notify "Enabled format on save"
+        augroup format_on_save
+        autocmd!
+        autocmd BufWritePre * lua vim.lsp.buf.format({ async = false })
+        augroup end
+    ]]
 end
 
 function M.disable_format_on_save()
     M.remove_augroup "format_on_save"
-    vim.notify "Disabled format on save"
 end
 
 function M.toggle_format_on_save()
     if vim.fn.exists "#format_on_save#BufWritePre" == 0 then
         M.enable_format_on_save()
+        vim.notify "Enabled format on save"
     else
         M.disable_format_on_save()
+        vim.notify "Disabled format on save"
     end
 end
 

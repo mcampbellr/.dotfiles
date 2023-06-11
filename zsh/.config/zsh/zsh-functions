@@ -76,11 +76,29 @@ function last-commit {
   fi
 }
 
-function openOrSearch () {
-  if [ -z "$1" ]
-  then
+function url-parse {
+  local url=$1
+  local https_prefix="https://"
+  local http_prefix="http://"
+
+  if [[ $url != "$http_prefix"* && $url != "$https_prefix"* ]]; then
+    url="$https_prefix$url"
+  fi
+
+  echo "$url"
+}
+
+function open-or-search () {
+  if [ -z "$1" ]; then
     open -a 'Brave Browser'
   else
-    open -a 'Brave Browser' "https://www.google.com/search?q=${(j:+:)@[1,-1]}"
+    if [[ $1 == "http"* ]] || [[ $1 == *"."* ]]; then
+      echo "Opening $(url-parse $1)"
+      open -a 'Brave Browser' "$(url-parse $1)"
+    else
+      echo "Searching for '$@' on https://google.com"
+      open -a 'Brave Browser' "https://www.google.com/search?q=${(j:+:)@[1,-1]}"
+    fi
   fi
 }
+
