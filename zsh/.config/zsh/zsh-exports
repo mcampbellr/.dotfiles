@@ -30,6 +30,9 @@ export TERM="xterm-256color"
 export HISTFILE=~/.config/zsh/.zsh_history
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=008'
 
+export AWS_DEFAULT_REGION="us-east-2"
+export AWS_DEFAULT_PROFILE="default"
+
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
