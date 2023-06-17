@@ -1,0 +1,121 @@
+#!/bin/bash
+
+## extract fzf --height 40% --reverse --header-lines=1 in a variable to reuse
+fzf_default_options="--height 40% --reverse --header-lines=1"
+docker_default_fields="table {{.ID}}\t{{.Names}}\t{{.Image}}\t{{.Ports}}"
+
+function spinner () {
+  local pid=$1
+  local delay=0.25
+  local spinstr='|/-\'
+  tput civis  # Hide the cursor
+  while ps a | awk '{print $1}' | grep -q "$pid"; do
+    local temp=${spinstr#?}
+    printf "%c  " "$spinstr"
+    local spinstr=$temp${spinstr%"$temp"}
+    sleep $delay
+    printf "\b\b\b\b\b\b"
+  done
+  tput cnorm  # Restore the cursor
+  printf "    \b\b\b\b"
+}
+
+function show_help () {
+  echo "Usage: ducker <command>"
+  echo "Commands:"
+
+  echo "  help:        show this help"
+  echo "  logs:        list running containers and show logs of selected container"
+  echo "  stop:        list running containers and stop selected container"
+  echo "  ps:          list all containers and show details of selected container"
+  echo "  start:       list all containers and start selected container"
+
+  echo "Other docker commands:"
+  echo "<docker command> <docker options> <docker arguments>"
+}
+
+if [ -z "$1" ]; then
+  show_help
+  exit 0
+fi
+
+if [ "$1" == "help" ]; then
+  show_help
+  exit 0
+fi
+
+if [ "$1" == "logs" ]; then
+  if [ -z "$(docker ps -q)" ]; then
+    echo "No running containers"
+    exit 0
+  fi
+
+  logs_target_selected=$(docker ps --format "$docker_default_fields" | fzf $fzf_default_options | awk '{print $1}')
+
+  if [ -n "$logs_target_selected" ]; then
+    docker logs -f "$logs_target_selected"
+  else 
+    echo "No container selected"
+  fi
+
+  exit 0
+fi
+
+if [ "$1" == "stop" ]; then
+  if [ -z "$(docker ps -q)" ]; then
+    echo "No running containers"
+    exit 0
+  fi
+
+  if [ "$#" -gt 1 ]; then
+    stop_target_selected=$(docker ps "${@:2}" --format "$docker_default_fields" | fzf --height 40% --reverse --header-lines=1 | awk '{print $1}')
+  else 
+    stop_target_selected=$(docker ps --format "$docker_default_fields" | fzf --height 40% --reverse --header-lines=1 | awk '{print $1}')
+  fi
+
+
+  if [ -n "$stop_target_selected" ]; then
+    echo "Stopping container..."
+    docker stop "$stop_target_selected" &
+    spinner $!
+    echo "Container stopped."
+  else
+    echo "No container selected"
+  fi
+
+  exit 0
+fi
+
+if [ "$1" == "ps" ]; then
+  ps_target_selected=$(docker ps "${@:2}" --format "$docker_default_fields" | fzf --height 40% --reverse --header-lines=1 | awk '{print $1}')
+
+  if [ -n "$ps_target_selected" ]; then
+    docker ps "${@:2}" | head -n 1
+    docker ps "${@:2}" | grep "$ps_target_selected"
+  else
+    echo "No container selected"
+  fi
+  exit 0
+fi
+
+if [ "$1" == "start" ]; then
+  if [ -z "$(docker ps -a -q)" ]; then
+    echo "No containers"
+    exit 0
+  fi
+
+  start_target_selected=$(docker ps -a --format "$docker_default_fields" | fzf --height 40% --reverse --header-lines=1 | awk '{print $1}')
+
+  if [ -n "$start_target_selected" ]; then
+    echo "Starting container..."
+    docker start "$start_target_selected" &
+    spinner $!
+    echo "Container started."
+  else
+    echo "No container selected"
+  fi
+
+  exit 0
+fi
+
+docker "$@"

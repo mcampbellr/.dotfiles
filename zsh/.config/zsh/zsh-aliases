@@ -24,7 +24,7 @@ alias cd='z'
 # Shortcuts Aliases
 alias cl="clear"
 alias ls='exa --no-user --icons'
-alias la='ls -Fh -a1 -l --no-user --no-time --git'
+alias ll='ls -Fh -a1 -l --no-user --no-time --git'
 alias tree="ls -T -L 3 --git-ignore"
 alias ip="ifconfig | grep 'inet ' | grep -v 127.0.0.1 | awk '{print \$2}'"
 alias fk="fuck"
@@ -49,6 +49,15 @@ alias branch='g branch --show-current'
 
 alias notes="n ~/Notes/"
 alias notess="ss ~/Notes/"
+
+td () {
+  local location=~/Notes/Todos.md
+  if [[ "$1" == "-e" ]]; then
+    n "$location"
+  else
+    glow "$location"
+  fi
+}
 
 alias ccd=mkcdir
 # configs aliases
@@ -77,7 +86,8 @@ alias gpull="g pull"
 alias gsh="g stash -u"
 alias gdff="g diff"
 alias grb="g rebase"
-alias gco="g commit"
+alias gco="g checkout"
+alias gcm="g commit"
 alias glast="g show HEAD --quiet"
 alias gwta="g cb"
 alias gwtr="g worktree remove"
@@ -111,7 +121,7 @@ alias ys="yarn run serve"
 
 alias dev="ss ~/Developer/"
 
-alias doc='docker'
+alias doc='duck'
 alias dco="docker compose"
 
 alias olocal="open http://localhost"

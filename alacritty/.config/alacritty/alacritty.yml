@@ -11,14 +11,13 @@ window:
     y: 5
 font:
   normal:
-    family: "FiraCode Nerd Font"
-    style: Regular
+    family: JetBrainsMono Nerd Font
     ligatures: true
   bold:
-    family: "FiraCode Nerd Font"
+    family: JetBrainsMono Nerd Font
     style: Bold
   italic:
-    family: "FiraCode Nerd Font"
+    family: JetBrainsMono Nerd Font
     style: Italic
   size: 14.0
 bell:

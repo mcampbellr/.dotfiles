@@ -67,6 +67,7 @@ return packer.startup(function(use)
 
     -- Themes
     use { "sainnhe/gruvbox-material" }
+    use { "navarasu/onedark.nvim" }
     use { "xiyaowong/nvim-transparent" }
 
     -- Cmp Plugins
