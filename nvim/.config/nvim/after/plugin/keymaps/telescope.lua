@@ -15,7 +15,7 @@ nnoremap("<leader>/", ":Telescope current_buffer_fuzzy_find<CR>")
 nnoremap("z=", ":Telescope spell_suggest<CR>")
 nnoremap("<leader>d", ":Telescope diagnostics<CR>")
 
-nnoremap("<Leader>vrc", function()
+nnoremap("<Leader>nvc", function()
     require("mcampbellr.telescope").search_dotfiles()
 end)
 

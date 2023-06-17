@@ -23,6 +23,8 @@ bin/.local/share/nvim/tree-sitter*
 zsh/AWSCLIV2.pkg
 nvim/.config/nvim/.luarc.json
 
+*.bak
+
 bin/.local/bin/CompileDaemon
 bin/.local/state/nvim
 bin/.local/share/nvim/mason/bin

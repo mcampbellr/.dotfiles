@@ -45,6 +45,12 @@ return packer.startup(function(use)
     use { "lewis6991/impatient.nvim" } -- Lua speed loader
     use { "nvim-lua/plenary.nvim" } -- Useful lua functions used ny lots of plugins
     use { "akinsho/bufferline.nvim" }
+    -- Developer plugins
+    use {
+        "ibhagwan/fzf-lua",
+        -- optional for icon support
+        requires = { "nvim-tree/nvim-web-devicons" },
+    }
 
     -- Custom Plugins
     use { "windwp/nvim-autopairs" } -- Autopairs, integrates with both cmp and treesitter

@@ -68,9 +68,9 @@ if [ "$1" == "stop" ]; then
   fi
 
   if [ "$#" -gt 1 ]; then
-    stop_target_selected=$(docker ps "${@:2}" --format "$docker_default_fields" | fzf --height 40% --reverse --header-lines=1 | awk '{print $1}')
+    stop_target_selected=$(docker ps "${@:2}" --format "$docker_default_fields" | fzf $fzf_default_options | awk '{print $1}')
   else 
-    stop_target_selected=$(docker ps --format "$docker_default_fields" | fzf --height 40% --reverse --header-lines=1 | awk '{print $1}')
+    stop_target_selected=$(docker ps --format "$docker_default_fields" | fzf $fzf_default_options | awk '{print $1}')
   fi
 
 
@@ -87,7 +87,7 @@ if [ "$1" == "stop" ]; then
 fi
 
 if [ "$1" == "ps" ]; then
-  ps_target_selected=$(docker ps "${@:2}" --format "$docker_default_fields" | fzf --height 40% --reverse --header-lines=1 | awk '{print $1}')
+  ps_target_selected=$(docker ps "${@:2}" --format "$docker_default_fields" | fzf $fzf_default_options | awk '{print $1}')
 
   if [ -n "$ps_target_selected" ]; then
     docker ps "${@:2}" | head -n 1
@@ -104,7 +104,7 @@ if [ "$1" == "start" ]; then
     exit 0
   fi
 
-  start_target_selected=$(docker ps -a --format "$docker_default_fields" | fzf --height 40% --reverse --header-lines=1 | awk '{print $1}')
+  start_target_selected=$(docker ps -a --format "$docker_default_fields" | fzf $fzf_default_options | awk '{print $1}')
 
   if [ -n "$start_target_selected" ]; then
     echo "Starting container..."

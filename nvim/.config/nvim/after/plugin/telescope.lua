@@ -14,9 +14,11 @@ telescope.setup {
     pickers = {
         find_files = {
             hidden = true,
+            path_display = { truncate = 6 },
         },
         live_grep = {
             hidden = true,
+            path_display = { truncate = 6 },
         },
         buffers = {},
         oldfiles = {},

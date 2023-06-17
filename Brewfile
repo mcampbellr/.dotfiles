@@ -93,8 +93,6 @@ brew "libraqm"
 brew "little-cms2"
 # Platform built on V8 to build network applications
 brew "node@16"
-# MongoDB Shell to connect, configure, query, and work with your MongoDB database
-brew "mongosh"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # Small build system for use with gyp or CMake
@@ -133,8 +131,6 @@ brew "zsh"
 brew "fsouza/prettierd/prettierd"
 # A faster version of ld, Apple's linker
 brew "michaeleisel/zld/zld"
-# High-performance, schema-free, document-oriented database
-brew "mongodb/brew/mongodb-community"
 # A Zsh Theme
 brew "romkatv/powerlevel10k/powerlevel10k"
 # Application launcher and productivity software
