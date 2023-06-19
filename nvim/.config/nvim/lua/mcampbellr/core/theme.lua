@@ -64,7 +64,7 @@ vim.cmd [[
   hi IlluminatedWordWrite guibg=#333540
 
   hi Normal guibg=NONE ctermbg=NONE
-  hi Visual guibg=orange guifg=black
+  hi Visual guibg=#C174DF guifg=black
   hi LineNr guibg=NONE guifg=#5A6895
   hi SignColumn guibg=NONE ctermbg=NONE
   hi EndOfBuffer guibg=NONE ctermbg=NONE

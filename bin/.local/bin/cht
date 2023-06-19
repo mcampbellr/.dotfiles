@@ -1,18 +1,20 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-selected=$(cat ~/.local/share/cht/.languages ~/.local/share/cht/.commands | fzf)
+commands=`cat ~/.local/share/cht/.commands`
+languages=`cat ~/.local/share/cht/.languages`
 
-if [[ -z $selected ]]; then
+selected=`echo -e "$commands\n$languages" | fzf --height 40% --reverse --border --prompt="Query: "`
+
+if [[ $selected == "" ]]; then
     exit 0
 fi
 
-# shellcheck disable=2162
 read -p "Enter Query: " query
 
-if grep -qs "$selected" ~/.languages; then
-    query=$(echo "$query" | tr ' ' '+')
-    tmux neww zsh -c "echo \"curl cht.sh/$selected/$query/\" & curl cht.sh/$selected/$query & while [ : ]; do sleep 1; done"
+if grep -qs "$selected" "$languages"; then
+    query=`echo $query | tr ' ' '+'`
+    tmux neww bash -c "echo \"curl cht.sh/$selected/$query/\" & curl cht.sh/$selected/$query & while [ : ]; do sleep 1; done"
 else
-    tmux neww zsh -c "curl -s cht.sh/$selected~$query & while [ : ]; do sleep 1; done"
+    tmux neww bash -c "curl -s cht.sh/$selected~$query | less"
 fi
 

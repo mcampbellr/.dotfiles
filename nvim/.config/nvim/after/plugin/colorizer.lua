@@ -3,4 +3,13 @@ if not status then
     return
 end
 
-colorizer.setup { "*" }
+colorizer.setup {
+    "css",
+    "javascript",
+    "vim",
+    "html",
+    "lua",
+    "typescriptreact",
+    "javascriptreact",
+    "vue",
+}

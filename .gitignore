@@ -38,3 +38,4 @@ bin/.local/share/nvim/mason/registries/github/mason-org/mason-registry
 bin/.local/share/nvim/mason/share/mason-schemas/lsp
 bin/.local/share/fish
 bin/.local/share/nvim/nvim_checkpoints
+bin/.local/state/gh

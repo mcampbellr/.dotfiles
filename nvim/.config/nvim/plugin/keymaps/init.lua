@@ -69,12 +69,20 @@ nmap("<leader>f", function()
 end)
 
 -- Harpoon
-for i = 1, 19 do
+for i = 1, 9 do
     nnoremap(
         "<F" .. i .. ">",
         ":lua require('harpoon.ui').nav_file(" .. i .. ")<CR>"
     )
 end
+
+-- toogle between disable an enable copilot
+
+nnoremap("<F10>", ":Copilot disable<CR>")
+nnoremap("<F11>", ":Copilot enable<CR>")
+nnoremap("<F12>", function()
+    require("mcampbellr.lsp.autoformat").toggle_format_on_save()
+end)
 
 -- Visual --
 -- search for visually hightlighted text

@@ -29,6 +29,6 @@ function M.remove_augroup(name)
     end
 end
 
-vim.cmd [[ command! AutoSave execute 'lua require("mcampbellr.lsp.handlers").toggle_format_on_save()' ]]
+vim.cmd [[ command! AutoFormat execute 'lua require("mcampbellr.lsp.autoformat").toggle_format_on_save()' ]]
 
 return M
