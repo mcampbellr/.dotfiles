@@ -1,93 +1,34 @@
 #!/bin/bash
 
 ## extract fzf --height 40% --reverse --header-lines=1 in a variable to reuse
-fzf_default_options="--height 40% --reverse --header-lines=1"
 docker_default_fields="table {{.ID}}\t{{.Names}}\t{{.Image}}\t{{.Ports}}"
 
-function spinner () {
-  local pid=$1
-  local delay=0.25
-  local spinstr='|/-\'
-  tput civis  # Hide the cursor
-  while ps a | awk '{print $1}' | grep -q "$pid"; do
-    local temp=${spinstr#?}
-    printf "%c  " "$spinstr"
-    local spinstr=$temp${spinstr%"$temp"}
-    sleep $delay
-    printf "\b\b\b\b\b\b"
-  done
-  tput cnorm  # Restore the cursor
-  printf "    \b\b\b\b"
-}
+action_performed=""
+
+## key bind to run docker logs -f on selected container in a new terminal and close fzf
+KEY_BINDS_LOG="ctrl-l:execute(tmux split-window \"docker logs -f {1}\")+accept"
+KEY_BINDS_START="ctrl-s:execute-silent(docker start {1})+accept"
+
+HEADER="ctrl-l:logs|ctrl-s:start"
+
+fzf_default_options="-p 60%,50% --header $HEADER --header-lines=1"
 
 function show_help () {
   echo "Usage: ducker <command>"
   echo "Commands:"
 
   echo "  help:        show this help"
-  echo "  logs:        list running containers and show logs of selected container"
-  echo "  stop:        list running containers and stop selected container"
-  echo "  ps:          list all containers and show details of selected container"
-  echo "  start:       list all containers and start selected container"
-
-  echo "Other docker commands:"
-  echo "<docker command> <docker options> <docker arguments>"
 }
-
-if [ -z "$1" ]; then
-  show_help
-  exit 0
-fi
 
 if [ "$1" == "help" ]; then
   show_help
   exit 0
 fi
 
-if [ "$1" == "logs" ]; then
-  if [ -z "$(docker ps -q)" ]; then
-    echo "No running containers"
-    exit 0
-  fi
+if [ -z "$1" ]; then
+  ps_target_selected=$(docker ps "${@:2}" --format "$docker_default_fields" | fzf-tmux --bind "$KEY_BINDS_LOG" --bind "$KEY_BINDS_START" $fzf_default_options | awk '{print $1}')
 
-  logs_target_selected=$(docker ps --format "$docker_default_fields" | fzf $fzf_default_options | awk '{print $1}')
-
-  if [ -n "$logs_target_selected" ]; then
-    docker logs -f "$logs_target_selected"
-  else 
-    echo "No container selected"
-  fi
-
-  exit 0
-fi
-
-if [ "$1" == "stop" ]; then
-  if [ -z "$(docker ps -q)" ]; then
-    echo "No running containers"
-    exit 0
-  fi
-
-  if [ "$#" -gt 1 ]; then
-    stop_target_selected=$(docker ps "${@:2}" --format "$docker_default_fields" | fzf $fzf_default_options | awk '{print $1}')
-  else 
-    stop_target_selected=$(docker ps --format "$docker_default_fields" | fzf $fzf_default_options | awk '{print $1}')
-  fi
-
-
-  if [ -n "$stop_target_selected" ]; then
-    echo "Stopping container..."
-    docker stop "$stop_target_selected" &
-    spinner $!
-    echo "Container stopped."
-  else
-    echo "No container selected"
-  fi
-
-  exit 0
-fi
-
-if [ "$1" == "ps" ]; then
-  ps_target_selected=$(docker ps "${@:2}" --format "$docker_default_fields" | fzf $fzf_default_options | awk '{print $1}')
+  echo "action_performed: $action_performed"
 
   if [ -n "$ps_target_selected" ]; then
     docker ps "${@:2}" | head -n 1
@@ -98,24 +39,5 @@ if [ "$1" == "ps" ]; then
   exit 0
 fi
 
-if [ "$1" == "start" ]; then
-  if [ -z "$(docker ps -a -q)" ]; then
-    echo "No containers"
-    exit 0
-  fi
-
-  start_target_selected=$(docker ps -a --format "$docker_default_fields" | fzf $fzf_default_options | awk '{print $1}')
-
-  if [ -n "$start_target_selected" ]; then
-    echo "Starting container..."
-    docker start "$start_target_selected" &
-    spinner $!
-    echo "Container started."
-  else
-    echo "No container selected"
-  fi
-
-  exit 0
-fi
 
 docker "$@"

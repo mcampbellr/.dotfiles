@@ -61,6 +61,8 @@ function run_package_script {
     fi
   elif [[ -f Cargo.toml ]]; then
     cargo run
+  elif [[ -f go.mod ]]; then 
+    go run .
   else
     echo "No package.json or Cargo.toml found"
   fi
@@ -71,7 +73,7 @@ function last-commit {
     hash=$(g log -1 --oneline | awk '{print $1}')
     echo $hash | pbcopy && echo "Commit $hash copied to clipboard"
   else
-    echo "Not a git repository wtf"
+    echo "Not a git repository"
     return 1
   fi
 }

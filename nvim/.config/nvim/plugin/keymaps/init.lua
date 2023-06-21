@@ -34,8 +34,8 @@ nnoremap("<leader>u", ":UndotreeToggle | UndotreeFocus<CR>")
 nnoremap("<S-l>", ":bnext<CR>")
 nnoremap("<S-h>", ":bprevious<CR>")
 
--- Resource the nvim config
-nnoremap("<leader>rs", ":luafile %<CR>")
+-- Resource the nvim config and print success with <leader>rs
+nnoremap("<leader>rs", ":source %<CR>:echo 'Sourced!'<CR>")
 
 -- Keep the cursor center
 nnoremap("n", "nzzzv")

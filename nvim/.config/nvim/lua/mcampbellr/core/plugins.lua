@@ -1,8 +1,46 @@
-local M = {}
+local fn = vim.fn
 
-function M.plugins(use)
+-- Automatically install packer
+local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
+if fn.empty(fn.glob(install_path)) > 0 then
+    PACKER_BOOTSTRAP = fn.system {
+        "git",
+        "clone",
+        "--depth",
+        "1",
+        "https://github.com/wbthomason/packer.nvim",
+        install_path,
+    }
+    print "Installing packer close and reopen Neovim..."
+    vim.cmd [[packadd packer.nvim]]
+end
+
+-- Autocommand that reloads neovim whenever you save the plugins.lua file
+vim.cmd [[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerSync
+  augroup end
+]]
+
+local status_ok, packer = pcall(require, "packer")
+if not status_ok then
+    return
+end
+
+-- Have packer use a popup window
+packer.init {
+    display = {
+        open_fn = function()
+            return require("packer.util").float { border = "rounded" }
+        end,
+    },
+}
+
+-- Install your plugins here
+return packer.startup(function(use)
     -- Local development
-    --[[ use {"~/Developer/Personal/todos/main/"} ]]
+    use "~/Developer/Personal/docker.nvim"
 
     -- Required Plugins
     use "wbthomason/packer.nvim" -- Have packer manage itself
@@ -27,7 +65,6 @@ function M.plugins(use)
     use "windwp/nvim-spectre"
     use "github/copilot.vim"
 
-    -- Colors in Text
     use "norcalli/nvim-colorizer.lua"
 
     -- Themes
@@ -57,6 +94,7 @@ function M.plugins(use)
             { "hrsh7th/cmp-nvim-lua" },
             { "saadparwaiz1/cmp_luasnip" },
             { "L3MON4D3/LuaSnip" },
+            { "tzachar/cmp-tabnine", run = "./install.sh" },
             { "rafamadriz/friendly-snippets" },
         },
     }
@@ -92,6 +130,8 @@ function M.plugins(use)
     use "Weissle/persistent-breakpoints.nvim"
     use "mfussenegger/nvim-dap"
     use "rcarriga/nvim-dap-ui"
-end
 
-return M
+    if PACKER_BOOTSTRAP then
+        require("packer").sync()
+    end
+end)

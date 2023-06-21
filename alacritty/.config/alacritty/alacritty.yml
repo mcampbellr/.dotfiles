@@ -10,7 +10,7 @@ window:
   padding:
     x: 5
     y: 3
-  opacity: .95
+  opacity: .93
 font:
   normal:
     family: FiraCode Nerd Font

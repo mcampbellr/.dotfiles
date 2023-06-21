@@ -9,10 +9,10 @@ if not masons_lsp_status then
     return
 end
 
-local lsp_configs = require("mcampbellr.lsp.configs")
+local lsp_configs = require "mcampbellr.lsp.configs"
 
 local handlers = {
-    function(server_name) -- default handler (optional)
+    function(server_name)
         nvim_lsp[server_name].setup {
             on_attach = lsp_configs.on_attach,
             capabilities = lsp_configs.capabilities,
