@@ -1,4 +1,7 @@
-local actions = require "telescope.actions"
+local status ,actions = pcall(require, "telescope.actions");
+if not status then
+    return
+end
 
 local M = {}
 

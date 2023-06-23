@@ -4,7 +4,6 @@ require "mcampbellr.core.commands"
 require "mcampbellr.core.plugins"
 
 require "mcampbellr.utils"
-require "mcampbellr.cmp"
 require "mcampbellr.lsp"
 require "mcampbellr.dap"
 require "mcampbellr.autocommands"

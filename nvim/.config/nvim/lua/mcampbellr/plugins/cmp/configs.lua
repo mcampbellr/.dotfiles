@@ -1,23 +1,16 @@
-local cmp_status_ok, cmp = pcall(require, "cmp")
-if not cmp_status_ok then
-    return
-end
-
-local snip_status_ok, luasnip = pcall(require, "luasnip")
-if not snip_status_ok then
-    return
-end
+local cmp = require "cmp"
+local luasnip = require "luasnip"
 
 local check_backspace = function()
     local line, col = vim.api.nvim_win_get_cursor()
     return col ~= 0
         and string.match(
-                vim.api
-                    .nvim_buf_get_lines(0, line - 1, line, true)[1]
-                    :sub(col, col),
-                "%s"
-            )
-            == nil
+            vim.api
+                .nvim_buf_get_lines(0, line - 1, line, true)[1]
+                :sub(col, col),
+            "%s"
+        )
+        == nil
 end
 
 require("luasnip/loaders/from_vscode").lazy_load()

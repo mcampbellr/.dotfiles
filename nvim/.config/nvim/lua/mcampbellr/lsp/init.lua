@@ -14,7 +14,6 @@ if not masons_lsp_status then
 end
 
 require "mcampbellr.lsp.configs"
-
 require "mcampbellr.lsp.autoformat"
 require "mcampbellr.lsp.handlers"
 require "mcampbellr.lsp.null-ls"
