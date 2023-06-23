@@ -1,5 +1,8 @@
 return {
     "navarasu/onedark.nvim",
+    dependencies = {
+        "xiyaowong/nvim-transparent"
+    },
     opts = {
         -- Main options --
         style = "darker", -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
@@ -47,5 +50,34 @@ return {
     lazy = false,
     init = function () 
         require("onedark").load()
+        vim.cmd [[
+          hi Normal guibg=NONE
+          hi NormalNC guibg=NONE
+
+          hi IlluminatedWordText guibg=#333540
+          hi IlluminatedWordRead guibg=#333540
+          hi IlluminatedWordWrite guibg=#333540
+
+          hi Normal guibg=NONE ctermbg=NONE
+          hi Visual guibg=#C174DF guifg=black
+          hi LineNr guibg=NONE guifg=#5A6895
+          hi SignColumn guibg=NONE ctermbg=NONE
+          hi EndOfBuffer guibg=NONE ctermbg=NONE
+
+          hi CursorLineNr guibg=NONE guifg=#47CC6F
+          hi ColorColumn guibg=#333540
+
+          hi VertSplit guibg=NONE
+          hi SignColumn guibg=NONE
+          hi Folded guibg=NONE guifg=orange
+
+          hi TabLineSel guibg=NONE
+          hi TabLine guibg=NONE
+          hi TabLineFill guibg=NONE
+          hi TabLineSel guifg=orange
+
+          let &t_ZH="\e[3m"
+          let &t_ZR="\e[23m"
+        ]]
     end
 }
