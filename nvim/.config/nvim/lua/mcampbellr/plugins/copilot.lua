@@ -4,7 +4,10 @@ return {
     cmd = "Copilot",
     build = ":Copilot auth",
     config = function()
-        require("copilot").setup({
+        require("copilot").setup {
+            filetypes = {
+                gitcommit = true,
+            },
             suggestion = {
                 enabled = true,
                 auto_trigger = true,
@@ -17,7 +20,7 @@ return {
                     prev = "<M-[>",
                     dismiss = "<C-]>",
                 },
-            }
-        })
+            },
+        }
     end,
 }
