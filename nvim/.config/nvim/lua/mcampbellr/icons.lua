@@ -13,6 +13,7 @@ return {
         Function = "",
         Interface = "",
         Keyword = "",
+        TabNine = "",
         Method = "m",
         Module = "",
         Operator = "",

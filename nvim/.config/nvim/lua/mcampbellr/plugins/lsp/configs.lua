@@ -6,7 +6,7 @@ if not protocol_status then
 end
 
 local icons = require "mcampbellr.icons"
-local autoformat = require "mcampbellr.lsp.autoformat"
+local autoformat = require "mcampbellr.plugins.lsp.autoformat"
 
 function M.lsp_keymaps(bufnr)
     local opts = { noremap = true, silent = true }
@@ -78,25 +78,17 @@ M.diagnostic_config = {
 
 M.default_lsps = {
     "bashls",
-    "chrome-debug-adapter",
-    "cspell",
     "cssls",
     "gopls",
     "html",
     "jsonls",
     "lua_ls",
-    "node-debug2-adapter",
-    "prettierd",
     "pyright",
     "rust_analyzer",
-    "shellcheck",
-    "stylua",
     "tailwindcss",
     "tsserver",
     "volar",
     "yamlls",
-    "yamlfix",
-    "yamllint",
 }
 
 vim.diagnostic.config(M.diagnostic_config)
@@ -111,9 +103,9 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
 
 local signs = {
     { name = "DiagnosticSignError", text = icons.diagnostics.Error },
-    { name = "DiagnosticSignWarn", text = icons.diagnostics.Warning },
-    { name = "DiagnosticSignHint", text = icons.diagnostics.Hint },
-    { name = "DiagnosticSignInfo", text = icons.diagnostics.Information },
+    { name = "DiagnosticSignWarn",  text = icons.diagnostics.Warning },
+    { name = "DiagnosticSignHint",  text = icons.diagnostics.Hint },
+    { name = "DiagnosticSignInfo",  text = icons.diagnostics.Information },
 }
 
 protocol.CompletionItemKind = {

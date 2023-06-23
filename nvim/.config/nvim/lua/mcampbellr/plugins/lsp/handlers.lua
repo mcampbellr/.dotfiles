@@ -1,15 +1,6 @@
-local nvim_lsp_status, nvim_lsp = pcall(require, "lspconfig")
-if not nvim_lsp_status then
-    return
-end
-
-local masons_lsp_status, mason_lsp = pcall(require, "mason-lspconfig")
-
-if not masons_lsp_status then
-    return
-end
-
-local lsp_configs = require "mcampbellr.lsp.configs"
+local nvim_lsp = require "lspconfig"
+local  mason_lsp = require "mason-lspconfig"
+local lsp_configs = require "mcampbellr.plugins.lsp.configs"
 
 local handlers = {
     function(server_name)

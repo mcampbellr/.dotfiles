@@ -1,45 +1,29 @@
 return {
--- library used by other plugins
+    -- library used by other plugins
     { "nvim-lua/plenary.nvim", lazy = true },
     -- makes some plugins dot-repeatable like leap
     { "tpope/vim-repeat", event = "VeryLazy" },
-    {"lewis6991/impatient.nvim"},
+    {"nvim-lua/popup.nvim"},
+    {
+        "lewis6991/impatient.nvim",
+        config = function()
+            require("impatient").enable_profile()
+        end
+    },
     {"christoomey/vim-tmux-navigator"},
+    { "mbbill/undotree" }
 }
 
---[[]]
 --[[ -- Install your plugins here ]]
---[[     -- Local development ]]
---[[     use "~/Developer/Personal/docker.nvim" ]]
---[[]]
---[[     -- Required Plugins ]]
---[[     use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim ]]
---[[      -- Lua speed loader ]]
---[[     use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins ]]
 --[[     use "akinsho/bufferline.nvim" ]]
---[[]]
---[[     -- Custom Plugins ]]
 --[[     use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter ]]
 --[[     use "Mephistophiles/surround.nvim" -- surround things easily ]]
---[[]]
---[[     -- Better Comments ]]
---[[     use "numToStr/Comment.nvim" ]]
---[[     use "folke/todo-comments.nvim" ]]
---[[     use "JoosepAlviste/nvim-ts-context-commentstring" ]]
---[[]]
---[[     -- File Navigation ]]
---[[     use "kyazdani42/nvim-tree.lua" ]]
---[[     use "nvim-lualine/lualine.nvim" ]]
---[[     -- Search and Replacke ]]
+
 --[[     use "windwp/nvim-spectre" ]]
---[[     use "github/copilot.vim" ]]
---[[]]
+
 --[[     use "norcalli/nvim-colorizer.lua" ]]
---[[]]
---[[     -- Themes ]]
---[[     use "sainnhe/gruvbox-material" ]]
---[[     use  ]]
---[[     use "xiyaowong/nvim-transparent" ]]
+
+--[[     use "" ]]
 --[[]]
 --[[     -- Cmp Plugins ]]
 --[[     use { ]]
