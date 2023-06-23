@@ -1,6 +1,6 @@
 return {
-    enable = false,
     "hrsh7th/nvim-cmp",
+    event = { "BufReadPre", "BufNewFile" },
     dependencies = {
         { "hrsh7th/cmp-buffer" }, 
         { "hrsh7th/cmp-path" },
@@ -14,7 +14,6 @@ return {
         },
         { "rafamadriz/friendly-snippets" }, 
     },
-    event = "BufEnter",
     config = function ()
         require("mcampbellr.plugins.cmp.configs")
     end
