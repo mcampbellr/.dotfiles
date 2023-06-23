@@ -39,3 +39,6 @@ bin/.local/share/nvim/mason/share/mason-schemas/lsp
 bin/.local/share/fish
 bin/.local/share/nvim/nvim_checkpoints
 bin/.local/state/gh
+bin/.local/share/nvim/lazy/lazy.nvim
+bin/.local/share/nvim/lazy
+nvim/.config/nvim/after/plugin_bkp
