@@ -1,6 +1,10 @@
 return {
-    "lewis6991/impatient.nvim",
-    "christoomey/vim-tmux-navigator",
+-- library used by other plugins
+    { "nvim-lua/plenary.nvim", lazy = true },
+    -- makes some plugins dot-repeatable like leap
+    { "tpope/vim-repeat", event = "VeryLazy" },
+    {"lewis6991/impatient.nvim"},
+    {"christoomey/vim-tmux-navigator"},
 }
 
 --[[]]

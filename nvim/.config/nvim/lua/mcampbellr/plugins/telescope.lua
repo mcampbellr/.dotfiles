@@ -65,7 +65,13 @@ return {
         {"<leader>/", ":Telescope current_buffer_fuzzy_find<CR>"},
         {"z=", ":Telescope spell_suggest<CR>"},
         {"<leader>d", ":Telescope diagnostics<CR>"},
-        {"<Leader>vrc", function() require("mcampbellr.telescope").search_dotfiles() end}
+        {
+            "<Leader>vrc", function() 
+                require("mcampbellr.telescope").search_dotfiles() 
+            end
+        },
+        { "<leader>st", "<cmd>TodoTelescope<cr>", desc = "Todo" },
+        { "<leader>sT", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>", desc = "Todo/Fix/Fixme" },
 
     }
 }

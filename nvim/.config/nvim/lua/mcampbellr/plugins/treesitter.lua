@@ -1,6 +1,7 @@
 return {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
+        "windwp/nvim-ts-autotag",
         {
             "romgrk/nvim-treesitter-context",
             opts = {
