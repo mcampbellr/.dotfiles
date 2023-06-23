@@ -1,15 +1,8 @@
-local status_ok, dap = pcall(require, "dap")
-if not status_ok then
-    return
-end
-local dap_ui_status, dapui = pcall(require, "dapui")
-if not dap_ui_status then
-    return
-end
-local status_jester, jester = pcall(require, "jester")
-if not status_jester then
-    return
-end
+local dap = require "dap"
+local dapui = require "dapui"
+local jester = require "jester"
+local mason_path = vim.fn.glob(vim.fn.stdpath "data" .. "/mason/")
+local icons = require "mcampbellr.icons"
 
 dap.active = true
 
@@ -36,8 +29,6 @@ dap.configurations.typescriptreact = {
         protocol = "inspector",
     },
 }
-
-local mason_path = vim.fn.glob(vim.fn.stdpath "data" .. "/mason/")
 
 dap.adapters.node = {
     type = "executable",
@@ -81,7 +72,6 @@ dap.listeners.before.event_exited["dapui_config"] = function()
     dapui.close()
 end
 
-local icons = require "mcampbellr.icons"
 vim.fn.sign_define("DapBreakpoint", {
     text = icons.ui.Circle,
     texthl = "DiagnosticSignError",
@@ -91,7 +81,6 @@ vim.fn.sign_define("DapBreakpoint", {
 
 dapui.setup()
 
---- read the dir to see if contains the .nvim folder if not the use the .vscode folder
 local function find_launch_json()
     local cwd = vim.fn.getcwd()
     local path = cwd .. "/.nvim/launch.json"

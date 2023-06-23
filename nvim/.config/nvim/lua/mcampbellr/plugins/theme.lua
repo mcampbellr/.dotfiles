@@ -1,7 +1,24 @@
 return {
     "navarasu/onedark.nvim",
     dependencies = {
-        "xiyaowong/nvim-transparent"
+        {
+            "xiyaowong/nvim-transparent",
+            opts = {
+                extra_groups = {
+                    "NvimTreeNormal",
+                    "NvimTreeVertSplit",
+                    "NvimTreeEndOfBuffer",
+                    "TabLineSel",
+                    "TabLine",
+                    "TabLineFill",
+                    "TabLineSel",
+                    "SignColumn",
+                    "VertSplit",
+                    "SignColumn",
+                    "EndOfBuffer",
+                },
+            },
+        },
     },
     opts = {
         -- Main options --
@@ -32,23 +49,20 @@ return {
             strings = "none",
             variables = "none",
         },
-
         -- Lualine options --
         lualine = {
             transparent = true, -- lualine center bar transparency
         },
-
         -- Plugins Config --
         diagnostics = {
             darker = true, -- darker colors for diagnostic
             undercurl = true, -- use undercurl instead of underline for diagnostics
             background = true, -- use background color for virtual text
         },
-
     },
     priority = 1000,
     lazy = false,
-    init = function () 
+    init = function()
         require("onedark").load()
         vim.cmd [[
           hi Normal guibg=NONE
@@ -79,5 +93,5 @@ return {
           let &t_ZH="\e[3m"
           let &t_ZR="\e[23m"
         ]]
-    end
+    end,
 }

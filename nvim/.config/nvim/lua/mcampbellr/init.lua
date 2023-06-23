@@ -4,6 +4,5 @@ require "mcampbellr.core.commands"
 require "mcampbellr.core.plugins"
 
 require "mcampbellr.utils"
-require "mcampbellr.dap"
 require "mcampbellr.autocommands"
 require "mcampbellr.telescope"

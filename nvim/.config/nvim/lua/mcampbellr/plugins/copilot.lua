@@ -21,6 +21,8 @@ return {
                     dismiss = "<C-]>",
                 },
             },
+            copilot_node_command = vim.fn.expand "$HOME"
+                .. "/.config/nvm/versions/node/v18.16.0/bin/node",
         }
     end,
 }

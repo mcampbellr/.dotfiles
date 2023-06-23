@@ -9,7 +9,7 @@ return {
         { "nvim-tree/nvim-web-devicons" },
         { "glepnir/lspsaga.nvim" },
     },
-    config = function () 
+    config = function()
         require "mcampbellr.plugins.lsp.configs"
         require "mcampbellr.plugins.lsp.autoformat"
         require "mcampbellr.plugins.lsp.handlers"
@@ -17,11 +17,12 @@ return {
 
         local mason_lsp = require "mason-lspconfig"
         local mason = require "mason"
-        local default_lsps = require("mcampbellr.plugins.lsp.configs").default_lsps
+        local default_lsps =
+            require("mcampbellr.plugins.lsp.configs").default_lsps
 
         mason.setup()
         mason_lsp.setup {
             ensure_installed = default_lsps,
         }
-    end
+    end,
 }

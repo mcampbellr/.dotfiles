@@ -3,15 +3,15 @@ return {
     { "nvim-lua/plenary.nvim", lazy = true },
     -- makes some plugins dot-repeatable like leap
     { "tpope/vim-repeat", event = "VeryLazy" },
-    {"nvim-lua/popup.nvim"},
+    { "nvim-lua/popup.nvim" },
     {
         "lewis6991/impatient.nvim",
         config = function()
             require("impatient").enable_profile()
-        end
+        end,
     },
-    {"christoomey/vim-tmux-navigator"},
-    { "mbbill/undotree" }
+    { "christoomey/vim-tmux-navigator" },
+    { "mbbill/undotree" },
 }
 
 --[[ -- Install your plugins here ]]
@@ -77,4 +77,3 @@ return {
 --[[     use "mfussenegger/nvim-dap" ]]
 --[[     use "rcarriga/nvim-dap-ui" ]]
 --[[]]
-

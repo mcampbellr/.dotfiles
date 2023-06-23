@@ -4,9 +4,9 @@ return {
         "nvim-tree/nvim-web-devicons",
     },
     keys = {
-        { "<Leader>n", ":NvimTreeToggle<CR>" }
+        { "<Leader>n", ":NvimTreeToggle<CR>" },
     },
-    init = function() 
+    init = function()
         local function open_nvim_tree(data)
             local directory = vim.fn.isdirectory(data.file) == 1
 
@@ -21,19 +21,33 @@ return {
             require("nvim-tree.api").tree.open()
         end
 
-        vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
+        vim.api.nvim_create_autocmd(
+            { "VimEnter" },
+            { callback = open_nvim_tree }
+        )
     end,
-    config = function () 
+    config = function()
         local icons = require "mcampbellr.icons"
 
         local function my_on_attach(bufnr)
             local api = require "nvim-tree.api"
             local function opts(desc)
-                return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+                return {
+                    desc = "nvim-tree: " .. desc,
+                    buffer = bufnr,
+                    noremap = true,
+                    silent = true,
+                    nowait = true,
+                }
             end
             -- default mappings
             api.config.mappings.default_on_attach(bufnr)
-            vim.keymap.set("n", "<C-]>", api.tree.change_root_to_node, opts "CD")
+            vim.keymap.set(
+                "n",
+                "<C-]>",
+                api.tree.change_root_to_node,
+                opts "CD"
+            )
             vim.keymap.set(
                 "n",
                 "<C-e>",
@@ -76,7 +90,12 @@ return {
                 api.node.open.horizontal,
                 opts "Open: Horizontal Split"
             )
-            vim.keymap.set("n", "<Tab>", api.node.open.preview, opts "Open Preview")
+            vim.keymap.set(
+                "n",
+                "<Tab>",
+                api.node.open.preview,
+                opts "Open Preview"
+            )
             vim.keymap.set(
                 "n",
                 ">",
@@ -92,7 +111,12 @@ return {
             vim.keymap.set("n", ".", api.node.run.cmd, opts "Run Command")
             vim.keymap.set("n", "-", api.tree.change_root_to_parent, opts "Up")
             vim.keymap.set("n", "a", api.fs.create, opts "Create")
-            vim.keymap.set("n", "bmv", api.marks.bulk.move, opts "Move Bookmarked")
+            vim.keymap.set(
+                "n",
+                "bmv",
+                api.marks.bulk.move,
+                opts "Move Bookmarked"
+            )
             vim.keymap.set(
                 "n",
                 "B",
@@ -106,8 +130,18 @@ return {
                 api.tree.toggle_git_clean_filter,
                 opts "Toggle Git Clean"
             )
-            vim.keymap.set("n", "[c", api.node.navigate.git.prev, opts "Prev Git")
-            vim.keymap.set("n", "]c", api.node.navigate.git.next, opts "Next Git")
+            vim.keymap.set(
+                "n",
+                "[c",
+                api.node.navigate.git.prev,
+                opts "Prev Git"
+            )
+            vim.keymap.set(
+                "n",
+                "]c",
+                api.node.navigate.git.next,
+                opts "Next Git"
+            )
             vim.keymap.set("n", "d", api.fs.remove, opts "Delete")
             vim.keymap.set("n", "D", api.fs.trash, opts "Trash")
             vim.keymap.set("n", "E", api.tree.expand_all, opts "Expand All")
@@ -189,7 +223,12 @@ return {
                 api.fs.copy.relative_path,
                 opts "Copy Relative Path"
             )
-            vim.keymap.set("n", "<2-LeftMouse>", api.node.open.edit, opts "Open")
+            vim.keymap.set(
+                "n",
+                "<2-LeftMouse>",
+                api.node.open.edit,
+                opts "Open"
+            )
             vim.keymap.set(
                 "n",
                 "<2-RightMouse>",
@@ -229,7 +268,7 @@ return {
             vim.keymap.set("n", "Z", api.node.run.system, opts "Run System")
         end
 
-        require("nvim-tree").setup ({
+        require("nvim-tree").setup {
             on_attach = my_on_attach,
             disable_netrw = true,
             hijack_netrw = true,
@@ -305,7 +344,7 @@ return {
                             empty_open = icons.documents.OpenFolderEmpty,
                             symlink = icons.documents.Symlink,
                         },
-                    }
+                    },
                 },
             },
             actions = {
@@ -320,6 +359,6 @@ return {
                     },
                 },
             },
-        })
-    end
+        }
+    end,
 }
