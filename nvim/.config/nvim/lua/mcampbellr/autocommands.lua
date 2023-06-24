@@ -3,6 +3,15 @@ local autocmd = vim.api.nvim_create_autocmd
 
 local yank_group = augroup("HighlightYank", {})
 
+-- autocommand to run Lazy Sync when any of the files in the plugins directory is updated
+autocmd("BufWritePost", {
+    group = augroup("lazy_sync", {}),
+    pattern = "*/lua//mcampbellr/plugins/*",
+    callback = function()
+        vim.cmd "Lazy Sync"
+    end,
+})
+
 autocmd("TextYankPost", {
     group = yank_group,
     pattern = "*",

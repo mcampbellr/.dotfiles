@@ -2,7 +2,7 @@ return {
     "folke/todo-comments.nvim",
     cmd = { "TodoTrouble", "TodoTelescope" },
     event = { "BufReadPost", "BufNewFile" },
-    config = function() 
+    config = function()
         local icons = require "mcampbellr.icons"
 
         local error_color = "#F44747"
@@ -13,7 +13,8 @@ return {
         local note_color = "#4FC1FF"
         local temp_color = "#BFF3D2"
         local question_color = "#FFC44C"
-        require('todo-comments').setup {
+
+        require("todo-comments").setup {
             signs = true, -- show icons in the signs column
             sign_priority = 8, -- sign priority
             keywords = {
@@ -49,7 +50,10 @@ return {
                     color = temp_color,
                     alt = { "TEMPORAL" },
                 },
-                INFO = { icon = icons.diagnostics.Information, color = hint_color },
+                INFO = {
+                    icon = icons.diagnostics.Information,
+                    color = hint_color,
+                },
             },
             highlight = {
                 before = "", -- "fg" or "bg" or empty
@@ -72,14 +76,12 @@ return {
                 pattern = [[\b(KEYWORDS):]], -- ripgrep regex
             },
         }
-
-
     end,
     -- stylua: ignore
     keys = {
-        { "]t", function() require("todo-comments").jump_next() end, desc = "Next todo comment" },
-        { "[t", function() require("todo-comments").jump_prev() end, desc = "Previous todo comment" },
-        { "<leader>xt", "<cmd>TodoTrouble<cr>", desc = "Todo (Trouble)" },
-        { "<leader>xT", "<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>", desc = "Todo/Fix/Fixme (Trouble)" },
+        { "]t",         function() require("todo-comments").jump_next() end, desc = "Next todo comment" },
+        { "[t",         function() require("todo-comments").jump_prev() end, desc = "Previous todo comment" },
+        { "<leader>xt", "<cmd>TodoTrouble<cr>",                              desc = "Todo (Trouble)" },
+        { "<leader>xT", "<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>",      desc = "Todo/Fix/Fixme (Trouble)" },
     },
 }
