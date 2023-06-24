@@ -83,10 +83,10 @@ function create_worktree() {
 
   # Create the branch and change the working directory
   if [ "$ADD_ORIGIN" = true ]; then
-    git fetch -ap && git worktree add -B "$BRANCH_NAME" "../${BRANCH}" "origin/$BRANCH_NAME" && cd "../$BRANCH" || exit
+    git fetch -ap && git worktree add -B "$BRANCH_NAME" "../${BRANCH}" "origin/$BRANCH_NAME"
   else
     echo "Creating branch: $BRANCH_NAME"
-    git worktree add -B "$BRANCH_NAME" "../${BRANCH}" && cd "../$BRANCH" || exit
+    git worktree add -B "$BRANCH_NAME" "../${BRANCH}"
   fi
 }
 
@@ -96,4 +96,3 @@ create_worktree
 
 echo "Worktree created successfully."
 
-gt "$BRANCH_NAME"

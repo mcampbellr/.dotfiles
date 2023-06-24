@@ -1,4 +1,10 @@
 return {
+    -- local development
+    {
+        "mcampbellr/docker.nvim",
+        cmd = { "Docker", "DockerContainers", "DockerCompose" },
+        dev = true,
+    },
     -- library used by other plugins
     { "nvim-lua/plenary.nvim", lazy = true },
     -- makes some plugins dot-repeatable like leap
@@ -10,6 +16,7 @@ return {
             require("impatient").enable_profile()
         end,
     },
+    { "folke/neodev.nvim", opts = {} },
     { "christoomey/vim-tmux-navigator" },
     { "mbbill/undotree" },
     {
@@ -17,6 +24,15 @@ return {
         config = function()
             require("mini.surround").setup {}
         end,
+    },
+    {
+        "gerazov/vim-toggle-bool",
+        keys = {
+            { "<leader>tb", ":ToggleBool<cr>" },
+        },
+        dependencies = {
+            "AndrewRadev/switch.vim",
+        },
     },
 }
 

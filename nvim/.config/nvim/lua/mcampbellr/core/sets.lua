@@ -1,6 +1,11 @@
 vim.cmd "syntax enable"
 vim.cmd "syntax on"
 
+-- custon netrw settings
+vim.g.netrw_banner = 0 -- no banner on top
+vim.g.netrw_liststyle = 3 -- tree style
+vim.g.netrw_browse_split = 4 -- open in previous window
+
 local options = {
     -- Search Settings
     smartcase = true, -- smart case

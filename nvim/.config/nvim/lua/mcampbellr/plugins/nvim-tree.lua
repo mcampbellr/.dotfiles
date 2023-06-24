@@ -29,7 +29,7 @@ return {
     config = function()
         local icons = require "mcampbellr.icons"
 
-        local function my_on_attach(bufnr)
+        local function on_attach(bufnr)
             local api = require "nvim-tree.api"
             local function opts(desc)
                 return {
@@ -269,11 +269,20 @@ return {
         end
 
         require("nvim-tree").setup {
-            on_attach = my_on_attach,
+            on_attach = on_attach,
             disable_netrw = true,
             hijack_netrw = true,
             hijack_cursor = false,
             update_cwd = true,
+            diagnostics = {
+                enable = true,
+                icons = {
+                    hint = icons.diagnostics.Hint,
+                    info = icons.diagnostics.Information,
+                    warning = icons.diagnostics.Warning,
+                    error = icons.diagnostics.Error,
+                },
+            },
             update_focused_file = {
                 enable = true,
                 update_cwd = true,
@@ -286,15 +295,6 @@ return {
             filters = {
                 dotfiles = false,
                 custom = { ".DS_Store" },
-            },
-            diagnostics = {
-                enable = true,
-                icons = {
-                    hint = icons.diagnostics.Hint,
-                    info = icons.diagnostics.Information,
-                    warning = icons.diagnostics.Warning,
-                    error = icons.diagnostics.Error,
-                },
             },
             git = {
                 enable = true,

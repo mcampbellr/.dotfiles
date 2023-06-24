@@ -17,4 +17,14 @@ if not status_lazy then
     return
 end
 
-lazy.setup("mcampbellr.plugins")
+lazy.setup {
+    spec = {
+        { import = "mcampbellr.plugins" },
+    },
+    dev = {
+        -- directory where you store your local plugin projects
+        path = "~/Developer/Personal/nvim-plugins",
+        patterns = {}, -- For example {"folke"}
+        fallback = false, -- Fallback to git when local plugin doesn't exist
+    },
+}

@@ -1,18 +1,6 @@
 local cmp = require "cmp"
 local luasnip = require "luasnip"
 
-local check_backspace = function()
-    local line, col = vim.api.nvim_win_get_cursor()
-    return col ~= 0
-        and string.match(
-                vim.api
-                    .nvim_buf_get_lines(0, line - 1, line, true)[1]
-                    :sub(col, col),
-                "%s"
-            )
-            == nil
-end
-
 require("luasnip/loaders/from_vscode").lazy_load()
 
 vim.g.cmp_active = true
@@ -78,8 +66,6 @@ cmp.setup {
                 luasnip.expand()
             elseif luasnip.expand_or_jumpable() then
                 luasnip.expand_or_jump()
-            elseif check_backspace() then
-                fallback()
             else
                 fallback()
             end
@@ -102,3 +88,31 @@ cmp.setup {
         { name = "buffer" },
     }),
 }
+
+-- Set configuration for specific filetype.
+cmp.setup.filetype("gitcommit", {
+    sources = cmp.config.sources({
+        { name = "git" }, -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
+    }, {
+        { name = "buffer" },
+        { name = "cmp_tabnine" },
+    }),
+})
+
+-- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline({ "/", "?" }, {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
+        { name = "buffer" },
+    },
+})
+
+-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline(":", {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
+        { name = "path" },
+    }, {
+        { name = "cmdline", keyword_length = 3 },
+    }),
+})

@@ -8,13 +8,22 @@ return {
                 enable = false, -- Enable this plugin (Can be enabled/disabled later via commands)
                 throttle = true, -- Throttles plugin updates (may improve performance)
                 max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
-            }
-        }
+            },
+        },
     },
     event = "BufEnter",
-    build = ":TsUpdate",
-    config = function() 
-        require'nvim-treesitter.configs'.setup {
+    cmd = {
+        "TSInstall",
+        "TSUninstall",
+        "TSUpdate",
+        "TSUpdateSync",
+        "TSInstallInfo",
+        "TSInstallSync",
+        "TSInstallFromGrammar",
+    },
+    build = ":TSUpdateSync",
+    config = function()
+        require("nvim-treesitter.configs").setup {
             ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
             sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
             ignore_install = { "phpdoc" }, -- List of parsers to ignore installing
@@ -41,5 +50,5 @@ return {
                 enable = true,
             },
         }
-    end
+    end,
 }

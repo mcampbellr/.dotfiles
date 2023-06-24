@@ -42,10 +42,12 @@ return {
         SolidFolder = "",
         SolidFolderOpen = "",
         Symlink = "",
+        SymlinkOpen = "",
     },
     git = {
         Logo = "",
         Untracked = "",
+        Unstaged = "",
         Mod = "",
         Remove = "",
         Ignore = "",
@@ -87,6 +89,10 @@ return {
         Table = "",
         Calendar = "",
         Clock = "",
+        ArrowLeft = "",
+        ArrowRight = "",
+        ArrowUp = "",
+        ArrowDown = "",
     },
     diagnostics = {
         Error = "",

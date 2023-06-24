@@ -17,17 +17,25 @@ return {
             file_ignore_patterns = { "node_modules", ".git" },
             pickers = {
                 find_files = {
-                    hidden = true,
+                    hidden = false,
                     path_display = { truncate = 6 },
                 },
                 live_grep = {
-                    hidden = true,
+                    hidden = false,
                     path_display = { truncate = 6 },
                 },
                 buffers = {},
                 oldfiles = {},
             },
             extensions = {
+                file_browser = {
+                    select_buffer = true,
+                    hijack_netrw = true,
+                    hidden = {
+                        file_browser = true,
+                        folder_browser = true,
+                    },
+                },
                 fzy_native = {
                     override_generic_sorter = false,
                     override_file_sorter = true,
