@@ -10,10 +10,11 @@ return {
         { "glepnir/lspsaga.nvim" },
     },
     config = function()
-        require "mcampbellr.plugins.lsp.configs"
-        require "mcampbellr.plugins.lsp.autoformat"
-        require "mcampbellr.plugins.lsp.handlers"
-        require "mcampbellr.plugins.lsp.null-ls"
+        pcall(require, "mcampbellr.plugins.lsp.configs")
+        pcall(require, "mcampbellr.plugins.lsp.autoformat")
+        pcall(require, "mcampbellr.plugins.lsp.handlers")
+        pcall(require, "mcampbellr.plugins.lsp.null-ls")
+        pcall(require, "mcampbellr.plugins.lsp.saga")
 
         local mason_lsp = require "mason-lspconfig"
         local mason = require "mason"

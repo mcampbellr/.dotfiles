@@ -4,7 +4,7 @@ return {
         "nvim-tree/nvim-web-devicons",
     },
     keys = {
-        { "<Leader>n", ":NvimTreeToggle<CR>" },
+        { "<Leader>n", ":NvimTreeToggle<CR>", silent = true },
     },
     init = function()
         local function open_nvim_tree(data)
@@ -40,8 +40,7 @@ return {
                     nowait = true,
                 }
             end
-            -- default mappings
-            api.config.mappings.default_on_attach(bufnr)
+
             vim.keymap.set(
                 "n",
                 "<C-]>",
@@ -223,6 +222,7 @@ return {
                 api.fs.copy.relative_path,
                 opts "Copy Relative Path"
             )
+
             vim.keymap.set(
                 "n",
                 "<2-LeftMouse>",

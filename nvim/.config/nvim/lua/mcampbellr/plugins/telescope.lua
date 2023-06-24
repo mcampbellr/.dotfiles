@@ -1,10 +1,10 @@
 return {
-    'nvim-telescope/telescope.nvim',
-    dependencies = { 
-        'nvim-lua/plenary.nvim',
-        'nvim-telescope/telescope-fzy-native.nvim'
+    "nvim-telescope/telescope.nvim",
+    dependencies = {
+        "nvim-lua/plenary.nvim",
+        "nvim-telescope/telescope-fzy-native.nvim",
     },
-    config = function () 
+    config = function()
         local telescope = require "telescope"
 
         telescope.setup {
@@ -40,38 +40,46 @@ return {
     keys = {
         {
             "<C-g>",
-            function() 
-                if not pcall(require("telescope.builtin").git_files) then 
-                    vim.cmd "Telescope find_files" 
-                end 
-            end
+            function()
+                if not pcall(require("telescope.builtin").git_files) then
+                    vim.cmd "Telescope find_files"
+                end
+            end,
         },
         {
-            "<C-f>", 
-            function() 
-                vim.cmd "Telescope find_files" 
-            end
+            "<C-f>",
+            function()
+                vim.cmd "Telescope find_files"
+            end,
         },
         {
-            "<C-t>", 
-            function() 
-                if not pcall(require("telescope.builtin").git_status) then 
-                    vim.cmd "Telescope find_files" 
-                end 
-            end
+            "<C-t>",
+            function()
+                if not pcall(require("telescope.builtin").git_status) then
+                    vim.cmd "Telescope find_files"
+                end
+            end,
         },
-        {"<C-s>", ":Telescope live_grep<CR>"},
-        {"<C-b>", ":Telescope buffers<CR>"},
-        {"<leader>/", ":Telescope current_buffer_fuzzy_find<CR>"},
-        {"z=", ":Telescope spell_suggest<CR>"},
-        {"<leader>d", ":Telescope diagnostics<CR>"},
+        { "<C-s>", ":Telescope live_grep<CR>" },
+        { "<C-b>", ":Telescope buffers<CR>" },
+        { "<leader>/", ":Telescope current_buffer_fuzzy_find<CR>" },
+        { "z=", ":Telescope spell_suggest<CR>" },
+        { "<leader>d", ":Telescope diagnostics<CR>" },
         {
-            "<Leader>vrc", function() 
-                require("mcampbellr.telescope").search_dotfiles() 
-            end
+            "<Leader>vrc",
+            function()
+                require("mcampbellr.telescope").search_dotfiles()
+            end,
         },
-        { "<leader>st", "<cmd>TodoTelescope<cr>", desc = "Todo" },
-        { "<leader>sT", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>", desc = "Todo/Fix/Fixme" },
-
-    }
+        {
+            "<leader>st",
+            "<cmd>TodoTelescope<cr>",
+            desc = "Todo",
+        },
+        {
+            "<leader>sT",
+            "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>",
+            desc = "Todo/Fix/Fixme",
+        },
+    },
 }

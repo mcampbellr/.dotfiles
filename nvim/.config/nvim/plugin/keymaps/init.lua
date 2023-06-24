@@ -94,8 +94,3 @@ vnoremap("K", ":m '<-2<CR>gv=gv")
 
 -- Paste in visual_mode
 vnoremap("p", '"_dP')
-
-vnoremap(
-    "<c-s>",
-    ":'<,'>TakeScreenShot<cr> | :! open ~/Images/code-screenshot/ <CR>"
-)

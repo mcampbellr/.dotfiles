@@ -12,6 +12,12 @@ return {
     },
     { "christoomey/vim-tmux-navigator" },
     { "mbbill/undotree" },
+    {
+        "echasnovski/mini.surround",
+        config = function()
+            require("mini.surround").setup {}
+        end,
+    },
 }
 
 --[[ -- Install your plugins here ]]
