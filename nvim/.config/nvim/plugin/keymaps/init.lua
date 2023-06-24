@@ -11,17 +11,10 @@ nnoremap("<C-u>", "<C-u>zz")
 nnoremap("Q", "<Nop>")
 
 -- Normal --
--- Better window navigation
 nnoremap("<up>", "<Nop>")
 nnoremap("<down>", "<Nop>")
 nnoremap("<left>", "<Nop>")
 nnoremap("<right>", "<Nop>")
-
--- Resize with arrows
-nnoremap("<C-Up>", ":resize -2<CR>")
-nnoremap("<C-Down>", ":resize +2<CR>")
-nnoremap("<C-Left>", ":vertical resize -2<CR>")
-nnoremap("<C-Right>", ":vertical resize +2<CR>")
 
 -- Replace
 nmap("<leader>rp", ":%s///g<left><left>")
@@ -30,27 +23,16 @@ nmap("<leader>s", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
 -- Undotree
 nnoremap("<leader>u", ":UndotreeToggle | UndotreeFocus<CR>")
 
--- Naviagate buffers
-nnoremap("<S-l>", ":bnext<CR>")
-nnoremap("<S-h>", ":bprevious<CR>")
-
 -- Resource the nvim config and print success with <leader>rs
 nnoremap("<leader>rs", ":source %<CR>:echo 'Sourced!'<CR>")
 
 -- Keep the cursor center
-nnoremap("n", "nzzzv")
-nnoremap("N", "Nzzzv")
 nnoremap("J", "mzJ`z")
 
 -- next greatest remap ever
 nnoremap("<leader>y", '"+y')
 nnoremap("<leader>Y", '"+Y')
 vnoremap("<leader>y", '"+y')
-
--- Delete without adding to the clipboard
-nnoremap("<leader>d", '"_d')
-vnoremap("<leader>d", '"_d')
-nnoremap("<leader>p", '"+p')
 
 -- Select all the page content
 nnoremap("<leader>V", "gg0VG$")
@@ -60,12 +42,10 @@ nnoremap("<Bslash>", ":let @/ = ''<CR>")
 
 -- Rezize splits
 nnoremap("<Leader>+", ":vertical resize +10<CR>")
-nnoremap("<Leader>-", ":vertical resize -5<CR>")
+nnoremap("<Leader>-", ":vertical resize -10<CR>")
 
 nmap("<leader>f", function()
     vim.lsp.buf.format()
-
-    vim.notify("Formated!", "info")
 end)
 
 -- Harpoon
@@ -80,11 +60,13 @@ end
 
 nnoremap("<F10>", ":Copilot disable<CR>")
 nnoremap("<F11>", ":Copilot enable<CR>")
+
 nnoremap("<F12>", function()
-    require("mcampbellr.lsp.autoformat").toggle_format_on_save()
+    require("mcampbellr.plugins.lsp.autoformat").toggle_format_on_save()
 end)
 
 -- Visual --
+
 -- search for visually hightlighted text
 vnoremap("<C-f>", 'y<ESC>/<c-r>"<CR><ESC>')
 
