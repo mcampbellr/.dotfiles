@@ -1,5 +1,5 @@
 local nvim_lsp = require "lspconfig"
-local  mason_lsp = require "mason-lspconfig"
+local mason_lsp = require "mason-lspconfig"
 local lsp_configs = require "mcampbellr.plugins.lsp.configs"
 
 local handlers = {

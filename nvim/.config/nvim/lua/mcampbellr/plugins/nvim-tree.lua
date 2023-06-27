@@ -14,10 +14,6 @@ return {
                 return
             end
 
-            vim.cmd.enew()
-            vim.cmd.bw(data.buf)
-            vim.cmd.cd(data.file)
-
             require("nvim-tree.api").tree.open()
         end
 
