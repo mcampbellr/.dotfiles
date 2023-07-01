@@ -11,6 +11,7 @@ null_ls.setup {
     --[[ debug = true, ]]
     sources = {
         formatting.prettierd,
+        --[[ diagnostics.selene, ]]
         formatting.stylua,
         diagnostics.shellcheck,
         diagnostics.yamllint,

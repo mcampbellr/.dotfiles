@@ -34,7 +34,7 @@ function M.lsp_keymaps(bufnr)
     keymap(bufnr, "n", "K", "<cmd>Lspsaga hover_doc<cr>", opts)
     keymap(bufnr, "n", "gj", "<cmd>Lspsaga diagnostic_jump_next<cr>", opts)
     keymap(bufnr, "n", "gk", "<cmd>Lspsaga diagnostic_jump_prev<cr>", opts)
-    keymap(bufnr, "i", "<C-k>", "<cmd>Lspsaga signature_help<CR>", opts)
+    keymap(bufnr, "i", "<C-H>", "<cmd>Lspsaga signature_help<CR>", opts)
     keymap(bufnr, "n", "gl", "<cmd>Lspsaga show_line_diagnostics<cr>", opts)
 end
 
@@ -103,9 +103,9 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
 
 local signs = {
     { name = "DiagnosticSignError", text = icons.diagnostics.Error },
-    { name = "DiagnosticSignWarn",  text = icons.diagnostics.Warning },
-    { name = "DiagnosticSignHint",  text = icons.diagnostics.Hint },
-    { name = "DiagnosticSignInfo",  text = icons.diagnostics.Information },
+    { name = "DiagnosticSignWarn", text = icons.diagnostics.Warning },
+    { name = "DiagnosticSignHint", text = icons.diagnostics.Hint },
+    { name = "DiagnosticSignInfo", text = icons.diagnostics.Information },
 }
 
 protocol.CompletionItemKind = {
