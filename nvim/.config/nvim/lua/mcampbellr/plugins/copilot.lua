@@ -5,9 +5,6 @@ return {
     build = ":Copilot auth",
     config = function()
         require("copilot").setup {
-            filetypes = {
-                gitcommit = true,
-            },
             suggestion = {
                 enabled = true,
                 auto_trigger = true,

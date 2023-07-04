@@ -73,10 +73,8 @@ function create_worktree() {
   fi
 
   # Create the branch name based on the projectPrefix, ticketNumber, and branch type
-  if [ "$BRANCH_TYPE" = "release" ]; then
+  if [ "$BRANCH_TYPE" = "release" ] || [ "$BRANCH_TYPE" = "none" ] || [ -z "$PROJECT_PREFIX" ]; then
     BRANCH_NAME="${BRANCH_TYPE}/${BRANCH}"
-  elif [ "$BRANCH_TYPE" = "none" ]; then
-    BRANCH_NAME="${BRANCH}"
   else
     BRANCH_NAME="${BRANCH_TYPE}/${PROJECT_PREFIX}-${BRANCH}"
   fi

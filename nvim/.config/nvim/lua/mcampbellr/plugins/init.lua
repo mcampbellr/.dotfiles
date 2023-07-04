@@ -1,8 +1,11 @@
 return {
-    -- local development
+    -- Local Plugings
     {
         "mcampbellr/docker.nvim",
         cmd = { "Docker", "DockerContainers", "DockerCompose" },
+        opts = {
+            test = true,
+        },
         dev = true,
     },
     -- library used by other plugins

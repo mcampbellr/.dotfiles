@@ -90,6 +90,23 @@ function url-parse {
   echo "$url"
 }
 
+function td {
+  if [[ "$1" == "add" ]]; then
+    shift  # Shift the first argument off the list
+    todo.sh add "$@"  # Pass the remaining arguments to `todo.sh add`
+  elif [[ "$1" == "rm" ]]; then
+    shift # Shift the first argument
+    todo.sh rm "$@"
+  elif [[ "$1" == "done" ]]; then
+    # remove the last 2 lines of output
+    local todo=$(todo.sh list | head -n 2 | fzf --height 40% --reverse --query="$2"  | awk '{print $1}')
+
+    todo.sh done "$todo"
+  else
+    todo.sh list
+  fi
+}
+
 function open-or-search () {
   if [ -z "$1" ]; then
     open -a 'Brave Browser'

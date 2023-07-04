@@ -50,18 +50,10 @@ alias branch='g branch --show-current'
 alias notes="n ~/Notes/"
 alias notess="ss ~/Notes/"
 
-td () {
-  local location=~/Notes/Todos.md
-  if [[ "$1" == "-e" ]]; then
-    n "$location"
-  else
-    glow "$location"
-  fi
-}
 
 alias ccd=mkcdir
 # configs aliases
-alias zshrc="nvim $DOTFILES/zsh/"
+alias zshrc="nvim $ZDOTDIR"
 alias src="source $ZDOTDIR/.zshrc && echo '< zsh config reloaded >'"
 
 # tmux aliases

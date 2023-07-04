@@ -99,9 +99,12 @@ cmp.setup.filetype("gitcommit", {
     }),
 })
 
+-- add new keymap to cmdline table
+local cmp_cmdline = cmp.mapping.preset.cmdline()
+
 -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline({ "/", "?" }, {
-    mapping = cmp.mapping.preset.cmdline(),
+    mapping = cmp_cmdline,
     sources = {
         { name = "buffer" },
     },
@@ -109,7 +112,7 @@ cmp.setup.cmdline({ "/", "?" }, {
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(":", {
-    mapping = cmp.mapping.preset.cmdline(),
+    mapping = cmp_cmdline,
     sources = cmp.config.sources({
         { name = "path" },
     }, {

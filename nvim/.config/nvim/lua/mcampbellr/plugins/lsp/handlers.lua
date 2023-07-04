@@ -9,6 +9,13 @@ local handlers = {
             capabilities = lsp_configs.capabilities,
         }
     end,
+    ["volar"] = function()
+        nvim_lsp.volar.setup {
+            on_attach = lsp_configs.on_attach,
+            capabilities = lsp_configs.capabilities,
+            filetypes = { "vue", "typescript" },
+        }
+    end,
     ["tsserver"] = function()
         nvim_lsp.tsserver.setup {
             on_attach = lsp_configs.on_attach,

@@ -117,5 +117,6 @@ vim.cmd [[
 
   au BufRead,BufNewFile *.prettierrc,.repoconfig,*.json set filetype=jsonc
   au BufRead,BufNewFile *.styl set filetype=sass
+  au BufRead,BufNewFile *.handlebars set filetype=html5
   au BufRead,BufNewFile *.txt setlocal spell
 ]]

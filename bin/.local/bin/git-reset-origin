@@ -10,7 +10,7 @@ echo ""
 
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-  git fetch origin "$current_branch" &&   git reset --hard origin/"$current_branch"
+  git fetch origin "$current_branch" && git cleanup && git reset --hard origin/"$current_branch"
 else 
   echo "Reset aborted"
 fi
