@@ -11,6 +11,8 @@ return {
     -- library used by other plugins
     { "nvim-lua/plenary.nvim", lazy = true },
     -- makes some plugins dot-repeatable like leap
+
+    { "tpope/vim-dotenv", lazy = true },
     { "tpope/vim-repeat", event = "VeryLazy" },
     { "nvim-lua/popup.nvim" },
     {

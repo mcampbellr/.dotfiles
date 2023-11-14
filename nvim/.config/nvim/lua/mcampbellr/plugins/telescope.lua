@@ -50,7 +50,7 @@ return {
             "<C-g>",
             function()
                 if not pcall(require("telescope.builtin").git_files) then
-                    vim.cmd "Telescope find_files"
+                    vim.cmd "Telescope git_files"
                 end
             end,
         },

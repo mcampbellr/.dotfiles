@@ -29,6 +29,7 @@ export BROWSER="brave"
 export TERM="xterm-256color"
 export HISTFILE=~/.config/zsh/.zsh_history
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=008'
+export APPLE_SSH_ADD_BEHAVIOR=1
 
 export AWS_DEFAULT_REGION="us-east-2"
 export AWS_DEFAULT_PROFILE="default"

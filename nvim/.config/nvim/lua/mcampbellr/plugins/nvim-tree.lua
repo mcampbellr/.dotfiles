@@ -317,8 +317,8 @@ return {
                 icons = {
                     show = {
                         git = true,
-                        folder = true,
-                        file = true,
+                        folder = false,
+                        file = false,
                         folder_arrow = true,
                     },
                     glyphs = {

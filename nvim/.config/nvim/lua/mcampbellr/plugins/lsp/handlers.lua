@@ -9,6 +9,20 @@ local handlers = {
             capabilities = lsp_configs.capabilities,
         }
     end,
+    ["sqlls"] = function()
+        nvim_lsp.sqlls.setup {
+            on_attach = lsp_configs.on_attach,
+            capabilities = lsp_configs.capabilities,
+            cmd = { "sql-language-server", "up", "--method", "stdio" },
+        }
+    end,
+    ["bashls"] = function()
+        nvim_lsp.bashls.setup {
+            on_attach = lsp_configs.on_attach,
+            capabilities = lsp_configs.capabilities,
+            filetypes = { "sh", "zsh" },
+        }
+    end,
     ["volar"] = function()
         nvim_lsp.volar.setup {
             on_attach = lsp_configs.on_attach,

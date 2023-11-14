@@ -47,10 +47,11 @@ function run_package_script {
   if [ -f package.json ]; then
     if ! jq -e '.scripts' package.json >/dev/null; then
       echo "No scripts found in package.json"
-      return
+      return 1
     fi
 
-    local script=$(jq -r '.scripts | keys[]' package.json | fzf --height 40% --reverse --query="$1")
+    local script
+    script=$(jq -r '.scripts | keys[]' package.json | fzf --height 40% --reverse --query="$1")
 
     if [ -n "$script" ]; then
       if [ -f yarn.lock ]; then
@@ -59,12 +60,15 @@ function run_package_script {
         npm run "$script"
       fi
     fi
-  elif [[ -f Cargo.toml ]]; then
+  elif [ -f Cargo.toml ]; then
     cargo run
-  elif [[ -f go.mod ]]; then 
+  elif find . -maxdepth 1 -name "*.csproj" -print -quit | grep -q .; then
+    dotnet run
+  elif [ -f go.mod ]; then
     go run .
   else
-    echo "No package.json or Cargo.toml found"
+    echo "No package.json, Cargo.toml, *.csproj, or go.mod found"
+    return 1
   fi
 }
 

@@ -10,7 +10,7 @@ return {
                 auto_trigger = true,
                 debounce = 50,
                 keymap = {
-                    accept = "<C-y>",
+                    accept = "<TAB>",
                     accept_word = false,
                     accept_line = false,
                     next = "<C-j>",

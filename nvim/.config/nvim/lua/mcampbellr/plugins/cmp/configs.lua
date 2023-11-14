@@ -48,7 +48,7 @@ cmp.setup {
         ghost_text = false,
     },
     mapping = cmp.mapping.preset.insert {
-        ["<CR>"] = cmp.mapping.confirm {
+        ["<C-y>"] = cmp.mapping.confirm {
             select = true,
             behavior = cmp.ConfirmBehavior.Replace,
         },

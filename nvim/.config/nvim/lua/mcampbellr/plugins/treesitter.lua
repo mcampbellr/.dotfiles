@@ -38,10 +38,6 @@ return {
                 enable = true,
             },
             indent = { enable = true, disable = { "yaml", "python", "css" } },
-            context_commentstring = {
-                enable = true,
-                enable_autocmd = false,
-            },
             autotag = {
                 enable = true,
                 disable = { "xml" },
@@ -49,6 +45,10 @@ return {
             playground = {
                 enable = true,
             },
+        }
+
+        require("ts_context_commentstring").setup {
+            enable = true,
         }
     end,
 }

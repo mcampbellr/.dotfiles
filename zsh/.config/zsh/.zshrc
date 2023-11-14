@@ -4,13 +4,7 @@ autoload -Uz colors && colors
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # check the ssh and add to keychain if they are not there
-sshlist="$(ssh-add -l)"
-if [[ $sshlist =~ 'The agent has no identities.' ]]; then
-  ssh-add --apple-use-keychain ~/.ssh/tevora
-  ssh-add --apple-use-keychain ~/.ssh/personal-github
-  ssh-add --apple-use-keychain ~/.ssh/github
-  ssh-add --apple-use-keychain ~/.ssh/linode-kmpbell
-fi
+ssh-add --apple-use-keychain 2>/dev/null
 
 # some useful options (man zshoptions)
 setopt autocd nomatch menucomplete
