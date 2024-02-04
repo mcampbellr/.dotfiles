@@ -105,9 +105,9 @@ vim.cmd [[
 
   augroup _tabsize
     autocmd!
-    autocmd FileType go,lua,dart setlocal shiftwidth=4
-    autocmd FileType go,lua,dart  setlocal tabstop=4
-    autocmd FileType go,lua,dart setlocal softtabstop=4
+    autocmd FileType go,lua setlocal shiftwidth=4
+    autocmd FileType go,lua setlocal tabstop=4
+    autocmd FileType go,lua setlocal softtabstop=4
   augroup end
 
   augroup acursorLine
@@ -117,7 +117,7 @@ vim.cmd [[
 
   au BufRead,BufNewFile *.prettierrc,.repoconfig,*.json set filetype=jsonc
   au BufRead,BufNewFile *.styl set filetype=sass
-  au BufRead,BufNewFile .env,.env.* set filetype=txt
+  au BufRead,BufNewFile .env,*.env.* set filetype=sh
   au BufRead,BufNewFile *.handlebars set filetype=html5
   au BufRead,BufNewFile *.txt setlocal spell
 ]]

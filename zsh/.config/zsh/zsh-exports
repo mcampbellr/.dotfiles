@@ -31,6 +31,10 @@ export HISTFILE=~/.config/zsh/.zsh_history
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=008'
 export APPLE_SSH_ADD_BEHAVIOR=1
 
+export ENVIRONMENT="local"
+export GOOSE_DRIVER='postgres'
+export GOOSE_DBSTRING='postgres://root:password123@localhost:5432/nixup?sslmode=disable'
+
 export AWS_DEFAULT_REGION="us-east-2"
 export AWS_DEFAULT_PROFILE="default"
 
@@ -46,6 +50,9 @@ export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
 export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
 export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:$HOME/Developer/flutter/bin
+
+export LOCALSTACK_AUTH_TOKEN="ls-Viyo5500-vAye-XahA-6671-puMADIBob63f"
 
 export GOBIN="$HOME/.local/bin"
 

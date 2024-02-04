@@ -74,20 +74,6 @@ local handlers = {
             },
         }
     end,
-    ["eslint"] = function()
-        nvim_lsp.eslint.setup {
-            on_attach = lsp_configs.on_attach,
-            capabilities = lsp_configs.capabilities,
-            filetypes = {
-                "typescript",
-                "typescriptreact",
-                "typescript.tsx",
-                "javascript",
-                "javascriptreact",
-                "javascript.jsx",
-            },
-        }
-    end,
 }
 
 mason_lsp.setup_handlers(handlers)

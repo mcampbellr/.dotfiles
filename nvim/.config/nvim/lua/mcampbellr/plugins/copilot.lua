@@ -8,9 +8,9 @@ return {
             suggestion = {
                 enabled = true,
                 auto_trigger = true,
-                debounce = 50,
+                debounce = 25,
                 keymap = {
-                    accept = "<TAB>",
+                    accept = "<C-s>",
                     accept_word = false,
                     accept_line = false,
                     next = "<C-j>",
@@ -18,6 +18,7 @@ return {
                     dismiss = "<C-]>",
                 },
             },
+
             copilot_node_command = vim.fn.expand "$HOME"
                 .. "/.config/nvm/versions/node/v18.16.0/bin/node",
         }

@@ -8,14 +8,13 @@ local diagnostics = null_ls.builtins.diagnostics
 local code_actions = null_ls.builtins.code_actions
 
 null_ls.setup {
-    --[[ debug = true, ]]
     sources = {
         formatting.prettierd,
-        --[[ diagnostics.selene, ]]
         formatting.stylua,
-        diagnostics.shellcheck,
         diagnostics.yamllint,
+        diagnostics.eslint,
         formatting.yamlfix,
         code_actions.shellcheck,
+        code_actions.eslint,
     },
 }

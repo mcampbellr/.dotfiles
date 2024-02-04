@@ -15,7 +15,7 @@ alias dn="deno"
 alias run=run_package_script
 
 alias nvc="cd $DOTFILES/nvim/.config/nvim && n ."
-alias dot="cd $DOTFILES"
+alias dot="cd nvim $DOTFILES"
 alias crl="curl"
 alias gf="fd"
 
@@ -53,7 +53,7 @@ alias notess="ss ~/Notes/"
 
 alias ccd=mkcdir
 # configs aliases
-alias zshrc="nvim $ZDOTDIR"
+alias zshrc="nvim ~/.dotfiles/zsh"
 alias src="source $ZDOTDIR/.zshrc && echo '< zsh config reloaded >'"
 
 # tmux aliases
