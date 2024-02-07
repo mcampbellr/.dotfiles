@@ -82,7 +82,6 @@ M.default_lsps = {
     "gopls",
     "html",
     "jsonls",
-    "csharp_ls",
     "lua_ls",
     "pyright",
     "rust_analyzer",
@@ -104,9 +103,9 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
 
 local signs = {
     { name = "DiagnosticSignError", text = icons.diagnostics.Error },
-    { name = "DiagnosticSignWarn",  text = icons.diagnostics.Warning },
-    { name = "DiagnosticSignHint",  text = icons.diagnostics.Hint },
-    { name = "DiagnosticSignInfo",  text = icons.diagnostics.Information },
+    { name = "DiagnosticSignWarn", text = icons.diagnostics.Warning },
+    { name = "DiagnosticSignHint", text = icons.diagnostics.Hint },
+    { name = "DiagnosticSignInfo", text = icons.diagnostics.Information },
 }
 
 protocol.CompletionItemKind = {
