@@ -14,7 +14,13 @@ return {
                 grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
                 qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
             },
-            file_ignore_patterns = { "node_modules", ".git" },
+            file_ignore_patterns = {
+                "node_modules",
+                ".git",
+                "*.jpg",
+                "*.jpeg",
+                "*.png",
+            },
             pickers = {
                 find_files = {
                     hidden = false,
@@ -68,10 +74,10 @@ return {
                 end
             end,
         },
-        { "<C-s>", ":Telescope live_grep<CR>" },
-        { "<C-b>", ":Telescope buffers<CR>" },
+        { "<C-s>",     ":Telescope live_grep<CR>" },
+        { "<C-b>",     ":Telescope buffers<CR>" },
         { "<leader>/", ":Telescope current_buffer_fuzzy_find<CR>" },
-        { "z=", ":Telescope spell_suggest<CR>" },
+        { "z=",        ":Telescope spell_suggest<CR>" },
         { "<leader>d", ":Telescope diagnostics<CR>" },
         {
             "<Leader>vrc",

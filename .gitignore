@@ -43,3 +43,5 @@ bin/.local/share/nvim/lazy/lazy.nvim
 bin/.local/share/nvim/lazy
 nvim/.config/nvim/after/plugin_bkp
 bin/.local/share/NuGet
+bin/.local/share/direnv/allow
+bin/.local/state/zsh-autocomplete/log/2024-02-09.log

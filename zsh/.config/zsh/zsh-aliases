@@ -21,6 +21,8 @@ alias gf="fd"
 
 alias cd='z'
 
+alias make="gmake"
+
 # Shortcuts Aliases
 alias cl="clear"
 alias ls='exa --no-user --icons'
@@ -70,6 +72,8 @@ alias pip='pip3'
 # typescript
 alias tsn="ts-node"
 
+alias gc="gcloud"
+
 # Custom git aliases
 alias lg='lazygit'
 alias g='git'
@@ -81,7 +85,7 @@ alias grb="g rebase"
 alias gco="g checkout"
 alias gcm="g commit"
 alias glast="g show HEAD --quiet"
-alias gwta="g cb"
+alias gwta="g worktree add"
 alias gwtr="g worktree remove"
 alias gwtl="g worktree list"
 alias gwtm="g worktree move"

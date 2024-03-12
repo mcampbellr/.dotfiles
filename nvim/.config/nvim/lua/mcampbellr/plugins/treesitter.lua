@@ -50,7 +50,7 @@ return {
         cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
         keys = {
             { "<c-space>", desc = "Increment selection" },
-            { "<bs>", desc = "Decrement selection", mode = "x" },
+            { "<bs>",      desc = "Decrement selection", mode = "x" },
         },
 
         opts = {
@@ -155,5 +155,11 @@ return {
                 desc = "Toggle Treesitter Context",
             },
         },
+    },
+
+    -- Automatically add closing tags for HTML and JSX
+    {
+        "windwp/nvim-ts-autotag",
+        opts = {},
     },
 }

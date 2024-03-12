@@ -13,15 +13,15 @@ window:
   opacity: 0.97
 font:
   normal:
-    family: FiraCode Nerd Font
+    family: CaskaydiaCove Nerd Font
     style: Light
   bold:
-    family: FiraCode Nerd Font
+    family: CaskaydiaCove Nerd Font
     style: Bold
   italic:
-    family: FiraCode Nerd Font
+    family: CaskaydiaCove Nerd Font
     style: Italic
-  size: 13.5
+  size: 14
 bell:
   animation: EaseOutQuint
   duration: 10

@@ -31,18 +31,16 @@ export HISTFILE=~/.config/zsh/.zsh_history
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=008'
 export APPLE_SSH_ADD_BEHAVIOR=1
 
-export ENVIRONMENT="local"
-export GOOSE_DRIVER='postgres'
-export GOOSE_DBSTRING='postgres://root:password123@localhost:5432/nixup?sslmode=disable'
-
 export AWS_DEFAULT_REGION="us-east-2"
 export AWS_DEFAULT_PROFILE="default"
 
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
+export CPPFLAGS="-I/opt/homebrew/opt/openjdk@11/include"
+export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="$PATH:$HOME/.local/bin"
-
+export PATH="/usr/local/opt/make/libexec/gnubin:$PATH"
 
 export ANDROID_AVD_HOME="$XDG_RUNTIME_DIR/android"
 export ANDROID_HOME=$HOME/Library/Android/sdk
@@ -71,5 +69,7 @@ export GIT_CONFIG_GLOBAL="$HOME/.config/git/.gitconfig"
 export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" 
 
-source "$HOME/.cargo/env"
+if [ -f '/Users/mcampbellr/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/mcampbellr/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/Users/mcampbellr/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/mcampbellr/google-cloud-sdk/completion.zsh.inc'; fi
 
+source "$HOME/.cargo/env"
