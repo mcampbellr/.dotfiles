@@ -6,7 +6,6 @@ if not protocol_status then
 end
 
 local icons = require "mcampbellr.icons"
-local autoformat = require "mcampbellr.plugins.lsp.autoformat"
 
 function M.lsp_keymaps(bufnr)
     local opts = { noremap = true, silent = true }
@@ -50,7 +49,6 @@ function M.on_attach(client, bufnr)
         client.server_capabilities.documentRangeFormattingProvider = false
     end
 
-    autoformat.enable_format_on_save()
     M.lsp_keymaps(bufnr)
 end
 

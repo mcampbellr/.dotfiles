@@ -44,10 +44,7 @@ nnoremap("<Bslash>", ":let @/ = ''<CR>")
 nnoremap("<Leader>+", ":vertical resize +10<CR>")
 nnoremap("<Leader>-", ":vertical resize -10<CR>")
 
-nmap("<leader>f", function()
-    vim.lsp.buf.format()
-end)
-
+nmap("<leader>f", ":Format<cr>")
 -- Harpoon
 for i = 1, 9 do
     nnoremap(
@@ -73,6 +70,5 @@ vnoremap("<C-f>", 'y<ESC>/<c-r>"<CR><ESC>')
 -- Allow moving the selected lines up and down and keep selection
 vnoremap("J", ":m '>+1<CR>gv=gv")
 vnoremap("K", ":m '<-2<CR>gv=gv")
-
 -- Paste in visual_mode
 vnoremap("p", '"_dP')

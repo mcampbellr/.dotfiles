@@ -20,6 +20,9 @@ lspsaga.setup {
         keys = {
             quit = "q",
             exec = "<CR>",
+
+
+
         },
     },
     lightbulb = {

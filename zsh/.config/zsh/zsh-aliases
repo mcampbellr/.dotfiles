@@ -2,7 +2,7 @@
 
 # Vim & Nvim Aliases
 alias n='nvim'
-alias pm='npm'
+alias pm='pnpm'
 alias t=zox
 alias cat='bat -p'
 
