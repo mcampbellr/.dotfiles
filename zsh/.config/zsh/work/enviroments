@@ -1,6 +1,5 @@
 #!/bin/sh
-
-export NPM_TOKEN=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
+export NPM_TOKEN=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
 export DOCKER_CLIENT_TIMEOUT=600
 export COMPOSE_HTTP_TIMEOUT=600
 export PKG_CONFIG_PATH="/opt/homebrew/lib/pkgconfig"
@@ -8,11 +7,18 @@ export PKG_CONFIG_PATH="/opt/homebrew/lib/pkgconfig"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 
 eval "$(direnv hook zsh)"
-eval "$(pyenv init -)"
+
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init --path)"
 eval "$(pyenv virtualenv-init -)"
+
 
 export LDFLAGS="-L/opt/homebrew/opt/zlib/lib -L/opt/homebrew/opt/jpeg/lib"  
 export CPPFLAGS="-I/opt/homebrew/opt/zlib/include -I/opt/homebrew/opt/jpeg/include" 
 export CFLAGS="-Wno-error=implicit-function-declaration" 
 export GRPC_BUILD_WITH_BORING_SSL_ASM="" 
 export GRPC_PYTHON_BUILD_SYSTEM_ZLIB=true
+
+
+alias aspapp="./scripts/run/app.sh"
+alias aspadmin="./scripts/run/admin.sh"

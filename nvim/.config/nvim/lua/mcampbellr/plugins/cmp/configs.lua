@@ -7,7 +7,6 @@ vim.g.cmp_active = true
 
 local source_mapping = {
     nvim_lsp = "[LSP]",
-    cmp_tabnine = "[T9]",
     nvim_lua = "[Lua]",
     luasnip = "[SNIP]",
     buffer = "[BUFF]",
@@ -80,7 +79,6 @@ cmp.setup {
     },
     sources = cmp.config.sources({
         { name = "nvim_lsp" },
-        { name = "cmp_tabnine" },
         { name = "nvim_lua" },
         { name = "luasnip" },
         { name = "path" },
@@ -95,7 +93,6 @@ cmp.setup.filetype("gitcommit", {
         { name = "git" }, -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
     }, {
         { name = "buffer" },
-        { name = "cmp_tabnine" },
     }),
 })
 

@@ -6,7 +6,6 @@ if not protocol_status then
 end
 
 local icons = require "mcampbellr.icons"
-local autoformat = require "mcampbellr.plugins.lsp.autoformat"
 
 function M.lsp_keymaps(bufnr)
     local opts = { noremap = true, silent = true }
@@ -34,7 +33,6 @@ function M.lsp_keymaps(bufnr)
     keymap(bufnr, "n", "K", "<cmd>Lspsaga hover_doc<cr>", opts)
     keymap(bufnr, "n", "gj", "<cmd>Lspsaga diagnostic_jump_next<cr>", opts)
     keymap(bufnr, "n", "gk", "<cmd>Lspsaga diagnostic_jump_prev<cr>", opts)
-    keymap(bufnr, "i", "<C-H>", "<cmd>Lspsaga signature_help<CR>", opts)
     keymap(bufnr, "n", "gl", "<cmd>Lspsaga show_line_diagnostics<cr>", opts)
 end
 
@@ -50,7 +48,6 @@ function M.on_attach(client, bufnr)
         client.server_capabilities.documentRangeFormattingProvider = false
     end
 
-    autoformat.enable_format_on_save()
     M.lsp_keymaps(bufnr)
 end
 

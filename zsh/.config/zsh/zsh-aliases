@@ -2,7 +2,7 @@
 
 # Vim & Nvim Aliases
 alias n='nvim'
-alias pm='npm'
+alias pm='pnpm'
 alias t=zox
 alias cat='bat -p'
 
@@ -25,8 +25,8 @@ alias make="gmake"
 
 # Shortcuts Aliases
 alias cl="clear"
-alias ls='exa --no-user --icons'
-alias ll='ls -Fh -a1 -l --no-user --no-time --git'
+alias ls='eza --no-user --icons'
+alias ll='ls -h -a1 -l --no-user --no-time --git'
 alias tree="ls -T -L 3 --git-ignore"
 alias ip="ifconfig | grep 'inet ' | grep -v 127.0.0.1 | awk '{print \$2}'"
 alias fk="fuck"

@@ -26,15 +26,20 @@ local handlers = {
     ["volar"] = function()
         nvim_lsp.volar.setup {
             on_attach = lsp_configs.on_attach,
+            init_options = {
+                vue = {
+                    hybridMode = false
+                }
+            },
             capabilities = lsp_configs.capabilities,
-            filetypes = { "vue", "typescript" },
+            filetypes = { "vue", "typescript", "javascript" },
         }
     end,
     ["tsserver"] = function()
         nvim_lsp.tsserver.setup {
             on_attach = lsp_configs.on_attach,
             capabilities = lsp_configs.capabilities,
-            filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+            filetypes = { "vue","typescript", "typescriptreact", "typescript.tsx" },
             cmd = { "typescript-language-server", "--stdio" },
         }
     end,

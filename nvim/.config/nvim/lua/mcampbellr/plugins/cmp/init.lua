@@ -10,10 +10,6 @@ return {
         { "petertriho/cmp-git" },
         { "saadparwaiz1/cmp_luasnip" },
         { "L3MON4D3/LuaSnip" },
-        {
-            "tzachar/cmp-tabnine",
-            build = "./install.sh",
-        },
         { "rafamadriz/friendly-snippets" },
     },
     config = function()

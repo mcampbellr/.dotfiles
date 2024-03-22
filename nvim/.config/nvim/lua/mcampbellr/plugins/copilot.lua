@@ -4,6 +4,11 @@ return {
     cmd = "Copilot",
     build = ":Copilot auth",
     config = function()
+        local nvm_dir = vim.fn.expand("$NVM_DIR")
+        local latest_node_version_command = "ls " .. nvm_dir .. "/versions/node | sort -V | tail -n1"
+        local latest_node_version = vim.fn.system(latest_node_version_command)
+        latest_node_version = vim.fn.trim(latest_node_version) -- Remove any whitespace or newline characters
+
         require("copilot").setup {
             suggestion = {
                 enabled = true,
@@ -19,8 +24,8 @@ return {
                 },
             },
 
-            copilot_node_command = vim.fn.expand "$HOME"
-                .. "/.config/nvm/versions/node/v18.16.0/bin/node",
+            copilot_node_command = nvm_dir .. "/versions/node/" .. latest_node_version .. "/bin/node",
         }
     end,
 }
+
