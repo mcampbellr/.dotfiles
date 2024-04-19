@@ -4,14 +4,15 @@ return {
     dependencies = {
         { "williamboman/mason.nvim" },
         { "williamboman/mason-lspconfig.nvim" },
+        { "nvimtools/none-ls.nvim" },
         { "b0o/SchemaStore.nvim" },
         { "nvim-tree/nvim-web-devicons" },
         { "glepnir/lspsaga.nvim" },
     },
     config = function()
         pcall(require, "mcampbellr.plugins.lsp.configs")
-        pcall(require, "mcampbellr.plugins.lsp.autoformat")
         pcall(require, "mcampbellr.plugins.lsp.handlers")
+        pcall(require, "mcampbellr.plugins.lsp.none-ls")
         pcall(require, "mcampbellr.plugins.lsp.saga")
 
         local mason_lsp = require "mason-lspconfig"

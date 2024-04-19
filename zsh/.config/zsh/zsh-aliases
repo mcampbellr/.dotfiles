@@ -119,7 +119,7 @@ alias ys="yarn run serve"
 alias dev="ss ~/Developer/"
 
 alias doc='duck'
-alias dco="docker compose"
+alias dco="docker-compose"
 
 alias olocal="open http://localhost"
 

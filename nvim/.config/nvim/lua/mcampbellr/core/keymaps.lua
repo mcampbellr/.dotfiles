@@ -44,7 +44,17 @@ nnoremap("<Bslash>", ":let @/ = ''<CR>")
 nnoremap("<Leader>+", ":vertical resize +10<CR>")
 nnoremap("<Leader>-", ":vertical resize -10<CR>")
 
-nmap("<leader>f", ":Format<cr>")
+-- function to format the code
+local function format_code()
+    vim.lsp.buf.format({ async = false })
+    print("formatting")
+end
+
+
+nmap("<leader>f", function()
+    format_code()
+end)
+
 -- Harpoon
 for i = 1, 9 do
     nnoremap(
