@@ -12,6 +12,8 @@ null_ls.setup {
         formatting.prettierd,
         formatting.stylua,
         diagnostics.yamllint,
+        formatting.goimports,
+        formatting.golines,
         formatting.yamlfix,
     },
 }

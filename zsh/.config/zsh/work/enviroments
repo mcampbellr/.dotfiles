@@ -1,5 +1,4 @@
 #!/bin/sh
-export NPM_TOKEN=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
 export DOCKER_CLIENT_TIMEOUT=600
 export COMPOSE_HTTP_TIMEOUT=600
 export PKG_CONFIG_PATH="/opt/homebrew/lib/pkgconfig"
@@ -19,6 +18,3 @@ export CFLAGS="-Wno-error=implicit-function-declaration"
 export GRPC_BUILD_WITH_BORING_SSL_ASM="" 
 export GRPC_PYTHON_BUILD_SYSTEM_ZLIB=true
 
-
-alias aspapp="./scripts/run/app.sh"
-alias aspadmin="./scripts/run/admin.sh"

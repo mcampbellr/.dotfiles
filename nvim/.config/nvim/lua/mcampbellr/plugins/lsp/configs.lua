@@ -16,16 +16,10 @@ function M.lsp_keymaps(bufnr)
     keymap(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
     keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
 
-    keymap(
-        bufnr,
-        "n",
-        "<leader>a",
-        "<cmd>lua vim.lsp.buf.code_action()<CR>",
-        opts
-    )
+    keymap(bufnr, "n", "<leader>a", "<cmd>Lspsaga code_action<CR>", opts)
     keymap(bufnr, "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
 
-    keymap(bufnr, "n", "gh", "<cmd>Lspsaga lsp_finder<CR>", opts)
+    keymap(bufnr, "n", "gh", "<cmd>Lspsaga finder<CR>", opts)
     keymap(bufnr, "n", "<leader>o", "<cmd>Lspsaga outline<CR>", opts)
     keymap(bufnr, "n", "gt", "<cmd>Lspsaga goto_type_definition<CR>", opts)
     keymap(bufnr, "n", "gpt", "<cmd>Lspsaga peek_type_definition<CR>", opts)
@@ -115,9 +109,9 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
 
 local signs = {
     { name = "DiagnosticSignError", text = icons.diagnostics.Error },
-    { name = "DiagnosticSignWarn", text = icons.diagnostics.Warning },
-    { name = "DiagnosticSignHint", text = icons.diagnostics.Hint },
-    { name = "DiagnosticSignInfo", text = icons.diagnostics.Information },
+    { name = "DiagnosticSignWarn",  text = icons.diagnostics.Warning },
+    { name = "DiagnosticSignHint",  text = icons.diagnostics.Hint },
+    { name = "DiagnosticSignInfo",  text = icons.diagnostics.Information },
 }
 
 protocol.CompletionItemKind = {

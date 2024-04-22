@@ -20,10 +20,10 @@ lspsaga.setup {
         keys = {
             quit = "q",
             exec = "<CR>",
-
-
-
         },
+    },
+    symbol_in_winbar = {
+        enable = false
     },
     lightbulb = {
         enable = false,

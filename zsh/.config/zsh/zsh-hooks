@@ -12,3 +12,5 @@ function use_nvm_version() {
 autoload -U add-zsh-hook
 add-zsh-hook chpwd use_nvm_version
 
+use_nvm_version
+
