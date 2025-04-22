@@ -1,0 +1,39 @@
+#!/bin/bash
+# shellcheck disable=2001
+COMMIT_MSG_FILE=$1
+COMMIT_SOURCE=$2
+SHA1=$3
+
+# Only add custom message when there is no commit source
+# ($COMMIT_SOURCE is empty). Otherwise, keep the default message
+# proposed by Git. Possible commit sources: message, template,
+# merge, squash, or commit. # if the commit source is `template` allow this to run
+
+if [[ -z "$COMMIT_SOURCE" ]] || [[ "$COMMIT_SOURCE" == 'template' ]]; then
+  original=$(cat "$COMMIT_MSG_FILE")
+
+  branch=$(git rev-parse --abbrev-ref HEAD)
+  ticketId=$(echo "$branch" | awk -F'/' '{print $NF}')
+  commit_message="
+# feat fix docs style refactor perf test build ci chore revert         #
+# Body: Explain *what* and *why* (not *how*).                          #
+# Refs:
+# BREAKING CHANGE:
+# commit message with ! to draw attention to breaking change
+$original
+  "
+
+  # Get the commit_message in its original format and replace {ticket} with the ticket number
+  # If the ticket has a format like "ABC-123" use this as ticket
+  if [[ $ticketId =~ ^[A-Z]{3}-[0-9]+$ ]]; then
+    if [[ "$COMMIT_SOURCE" == 'template' ]]; then
+      commit_message=$(echo "$original" | sed "s/# Refs:/Refs: $ticketId/g")
+    else
+      commit_message=$(echo "$commit_message" | sed "s/# Refs:/Refs: $ticketId/g")
+    fi
+  fi
+
+  echo "$commit_message" > "$COMMIT_MSG_FILE"
+fi
+
+

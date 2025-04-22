@@ -1,0 +1,44 @@
+#!/bin/sh
+
+## autoload vcs and colors
+autoload -Uz vcs_info
+autoload -U colors && colors
+
+# Colores personalizables
+COLOR_BLUE="%{$fg[blue]%}"
+COLOR_WHITE="%{$fg[white]%}"
+COLOR_RED="%{$fg[red]%}"
+COLOR_GREEN="%{$fg_bold[green]%}"
+COLOR_BOLD_RED="%{$fg_bold[red]%}"
+COLOR_CYAN="%{$fg[cyan]%}"
+COLOR_MAGENTA="%{$fg[magenta]%}"
+COLOR_YELLOW="%{$fg[yellow]%}"
+COLOR_BOLD_BLUE="%{$fg_bold[blue]%}"
+COLOR_RESET="%{$reset_color%}"
+
+# enable only git 
+zstyle ':vcs_info:*' enable git 
+
+# setup a hook that runs before every prompt. 
+precmd_vcs_info() { vcs_info }
+precmd_functions+=( precmd_vcs_info )
+setopt prompt_subst
+
+# Hook para archivos no versionados
+zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
+
++vi-git-untracked() {
+    if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
+        git status --porcelain | grep '??' &> /dev/null ; then
+        hook_com[staged]+='!' # signify new files with a bang
+    fi
+}
+
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:git:*' formats " ${COLOR_BLUE}(${COLOR_RED}%m%u%c${COLOR_YELLOW}${COLOR_MAGENTA} %b${COLOR_BLUE})"
+
+# PROMPT
+PROMPT="${COLOR_BLUE}[${COLOR_WHITE}mc-dev${COLOR_BLUE}] %(?:${COLOR_RED} :${COLOR_RED} )${COLOR_CYAN}%~${COLOR_RESET}\$vcs_info_msg_0_"
+PROMPT+="
+${COLOR_RED}${COLOR_RESET} "
+

@@ -1,0 +1,103 @@
+#!/bin/sh
+
+
+# lazy lad this 
+eval $(/opt/homebrew/bin/brew shellenv)
+
+eval "$(zoxide init zsh)"
+# Set up fzf key bindings and fuzzy completion
+eval "$(fzf --zsh)"
+
+fpath+=("$(brew --prefix)/share/zsh/site-functions")
+zstyle :prompt:pure:path color white
+
+# Sets and unsets 
+unsetopt BEEP
+setopt appendhistory
+setopt HIST_SAVE_NO_DUPS
+setopt SHARE_HISTORY
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_FIND_NO_DUPS
+
+export XDG_RUNTIME_DIR="$HOME/.config"
+export DOCKER_CONFIG="$XDG_RUNTIME_DIR/docker"
+
+# Environment variables set everywhere
+export HISTSIZE=10000
+export SAVEHIST=$HISTSIZE
+export EDITOR="nvim"
+export TERMINAL="iterm2"
+export BROWSER="brave"
+export TERM="xterm-256color"
+export HISTFILE=~/.config/zsh/.zsh_history
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=008'
+export APPLE_SSH_ADD_BEHAVIOR=1
+
+export SHIFTLEFT_ACCESS_TOKEN="eyJhbGciOiJSUzUxMiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzEwMTQ3MDEsImlzcyI6IlNoaWZ0TGVmdCIsIm9yZ0lEIjoiNGI3MjgyOTgtMzYxYy00N2MyLWE0MjYtMDg3YTU0NjIzYmQyIiwidXNlcklEIjoiOTU2NzQzYzYtYWE4My00NzViLTk4ZjAtMjRjZjkxNjAwYjc3Iiwic2NvcGVzIjpbInNlYXRzOndyaXRlIiwiZXh0ZW5kZWQiLCJhcGk6djIiLCJ1cGxvYWRzOndyaXRlIiwibG9nOndyaXRlIiwicGlwZWxpbmVzdGF0dXM6cmVhZCIsIm1ldHJpY3M6d3JpdGUiLCJwb2xpY2llczpjdXN0b21lciJdfQ.ErUwgF7VK9Ar-W8z4XwiBE0R32QwP1WJwMAOS42Y6KtT6Q247G2zywM13KITQNizcr9bzs7iAG8ytaf3xxUjnZRqAWNFYhAcmJGVM08S5zOcNWfaqwxMCk3GHPjqco5nTYhsVVAmnv57rOyvGVJweJGZf-6Dz86QsNO8QVVOSgrqUIA0xLFYU4Jkqr5e7XDvmPrXWkJp9om9LGs39QAWd7E983CzQCwy3epi9mrmcsoxvg-eDYA60m5_RdQhKswMC5LjTLKjnl16VSnskUqYsOrWoo6CCRfWIR4tlGUVjhfFOj_AJMZGA1L1caguy15AbXhfKSQMnBs5niESui8t2g"
+
+export AWS_DEFAULT_REGION="us-east-2"
+export AWS_DEFAULT_PROFILE="default"
+
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
+export CPPFLAGS="-I/opt/homebrew/opt/openjdk@11/include"
+export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="$PATH:$HOME/.local/bin"
+export PATH="/usr/local/opt/make/libexec/gnubin:$PATH"
+
+export ANDROID_AVD_HOME="$XDG_RUNTIME_DIR/android"
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
+export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:$HOME/Developer/flutter/bin
+export PATH="$HOME/.tmuxifier/bin:$PATH"
+export PATH="$HOME/.local/share/solana/install/active_release/bin:$PATH"
+export PATH="/opt/homebrew/opt/gnu-tar/libexec/gnubin:$PATH"
+
+# Nixup - Personal
+# export LOCALSTACK_AUTH_TOKEN="ls-Viyo5500-vAye-XahA-6671-puMADIBob63f"
+
+# Tevora - Work
+# export LOCALSTACK_AUTH_TOKEN="ls-GaRaqaqO-2197-2245-DEcE-sizOqavi3552"
+export ACTIVATE_PRO=0
+
+export AWS_ACCESS_KEY_ID=test
+export AWS_SECRET_ACCESS_KEY=test
+export AWS_DEFAULT_REGION=us-east-1
+
+
+export GOBIN="$HOME/.local/bin"
+
+export DOTFILES="$HOME/.dotfiles/"
+export TMUX_CONFIG="$HOME/.config/tmux/tmux.conf"
+export NOTES="$HOME/Notes/"
+export DEV_FILES="$HOME/Developer"
+export LG_CONFIG_FILE="$HOME/.config/lazygit/config.yml"
+export FZF_DEFAULT_COMMAND='fd --type f'
+export CHROME_EXECUTABLE="/Applications/Brave Browser.app/Contents/MacOS/Brave Browser"
+export FZF_COMPLETION_TRIGGER='--'
+export RUST_BACKTRACE=0
+
+export GIT_CONFIG_GLOBAL="$HOME/.config/git/.gitconfig"
+
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" 
+
+. "$HOME/.cargo/env"
+
+export PATH="$HOME/.cargo/bin:$PATH"
+
+export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
+export JAVA_HOME="/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home"
+
+
+if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
+if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
+if [ -f /opt/homebrew/opt/asdf/asdf.sh ]; then . /opt/homebrew/opt/asdf/asdf.sh; fi

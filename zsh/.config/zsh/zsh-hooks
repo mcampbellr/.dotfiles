@@ -1,0 +1,16 @@
+function use_nvm_version() {
+  if [ -f ".nvmrc" ]; then
+    local nvm_version="$(cat .nvmrc)"
+    local current_version="$(nvm current)"
+    
+    if [ "$nvm_version" != "$current_version" ]; then
+      nvm use || nvm install
+    fi
+  fi
+}
+
+autoload -U add-zsh-hook
+add-zsh-hook chpwd use_nvm_version
+
+use_nvm_version
+

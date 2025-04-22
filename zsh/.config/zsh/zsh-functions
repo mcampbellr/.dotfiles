@@ -1,0 +1,126 @@
+# Function to source files if they exist
+function zsh_add_file() {
+    [ -f "$ZDOTDIR/$1" ] && source "$ZDOTDIR/$1"
+}
+
+function zsh_add_plugin() {
+    PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
+    if [ -d "$ZDOTDIR/plugins/$PLUGIN_NAME" ]; then 
+        # For plugins
+        zsh_add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh" || \
+        zsh_add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.zsh"
+    else
+        git clone "https://github.com/$1.git" "$ZDOTDIR/plugins/$PLUGIN_NAME"
+    fi
+}
+
+function zsh_add_completion() {
+    PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
+    if [ -d "$ZDOTDIR/plugins/$PLUGIN_NAME" ]; then 
+        # For completions
+		completion_file_path=$(ls $ZDOTDIR/plugins/$PLUGIN_NAME/_*)
+		fpath+="$(dirname "${completion_file_path}")"
+        zsh_add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh"
+    else
+        git clone "https://github.com/$1.git" "$ZDOTDIR/plugins/$PLUGIN_NAME"
+		fpath+=$(ls $ZDOTDIR/plugins/$PLUGIN_NAME/_*)
+        [ -f $ZDOTDIR/.zccompdump ] && $ZDOTDIR/.zccompdump
+    fi
+	completion_file="$(basename "${completion_file_path}")"
+	if [ "$2" = true ] && compinit "${completion_file:1}"
+}
+
+function jump_to_worktree {
+  if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    current=$(pwd | xargs basename)
+    list_of_worktrees=$(git worktree list | sed -E '/bare|\.repo/d')
+
+    local worktree_path=$(echo $list_of_worktrees | fzf --height 40% --reverse | awk '{print $1}')
+
+    cd "$worktree_path"
+  else
+    echo "Not inside a worktree repo."
+  fi
+}
+
+function run_package_script {
+  if [ -f package.json ]; then
+    if ! jq -e '.scripts' package.json >/dev/null; then
+      echo "No scripts found in package.json"
+      return 1
+    fi
+
+    local script
+    script=$(jq -r '.scripts | keys[]' package.json | fzf --height 40% --reverse --query="$1")
+
+    if [ -n "$script" ]; then
+      if [ -f yarn.lock ]; then
+        yarn run "$script"
+      else
+        npm run "$script"
+      fi
+    fi
+  elif [ -f Cargo.toml ]; then
+    cargo run
+  elif find . -maxdepth 1 -name "*.csproj" -print -quit | grep -q .; then
+    dotnet run
+  elif [ -f go.mod ]; then
+    go run .
+  else
+    echo "No package.json, Cargo.toml, *.csproj, or go.mod found"
+    return 1
+  fi
+}
+
+function last-commit {
+  if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    hash=$(g log -1 --oneline | awk '{print $1}')
+    echo $hash | pbcopy && echo "Commit $hash copied to clipboard"
+  else
+    echo "Not a git repository"
+    return 1
+  fi
+}
+
+function url-parse {
+  local url=$1
+  local https_prefix="https://"
+  local http_prefix="http://"
+
+  if [[ $url != "$http_prefix"* && $url != "$https_prefix"* ]]; then
+    url="$https_prefix$url"
+  fi
+
+  echo "$url"
+}
+
+function td {
+  if [[ "$1" == "add" ]]; then
+    shift  # Shift the first argument off the list
+    todo.sh add "$@"  # Pass the remaining arguments to `todo.sh add`
+  elif [[ "$1" == "rm" ]]; then
+    shift # Shift the first argument
+    todo.sh rm "$@"
+  elif [[ "$1" == "done" ]]; then
+    # remove the last 2 lines of output
+    local todo=$(todo.sh list | head -n 2 | fzf --height 40% --reverse --query="$2"  | awk '{print $1}')
+
+    todo.sh done "$todo"
+  else
+    todo.sh list
+  fi
+}
+
+function open-or-search () {
+  if [ -z "$1" ]; then
+    open -a 'Brave Browser'
+  else
+    if [[ $1 == "http"* ]] || [[ $1 == *"."* ]]; then
+      echo "Opening $(url-parse $1)"
+      open -a 'Brave Browser' "$(url-parse $1)"
+    else
+      echo "Searching for '$@' on https://google.com"
+      open -a 'Brave Browser' "https://www.google.com/search?q=${(j:+:)@[1,-1]}"
+    fi
+  fi
+}

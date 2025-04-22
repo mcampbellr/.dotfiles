@@ -1,0 +1,22 @@
+Host github.com-personal
+  HostName github.com
+  User git
+  AddKeysToAgent yes
+  IdentityFile ~/.ssh/personal-github
+  IdentitiesOnly yes
+
+Host github.com-work
+  HostName github.com
+  User git
+  AddKeysToAgent yes
+  IdentityFile ~/.ssh/aspireiq
+  IdentitiesOnly yes
+
+Host bitbucket.org
+  HostName bitbucket.org
+  User git
+  AddKeysToAgent yes
+  IdentityFile ~/.ssh/nixup
+  IdentitiesOnly yes
+
+

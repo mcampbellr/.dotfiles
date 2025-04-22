@@ -1,0 +1,145 @@
+#!/bin/sh
+
+# Vim & Nvim Aliases
+alias n='nvim'
+alias pm='pnpm'
+alias t=zox
+alias cat='bat -p'
+
+alias sol=solana
+alias sv=solana-test-validator
+alias prisma='npx prisma'
+
+alias debug="npm run start:debug"
+alias serve="npm run serve"
+alias tmrc="sh -c '\${EDITOR:-nvim} ~/.tmux.conf && tmux source ~/.tmux.conf && tmux display \"Config reloaded\"'"
+
+alias nixdev="nix develop -c zsh"
+
+alias dn="deno"
+
+alias run=run_package_script
+
+alias nvc="cd $DOTFILES/nvim/.config/nvim && n ."
+alias zconf="cd $DOTFILES/zsh && n ."
+alias crl="curl"
+alias gf="fd"
+
+alias cd='z'
+
+alias make="gmake"
+
+# Shortcuts Aliases
+alias cl="clear"
+alias ls='eza --no-user --icons'
+alias ll='ls -h -a1 -l --no-user --no-time --git'
+alias tree="ls -T -L 3 --git-ignore"
+alias ip="ifconfig | grep 'inet ' | grep -v 127.0.0.1 | awk '{print \$2}'"
+alias fk="fuck"
+
+alias cal="open -a Calendar"
+alias br=open-or-search
+
+mkcdir () {
+  mkdir -p -- "$1" &&
+    cd -P -- "$1"
+}
+
+openFile () {
+  vim $(fzf)
+}
+
+alias vim.='openFile'
+
+alias copy-branch='g branch --show-current | pbcopy'
+alias branch='g branch --show-current'
+
+alias notes="n ~/Notes/"
+alias notess="ss ~/Notes/"
+
+
+alias ccd=mkcdir
+# configs aliases
+alias src="exec -l $SHELL"
+
+# tmux aliases
+alias tm='tmux'
+alias tmk="tm kill-server"
+
+alias at='alacritty-themes'
+alias zshal="nvim ~/.config/zsh/zsh-aliases"
+
+# programing language aliases
+# python
+alias py='python3'
+
+# alias pip='python2 -m pip'
+# alias pip3='python3 -m pip'
+
+# typescript
+alias tsn="ts-node"
+
+alias gc="gcloud"
+
+# Custom git aliases
+alias lg='lazygit'
+alias g='git'
+alias gpush="g push"
+alias gpull="g pull"
+alias gsh="g stash -u"
+alias gdff="g diff"
+alias grb="g rebase"
+alias gco="g checkout"
+alias gcm="g commit"
+alias glast="g show HEAD --quiet"
+alias gwta="g worktree add"
+alias gwtr="g worktree remove"
+alias gwtl="g worktree list"
+alias gwtm="g worktree move"
+alias gwtp="g worktree prune --verbose"
+alias gdf="g df"
+alias gcp="g cherry-pick"
+alias gbv="g branch -vv"
+alias gclone="g clone"
+alias gri="g rebase -i"
+alias gop="g open-repo"
+alias gst="g st"
+alias gemails="git log --format='%ae - (%an)' | sort | uniq"
+alias gconf="g config --global -e"
+alias gconfl="g config --local -e"
+alias gt=jump_to_worktree
+alias gclm="git log -1 | sed '1,4d' | pbcopy && echo 'Commit message copied to clipboard' "
+alias glc=last-commit
+
+LOG_FORMAT="format:'%C(bold red)%h%C(reset) - %C(white)(%C(bold green)%ar%C(reset)%C(white)) %s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'"
+
+alias glg="g log -15 --graph --abbrev-commit --decorate --format=$LOG_FORMAT"
+alias glog="g log --graph --abbrev-commit --decorate --format=$LOG_FORMAT"
+
+# yarn commands
+
+alias y="yarn"
+alias yd="yarn run dev"
+alias yb="yarn build"
+alias ys="yarn run serve"
+
+alias dev="ss ~/Developer/"
+
+alias doc='duck'
+alias dco="docker-compose"
+
+alias olocal="open http://localhost"
+
+alias c='cargo'
+
+alias top="htop"
+
+alias cpwd="pwd | tr -d '\n' | pbcopy && echo 'pwd copied to clipboard'"
+alias sleep="pmset sleepnow"
+
+alias set-up-remotes="git config --local --add remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'"
+
+alias docu=tldr
+
+# add new empty slot in dock
+alias adddock="defaults write com.apple.dock persistent-apps -array-add '{"tile-type"="spacer-tile";}' && killall Dock"
