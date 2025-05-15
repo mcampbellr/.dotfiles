@@ -1,0 +1,14 @@
+#!/bin/bash
+
+list=$(moxide project list -m)
+
+value=$(echo "$list" | \
+    fzf \
+    --no-sort \
+    --layout reverse \
+    --border rounded \
+    --border-label "Moxide Sessions" \
+    --no-scrollbar \
+)
+
+moxide project start "$value"

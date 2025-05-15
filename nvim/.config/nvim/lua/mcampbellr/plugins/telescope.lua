@@ -78,7 +78,6 @@ return {
         { "<C-b>", ":Telescope buffers<CR>" },
         { "<leader>/", ":Telescope current_buffer_fuzzy_find<CR>" },
         { "z=", ":Telescope spell_suggest<CR>" },
-        { "<leader>d", ":Telescope diagnostics<CR>" },
         {
             "<Leader>vrc",
             function()

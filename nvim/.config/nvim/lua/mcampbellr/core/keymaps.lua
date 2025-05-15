@@ -16,6 +16,11 @@ nnoremap("<down>", "<Nop>")
 nnoremap("<left>", "<Nop>")
 nnoremap("<right>", "<Nop>")
 
+-- Delete black hole
+nnoremap("<leader>d", '"_d')
+nnoremap("<leader>D", '"_D')
+nnoremap("<leader>dd", '"_dd')
+
 -- Replace
 nmap("<leader>rp", ":%s///g<left><left>")
 nmap("<leader>s", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
@@ -80,5 +85,8 @@ vnoremap("<C-f>", 'y<ESC>/<c-r>"<CR><ESC>')
 -- Allow moving the selected lines up and down and keep selection
 vnoremap("J", ":m '>+1<CR>gv=gv")
 vnoremap("K", ":m '<-2<CR>gv=gv")
+vnoremap("<Tab>", ">gv")
+vnoremap("<S-Tab>", "<gv")
+
 -- Paste in visual_mode
 vnoremap("p", '"_dP')

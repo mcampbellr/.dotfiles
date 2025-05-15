@@ -290,7 +290,7 @@ return {
             -- clangd = {},
             -- gopls = {},
             -- pyright = {},
-            -- rust_analyzer = {},
+            rust_analyzer = {},
             -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
             prismals = {},
             --
@@ -308,8 +308,19 @@ return {
             ts_ls = {},
             eslint = {
                 settings = {
-                    format = { enable = false },
+                    format = { enable = true },
+                    experimental = {
+                        useFlatConfig = true,
+                    },
+                    packageManager = "yarn", -- o npm si usas npm
+                    validate = {
+                        "javascript",
+                        "javascriptreact",
+                        "typescript",
+                        "typescriptreact",
+                    },
                 },
+                cmd = { "vscode-eslint-language-server", "--stdio" },
             },
             tailwindcss = {
                 filetypes = {

@@ -1,6 +1,5 @@
 #!/bin/sh
 
-
 # lazy lad this 
 eval $(/opt/homebrew/bin/brew shellenv)
 
@@ -23,6 +22,7 @@ setopt HIST_IGNORE_SPACE
 setopt HIST_FIND_NO_DUPS
 
 export XDG_RUNTIME_DIR="$HOME/.config"
+export XDG_CONFIG_HOME="$HOME/.config"
 export DOCKER_CONFIG="$XDG_RUNTIME_DIR/docker"
 
 # Environment variables set everywhere
