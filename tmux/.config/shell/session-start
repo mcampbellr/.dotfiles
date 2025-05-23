@@ -1,0 +1,26 @@
+#!/bin/bash
+
+list=$(find ~/Learn ~/Developer -mindepth 0 -maxdepth 3 -type d)
+
+selected=$(echo "$list" | \
+  fzf \
+  --no-sort \
+  --layout reverse \
+  --border rounded \
+  --border-label "Select a Session" \
+  --no-scrollbar \
+)
+
+selected_name=$(basename "$selected" | tr . _)
+tmux_running=$(pgrep tmux)
+
+if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+  tmux new-session -s $selected_name -c $selected
+  exit 0
+fi
+
+if ! tmux has-session -t $selected_name 2> /dev/null; then
+  tmux new-session -ds $selected_name -c $selected
+fi
+
+tmux switch-client -t $selected_name

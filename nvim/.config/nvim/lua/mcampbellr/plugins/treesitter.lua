@@ -59,6 +59,7 @@ return {
             ensure_installed = {
                 "bash",
                 "c",
+                "astro",
                 "diff",
                 "html",
                 "javascript",

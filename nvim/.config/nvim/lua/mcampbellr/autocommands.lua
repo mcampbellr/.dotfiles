@@ -145,6 +145,13 @@ autocmd({ "BufRead", "BufNewFile" }, {
 })
 
 autocmd({ "BufRead", "BufNewFile" }, {
+    pattern = { "*.mdx" },
+    callback = function()
+        vim.bo.filetype = "markdown"
+    end,
+})
+
+autocmd({ "BufRead", "BufNewFile" }, {
     pattern = { ".env", "*.env.*", ".envrc" },
     callback = function()
         vim.bo.filetype = "sh"

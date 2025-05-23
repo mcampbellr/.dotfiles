@@ -325,6 +325,7 @@ return {
             tailwindcss = {
                 filetypes = {
                     "html",
+                    "astro",
                     "css",
                     "scss",
                     "javascript",
@@ -349,6 +350,8 @@ return {
             volar = {},
 
             sqlls = {},
+
+            astro = {},
 
             dcm = {},
 

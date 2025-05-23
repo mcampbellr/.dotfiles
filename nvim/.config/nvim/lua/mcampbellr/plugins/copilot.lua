@@ -5,8 +5,8 @@ return {
     config = function()
         local nvm_dir = vim.fn.expand "$NVM_DIR"
         local latest_node_version_command = "ls "
-            .. nvm_dir
-            .. "/versions/node | sort -V | tail -n1"
+        .. nvm_dir
+        .. "/versions/node | sort -V | tail -n1"
         local latest_node_version = vim.fn.system(latest_node_version_command)
         latest_node_version = vim.fn.trim(latest_node_version)
 
@@ -23,6 +23,14 @@ return {
                     prev = "<C-k>",
                     dismiss = "<C-]>",
                 },
+            },
+            filetypes = {
+                yaml = true,
+                markdown = true,
+                gitcommit = true,
+                gitrebase = true,
+                help = false,
+                ["*"] = true,
             },
             copilot_node_command = nvm_dir
                 .. "/versions/node/"
