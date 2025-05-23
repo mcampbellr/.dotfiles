@@ -325,6 +325,7 @@ return {
             tailwindcss = {
                 filetypes = {
                     "html",
+                    "astro",
                     "css",
                     "scss",
                     "javascript",
@@ -346,9 +347,9 @@ return {
 
             gopls = {},
 
-            volar = {},
-
             sqlls = {},
+
+            astro = {},
 
             dcm = {},
 
@@ -397,7 +398,6 @@ return {
             "rust_analyzer",
             "tailwindcss",
             "ts_ls",
-            "volar",
             "yamlls",
         })
         require("mason-tool-installer").setup {

@@ -1,6 +1,7 @@
 return {
-    --[[ "navarasu/onedark.nvim", ]]
-    "sainnhe/gruvbox-material",
+    "navarasu/onedark.nvim",
+    --[[ "sainnhe/gruvbox-material", ]]
+    --[[ "catppuccin/nvim", ]]
     dependencies = {
         "xiyaowong/nvim-transparent",
     },
@@ -39,8 +40,9 @@ return {
         }
 
         -- Aplicar colorscheme
-        --[[ vim.cmd "colorscheme onedark" ]]
-        vim.cmd "colorscheme gruvbox-material"
+        vim.cmd "colorscheme onedark"
+        --[[ vim.cmd "colorscheme gruvbox-material" ]]
+        --[[ vim.cmd "colorscheme catppuccin-mocha" ]]
 
         -- Overrides manuales adicionales
         local set_hl = vim.api.nvim_set_hl

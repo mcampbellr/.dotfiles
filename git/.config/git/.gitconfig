@@ -39,6 +39,6 @@
 [worktree]
   guessRemote = true
 [help]
-	autocorrect = 0
+	autocorrect = 1
 [url "ssh://git@github.com/"]
 	insteadOf = https://github.com/
