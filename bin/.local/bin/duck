@@ -1,0 +1,43 @@
+#!/bin/bash
+
+## extract fzf --height 40% --reverse --header-lines=1 in a variable to reuse
+docker_default_fields="table {{.ID}}\t{{.Names}}\t{{.Image}}\t{{.Ports}}"
+
+action_performed=""
+
+## key bind to run docker logs -f on selected container in a new terminal and close fzf
+KEY_BINDS_LOG="ctrl-l:execute(tmux split-window \"docker logs -f {1}\")+accept"
+KEY_BINDS_START="ctrl-s:execute-silent(docker start {1})+accept"
+
+HEADER="ctrl-l:logs|ctrl-s:start"
+
+fzf_default_options="-p 60%,50% --header $HEADER --header-lines=1"
+
+function show_help () {
+  echo "Usage: ducker <command>"
+  echo "Commands:"
+
+  echo "  help:        show this help"
+}
+
+if [ "$1" == "help" ]; then
+  show_help
+  exit 0
+fi
+
+if [ -z "$1" ]; then
+  ps_target_selected=$(docker ps "${@:2}" --format "$docker_default_fields" | fzf-tmux --bind "$KEY_BINDS_LOG" --bind "$KEY_BINDS_START" $fzf_default_options | awk '{print $1}')
+
+  echo "action_performed: $action_performed"
+
+  if [ -n "$ps_target_selected" ]; then
+    docker ps "${@:2}" | head -n 1
+    docker ps "${@:2}" | grep "$ps_target_selected"
+  else
+    echo "No container selected"
+  fi
+  exit 0
+fi
+
+
+docker "$@"

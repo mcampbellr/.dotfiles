@@ -1,26 +1,54 @@
 #!/bin/bash
 
-list=$(find ~/Learn ~/Developer -mindepth 0 -maxdepth 3 -type d)
+# === Configuración ===
+
+# Rutas a buscar
+search_paths=(~/Learn ~/Developer)
+
+# Directorios a excluir
+exclude_dirs=("node_modules" ".git" "dist" "build" ".next" "target")
+
+# Construir expresión para excluir directorios
+exclude_expr=$(printf "! -path \"*/%s/*\" " "${exclude_dirs[@]}")
+
+# Buscar directorios válidos hasta 3 niveles de profundidad
+list=$(eval find "${search_paths[@]}" -mindepth 0 -maxdepth 3 -type d $exclude_expr)
+
+# Salir si no se encontraron resultados
+[[ -z "$list" ]] && echo "No hay directorios válidos." && exit 1
+
+# === Interfaz con FZF ===
 
 selected=$(echo "$list" | \
   fzf \
-  --no-sort \
-  --layout reverse \
-  --border rounded \
-  --border-label "Select a Session" \
-  --no-scrollbar \
+    --exact \
+    --no-sort \
+    --layout=reverse \
+    --border=rounded \
+    --border-label="Select a Session" \
+    --no-scrollbar \
 )
 
-selected_name=$(basename "$selected" | tr . _)
-tmux_running=$(pgrep tmux)
+# Salir si no se seleccionó nada
+[[ -z "$selected" ]] && exit 0
 
-if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-  tmux new-session -s $selected_name -c $selected
+# Sanitizar nombre de sesión
+selected_name=$(basename "$selected" | sed 's/[^a-zA-Z0-9_]/_/g' | sed 's/^_*\|_*$//g')
+
+
+# === Gestión de tmux ===
+
+# Si tmux no está corriendo, iniciar uno nuevo directamente
+if [[ -z $TMUX ]] && ! pgrep -x tmux > /dev/null; then
+  tmux new-session -s "$selected_name" -c "$selected"
   exit 0
 fi
 
-if ! tmux has-session -t $selected_name 2> /dev/null; then
-  tmux new-session -ds $selected_name -c $selected
+# Crear sesión si no existe
+if ! tmux has-session -t "$selected_name" 2>/dev/null; then
+  tmux new-session -ds "$selected_name" -c "$selected"
 fi
 
-tmux switch-client -t $selected_name
+# Cambiar a la sesión
+tmux switch-client -t "$selected_name"
+

@@ -242,7 +242,7 @@ return {
         -- Diagnostic Config
         -- See :help vim.diagnostic.Opts
         vim.diagnostic.config {
-            virtual_text = false,
+            virtual_text = true,
             signs = {
                 active = signs,
             },
@@ -292,7 +292,14 @@ return {
             -- pyright = {},
             rust_analyzer = {},
             -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
-            prismals = {},
+            prismals = {
+                settings = {
+                    cmd = {
+                        vim.fn.exepath "prisma-language-server",
+                        "--stdio",
+                    },
+                },
+            },
             --
             jsonls = {
                 settings = {

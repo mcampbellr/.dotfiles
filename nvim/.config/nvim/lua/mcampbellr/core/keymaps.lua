@@ -51,10 +51,9 @@ nnoremap("<Leader>-", ":vertical resize -10<CR>")
 
 -- function to format the code
 local function format_code()
-    vim.lsp.buf.format({ async = false })
-    print("formatting")
+    vim.lsp.buf.format { async = false }
+    print "formatting"
 end
-
 
 nmap("<leader>f", function()
     format_code()
@@ -67,11 +66,6 @@ for i = 1, 9 do
         ":lua require('harpoon.ui').nav_file(" .. i .. ")<CR>"
     )
 end
-
--- toogle between disable an enable copilot
-
-nnoremap("<F10>", ":Copilot disable<CR>")
-nnoremap("<F11>", ":Copilot enable<CR>")
 
 nnoremap("<F12>", function()
     --[[ require("mcampbellr.plugins.lsp.autoformat").toggle_format_on_save() ]]

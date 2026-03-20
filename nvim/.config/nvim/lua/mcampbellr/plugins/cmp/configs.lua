@@ -3,11 +3,15 @@ local luasnip = require "luasnip"
 
 require("luasnip/loaders/from_vscode").lazy_load()
 
+-- 2) Carga tus snippets en Lua
+--[[ require("luasnip.loaders.from_vscode").load { paths = "./snippets" } ]]
+
 vim.g.cmp_active = true
 
 local source_mapping = {
     nvim_lsp = "[LSP]",
     nvim_lua = "[Lua]",
+    css_variables = "[CSS]",
     cmp_tabnine = "[TAB]",
     luasnip = "[SNIP]",
     buffer = "[BUFF]",
@@ -81,6 +85,7 @@ cmp.setup {
     sources = cmp.config.sources({
         { name = "nvim_lsp" },
         { name = "nvim_lua" },
+        { name = "css_variables" },
         { name = "cmp_tabnine" },
         { name = "luasnip" },
         { name = "path" },

@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# selected=$(jq -nr '"MID"' | fzf --height=10% --reverse)
+
+selected="MID"
+ticket=$1
+
+if [[ -z $selected ]]; then
+    exit 0
+fi
+
+if [[ -z $ticket ]]; then
+  read -p "Enter Issue: " ticket -r
+fi
+
+open https://tevora.atlassian.net/browse/"$selected"-"$ticket"
+

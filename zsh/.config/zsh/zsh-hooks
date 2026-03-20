@@ -1,16 +1,51 @@
-function use_nvm_version() {
-  if [ -f ".nvmrc" ]; then
-    local nvm_version="$(cat .nvmrc)"
-    local current_version="$(nvm current)"
-    
-    if [ "$nvm_version" != "$current_version" ]; then
-      nvm use || nvm install
-    fi
-  fi
-}
+# -------------------------------------------------------------------
+# zsh-hooks
+# Hooks that run on directory changes / shell events
+# -------------------------------------------------------------------
+
+# Only run hooks in interactive shells
+[[ -o interactive ]] || return
 
 autoload -U add-zsh-hook
+
+# -------------------------------------------------------------------
+# Auto-switch Node version using .nvmrc
+# - If a .nvmrc exists in the current directory, ensure that version is used.
+# - If the version isn't installed, install it.
+# -------------------------------------------------------------------
+use_nvm_version() {
+  # Only run if .nvmrc exists
+  if [ ! -f ".nvmrc" ]; then
+    return 0
+  fi
+
+  # nvm must be available (avoid errors if nvm isn't loaded yet)
+  if ! command -v nvm >/dev/null 2>&1; then
+    return 0
+  fi
+
+  # Read desired version and current version
+  local nvm_version
+  nvm_version="$(cat .nvmrc | tr -d '[:space:]')"
+
+  if [ -z "$nvm_version" ]; then
+    return 0
+  fi
+
+  local current_version
+  current_version="$(nvm current 2>/dev/null)"
+
+  # If already on the right version, do nothing
+  if [ "$nvm_version" = "$current_version" ]; then
+    return 0
+  fi
+
+  # Switch or install
+  nvm use "$nvm_version" >/dev/null 2>&1 || nvm install "$nvm_version"
+}
+
+# Run on directory changes
 add-zsh-hook chpwd use_nvm_version
 
+# Run once on shell start for the initial directory
 use_nvm_version
-

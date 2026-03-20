@@ -1,126 +1,309 @@
-# Function to source files if they exist
-function zsh_add_file() {
-    [ -f "$ZDOTDIR/$1" ] && source "$ZDOTDIR/$1"
+# -------------------------------------------------------------------
+# zsh-functions
+# Helper functions used by .zshrc and other zsh config files
+#
+# Notes:
+# - This file is meant to be sourced from an interactive zsh session.
+# - Keep functions here; keep exports in zsh-exports; keep aliases in zsh-aliases.
+# -------------------------------------------------------------------
+
+# -------------------------------------------------------------------
+# 1) Safe sourcing helpers
+# -------------------------------------------------------------------
+
+# Source a file relative to $ZDOTDIR if it exists.
+# Example: zsh_add_file "zsh-exports" -> sources "$ZDOTDIR/zsh-exports"
+zsh_add_file() {
+  local relative_path="$1"
+  local full_path="$ZDOTDIR/$relative_path"
+
+  if [ -f "$full_path" ]; then
+    source "$full_path"
+    return 0
+  fi
+
+  return 1
 }
 
-function zsh_add_plugin() {
-    PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
-    if [ -d "$ZDOTDIR/plugins/$PLUGIN_NAME" ]; then 
-        # For plugins
-        zsh_add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh" || \
-        zsh_add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.zsh"
-    else
-        git clone "https://github.com/$1.git" "$ZDOTDIR/plugins/$PLUGIN_NAME"
-    fi
+# Extract the plugin directory name from "owner/repo"
+# Example: "zsh-users/zsh-autosuggestions" -> "zsh-autosuggestions"
+_zsh_plugin_name_from_repo() {
+  local repo="$1"
+  echo "$repo" | cut -d "/" -f 2
 }
 
-function zsh_add_completion() {
-    PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
-    if [ -d "$ZDOTDIR/plugins/$PLUGIN_NAME" ]; then 
-        # For completions
-		completion_file_path=$(ls $ZDOTDIR/plugins/$PLUGIN_NAME/_*)
-		fpath+="$(dirname "${completion_file_path}")"
-        zsh_add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh"
-    else
-        git clone "https://github.com/$1.git" "$ZDOTDIR/plugins/$PLUGIN_NAME"
-		fpath+=$(ls $ZDOTDIR/plugins/$PLUGIN_NAME/_*)
-        [ -f $ZDOTDIR/.zccompdump ] && $ZDOTDIR/.zccompdump
-    fi
-	completion_file="$(basename "${completion_file_path}")"
-	if [ "$2" = true ] && compinit "${completion_file:1}"
-}
+# Clone a plugin repo if missing (no-op if already exists)
+_zsh_ensure_plugin_cloned() {
+  local plugin_repo="$1"
+  local plugin_name="$(_zsh_plugin_name_from_repo "$plugin_repo")"
+  local plugin_dir="$ZDOTDIR/plugins/$plugin_name"
 
-function jump_to_worktree {
-  if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
-    current=$(pwd | xargs basename)
-    list_of_worktrees=$(git worktree list | sed -E '/bare|\.repo/d')
-
-    local worktree_path=$(echo $list_of_worktrees | fzf --height 40% --reverse | awk '{print $1}')
-
-    cd "$worktree_path"
-  else
-    echo "Not inside a worktree repo."
+  if [ ! -d "$plugin_dir" ]; then
+    git clone "https://github.com/$plugin_repo.git" "$plugin_dir"
   fi
 }
 
-function run_package_script {
+# Try to source common plugin entrypoints.
+# Many zsh plugins provide one of these:
+# - <name>.plugin.zsh
+# - <name>.zsh
+# - *.plugin.zsh / *.zsh
+_zsh_source_plugin_entrypoint() {
+  local plugin_repo="$1"
+  local plugin_name="$(_zsh_plugin_name_from_repo "$plugin_repo")"
+  local plugin_dir="$ZDOTDIR/plugins/$plugin_name"
+
+  # Preferred explicit names first
+  if zsh_add_file "plugins/$plugin_name/$plugin_name.plugin.zsh"; then return 0; fi
+  if zsh_add_file "plugins/$plugin_name/$plugin_name.zsh"; then return 0; fi
+
+  # Fallback: source the first matching *.plugin.zsh or *.zsh found
+  local entrypoint
+  entrypoint="$(ls "$plugin_dir"/*.plugin.zsh 2>/dev/null | head -n 1)"
+  if [ -n "$entrypoint" ]; then
+    source "$entrypoint"
+    return 0
+  fi
+
+  entrypoint="$(ls "$plugin_dir"/*.zsh 2>/dev/null | head -n 1)"
+  if [ -n "$entrypoint" ]; then
+    source "$entrypoint"
+    return 0
+  fi
+
+  return 1
+}
+
+# Add a plugin:
+# - If missing: clone it.
+# - If present: source its entrypoint.
+#
+# IMPORTANT FIX:
+# Your old version cloned plugins but did NOT source them in the same run.
+# That makes “first shell after install” not load the plugin until next shell.
+zsh_add_plugin() {
+  local plugin_repo="$1"
+  local plugin_name="$(_zsh_plugin_name_from_repo "$plugin_repo")"
+  local plugin_dir="$ZDOTDIR/plugins/$plugin_name"
+
+  _zsh_ensure_plugin_cloned "$plugin_repo"
+
+  # Always attempt to source after ensuring it exists
+  if ! _zsh_source_plugin_entrypoint "$plugin_repo"; then
+    echo "zsh_add_plugin: could not find entrypoint for $plugin_repo in $plugin_dir"
+    return 1
+  fi
+}
+
+# Add completion from a plugin that ships `_completion` files.
+# - Ensures plugin is cloned.
+# - Adds directory containing `_foo` files to fpath.
+#
+# IMPORTANT FIX:
+# - Your old version used `ls .../_*` without quoting -> breaks on spaces.
+# - It also tried to run `.zccompdump` incorrectly.
+# - `compinit` usage was inconsistent.
+zsh_add_completion() {
+  local plugin_repo="$1"
+  local run_compinit="${2:-false}"
+
+  local plugin_name="$(_zsh_plugin_name_from_repo "$plugin_repo")"
+  local plugin_dir="$ZDOTDIR/plugins/$plugin_name"
+
+  _zsh_ensure_plugin_cloned "$plugin_repo"
+
+  # Find a completion file like _git, _something, etc.
+  local completion_file_path
+  completion_file_path="$(ls "$plugin_dir"/_* 2>/dev/null | head -n 1)"
+
+  if [ -z "$completion_file_path" ]; then
+    echo "zsh_add_completion: no completion files (_*) found for $plugin_repo"
+    return 1
+  fi
+
+  # Add completion directory to fpath (directory, not the file)
+  local completion_dir
+  completion_dir="$(dirname "$completion_file_path")"
+  fpath+=("$completion_dir")
+
+  # Optionally source plugin entrypoint as well (some completions need it)
+  _zsh_source_plugin_entrypoint "$plugin_repo" >/dev/null 2>&1 || true
+
+  # Optionally refresh completion system
+  if [ "$run_compinit" = "true" ]; then
+    autoload -Uz compinit
+    compinit
+  fi
+}
+
+# -------------------------------------------------------------------
+# 2) Git helpers
+# -------------------------------------------------------------------
+
+# Jump between git worktrees using fzf.
+jump_to_worktree() {
+  if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    echo "Not inside a worktree repo."
+    return 1
+  fi
+
+  local list_of_worktrees
+  list_of_worktrees="$(git worktree list | sed -E '/bare|\.repo/d')"
+
+  # IMPORTANT FIX:
+  # Use printf to preserve newlines; your old `echo $list_of_worktrees` collapsed lines.
+  local worktree_path
+  worktree_path="$(printf '%s\n' "$list_of_worktrees" | fzf --height 40% --reverse | awk '{print $1}')"
+
+  if [ -z "$worktree_path" ]; then
+    return 0
+  fi
+
+  cd "$worktree_path" || return 1
+}
+
+# Copy last commit hash to clipboard (uses your alias `g` if available)
+last-commit() {
+  if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    echo "Not a git repository"
+    return 1
+  fi
+
+  local commit_hash
+  commit_hash="$(git log -1 --oneline | awk '{print $1}')"
+
+  if [ -z "$commit_hash" ]; then
+    echo "No commits found"
+    return 1
+  fi
+
+  echo "$commit_hash" | pbcopy
+  echo "Commit $commit_hash copied to clipboard"
+}
+
+# -------------------------------------------------------------------
+# 3) Project runner helper (JS/Rust/.NET/Go)
+# -------------------------------------------------------------------
+
+# Pick and run a package.json script via fzf, or run sensible defaults for other projects.
+run_package_script() {
   if [ -f package.json ]; then
-    if ! jq -e '.scripts' package.json >/dev/null; then
+    if ! jq -e '.scripts' package.json >/dev/null 2>&1; then
       echo "No scripts found in package.json"
       return 1
     fi
 
-    local script
-    script=$(jq -r '.scripts | keys[]' package.json | fzf --height 40% --reverse --query="$1")
+    local script_name
+    script_name="$(jq -r '.scripts | keys[]' package.json | fzf --height 40% --reverse --query="$1")"
 
-    if [ -n "$script" ]; then
-      if [ -f yarn.lock ]; then
-        yarn run "$script"
-      else
-        npm run "$script"
-      fi
+    if [ -z "$script_name" ]; then
+      return 0
     fi
-  elif [ -f Cargo.toml ]; then
+
+    # Detect package manager by lockfile (modern priority)
+    if [ -f pnpm-lock.yaml ]; then
+      echo "→ Using pnpm"
+      pnpm run "$script_name"
+      return $?
+    fi
+
+    if [ -f yarn.lock ]; then
+      echo "→ Using yarn"
+      yarn run "$script_name"
+      return $?
+    fi
+
+    if [ -f package-lock.json ]; then
+      echo "→ Using npm"
+      npm run "$script_name"
+      return $?
+    fi
+
+    echo "→ No lockfile found, defaulting to npm"
+    npm run "$script_name"
+    return $?
+
+  fi
+
+  if [ -f Cargo.toml ]; then
     cargo run
-  elif find . -maxdepth 1 -name "*.csproj" -print -quit | grep -q .; then
+    return $?
+  fi
+
+  if find . -maxdepth 1 -name "*.csproj" -print -quit | grep -q .; then
     dotnet run
-  elif [ -f go.mod ]; then
+    return $?
+  fi
+
+  if [ -f go.mod ]; then
     go run .
-  else
-    echo "No package.json, Cargo.toml, *.csproj, or go.mod found"
-    return 1
+    return $?
   fi
+
+  echo "No JS, Rust, .NET, or Go project detected"
+  return 1
 }
 
-function last-commit {
-  if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
-    hash=$(g log -1 --oneline | awk '{print $1}')
-    echo $hash | pbcopy && echo "Commit $hash copied to clipboard"
-  else
-    echo "Not a git repository"
+# -------------------------------------------------------------------
+# 4) Port helper
+# -------------------------------------------------------------------
+
+# Check whether a TCP port is in use.
+# Usage: port 3000
+port() {
+  if [ -z "$1" ]; then
+    echo "Usage: port <port_number>"
     return 1
   fi
+
+  local port_number="$1"
+  local result
+  result="$(lsof -iTCP:"$port_number" -sTCP:LISTEN -Pn 2>/dev/null)"
+
+  if [ -z "$result" ]; then
+    echo "Port $port_number is FREE"
+    return 0
+  fi
+
+  echo "Port $port_number is IN USE"
+  echo "$result"
+  return 0
 }
 
-function url-parse {
-  local url=$1
+# -------------------------------------------------------------------
+# 5) URL helpers
+# -------------------------------------------------------------------
+
+# Ensure a URL has an https:// prefix unless it already has http:// or https://
+url-parse() {
+  local url="$1"
   local https_prefix="https://"
   local http_prefix="http://"
 
-  if [[ $url != "$http_prefix"* && $url != "$https_prefix"* ]]; then
-    url="$https_prefix$url"
+  if [[ "$url" != "$http_prefix"* && "$url" != "$https_prefix"* ]]; then
+    url="${https_prefix}${url}"
   fi
 
   echo "$url"
 }
 
-function td {
-  if [[ "$1" == "add" ]]; then
-    shift  # Shift the first argument off the list
-    todo.sh add "$@"  # Pass the remaining arguments to `todo.sh add`
-  elif [[ "$1" == "rm" ]]; then
-    shift # Shift the first argument
-    todo.sh rm "$@"
-  elif [[ "$1" == "done" ]]; then
-    # remove the last 2 lines of output
-    local todo=$(todo.sh list | head -n 2 | fzf --height 40% --reverse --query="$2"  | awk '{print $1}')
-
-    todo.sh done "$todo"
-  else
-    todo.sh list
-  fi
-}
-
-function open-or-search () {
+# Open Brave with a URL, or search Google if it's not a URL-like input.
+open-or-search() {
   if [ -z "$1" ]; then
     open -a 'Brave Browser'
-  else
-    if [[ $1 == "http"* ]] || [[ $1 == *"."* ]]; then
-      echo "Opening $(url-parse $1)"
-      open -a 'Brave Browser' "$(url-parse $1)"
-    else
-      echo "Searching for '$@' on https://google.com"
-      open -a 'Brave Browser' "https://www.google.com/search?q=${(j:+:)@[1,-1]}"
-    fi
+    return 0
   fi
+
+  if [[ "$1" == "http"* ]] || [[ "$1" == *"."* ]]; then
+    local parsed_url
+    parsed_url="$(url-parse "$1")"
+    echo "Opening $parsed_url"
+    open -a 'Brave Browser' "$parsed_url"
+    return 0
+  fi
+
+  echo "Searching for '$*' on https://google.com"
+  # Join args with + for query string in zsh
+  open -a 'Brave Browser' "https://www.google.com/search?q=${(j:+:)@[1,-1]}"
 }
+

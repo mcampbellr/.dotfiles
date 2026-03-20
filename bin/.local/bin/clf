@@ -1,0 +1,188 @@
+#!/usr/bin/env zsh
+set -euo pipefail
+
+require_cmd() {
+  local command_name="$1"
+  if ! command -v "${command_name}" >/dev/null 2>&1; then
+    echo "clf: missing dependency: ${command_name}" >&2
+    exit 1
+  fi
+}
+
+# -------------------------------------------------------------------
+# Config + state paths (stow-friendly)
+# -------------------------------------------------------------------
+xdg_config_home="${XDG_CONFIG_HOME:-${HOME}/.config}"
+clf_config_dir="${xdg_config_home}/clf"
+clf_config_file="${clf_config_dir}/config"
+clf_state_file="${clf_config_dir}/active-cert"
+
+mkdir -p "${clf_config_dir}"
+
+# -------------------------------------------------------------------
+# Defaults
+# -------------------------------------------------------------------
+CLOUDFLARED_DIR="${HOME}/.cloudflared"
+CERT_GLOB="*-cert.pem"
+ACTIVE_CERT_LINK_NAME="cert.pem"
+
+# We will also maintain a config.yml symlink, because cloudflared defaults to it.
+ACTIVE_CONFIG_LINK_NAME="config.yml"
+
+if [[ -f "${clf_config_file}" ]]; then
+  # shellcheck disable=SC1090
+  source "${clf_config_file}"
+fi
+
+default_cert_link="${CLOUDFLARED_DIR}/${ACTIVE_CERT_LINK_NAME}"
+default_config_link="${CLOUDFLARED_DIR}/${ACTIVE_CONFIG_LINK_NAME}"
+
+# -------------------------------------------------------------------
+# List certs (zsh-safe glob expansion)
+# -------------------------------------------------------------------
+list_certs() {
+  local pattern="${CLOUDFLARED_DIR}/${CERT_GLOB}"
+  local certs=(${~pattern}(N))
+  printf '%s\n' "${certs[@]}"
+}
+
+# -------------------------------------------------------------------
+# Map cert -> config
+# Example: obs-cert.pem -> obs.yml
+# -------------------------------------------------------------------
+extract_config_for_cert() {
+  local cert_path="$1"
+
+  local cert_filename
+  cert_filename="$(basename "${cert_path}")"
+
+  # Remove suffix "-cert.pem" and append ".yml"
+  local config_name="${cert_filename%-cert.pem}.yml"
+  local config_path="${CLOUDFLARED_DIR}/${config_name}"
+
+  if [[ -f "${config_path}" ]]; then
+    echo "${config_path}"
+    return 0
+  fi
+
+  echo "clf: No config found for cert ${cert_filename} (expected ${config_path})" >&2
+  return 1
+}
+
+# -------------------------------------------------------------------
+# Activate cert + config symlinks
+# -------------------------------------------------------------------
+activate_cert() {
+  local cert_path="$1"
+
+  if [[ ! -f "${cert_path}" ]]; then
+    echo "clf: cert not found: ${cert_path}" >&2
+    exit 1
+  fi
+
+  mkdir -p "${CLOUDFLARED_DIR}"
+
+  # Link cert.pem -> chosen cert
+  ln -sfn "${cert_path}" "${default_cert_link}"
+  echo "${cert_path}" > "${clf_state_file}"
+
+  # Link config.yml -> matching config (obs.yml, cdr.yml, vng.yml, etc.)
+  local config_path
+  config_path="$(extract_config_for_cert "${cert_path}")"
+  ln -sfn "${config_path}" "${default_config_link}"
+
+  echo "Active cert: ${cert_path}"
+  echo "  cert.pem   -> $(readlink "${default_cert_link}" 2>/dev/null || echo "${cert_path}")"
+  echo "Active config: ${config_path}"
+  echo "  config.yml -> $(readlink "${default_config_link}" 2>/dev/null || echo "${config_path}")"
+}
+
+# -------------------------------------------------------------------
+# Switch using fzf
+# -------------------------------------------------------------------
+switch_cert() {
+  require_cmd fzf
+
+  local certs
+  certs=($(list_certs))
+
+  if [[ ${#certs[@]} -eq 0 ]]; then
+    echo "clf: no certs found at ${CLOUDFLARED_DIR}/${CERT_GLOB}" >&2
+    exit 1
+  fi
+
+  local selected
+  selected="$(printf '%s\n' "${certs[@]}" | fzf --height 40% --reverse --prompt='Select Cloudflare cert > ')"
+
+  if [[ -z "${selected}" ]]; then
+    echo "Cancelled."
+    exit 0
+  fi
+
+  activate_cert "${selected}"
+}
+
+# -------------------------------------------------------------------
+# Display current state
+# -------------------------------------------------------------------
+current_cert() {
+  if [[ -f "${clf_state_file}" ]]; then
+    echo "Saved active cert: $(cat "${clf_state_file}")"
+  else
+    echo "Saved active cert: (none)"
+  fi
+
+  if [[ -L "${default_cert_link}" ]]; then
+    echo "cert.pem symlink: ${default_cert_link} -> $(readlink "${default_cert_link}")"
+  elif [[ -f "${default_cert_link}" ]]; then
+    echo "cert.pem file: ${default_cert_link}"
+  else
+    echo "cert.pem: (not set)"
+  fi
+
+  if [[ -L "${default_config_link}" ]]; then
+    echo "config.yml symlink: ${default_config_link} -> $(readlink "${default_config_link}")"
+  elif [[ -f "${default_config_link}" ]]; then
+    echo "config.yml file: ${default_config_link}"
+  else
+    echo "config.yml: (not set)"
+  fi
+}
+
+usage() {
+  cat <<'USAGE'
+clf - cloudflared wrapper (multi-account cert + config switch) [stow-friendly]
+
+Commands:
+  clf switch        Choose a *-cert.pem via fzf and set:
+                    - ~/.cloudflared/cert.pem -> selected cert
+                    - ~/.cloudflared/config.yml -> matching <name>.yml
+  clf current       Show saved active cert and current symlinks
+  clf list          List available certs
+  clf help          Show help
+
+Other:
+  clf <args...>     Pass-through to cloudflared <args...>
+
+Naming convention:
+  ~/.cloudflared/<name>-cert.pem  -> expects ~/.cloudflared/<name>.yml
+Example:
+  obs-cert.pem -> obs.yml
+USAGE
+}
+
+main() {
+  local subcommand="${1:-}"
+  case "${subcommand}" in
+    switch)  shift; switch_cert ;;
+    current) shift; current_cert ;;
+    list)    shift; list_certs ;;
+    help|-h|--help|"") usage ;;
+    *)
+      require_cmd cloudflared
+      exec cloudflared "$@"
+      ;;
+  esac
+}
+
+main "$@"

@@ -1,0 +1,4 @@
+# ~/.config/clf/config
+CLOUDFLARED_DIR="$HOME/.cloudflared"
+CERT_GLOB="*-cert.pem"
+ACTIVE_CERT_LINK_NAME="cert.pem"

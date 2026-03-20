@@ -3,6 +3,7 @@ return {
     event = "VeryLazy",
     dependencies = {
         { "hrsh7th/cmp-buffer" },
+        { "roginfarrer/cmp-css-variables" },
         { "hrsh7th/cmp-path" },
         { "hrsh7th/cmp-nvim-lsp" },
         { "hrsh7th/cmp-nvim-lua" },
@@ -20,4 +21,3 @@ return {
         require "mcampbellr.plugins.cmp.configs"
     end,
 }
-

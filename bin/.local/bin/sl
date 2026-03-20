@@ -1,0 +1,178 @@
+#!/bin/sh
+
+# wrapper script for `sl` that attempts to have pretty good compatibility with shells in order to always keep the
+# downloaded copy of `sl`
+
+# accept some command-line flags that `sl` itself also partially accepts; it's a bit convoluted because of the need to
+# keep the positional arguments the same for the `exec` below, so no `shift` allowed
+for i in "$@"; do
+    if [ -n "$take_sl_home" ]; then
+        SHIFTLEFT_HOME="$i"
+        unset take_sl_home
+    elif [ -n "$take_download_host" ]; then
+        SHIFTLEFT_DOWNLOAD_HOST="$i"
+        unset take_download_host
+    else case $i in
+    --sl-home) take_sl_home=true;;
+    --download-host) take_download_host=true;;
+    --verbose) SHIFTLEFT_VERBOSE=true;;
+    --no-auto-update) SHIFTLEFT_NO_AUTO_UPDATE=true;;
+    esac; fi
+done
+
+if [ -n "$take_sl_home" ]; then
+    echo "Missing argument for --sl-home."
+    exit 1
+fi
+
+if [ -n "$take_download_host" ]; then
+    echo "Missing argument for --download-host."
+    exit 1
+fi
+
+if [ "$SHIFTLEFT_VERBOSE" = "true" ]; then
+    set -x
+fi
+
+# default to home directory; we'll be creating this so can't choose /etc/shiftleft or similar locations
+if [ -z "$SHIFTLEFT_HOME" ]; then
+    SHIFTLEFT_HOME=~/.shiftleft
+fi
+
+# if auto-updates aren't disabled, fetch manifest and try to update `sl`
+if [ "$SHIFTLEFT_NO_AUTO_UPDATE" != "true" ]; then
+    if [ -z "$SHIFTLEFT_DOWNLOAD_HOST" ]; then
+        SHIFTLEFT_DOWNLOAD_HOST=www.shiftleft.io
+    fi
+    # users may set this environment variable in order to overwrite the endpoint.  mostly useful for testing against
+    # staging
+    if [ -z "$SHIFTLEFT_SL_MANIFEST_URL" ]; then
+        # https://stackoverflow.com/questions/3466166/how-to-check-if-running-in-cygwin-mac-or-linux
+        case $(uname) in
+            Linux)
+                SHIFTLEFT_SL_MANIFEST_URL="https://${SHIFTLEFT_DOWNLOAD_HOST}/download/slmanifest-linux-x64.json"
+                ;;
+
+            Darwin)
+              case $(uname -m) in
+                arm64)
+                  SHIFTLEFT_SL_MANIFEST_URL="https://${SHIFTLEFT_DOWNLOAD_HOST}/download/slmanifest-osx-arm64.json"
+                  ;;
+                *) # I have only two samples of apple uname outputs so being cautious.
+                  SHIFTLEFT_SL_MANIFEST_URL="https://${SHIFTLEFT_DOWNLOAD_HOST}/download/slmanifest-osx-x64.json"
+                  ;;
+              esac
+              ;;
+
+            CYGWIN*|MINGW32*|MSYS*)
+                echo "This self-updater doesn't support Windows, make sure to download the Windows release instead!"
+                # SHIFTLEFT_SL_MANIFEST_URL="https://${SHIFTLEFT_DOWNLOAD_HOST}/download/slmanifest-windows-x64.json"
+                ;;
+
+            *)
+                echo "Couldn't detect operating system, skipping self-update check."
+                ;;
+        esac
+    fi
+
+    # if we have a manifest URL, try and download it, which will need `curl` or `wget` on the PATH
+    if [ -n "$SHIFTLEFT_SL_MANIFEST_URL" ]; then
+        have_curl=$(which curl)
+        have_wget=$(which wget)
+        if [ -n "$have_curl" ]; then
+            manifest=$(curl -L -s "$SHIFTLEFT_SL_MANIFEST_URL")
+        elif [ -n "$have_wget" ]; then
+            manifest=$(wget -q -O- "$SHIFTLEFT_SL_MANIFEST_URL")
+        else
+            echo "Couldn't find either \`curl\` or \`wget\`, skipping self-update check."
+        fi
+        if [ "$?" != "0" ] || [ -z "$manifest" ]; then
+            echo "Couldn't download manifest, skipping self-update."
+        fi
+
+        # if we were able to download the manifest, parse it in a very crude fashion (but we don't need `jq`)
+        if [ -n "$manifest" ]; then
+            case $(uname) in
+                Darwin)
+                    version=$(echo "$manifest" | sed -n "s/^[^\"]*\"version\"[^\"]*\"\([^\"]*\)\"[^\"]*/\1/p")
+                    filename=$(echo "$manifest" | sed -n "s/^[^\"]*\"fileName\"[^\"]*\"\([^\"]*\)\"[^\"]*/\1/p")
+                    download_url=$(echo "$manifest" | sed -n "s/^[^\"]*\"downloadURL\"[^\"]*\"\([^\"]*\)\"[^\"]*/\1/p")
+                    ;;
+                *)
+                    version=$(echo "$manifest" | sed -n "s/^[^\"]*\"version\":\s\+\"\([^\"]\+\).*/\1/p")
+                    filename=$(echo "$manifest" | sed -n "s/^[^\"]*\"fileName\":\s\+\"\([^\"]\+\).*/\1/p")
+                    download_url=$(echo "$manifest" | sed -n "s/^[^\"]*\"downloadURL\":\s\+\"\([^\"]\+\).*/\1/p")
+                    ;;
+            esac
+
+            # if we were able to parse it, use that information and download the corresponding release, if required
+            if [ -z "$version" ] || [ -z "$filename" ] || [ -z "$download_url" ]; then
+                echo "Couldn't parse information from manifest file, skipping self-update."
+            else
+                # the file might already exist, if so, we skip downloading
+                if [ ! -f "$SHIFTLEFT_HOME/$filename" ]; then
+                    tmpfile=$(mktemp)
+                    if [ -n "$tmpfile" ]; then
+                        trap "rm -f \"$tmpfile\"" 0 HUP INT QUIT ABRT TERM
+                    fi
+
+                    echo "Downloading \`$download_url\` to \`$tmpfile\`..."
+                    # TODO: would be cool to check the Content-Type before actually downloading, however this is shell
+                    # and difficult to do
+                    if [ -n "$have_curl" ]; then
+                        curl -L "$download_url" >"$tmpfile"
+                    elif [ -n "$have_wget" ]; then
+                        wget -o "$tmpfile" "$download_url"
+                    fi
+                    if [ "$?" != "0" ]; then
+                        echo "Download failed, skipping rest of self-update."
+                    fi
+
+                    if [ -f "$tmpfile" ]; then
+                        if mkdir "$tmpfile-unpacked"; then
+                            trap "rm -rf \"$tmpfile-unpacked\"" 0 HUP INT QUIT ABRT TERM
+                        fi
+
+                        if gunzip -t "$tmpfile" 2>/dev/null && gunzip -c "$tmpfile" | tar t >/dev/null; then
+                            if tar xf "$tmpfile" -C "$tmpfile-unpacked" \
+                                    && chmod +rx "$tmpfile-unpacked/sl" \
+                                    && mkdir -p "$SHIFTLEFT_HOME" \
+                                    && mv "$tmpfile-unpacked/sl" "$SHIFTLEFT_HOME/$filename"; then
+                                # keep only one release around
+                                for f in "$SHIFTLEFT_HOME"/sl-*
+                                do
+                                    case "$f" in
+                                        *jar*) true;;
+                                        *latest*) true;;
+                                        "$SHIFTLEFT_HOME/$filename") true;;
+                                        *) rm -f "$f";;
+                                    esac
+                                done
+                            else
+                                echo "Couldn't unpack \`sl\` release."
+                            fi
+                        else
+                            echo "Downloaded \`sl\` release doesn't look like a .tar.gz file."
+                        fi
+                    fi
+                fi
+
+                # ensure we have a symlink `sl-latest` to the actual file
+                if [ -f "$SHIFTLEFT_HOME/$filename" ]; then
+                    if ! ln -fs "$filename" "$SHIFTLEFT_HOME/sl-latest"; then
+                        echo "Couldn't create symlink at \`$SHIFTLEFT_HOME/sl-latest\`."
+                    fi
+                fi
+            fi
+        fi
+    fi
+fi
+
+# we always go via `sl-latest`, which will be linked to the actual release file
+if [ ! -f "$SHIFTLEFT_HOME/sl-latest" ]; then
+    echo "No latest \`sl\` release available, can't execute \`sl\`."
+    exit 1
+fi
+
+# become `sl`
+exec "$SHIFTLEFT_HOME/sl-latest" "$@"

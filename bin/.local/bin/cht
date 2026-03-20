@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+commands=`cat ~/.local/share/cht/.commands`
+languages=`cat ~/.local/share/cht/.languages`
+
+selected=`echo -e "$commands\n$languages" | fzf --height 40% --reverse --border --prompt="Query: "`
+
+if [[ $selected == "" ]]; then
+    exit 0
+fi
+
+read -p "Enter Query: " query
+
+if grep -qs "$selected" "$languages"; then
+    query=`echo $query | tr ' ' '+'`
+    tmux neww bash -c "echo \"curl cht.sh/$selected/$query/\" & curl cht.sh/$selected/$query & while [ : ]; do sleep 1; done"
+else
+    tmux neww bash -c "curl -s cht.sh/$selected~$query | less"
+fi
+

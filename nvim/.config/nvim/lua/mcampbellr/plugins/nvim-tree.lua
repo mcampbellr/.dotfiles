@@ -81,7 +81,7 @@ return {
 
             vim.keymap.set(
                 "n",
-                "<C-x>",
+                "h",
                 api.node.open.horizontal,
                 opts "Open: Horizontal Split"
             )
@@ -295,10 +295,10 @@ return {
             git = {
                 enable = true,
                 ignore = true,
-                timeout = 500,
+                timeout = 300,
             },
             view = {
-                width = 55,
+                width = 35,
                 side = "left",
                 number = true,
                 relativenumber = true,
@@ -317,9 +317,9 @@ return {
                 icons = {
                     show = {
                         git = true,
-                        folder = false,
-                        file = false,
-                        folder_arrow = false,
+                        folder = true,
+                        file = true,
+                        folder_arrow = true,
                     },
                     glyphs = {
                         default = icons.documents.File,
