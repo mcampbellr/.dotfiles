@@ -1,0 +1,56 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C * branch --show-current)",
+      "Bash(git -C * status --short)",
+      "Bash(git -C * log *)",
+      "Bash(git -C * rev-list *)",
+      "Bash(git -C * rev-parse *)",
+      "Bash(git -C * checkout *)",
+      "Bash(git -C * pull *)"
+    ],
+    "defaultMode": "auto"
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "bash ~/.claude/statusline-command.sh"
+  },
+  "enabledPlugins": {
+    "gopls-lsp@claude-plugins-official": true,
+    "marketing-skills@marketingskills": true,
+    "banana-claude@banana-claude-marketplace": true,
+    "expo@claude-plugins-official": true
+  },
+  "extraKnownMarketplaces": {
+    "gsap-skills": {
+      "source": {
+        "source": "github",
+        "repo": "greensock/gsap-skills"
+      }
+    },
+    "marketingskills": {
+      "source": {
+        "source": "github",
+        "repo": "coreyhaines31/marketingskills"
+      }
+    },
+    "banana-claude-marketplace": {
+      "source": {
+        "source": "github",
+        "repo": "AgriciDaniel/banana-claude"
+      }
+    },
+    "expo-plugins": {
+      "source": {
+        "source": "github",
+        "repo": "expo/skills"
+      }
+    }
+  },
+  "language": "Spanish",
+  "skipDangerousModePermissionPrompt": true,
+  "theme": "dark-ansi",
+  "editorMode": "vim",
+  "agentPushNotifEnabled": true,
+  "skipAutoPermissionPrompt": true
+}
