@@ -1,5 +1,4 @@
 {
-  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
   "name": "devup",
   "version": "1.0.0",
   "description": "Spin up a repo's local dev stack (services + cloudflared tunnel) in tmux, worktree-aware. Reads a `run:` block from .project-structure. Ships /devup:setup to configure any repo.",
@@ -13,8 +12,5 @@
     "dev-environment",
     "cloudflared",
     "monorepo"
-  ],
-  "skills": [
-    "./skills/setup"
   ]
 }

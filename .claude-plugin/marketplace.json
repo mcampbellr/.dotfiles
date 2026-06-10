@@ -1,0 +1,24 @@
+{
+  "name": "devup",
+  "owner": {
+    "name": "Mario Campbell"
+  },
+  "metadata": {
+    "description": "Worktree-aware local dev launcher for tmux"
+  },
+  "plugins": [
+    {
+      "name": "devup",
+      "source": "./plugins/devup",
+      "description": "Spin up a repo's local dev stack (services + cloudflared tunnel) in tmux, worktree-aware. Ships /devup:setup to configure any repo.",
+      "license": "MIT",
+      "keywords": [
+        "tmux",
+        "worktree",
+        "dev-environment",
+        "cloudflared"
+      ],
+      "category": "workflow"
+    }
+  ]
+}
