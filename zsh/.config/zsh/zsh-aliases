@@ -47,7 +47,8 @@ alias cd='z'
 alias dot='cd "$DOTFILES" && n .'
 alias nvc='cd "$DOTFILES/nvim/.config/nvim" && n .'
 alias zconf='cd "$DOTFILES/zsh" && n .'
-alias dev='ss ~/Developer/'     # NOTE: depends on `ss` function/alias existing
+alias dev='devup'               # spin up current worktree's dev stack (services + tunnel) in tmux
+alias devs='ss ~/Developer/'    # session switcher into ~/Developer/ (old `dev` behavior)
 
 # Notes
 alias notes='n ~/Notes/'

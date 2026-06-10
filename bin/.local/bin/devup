@@ -1,0 +1,215 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# devup — spin up a project's local dev stack (services + tunnel) in tmux.
+#
+# Worktree-aware: resolves the active worktree from $PWD and launches an
+# isolated tmux session per repo+worktree, reading a `run:` block from the
+# project's `.project-structure` file at the repo root.
+#
+# Config schema (.project-structure, YAML):
+#
+#   code_dir: code            # optional. Dir holding the bare repo + worktrees.
+#                             #   Omit for a flat (non-worktree) repo.
+#   default_branch: main      # optional (default: main). Worktree dir used when
+#                             #   $PWD is not inside a worktree.
+#   tunnel:                   # optional. Either a {config,name} map ...
+#     config: vng             #   -> ~/.cloudflared/vng.yml + vng-cert.pem
+#     name: vanguard          #   -> cloudflared ... run vanguard
+#   # tunnel: "any raw command"   ... or a raw command string.
+#   run:                      # required. One tmux window per entry.
+#     - name: api
+#       cmd: pnpm --filter api dev
+#       cwd: .                # optional, relative to the worktree root
+#     - name: app
+#       cmd: pnpm --filter app dev
+#
+# Each window gets DEV_WORKTREE and DEV_PORT_OFFSET exported. The offset is a
+# stable per-worktree value (0 for default_branch, 100..900 otherwise) so
+# repos can opt into port isolation, e.g.:
+#   cmd: PORT=$((3000 + DEV_PORT_OFFSET)) pnpm --filter api dev
+#
+# Usage:
+#   devup            start (or attach to) the current worktree's session
+#   devup attach     attach to the session if it exists
+#   devup stop       kill the current worktree's session
+#   devup restart    stop + start
+#   devup ls         list all devup tmux sessions
+#   devup -h         show this help
+
+readonly PROG="devup"
+readonly CLOUDFLARED_DIR="${HOME}/.cloudflared"
+
+die()  { echo "${PROG}: $*" >&2; exit 1; }
+info() { echo "${PROG}: $*" >&2; }
+
+require_cmd() {
+  command -v "$1" >/dev/null 2>&1 || die "missing dependency: $1${2:+ ($2)}"
+}
+
+usage() { sed -n '3,46p' "$0" | sed 's/^# \{0,1\}//'; }
+
+# Walk up from $PWD until a `.project-structure` file is found.
+find_project_root() {
+  local dir
+  dir="$(pwd -P)"
+  while [ "${dir}" != "/" ]; do
+    if [ -f "${dir}/.project-structure" ]; then
+      printf '%s\n' "${dir}"
+      return 0
+    fi
+    dir="$(dirname "${dir}")"
+  done
+  return 1
+}
+
+# Stable port offset for a worktree: 0 for the default branch, else 100..900.
+port_offset() {
+  local worktree_id="$1" default_branch="$2" hashed
+  if [ "${worktree_id}" = "${default_branch}" ]; then
+    printf '0\n'
+    return
+  fi
+  hashed="$(printf '%s' "${worktree_id}" | cksum | awk '{print $1}')"
+  printf '%s\n' "$(( (hashed % 9 + 1) * 100 ))"
+}
+
+require_cmd tmux
+
+# Subcommands that need neither a project root nor yq/jq.
+case "${1:-up}" in
+  -h|--help|help) usage; exit 0 ;;
+  ls|list)        tmux list-sessions 2>/dev/null || info "no tmux sessions"; exit 0 ;;
+esac
+
+require_cmd yq "brew install yq"
+require_cmd jq "brew install jq"
+
+# -------------------------------------------------------------------
+# Resolve project root + config
+# -------------------------------------------------------------------
+PROJECT_ROOT="$(find_project_root)" \
+  || die "no .project-structure found in any parent of $(pwd -P)"
+CONFIG="${PROJECT_ROOT}/.project-structure"
+PROJECT_NAME="$(basename "${PROJECT_ROOT}")"
+
+code_dir="$(yq -r '.code_dir // ""' "${CONFIG}")"
+default_branch="$(yq -r '.default_branch // "main"' "${CONFIG}")"
+
+# -------------------------------------------------------------------
+# Resolve the active worktree
+# -------------------------------------------------------------------
+current="$(pwd -P)"
+if [ -n "${code_dir}" ] && [ -d "${PROJECT_ROOT}/${code_dir}" ]; then
+  worktree_base="${PROJECT_ROOT}/${code_dir}"
+  worktree_id=""
+  case "${current}/" in
+    "${worktree_base}/"*)
+      rel="${current#"${worktree_base}/"}"
+      worktree_id="${rel%%/*}"
+      ;;
+  esac
+  if [ -z "${worktree_id}" ] || [ "${worktree_id}" = ".bare" ] \
+     || [ ! -d "${worktree_base}/${worktree_id}" ]; then
+    worktree_id="${default_branch}"
+  fi
+  WORKTREE_ROOT="${worktree_base}/${worktree_id}"
+  [ -d "${WORKTREE_ROOT}" ] \
+    || die "worktree '${worktree_id}' not found at ${WORKTREE_ROOT}"
+  SESSION="${PROJECT_NAME}-${worktree_id}"
+else
+  # Flat repo: code lives at the project root.
+  WORKTREE_ROOT="${PROJECT_ROOT}"
+  worktree_id="${PROJECT_NAME}"
+  SESSION="${PROJECT_NAME}"
+fi
+SESSION="${SESSION//[^A-Za-z0-9_-]/-}"
+OFFSET="$(port_offset "${worktree_id}" "${default_branch}")"
+
+# -------------------------------------------------------------------
+# Subcommands
+# -------------------------------------------------------------------
+attach_session() {
+  if [ -n "${TMUX:-}" ]; then
+    tmux switch-client -t "${SESSION}"
+  else
+    tmux attach-session -t "${SESSION}"
+  fi
+}
+
+cmd_stop() {
+  if tmux has-session -t "${SESSION}" 2>/dev/null; then
+    tmux kill-session -t "${SESSION}"
+    info "stopped ${SESSION}"
+  else
+    info "no session ${SESSION}"
+  fi
+}
+
+cmd_up() {
+  if tmux has-session -t "${SESSION}" 2>/dev/null; then
+    info "session ${SESSION} already running — attaching"
+    attach_session
+    return
+  fi
+
+  local run_json count tunnel_cmd tunnel_tag i name cmd rel pane_dir
+  run_json="$(yq -o=json -I=0 '.run // null' "${CONFIG}")"
+  [ "${run_json}" != "null" ] || die "no 'run:' block in ${CONFIG}"
+  count="$(jq 'length' <<<"${run_json}")"
+  [ "${count}" -gt 0 ] || die "'run:' block is empty in ${CONFIG}"
+
+  # Build tunnel command (map -> derived, string -> raw, absent -> none).
+  tunnel_cmd=""
+  tunnel_tag="$(yq '.tunnel | tag' "${CONFIG}")"
+  case "${tunnel_tag}" in
+    '!!map')
+      local tcfg tname
+      tcfg="$(yq -r '.tunnel.config' "${CONFIG}")"
+      tname="$(yq -r '.tunnel.name' "${CONFIG}")"
+      tunnel_cmd="cloudflared tunnel --config ${CLOUDFLARED_DIR}/${tcfg}.yml --origincert ${CLOUDFLARED_DIR}/${tcfg}-cert.pem run ${tname}"
+      ;;
+    '!!str')
+      tunnel_cmd="$(yq -r '.tunnel' "${CONFIG}")"
+      ;;
+  esac
+
+  info "starting ${SESSION}  (worktree=${worktree_id}, offset=${OFFSET})"
+
+  for i in $(seq 0 $((count - 1))); do
+    name="$(jq -r ".[${i}].name" <<<"${run_json}")"
+    cmd="$(jq -r ".[${i}].cmd" <<<"${run_json}")"
+    rel="$(jq -r ".[${i}].cwd // \".\"" <<<"${run_json}")"
+    pane_dir="${WORKTREE_ROOT}/${rel}"
+
+    if [ "${i}" -eq 0 ]; then
+      tmux new-session -d -s "${SESSION}" -n "${name}" -c "${pane_dir}"
+      tmux set-environment -t "${SESSION}" DEV_WORKTREE "${worktree_id}"
+      tmux set-environment -t "${SESSION}" DEV_PORT_OFFSET "${OFFSET}"
+    else
+      tmux new-window -t "${SESSION}" -n "${name}" -c "${pane_dir}"
+    fi
+    tmux set-option -w -t "${SESSION}:${name}" remain-on-exit on
+    tmux send-keys -t "${SESSION}:${name}" \
+      "export DEV_WORKTREE='${worktree_id}' DEV_PORT_OFFSET='${OFFSET}'; ${cmd}" C-m
+  done
+
+  if [ -n "${tunnel_cmd}" ]; then
+    tmux new-window -t "${SESSION}" -n "tunnel" -c "${WORKTREE_ROOT}"
+    tmux send-keys -t "${SESSION}:tunnel" "${tunnel_cmd}" C-m
+  fi
+
+  tmux select-window -t "${SESSION}:$(jq -r '.[0].name' <<<"${run_json}")"
+  attach_session
+}
+
+case "${1:-up}" in
+  up|"")           cmd_up ;;
+  attach)
+    tmux has-session -t "${SESSION}" 2>/dev/null \
+      || die "no session ${SESSION}"
+    attach_session ;;
+  stop|down|kill)  cmd_stop ;;
+  restart)         cmd_stop; cmd_up ;;
+  *)               die "unknown subcommand: $1 (try: devup -h)" ;;
+esac
