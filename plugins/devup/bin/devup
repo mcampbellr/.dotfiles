@@ -29,6 +29,10 @@ set -euo pipefail
 # repos can opt into port isolation, e.g.:
 #   cmd: PORT=$((3000 + DEV_PORT_OFFSET)) pnpm --filter api dev
 #
+# The tunnel is a singleton (named tunnel with fixed-port ingress), so it runs
+# ONLY in the default_branch worktree (and in flat repos). Secondary worktrees
+# skip the tunnel window — reach their services via localhost:<port+offset>.
+#
 # Usage:
 #   devup            start (or attach to) the current worktree's session
 #   devup attach     attach to the session if it exists
@@ -117,11 +121,19 @@ if [ -n "${code_dir}" ] && [ -d "${PROJECT_ROOT}/${code_dir}" ]; then
   [ -d "${WORKTREE_ROOT}" ] \
     || die "worktree '${worktree_id}' not found at ${WORKTREE_ROOT}"
   SESSION="${PROJECT_NAME}-${worktree_id}"
+  # The tunnel is a singleton (named tunnel, fixed-port ingress); only the
+  # default worktree runs it. Secondary worktrees skip it to avoid clashes.
+  if [ "${worktree_id}" = "${default_branch}" ]; then
+    IS_PRIMARY="true"
+  else
+    IS_PRIMARY="false"
+  fi
 else
-  # Flat repo: code lives at the project root.
+  # Flat repo: code lives at the project root. Single session → always primary.
   WORKTREE_ROOT="${PROJECT_ROOT}"
   worktree_id="${PROJECT_NAME}"
   SESSION="${PROJECT_NAME}"
+  IS_PRIMARY="true"
 fi
 SESSION="${SESSION//[^A-Za-z0-9_-]/-}"
 OFFSET="$(port_offset "${worktree_id}" "${default_branch}")"
@@ -195,8 +207,12 @@ cmd_up() {
   done
 
   if [ -n "${tunnel_cmd}" ]; then
-    tmux new-window -t "${SESSION}" -n "tunnel" -c "${WORKTREE_ROOT}"
-    tmux send-keys -t "${SESSION}:tunnel" "${tunnel_cmd}" C-m
+    if [ "${IS_PRIMARY}" = "true" ]; then
+      tmux new-window -t "${SESSION}" -n "tunnel" -c "${WORKTREE_ROOT}"
+      tmux send-keys -t "${SESSION}:tunnel" "${tunnel_cmd}" C-m
+    else
+      info "skipping tunnel on '${worktree_id}' (not '${default_branch}'); reach services via localhost:<port+${OFFSET}>"
+    fi
   fi
 
   tmux select-window -t "${SESSION}:$(jq -r '.[0].name' <<<"${run_json}")"
