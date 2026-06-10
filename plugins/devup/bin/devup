@@ -29,9 +29,9 @@ set -euo pipefail
 # repos can opt into port isolation, e.g.:
 #   cmd: PORT=$((3000 + DEV_PORT_OFFSET)) pnpm --filter api dev
 #
-# The tunnel is a singleton (named tunnel with fixed-port ingress), so it runs
-# ONLY in the default_branch worktree (and in flat repos). Secondary worktrees
-# skip the tunnel window — reach their services via localhost:<port+offset>.
+# The tunnel is a singleton (named tunnel with fixed-port ingress). The FIRST
+# worktree brought up claims it; later worktrees of the same project detect the
+# running tunnel and skip it — reach their services via localhost:<port+offset>.
 #
 # Usage:
 #   devup            start (or attach to) the current worktree's session
@@ -53,12 +53,15 @@ require_cmd() {
 
 usage() { sed -n '3,46p' "$0" | sed 's/^# \{0,1\}//'; }
 
-# Walk up from $PWD until a `.project-structure` file is found.
+# Walk up from $PWD to the nearest `.project-structure` that carries a `run:`
+# block. Worktree monorepos ship their own `.project-structure` (spec paths
+# only, no run:) — skip those and keep climbing to the project root's config.
 find_project_root() {
-  local dir
+  local dir cfg
   dir="$(pwd -P)"
   while [ "${dir}" != "/" ]; do
-    if [ -f "${dir}/.project-structure" ]; then
+    cfg="${dir}/.project-structure"
+    if [ -f "${cfg}" ] && [ "$(yq -r '.run | length' "${cfg}" 2>/dev/null || echo 0)" -gt 0 ] 2>/dev/null; then
       printf '%s\n' "${dir}"
       return 0
     fi
@@ -93,7 +96,7 @@ require_cmd jq "brew install jq"
 # Resolve project root + config
 # -------------------------------------------------------------------
 PROJECT_ROOT="$(find_project_root)" \
-  || die "no .project-structure found in any parent of $(pwd -P)"
+  || die "no .project-structure with a 'run:' block found above $(pwd -P)"
 CONFIG="${PROJECT_ROOT}/.project-structure"
 PROJECT_NAME="$(basename "${PROJECT_ROOT}")"
 
@@ -121,22 +124,33 @@ if [ -n "${code_dir}" ] && [ -d "${PROJECT_ROOT}/${code_dir}" ]; then
   [ -d "${WORKTREE_ROOT}" ] \
     || die "worktree '${worktree_id}' not found at ${WORKTREE_ROOT}"
   SESSION="${PROJECT_NAME}-${worktree_id}"
-  # The tunnel is a singleton (named tunnel, fixed-port ingress); only the
-  # default worktree runs it. Secondary worktrees skip it to avoid clashes.
-  if [ "${worktree_id}" = "${default_branch}" ]; then
-    IS_PRIMARY="true"
-  else
-    IS_PRIMARY="false"
-  fi
 else
-  # Flat repo: code lives at the project root. Single session → always primary.
+  # Flat repo: code lives at the project root.
   WORKTREE_ROOT="${PROJECT_ROOT}"
   worktree_id="${PROJECT_NAME}"
   SESSION="${PROJECT_NAME}"
-  IS_PRIMARY="true"
 fi
 SESSION="${SESSION//[^A-Za-z0-9_-]/-}"
 OFFSET="$(port_offset "${worktree_id}" "${default_branch}")"
+
+# The tunnel is a singleton (named tunnel, fixed-port ingress). First worktree
+# up claims it; later ones detect a sibling session already running a `tunnel`
+# window and skip it — their port is taken, so they reach services locally.
+tunnel_claimed_elsewhere() {
+  local other
+  for other in $(tmux list-sessions -F '#{session_name}' 2>/dev/null); do
+    [ "${other}" = "${SESSION}" ] && continue
+    case "${other}" in
+      "${PROJECT_NAME}"|"${PROJECT_NAME}-"*)
+        if tmux list-windows -t "${other}" -F '#{window_name}' 2>/dev/null \
+             | grep -qx 'tunnel'; then
+          return 0
+        fi
+        ;;
+    esac
+  done
+  return 1
+}
 
 # -------------------------------------------------------------------
 # Subcommands
@@ -207,11 +221,11 @@ cmd_up() {
   done
 
   if [ -n "${tunnel_cmd}" ]; then
-    if [ "${IS_PRIMARY}" = "true" ]; then
+    if tunnel_claimed_elsewhere; then
+      info "tunnel already up in another '${PROJECT_NAME}' worktree; skipping here (reach services via localhost:<port+${OFFSET}>)"
+    else
       tmux new-window -t "${SESSION}" -n "tunnel" -c "${WORKTREE_ROOT}"
       tmux send-keys -t "${SESSION}:tunnel" "${tunnel_cmd}" C-m
-    else
-      info "skipping tunnel on '${worktree_id}' (not '${default_branch}'); reach services via localhost:<port+${OFFSET}>"
     fi
   fi
 
